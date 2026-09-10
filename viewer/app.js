@@ -63,6 +63,31 @@ function buildGroundPatch(cx,cz){patchCX=cx;patchCZ=cz;const n=PATCH_N,step=PATC
  let q=0;for(let j=0;j<n;j++)for(let i=0;i<n;i++){const a=j*N1+i;idx[q++]=a;idx[q++]=a+N1;idx[q++]=a+1;idx[q++]=a+1;idx[q++]=a+N1;idx[q++]=a+N1+1;}
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setAttribute('uv',new THREE.BufferAttribute(uv,2));g.setAttribute('aWeights',new THREE.BufferAttribute(w,4));g.setIndex(new THREE.BufferAttribute(idx,1));g.computeVertexNormals();g.computeBoundingSphere();
  if(groundPatch){groundGroup.remove(groundPatch);groundPatch.geometry.dispose();}groundPatch=new THREE.Mesh(g,groundMats.ground);groundPatch.name='Near-field ground: DEM + procedural Jogan lava relief + root mounds; moss/rock/litter/path weights';groundPatch.receiveShadow=true;groundPatch.castShadow=false;groundGroup.add(groundPatch);}
+// ---------------------------------------------------------------- base terrain layer weights
+// The near-field patch writes per-vertex moss/rock/litter/trail proportions into aWeights.
+// The corridor terrain inside the Surface GLB shares that same layered material but ships no such
+// attribute, so the shader read the WebGL default for an unbound attribute — (0,0,0,1) — which is
+// pure trail. The guard that was meant to catch this tests the sum against 0.01, and (0,0,0,1)
+// sums to exactly 1, so it never fired: every square metre beyond the 120 m patch shaded as
+// compacted trail cinder. Evaluate the same weight model here, driven by the same procedural lava
+// relief, so the ground reads continuously across the patch boundary instead of changing material.
+function buildBaseWeights(mesh){
+ const g=mesh.geometry,pos=g.attributes.position,n=pos.count,w=new Float32Array(n*4);
+ const step=PATCH_SIZE/PATCH_N,v=new THREE.Vector3();
+ const H=(x,z)=>(sample(x,z)??0)+reliefRaw(x,z);
+ for(let i=0;i<n;i++){
+  v.fromBufferAttribute(pos,i).applyMatrix4(mesh.matrixWorld);const x=v.x,z=v.z;
+  const h0=H(x,z),hl=H(x-step,z),hr=H(x+step,z),hd=H(x,z-step),hu=H(x,z+step);
+  const slope=Math.hypot((hr-hl)/(2*step),(hu-hd)/(2*step)),curv=(hl+hr+hd+hu-4*h0)/(step*step);
+  const pw=pathWeight(x,z),rockN=fbm(x/5.5,z/5.5,940,3),litN=fbm(x/11,z/11,950,3),cl=landclass(x,z);
+  let rock=Math.min(1,.95*smooth(.30,.75,slope)+.6*smooth(-.12,-.45,curv)+.55*smooth(.62,.8,rockN));
+  let litter=Math.min(1,smooth(.5,.7,litN)*(cl===2?1.2:.95)+.45*smooth(.10,.35,curv)+.5*smooth(.05,.35,pw)*(1-smooth(.5,.9,pw)));
+  const m=mound(x,z);rock*=1-.7*Math.min(1,m*2.5);litter*=1-.3*Math.min(1,m*2.5);
+  let moss=Math.max(0,1-.85*rock-.8*litter)*(1-pw);rock*=1-pw;litter*=1-pw;
+  const sum=moss+rock+litter+pw+1e-6;
+  w[i*4]=moss/sum;w[i*4+1]=rock/sum;w[i*4+2]=litter/sum;w[i*4+3]=pw/sum;}
+ g.setAttribute('aWeights',new THREE.BufferAttribute(w,4));
+ return n;}
 // ---------------------------------------------------------------- multi-layer world-space material (moss / basalt / litter / trail), anti-tiling, moss-on-top mode for rocks and logs
 const groundMats={};const T={};
 function loadTex(id,srgb,dir='assets/materials_v2'){const t=texloader.load(`${dir}/${id}`);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);if(srgb)t.colorSpace=THREE.SRGBColorSpace;return t;}
@@ -169,7 +194,9 @@ function indexLibrary(model,target){const seen=new Set();model.traverse(o=>{if(!
 async function init(){try{status('Loading measured terrain and mapped communities…',10);await Promise.all(['local','study','regional'].map(getGrid));[contexts.local,contexts.study]=await Promise.all(['local','study'].map(n=>json(`assets/terrain/${n}-context.json`)));await materials();pathMat=new THREE.MeshStandardMaterial({map:T.pathD,normalMap:T.pathN,roughnessMap:T.pathR,roughness:1});pathMat.name='Trail surface (procedural compacted cinder/soil)';
  status('Preparing the forest…',30);forestMeta=await json('assets/forest-instances.json');forestData=new Float32Array(await fetch('assets/forest-instances.f32').then(r=>r.arrayBuffer()));initSegments(contexts.study);augmentForest();
  const [surface,lib2,libOld,fern,log,mature]=await Promise.all([glb('../models/Aokigahara_Surface_Terrain.glb'),glb('assets/tree-library-v2.glb'),glb('assets/tree-library.glb'),glb('assets/models/fern_02.glb'),glb('assets/models/dead_tree_trunk.glb'),glb('assets/models/fir_tree_c.glb')]);
- surface.traverse(o=>{if(o.isMesh){o.geometry.computeBoundsTree();o.receiveShadow=true;let mat=o.material;if(mat.name.includes('Local_Ground')){o.material=groundMats.base;o.name='GSI DEM corridor terrain (8 m resample); base ground layers';}else{mat.roughness=1;mat.metalness=0;mat.color.multiplyScalar(.6);}}});scene.add(surface);surface.updateMatrixWorld(true);surfaceModel=surface;matureTemplate=mature;
+ const baseGround=[];
+ surface.traverse(o=>{if(o.isMesh){o.geometry.computeBoundsTree();o.receiveShadow=true;let mat=o.material;if(mat.name.includes('Local_Ground')){o.material=groundMats.base;o.name='GSI DEM corridor terrain (8 m resample); base ground layers';baseGround.push(o);}else{mat.roughness=1;mat.metalness=0;mat.color.multiplyScalar(.6);}}});scene.add(surface);surface.updateMatrixWorld(true);surfaceModel=surface;matureTemplate=mature;
+ status('Deriving ground layers beyond the near field…',80);let baseVerts=0;for(const o of baseGround)baseVerts+=buildBaseWeights(o);console.info(`Base ground layer weights: ${baseVerts} vertices across ${baseGround.length} mesh(es)`);
  mature.traverse(o=>{if(o.isMesh){const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats){if(m.alphaTest>0||m.transparent){m.alphaTest=.35;m.transparent=false;m.alphaToCoverage=true;}m.roughness=Math.max(m.roughness??1,.85);}}});
  indexLibrary(lib2,lib);indexLibrary(libOld,lib);for(const k of Object.keys(lib))if(k.startsWith('tree_')){for(const p of lib[k]){if(p.material.name.includes('leaves')){p.material.color.setRGB(.55,.62,.42);p.material.roughness=.95;}}}
  fernProto=protoMeshes(fern);const logParts=protoMeshes(log);if(logParts.length){logGeo=logParts[0].geometry;const lm=logParts[0].material;logMat=layerMaterial('log',{d:lm.map,n:lm.normalMap,r:lm.roughnessMap});logMat.name='Fallen log: dead_tree_trunk (CC0) + procedural moss overlay';}
@@ -190,7 +217,11 @@ function rotate(dx,dy){yaw-=dx*.0022;pitch=THREE.MathUtils.clamp(pitch-dy*.0022,
 window.addEventListener('mousemove',e=>{if(document.pointerLockElement===canvas)rotate(e.movementX,e.movementY);});canvas.addEventListener('pointerdown',e=>{canvas.focus();if(document.pointerLockElement===canvas||!$('panel').hidden)return;lookDragging=true;previousPointer=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId);});canvas.addEventListener('pointermove',e=>{if(lookDragging&&document.pointerLockElement!==canvas){rotate(e.clientX-previousPointer[0],e.clientY-previousPointer[1]);previousPointer=[e.clientX,e.clientY];}});canvas.addEventListener('pointerup',()=>lookDragging=false);
 function setMode(m){mode=m;$('walk').classList.toggle('selected',m==='walk');$('fly').classList.toggle('selected',m==='fly');if(m==='walk')camera.position.y=groundY(camera.position.x,camera.position.z)+1.72;toast(m==='fly'?'Fly: WASD · E / Space up · Q / Ctrl down · Shift faster':'Walk: WASD / arrows · Shift faster');}
 $('walk').onclick=()=>setMode('walk');$('fly').onclick=()=>setMode('fly');$('quality').onchange=async()=>{quality=$('quality').value;renderer.setPixelRatio(Math.min(devicePixelRatio,quality==='high'?2:1.5));rebuildForest(true);};
-$('sun').oninput=setSun;const lightSel=$('light');if(lightSel){lightSel.onchange=()=>{preset=lightSel.value;setSun();};}
+$('sun').oninput=setSun;
+// Single entry point for the daylight presets, so the panel control, the destination
+// jumps and the headless audit hook can never disagree about which preset is live.
+function applyPreset(p,angle){if(!PRESETS[p])return;preset=p;if(angle!==undefined)$('sun').value=angle;const sel=$('light');if(sel&&sel.value!==p)sel.value=p;setSun();}
+const lightSel=$('light');if(lightSel){lightSel.value=preset;lightSel.onchange=()=>applyPreset(lightSel.value);}
 const destinations={forest:[32.14,-9.84,1.72,.45,-.025,'Fugaku forest corridor'],fugaku:[-38,-18,1.72,-2.8,-.05,'Fugaku Wind Cave surface approach'],narusawa:[785,284,1.72,.7,-.06,'Narusawa Ice Cave surface approach'],img013:[-100.4,-197.6,1.72,1.5435,-.06,'Reference viewpoint IMG-013 (published camera geotag, heading 271.6°)'],saiko:[1100,-2400,560,Math.PI,-.24,'Saiko and the Jogan landscape'],fuji:[-3600,-4100,2900,Math.PI+.51,-.2,'Mount Fuji regional landscape']};
 $('destination').onchange=()=>{const d=destinations[$('destination').value];camera.position.set(d[0],0,d[1]);if(Math.abs(d[0])<1000&&Math.abs(d[1])<1000)buildGroundPatch(d[0],d[1]);camera.position.y=(groundY(d[0],d[1])??0)+d[2];yaw=d[3];pitch=d[4];mode=d[2]>2?'fly':'walk';$('walk').classList.toggle('selected',mode==='walk');$('fly').classList.toggle('selected',mode==='fly');$('location').textContent=d[5];rebuildForest(true);$('panel').hidden=true;entered=true;$('start-hint').style.display='none';if(['fugaku','narusawa'].includes($('destination').value))toast('Surface reference location. Cave mouths and underground passages require a measured survey.');};
 const pad=$('move-pad');let padOrigin;pad.onpointerdown=e=>{entered=true;$('start-hint').style.display='none';padOrigin=[e.clientX,e.clientY];pad.setPointerCapture(e.pointerId);};pad.onpointermove=e=>{if(!padOrigin)return;movePad.x=THREE.MathUtils.clamp((e.clientX-padOrigin[0])/42,-1,1);movePad.y=THREE.MathUtils.clamp((e.clientY-padOrigin[1])/42,-1,1);pad.firstElementChild.style.transform=`translate(${movePad.x*30}px,${movePad.y*30}px)`;};pad.onpointerup=pad.onpointercancel=()=>{padOrigin=null;movePad={x:0,y:0};pad.firstElementChild.style.transform='';};let lookOrigin;const lp=$('look-pad');lp.onpointerdown=e=>{lookOrigin=[e.clientX,e.clientY];lp.setPointerCapture(e.pointerId);};lp.onpointermove=e=>{if(!lookOrigin)return;rotate(e.clientX-lookOrigin[0],e.clientY-lookOrigin[1]);lookOrigin=[e.clientX,e.clientY];};lp.onpointerup=lp.onpointercancel=()=>lookOrigin=null;for(const [id,v]of[['rise',1],['fall',-1]]){$(id).onpointerdown=()=>vertical=v;$(id).onpointerup=$(id).onpointerleave=()=>vertical=0;}
@@ -206,5 +237,5 @@ $('asset-credit').textContent='GSI elevation and aerial imagery; MOE vegetation;
 // Inspection hook for headless audit renders (fixed cameras, identical before/after). No visual effect.
 window.__aoki={get ready(){return ready},camera,scene,renderer,sample,groundY,get trees(){return trees},get small(){return small},PRESETS,
  setPose(x,z,yw,pt,eye=1.72){camera.position.set(x,0,z);if(Math.abs(x)<1000&&Math.abs(z)<1000&&Math.max(Math.abs(x-patchCX),Math.abs(z-patchCZ))>12)buildGroundPatch(x,z);camera.position.y=(groundY(x,z)??0)+eye;yaw=yw;pitch=pt;camera.rotation.set(pitch,yaw,0);entered=true;rebuildForest(true);},
- setPreset(p,angle){preset=p;if(angle!==undefined)$('sun').value=angle;setSun();},tick(){tick(.016);},render(){renderer.render(scene,camera);}};
+ setPreset(p,angle){applyPreset(p,angle);},tick(){tick(.016);},render(){renderer.render(scene,camera);}};
 init();

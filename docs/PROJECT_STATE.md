@@ -161,7 +161,7 @@ This is the "building the preset selector" work. It was left half-finished in th
 
 Both were repaired on `dev/generational-visual-upgrade`. See §4.
 
-### 2.7 Distant ground — **this was the unfinished investigation, and the cause is now identified**
+### 2.7 Distant ground — **this was the unfinished investigation; cause found and fixed**
 
 The Fable session stopped while "diagnosing why distant ground…". The defect is real and is in
 `viewer/app.js`.
@@ -187,7 +187,8 @@ moss-and-litter forest floor. This is visible in the recovered evidence renders:
 `renders/after_p4/C6_arbitrary_east.png` the near-field reads as moss, rock and litter while the
 ground behind it flattens to uniform brown.
 
-The fix is described in §4.2. It was applied on the development branch, not on the checkpoint.
+The fix is described in §4.2. It was applied on `dev/generational-visual-upgrade`, not on the
+checkpoint, so `main` still holds the exact state the Fable session reached.
 
 ---
 
@@ -247,13 +248,38 @@ No recovered source file, asset or manifest was edited for the checkpoint.
 
 Applied after the checkpoint, continuing the interrupted pass rather than redesigning it.
 
-1. **Preset selector completed.** Removed the orphan `#lighting` select and the duplicated
-   IMG-013 destination option. Wired the daylight `<select>` to the three real presets and made it
-   reflect the preset the runtime is actually in, so the headless `setPreset` path and the UI agree.
-2. **Distant ground repaired.** `groundMats.base` now compiles as its own program with weights
-   computed procedurally from world-space noise, slope and the mapped land-cover class, instead of
-   reading a vertex attribute that does not exist on that geometry. The near-field patch keeps the
-   attribute path unchanged, so nothing about the near-field appearance moves.
+**1. Preset selector completed.** Removed the orphan `#lighting` select and the duplicated IMG-013
+destination option. Introduced a single `applyPreset(preset, angle)` entry point used by the panel
+control, the destination jumps and the headless `setPreset` hook alike, so the UI can no longer
+disagree with the live preset. Verified in the running page: the orphan select is gone, exactly one
+IMG-013 option remains, the select initialises to the live preset, and calling
+`setPreset('clear', 60)` moves both the select and the sun slider.
+
+**2. Distant ground repaired.** The shader was never wrong; the attribute it reads was simply never
+built for that geometry. Rather than add a second shader path, the fix supplies what the existing
+one expects: `buildBaseWeights()` evaluates the same moss/rock/litter/trail model the near-field
+patch uses — same procedural lava relief, same noise fields, same land-cover term — over the
+corridor terrain's vertices, and writes it into an `aWeights` attribute. 66,306 vertices across two
+meshes, computed once at load.
+
+Because both surfaces now evaluate the same model, they agree by construction rather than by
+tuning. Measured mean layer weights:
+
+| Surface | moss | rock | litter | trail |
+|---|---|---|---|---|
+| Near-field patch (was always correct) | 0.544 | 0.153 | 0.267 | 0.035 |
+| Base terrain, before | 0.000 | 0.000 | 0.000 | **1.000** |
+| Base terrain, after | 0.468 | 0.206 | 0.311 | 0.015 |
+
+Identical-camera evidence is in `renders/distant_ground_fix/`, with side-by-side composites at
+`renders/BEFORE_AFTER_D*.jpg`. The elevated cameras show the defect at full extent — 26.8 % of
+pixels change at `D5_above_canopy_look_down`, 19.9 % at `D4_above_canopy_look_out` — while
+eye-level cameras change only 1.7–2.2 % because canopy and trunks occlude most distant ground.
+
+**Regression check.** The eight standard audit cameras were re-rendered after the fix. All eight
+still reproduce the source session's triangle and draw-call counts exactly, with zero console
+errors, and the two cameras that see only near-field ground (`C2_start_lookdown`,
+`C5_fugaku_approach`) are bit-identical to the checkpoint. The near-field path was not touched.
 
 ---
 

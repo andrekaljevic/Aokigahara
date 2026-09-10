@@ -1,0 +1,8 @@
+[
+ {"name":"D1_midfield_from_start","x":32.14,"z":-9.84,"yaw":0.45,"pitch":-0.16,"eye":6.0,"preset":"soft","sun":38},
+ {"name":"D2_open_ground_east","x":300,"z":300,"yaw":2.35,"pitch":-0.22,"eye":14.0,"preset":"soft","sun":38},
+ {"name":"D3_overcast_midfield","x":32.14,"z":-9.84,"yaw":0.45,"pitch":-0.16,"eye":6.0,"preset":"overcast","sun":45},
+ {"name":"D4_above_canopy_look_out","x":32.14,"z":-9.84,"yaw":0.45,"pitch":-0.34,"eye":42.0,"preset":"soft","sun":38},
+ {"name":"D5_above_canopy_look_down","x":32.14,"z":-9.84,"yaw":0.45,"pitch":-0.85,"eye":60.0,"preset":"overcast","sun":45},
+ {"name":"D6_patch_boundary","x":600,"z":-400,"yaw":1.2,"pitch":-0.45,"eye":34.0,"preset":"overcast","sun":45}
+]

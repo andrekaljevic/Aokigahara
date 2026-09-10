@@ -27,8 +27,11 @@ No frame rate has been measured on any target device.
 
 Running today: the near-field procedural lava and moss ground system, tree library v2 with modelled
 surface roots, stand densification across three stem-size layers, deadwood, lava blocks, ferns and
-three daylight presets. One known defect is described below and is being fixed on the development
-branch.
+three daylight presets.
+
+On `dev/generational-visual-upgrade`, the interrupted pass has been continued: the preset selector
+is finished and the distant-ground defect the source session was diagnosing is fixed, with
+identical-camera evidence in `renders/distant_ground_fix/`.
 
 ---
 
@@ -204,8 +207,8 @@ protection boundaries and the practical build extent are related but are **not o
 - Cave destinations are surface approach references only. No cave interior is modelled.
 - Of the seven forest community types the underlying survey distinguishes, the runtime represents
   three. Pinus and Tsuga-Pinus communities are not modelled at all.
-- Beyond the 120 m near-field patch the ground currently shades as a single flat layer. The cause
-  is identified and the fix is on `dev/generational-visual-upgrade`.
+- The transition at the 120 m near-field patch edge is still a change in ground geometry detail,
+  though no longer a change in material.
 
 ---
 

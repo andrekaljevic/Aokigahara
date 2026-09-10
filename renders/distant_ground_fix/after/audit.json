@@ -1,0 +1,89 @@
+{
+ "baseUrl": "http://127.0.0.1:8765/viewer/",
+ "viewport": [
+  1280,
+  800
+ ],
+ "readySeconds": 6.1,
+ "results": [
+  {
+   "ms": 5,
+   "pos": [
+    32.14,
+    107.26,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 97,
+   "tris": 7793610,
+   "name": "D1_midfield_from_start",
+   "wallSeconds": 77.2
+  },
+  {
+   "ms": 9,
+   "pos": [
+    300,
+    129.45,
+    300
+   ],
+   "trees": 5293,
+   "calls": 104,
+   "tris": 8756171,
+   "name": "D2_open_ground_east",
+   "wallSeconds": 11.8
+  },
+  {
+   "ms": 4,
+   "pos": [
+    32.14,
+    107.26,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 97,
+   "tris": 7793610,
+   "name": "D3_overcast_midfield",
+   "wallSeconds": 12.5
+  },
+  {
+   "ms": 3,
+   "pos": [
+    32.14,
+    137.5,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 66,
+   "tris": 5048085,
+   "name": "D4_above_canopy_look_out",
+   "wallSeconds": 6.8
+  },
+  {
+   "ms": 3,
+   "pos": [
+    32.14,
+    152.62,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 59,
+   "tris": 3805457,
+   "name": "D5_above_canopy_look_down",
+   "wallSeconds": 5
+  },
+  {
+   "ms": 10,
+   "pos": [
+    600,
+    102.52,
+    -400
+   ],
+   "trees": 5275,
+   "calls": 88,
+   "tris": 7469225,
+   "name": "D6_patch_boundary",
+   "wallSeconds": 10.4
+  }
+ ],
+ "events": []
+}
