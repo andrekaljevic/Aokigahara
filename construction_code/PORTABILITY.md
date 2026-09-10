@@ -1,0 +1,1 @@
+These are the exact construction/validation scripts from this session, supplied for audit and adaptation. Some source paths refer to the original research workspace; they are not a one-command portable build. The ready GLBs and local viewer do not require rerunning them.

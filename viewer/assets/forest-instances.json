@@ -1,0 +1,17 @@
+{
+  "count": 53999,
+  "stride": 6,
+  "fields": [
+    "x",
+    "y",
+    "z",
+    "uniformScale",
+    "yawRadians",
+    "variantId"
+  ],
+  "spacingM": 8.5,
+  "seedMethod": "integer spatial hash in build_world.py",
+  "placement": "Procedural, constrained to mapped natural conifer, broadleaf/mixed and plantation classes; excludes mapped paths/roads with estimated buffers. Individual trees not surveyed.",
+  "coordinateSystem": "local AEQD x east z south y elevation-900",
+  "file": "forest-instances.f32"
+}

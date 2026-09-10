@@ -1,0 +1,27 @@
+# Aokigahara free-roam — Git LFS rules.
+# Large binary 3D assets, packed float grids, procedural inputs, textures and renders go through LFS.
+# Small categorical masks (*.u8, <300 KB) and JSON/text stay in plain Git so diffs remain visible.
+*.glb   filter=lfs diff=lfs merge=lfs -text
+*.gltf  filter=lfs diff=lfs merge=lfs -text
+*.fbx   filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.obj   filter=lfs diff=lfs merge=lfs -text
+*.exr   filter=lfs diff=lfs merge=lfs -text
+*.hdr   filter=lfs diff=lfs merge=lfs -text
+*.tif   filter=lfs diff=lfs merge=lfs -text
+*.tiff  filter=lfs diff=lfs merge=lfs -text
+*.f32   filter=lfs diff=lfs merge=lfs -text
+*.npz   filter=lfs diff=lfs merge=lfs -text
+*.pdf   filter=lfs diff=lfs merge=lfs -text
+*.zip   filter=lfs diff=lfs merge=lfs -text
+*.7z    filter=lfs diff=lfs merge=lfs -text
+*.bin   filter=lfs diff=lfs merge=lfs -text
+# Textures used by the runtime (0.1–2 MB each) and audit renders (0.2–3 MB each)
+viewer/assets/materials/*.jpg     filter=lfs diff=lfs merge=lfs -text
+viewer/assets/materials_v2/*.jpg  filter=lfs diff=lfs merge=lfs -text
+viewer/assets/materials_v2/*.png  filter=lfs diff=lfs merge=lfs -text
+renders/**/*.png filter=lfs diff=lfs merge=lfs -text
+renders/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+docs/handover/*.png filter=lfs diff=lfs merge=lfs -text
+# Small binary grids: keep in Git, never treat as text
+*.u8 binary

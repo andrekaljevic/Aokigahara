@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#7a8a8f}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"../viewer/vendor/three.module.js","three/addons/":"../viewer/vendor/addons/"}}</script></head><body><canvas id="c"></canvas>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const q=new URLSearchParams(location.search);const names=(q.get('m')||'tsuga_a_high').split(',');const lib=q.get('lib')||'../viewer/assets/tree-library-v2.glb';
+const canvas=document.getElementById('c');const r=new THREE.WebGLRenderer({canvas,antialias:true});r.setSize(innerWidth,innerHeight);r.outputColorSpace=THREE.SRGBColorSpace;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=.9;r.shadowMap.enabled=true;r.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x8a9aa0);
+scene.add(new THREE.HemisphereLight(0xcbdce8,0x454a33,1.2));const sun=new THREE.DirectionalLight(0xffedd2,2.6);sun.position.set(30,50,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-30,right:30,top:40,bottom:-10,near:1,far:200});sun.shadow.bias=-.0002;sun.shadow.normalBias=.05;scene.add(sun);
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:0x3a3a2c,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+const g=await new GLTFLoader().loadAsync(lib);const seen=new Set();g.scene.traverse(o=>{if(o.isMesh&&!seen.has(o.material)){seen.add(o.material);o.material.vertexColors=true;o.material.needsUpdate=true;}});
+let x=-(names.length-1)*5;for(const n of names){const src=g.scene.getObjectByName(n);if(!src){console.error('missing',n);continue;}const m=src.clone(true);m.position.set(x,0,0);m.traverse(o=>{if(o.isMesh){o.castShadow=o.receiveShadow=true;}});scene.add(m);x+=10;}
+const cam=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.1,500);const dist=+(q.get('d')||34),h=+(q.get('h')||8),look=+(q.get('l')||8);cam.position.set(0,h,dist);cam.lookAt(0,look,0);
+r.render(scene,cam);window.__done=true;window.__render=()=>r.render(scene,cam);
+</script></body></html>

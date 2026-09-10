@@ -1,0 +1,117 @@
+{
+  "file": "Aokigahara_Surface_Terrain.glb",
+  "bytes": 22589416,
+  "sha256": "b993adef9f9c7ea4767801a5ea6e31ef81816ff43b74f776339cdfadd73e6e8b",
+  "format": "glTF 2.0 binary; all geometry and JPEG images embedded; no extensions",
+  "georeference": {
+    "originWgs84": [
+      138.658,
+      35.4775
+    ],
+    "localCRS": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs",
+    "axisConvention": "x east, y up, z south",
+    "metresPerUnit": 1,
+    "heightOffsetM": 900,
+    "forward": "Project WGS84 lon/lat into local CRS as E,N; x=E,z=-N,y=GSI elevationM-900",
+    "inverse": "Transform local CRS E=x,N=-z to WGS84; elevationM=y+900",
+    "elevationReference": "GSI published numerical elevation reference, not ellipsoid height"
+  },
+  "uniqueSourceVertices": 448892,
+  "exportedVertices": 453624,
+  "triangles": 895734,
+  "primitives": 10,
+  "pieces": [
+    {
+      "name": "Local_Ground_00",
+      "material": "Local_Ground_CC0_Representative",
+      "vertices": 33153,
+      "triangles": 65536
+    },
+    {
+      "name": "Local_Ground_01",
+      "material": "Local_Ground_CC0_Representative",
+      "vertices": 33153,
+      "triangles": 65536
+    },
+    {
+      "name": "GSI_Aerial_Context_00",
+      "material": "GSI_Core_Aerial",
+      "vertices": 45632,
+      "triangles": 89933
+    },
+    {
+      "name": "GSI_Aerial_Context_01",
+      "material": "GSI_Core_Aerial",
+      "vertices": 45531,
+      "triangles": 89933
+    },
+    {
+      "name": "GSI_Aerial_Context_02",
+      "material": "GSI_Core_Aerial",
+      "vertices": 45535,
+      "triangles": 89933
+    },
+    {
+      "name": "GSI_Aerial_Context_03",
+      "material": "GSI_Core_Aerial",
+      "vertices": 45462,
+      "triangles": 89934
+    },
+    {
+      "name": "Regional_Elevation_Context_00",
+      "material": "Regional_Elevation_Colors",
+      "vertices": 51643,
+      "triangles": 101232
+    },
+    {
+      "name": "Regional_Elevation_Context_01",
+      "material": "Regional_Elevation_Colors",
+      "vertices": 51115,
+      "triangles": 101232
+    },
+    {
+      "name": "Regional_Elevation_Context_02",
+      "material": "Regional_Elevation_Colors",
+      "vertices": 51274,
+      "triangles": 101232
+    },
+    {
+      "name": "Regional_Elevation_Context_03",
+      "material": "Regional_Elevation_Colors",
+      "vertices": 51126,
+      "triangles": 101233
+    }
+  ],
+  "boundsMin": [
+    -14000.0,
+    -656.3204345703125,
+    -11000.0
+  ],
+  "boundsMax": [
+    18000.0,
+    2865.618408203125,
+    19000.0
+  ],
+  "sourceSampleCounts": {
+    "local": 66049,
+    "study": 194481,
+    "regional": 188362
+  },
+  "validation": {
+    "allVerticesFinite": true,
+    "allNormalsFinite": true,
+    "allFaceNormalsUp": true,
+    "degenerateFacesRemoved": 0,
+    "projectedAreaM2": 960000003.9943047,
+    "expectedRectangleAreaM2": 960000000.0,
+    "coverageRelativeError": 4.160734017690023e-09,
+    "allPrimitivesAtMost60000Vertices": true
+  },
+  "interpretationLimits": [
+    "Surface only; no cave interiors, trees, paths, water excavation, buildings or procedural ground displacement.",
+    "DEM input sampling: local approximately 8 m, study approximately 38 x 36 m, regional approximately 62.5 x 58.6 m. Grids carry the measured sources and their disclosed resampling limits.",
+    "Aerial texture depicts canopy/land surface at mixed acquisition dates. Leaf litter is representative CC0 material, not captured at this location. Outside aerial coverage, colours are an elevation-derived visual palette.",
+    "Geographic reference is recorded in standard glTF extras and companion manifest; glTF itself does not mandate a geographic CRS."
+  ],
+  "elapsedSeconds": 1.97
+}

@@ -1,0 +1,91 @@
+{
+  "provider": "Poly Haven",
+  "source": "https://polyhaven.com/a/fir_tree_01",
+  "license": "CC0-1.0",
+  "authors": {
+    "Rico Cilliers": "Modeling",
+    "Rob Tuytel": "Photography"
+  },
+  "subject": "Mature fir representative; not a taxonomically verified Japanese hemlock or cypress",
+  "source_node": "fir_tree_01_c_LOD0",
+  "source_triangles": 505494,
+  "triangles": 301761,
+  "source_binary_range": {
+    "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/fir_tree_01/fir_tree_01.bin",
+    "start": 445212268,
+    "end": 478462203,
+    "bytes": 33249936,
+    "sha256": "9c21b774c1f6470d393e420c40282bfdc210533224ca1a4b8a4d0b67d7874561"
+  },
+  "processing": [
+    "Extracted only variant C through HTTP Range; response206, exactContent-Range and length checked.",
+    "Attribute-aware mesh simplification preserving existing normals and UVs; full detail source retained in partial binary.",
+    "Removed constant white COLOR_0 and unreferenced COLOR_1 channels.",
+    "Restored cylindrical bark UVs on trunk primitive because original glTF had no TEXCOORD_0. Same-source bark texture used; UV seam split.",
+    "Packed source twig alpha into diffuse RGBA, set MASK cutoff0.5.",
+    "Embedded original1K PBR images; source texture MD5 verified. No runtime compression extension needed."
+  ],
+  "primitive_statistics": [
+    {
+      "primitive": 0,
+      "material": 0,
+      "sourceTriangles": 9536,
+      "triangles": 9350,
+      "vertices": 5629,
+      "error": 0.0006939751910977066,
+      "scale": 9.302501678466797,
+      "missingOriginalUV": false
+    },
+    {
+      "primitive": 1,
+      "material": 2,
+      "sourceTriangles": 446074,
+      "triangles": 276565,
+      "vertices": 434261,
+      "error": 0.0003452654054854065,
+      "scale": 7.5182719230651855,
+      "missingOriginalUV": false
+    },
+    {
+      "primitive": 2,
+      "material": 3,
+      "sourceTriangles": 3616,
+      "triangles": 2892,
+      "vertices": 1979,
+      "error": 0.00048289389815181494,
+      "scale": 5.5048828125,
+      "missingOriginalUV": false
+    },
+    {
+      "primitive": 3,
+      "material": 5,
+      "sourceTriangles": 46268,
+      "triangles": 12954,
+      "vertices": 7023,
+      "error": 6.821794522693381e-05,
+      "scale": 13.322330474853516,
+      "missingOriginalUV": true
+    }
+  ],
+  "local_min": [
+    -2.747030735015869,
+    -0.09359125047922134,
+    -2.9962728023529053
+  ],
+  "local_max": [
+    3.5586700439453125,
+    14.426758766174316,
+    2.9699645042419434
+  ],
+  "dimensions_m": [
+    6.305700778961182,
+    14.520350456237793,
+    5.9662370681762695
+  ],
+  "axes": "metres; right-handed; +Y up; XZ ground",
+  "ground_offset_y": 0.09359125047922134,
+  "scale": 1.0,
+  "file": "/workspace/scratch/f25aff235357/build-assets/models/fir_tree_c.glb",
+  "bytes": 22510964,
+  "sha256": "b0053416c821e0af0660cc33b4b2e2c7366d2682ce8340c91806b8237f8cd22b"
+}

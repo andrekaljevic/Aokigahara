@@ -1,0 +1,439 @@
+{
+  "title": "Aokigahara geographically faithful free-roam reconstruction blueprint",
+  "version": "2026-09-09 expansion 5 — temporal aerial atlas, geology stack and boundary separation",
+  "principle": "Do not collapse forest, lava-flow, protected-area and practical build boundaries into one polygon.",
+  "working_extent": {
+    "core_forest_area_estimate_ha": 3000,
+    "core_forest_area_basis": "Yamanashi official tourism describes about 3,000 ha / 30 km².",
+    "natural_monument_designation_area_ha_approx": 1600,
+    "natural_monument_note": "The protected national Natural Monument “Fuji Primeval Forest and Aokigahara Jukai” is not identical to the entire ~3,000 ha forest; Yamanashi reports about 816 ha added in 2010, bringing the designation to about 1,600 ha.",
+    "ingest_aoi_wgs84_bbox": {
+      "west": 138.55,
+      "south": 35.43,
+      "east": 138.72,
+      "north": 35.53
+    },
+    "ingest_aoi_note": "Broad ingest window only; NOT a claimed Aokigahara boundary. Clip the final world to authoritative forest/lava/protection layers after alignment."
+  },
+  "coordinate_system": {
+    "recommended_project_logic": "Use a metric Japan Plane Rectangular Zone VIII project grid for Yamanashi, with all source datums normalised at ingest and WGS84 retained for interchange.",
+    "stable_reference": "JGD2011 / Japan Plane Rectangular CS VIII (EPSG:6676) is a documented Yamanashi-appropriate metric CRS.",
+    "2026_warning": "GSI download service states its current coordinate reference changed from JGD2011 to JGD2024. Read each dataset metadata and transform consistently; never mix datums silently."
+  },
+  "terrain_pipeline": [
+    "Check GSI 1 m DEM coverage first; if unavailable for the required mesh, use 5 m DEM5A airborne-laser data where available, then DEM5B/5C photogrammetry, with 10 m as fallback only.",
+    "Generate bare-earth terrain first; GSI DEM removes trees/buildings from ground surface.",
+    "Overlay GSI Fuji volcanic-landform classification and GSJ geology; preserve lava fronts, lobes, clefts, depressions and flow breaks instead of smoothing them into generic forest ground.",
+    "Treat photogrammetric/aerial canopy as a separate surface/vegetation validation layer, not terrain elevation."
+  ],
+  "geology": {
+    "eruption": "Jogan eruption, AD 864",
+    "major_flows": [
+      "Ishizuka Lava",
+      "Nagaoyama Lava"
+    ],
+    "notes": [
+      "Research on the Motosu coast describes roughly 36 protruding flow lobes from an aa front, with pinching, swelling and branching.",
+      "The real surface includes clefts, clinkers and other morphology that should drive procedural rock/depression masks."
+    ]
+  },
+  "vegetation_model": {
+    "forest_types": [
+      "open Pinus",
+      "Pinus",
+      "Tsuga-Pinus",
+      "Tsuga",
+      "Chamaecyparis-Tsuga",
+      "Chamaecyparis",
+      "deciduous broadleaved"
+    ],
+    "distribution_rules": [
+      "Tsuga forest occupies a large part of Aokigahara in the Tokyo University survey.",
+      "Chamaecyparis-Tsuga and Chamaecyparis forest occur toward higher elevations in that survey.",
+      "Deciduous broadleaved forest is associated with deeper-soil sites that escaped lava cover.",
+      "Open Pinus is associated with exposed lava/disturbance sites; do not scatter all seven types uniformly."
+    ],
+    "local_plot_calibration_warning": "A 0.25 ha study found Chamaecyparis obtusa 45.4% and Tsuga sieboldii 26.3% of basal area, with stem densities 968 and 292/ha respectively. Use only to calibrate similar forest patches, not as a whole-forest average."
+  },
+  "cave_inventory": [
+    {
+      "name": "Fugaku Wind Cave",
+      "length_m": 258.7,
+      "width_m": "4–10",
+      "height_m": "average 2–3; local 0.9–6",
+      "status": "tourist cave / national natural monument",
+      "confidence": "A"
+    },
+    {
+      "name": "Lake Saiko Bat Cave",
+      "length_m": 350,
+      "status": "tourist cave / national natural monument",
+      "notes": "Largest among Fuji north-foot lava caves per Yamanashi; relatively warm in winter and not normally ice-forming.",
+      "confidence": "A"
+    },
+    {
+      "name": "Fuji Wind Cave",
+      "length_m": "230+",
+      "floor_width_m": "5–10",
+      "height_m": "average 5",
+      "status": "national natural monument; access controlled",
+      "confidence": "A"
+    },
+    {
+      "name": "Ryugu Cave",
+      "length_m": 60,
+      "elevation_m": 940,
+      "status": "national natural monument / shrine context",
+      "confidence": "A"
+    },
+    {
+      "name": "Motosu Wind Cave No.1",
+      "length_m": "about 494",
+      "status": "national natural monument group / controlled",
+      "notes": "On south-west edge of Aokigahara lava flow; local lava surface slopes north 2–7°.",
+      "confidence": "A"
+    },
+    {
+      "name": "Karuimizu Wind Cave",
+      "length_m": 432.8,
+      "max_height_m": 14,
+      "max_width_m": 28,
+      "depth_m": 75,
+      "status": "Yamanashi-designated natural monument / controlled",
+      "confidence": "A"
+    },
+    {
+      "name": "Narusawa Ice Cave",
+      "elevation_m": 1025,
+      "status": "tourist cave / national natural monument",
+      "notes": "Two large chambers; ice feature; surface lava slopes north 2–3°.",
+      "confidence": "A"
+    },
+    {
+      "name": "Omuro Cave",
+      "elevation_m": 1190,
+      "status": "entrance buried; no entry",
+      "confidence": "A"
+    },
+    {
+      "name": "Jinza Wind Cave + Kamaboko/megane caves",
+      "elevation_m": "about 1260",
+      "status": "national natural monument / controlled",
+      "confidence": "A"
+    }
+  ],
+  "sectors": [
+    {
+      "id": "S1",
+      "name": "Motosu south-west lava front",
+      "focus": "Ishizuka flow lobes, Motosu lakeshore, Motosu wind caves, lava fronts",
+      "confidence": "A terrain/geology; B visual continuity"
+    },
+    {
+      "id": "S2",
+      "name": "Shoji / north-west transition",
+      "focus": "Lake Shoji edge, Shoji entrance trail, stone/lake relationships, transition into forest",
+      "confidence": "B+"
+    },
+    {
+      "id": "S3",
+      "name": "Mt Omuro base / central high ground",
+      "focus": "Fuji, Shojiko, Omuro, Jinza, Kamaboko, Megane caves; former transport roads; beech square",
+      "confidence": "A schematic routes; B terrain; C exact micro-route geometry"
+    },
+    {
+      "id": "S4",
+      "name": "Upper south-east flow / Karuimizu",
+      "focus": "upper-flow cave morphology, forest-road network, higher-elevation Chamaecyparis-dominant biomes",
+      "confidence": "B+"
+    },
+    {
+      "id": "S5",
+      "name": "Route 139 cave corridor",
+      "focus": "Fugaku Wind Cave, Narusawa Ice Cave, roadside forest edge, parking/visitor infrastructure",
+      "confidence": "A/B; strongest public visual coverage"
+    },
+    {
+      "id": "S6",
+      "name": "Lake Sai south / bat-cave corridor",
+      "focus": "Lake Saiko Bat Cave, Ryugu Cave, Wild Bird Forest, tourist home-village approaches",
+      "confidence": "A/B"
+    },
+    {
+      "id": "S7",
+      "name": "Nenba / Saiko edge",
+      "focus": "forest-to-lake transition, panoramic context, exposed lava, human landscape",
+      "confidence": "B+"
+    },
+    {
+      "id": "S8",
+      "name": "Sankodai/Koyodai panorama belt",
+      "focus": "macro silhouette, canopy height variation, three-lake context and Mount Fuji alignment",
+      "confidence": "A/B"
+    },
+    {
+      "id": "S9",
+      "name": "Shoji entrance ascent toward Fuji",
+      "focus": "southern trail continuity, higher-elevation forest succession, connection to Fuji slope",
+      "confidence": "B route; C micro-ground truth"
+    },
+    {
+      "id": "S10",
+      "name": "Outer context shell",
+      "focus": "lakes, roads, settlements, mountain ridges and skyline required for physically convincing free roam",
+      "confidence": "A macro; variable local detail"
+    }
+  ],
+  "evidence_tiers": {
+    "A": "official survey/map/cultural-property/geological source; suitable for geometry or dimensions",
+    "B": "official/local imagery or geolocated repeatable photography; suitable for appearance and camera validation",
+    "C": "credible but incompletely geolocated visual source; suitable for biome/material reference only",
+    "D": "generic scenic/stock material; mood reference only, never geometry"
+  },
+  "validation_targets": [
+    "Each sector must have at least one authoritative terrain/geology source and three spatially distinct visual references before final-detail pass.",
+    "Major public routes/caves should have entrance-to-exit or route-sequence continuity, not isolated hero shots.",
+    "Use fixed camera-match points at Koyodai/Sankodai, Lake Sai, Route 139 cave corridor and Motosu/Shōji edges to validate macro geometry.",
+    "Record uncertainty explicitly: exact tree/fallen-log placement is unknown except where captured in high-resolution geolocated imagery."
+  ],
+  "coverage_grid": {
+    "cell_size_m": 250,
+    "generation_crs": "EPSG:6676",
+    "geometry_export_crs": "EPSG:4326",
+    "cell_count": 2790,
+    "files": [
+      "Aokigahara_250m_coverage_grid.geojson",
+      "Aokigahara_250m_coverage_grid.csv"
+    ],
+    "overall_evidence_counts": {
+      "High": 81,
+      "Medium": 1283,
+      "Low": 1426
+    },
+    "priority_counts": {
+      "P1": 1051,
+      "P2": 789,
+      "P3": 950
+    },
+    "warning": "Evidence-density grid only. It is not the Aokigahara forest/lava/protection boundary."
+  },
+  "vegetation_gis_layers": [
+    {
+      "sheet_id": "533815",
+      "name": "Narusawa 1:25,000 Existing Vegetation Map",
+      "extent": {
+        "west": 138.6219,
+        "east": 138.7052,
+        "south": 35.4199,
+        "north": 35.5449
+      },
+      "survey_period": "2004-04-01/2005-03-31",
+      "formats": "JPEG, Shp",
+      "source": "https://www.biodic.go.jp/chm/dataset/9e762c9ab2e86fc651f47989c60f9f07",
+      "note": "Official Ministry of the Environment Biodiversity Center metadata. Direction labels in metadata appear inverted; this build normalises the numeric min/max extent only."
+    },
+    {
+      "sheet_id": "533805",
+      "name": "Fuji 1:25,000 Existing Vegetation Map",
+      "extent": {
+        "west": 138.6219,
+        "east": 138.7052,
+        "south": 35.3366,
+        "north": 35.4616
+      },
+      "survey_period": "2004-04-01/2005-03-31",
+      "formats": "JPEG, Shp",
+      "source": "https://www.biodic.go.jp/chm/dataset/fac603a7f0494ecc052793c5d5e92095",
+      "note": "Official Ministry of the Environment Biodiversity Center metadata. Direction labels in metadata appear inverted; this build normalises the numeric min/max extent only."
+    }
+  ],
+  "route_georegistration": {
+    "primary_schematic": "https://www.pref.yamanashi.jp/documents/97765/guidelineryakuzu.pdf",
+    "controls_file": "Aokigahara_georegistration_control_points.csv",
+    "route_evidence": [
+      {
+        "id": "R1",
+        "name": "Fugaku–Narusawa public cave corridor",
+        "confidence": "B",
+        "basis": "YAMAP model course 2.5 km / 1:02 / 58 m up-down plus Yamanashi current route context",
+        "source_url": "https://yamap.com/model-courses/95828",
+        "points": [
+          [
+            138.657361,
+            35.477444
+          ],
+          [
+            138.666528,
+            35.474778
+          ]
+        ]
+      },
+      {
+        "id": "R2",
+        "name": "Saiko cave / viewpoint evidence chain",
+        "confidence": "C+",
+        "basis": "control-point chain for evidence proximity only; not a claimed surveyed trail line",
+        "source_url": "https://www.pref.yamanashi.jp/documents/97765/guidelineryakuzu.pdf",
+        "points": [
+          [
+            138.672861,
+            35.493111
+          ],
+          [
+            138.66813,
+            35.48509
+          ],
+          [
+            138.67956,
+            35.48426
+          ],
+          [
+            138.68247,
+            35.48792
+          ]
+        ]
+      },
+      {
+        "id": "R3",
+        "name": "Route 139 to Sankodai evidence chain",
+        "confidence": "C+",
+        "basis": "2026 YAMAP 11.8 km activity confirms Fugaku → Narusawa → Koyodai/Sankodai ordering; simplified for coverage scoring only",
+        "source_url": "https://yamap.com/activities/47364623",
+        "points": [
+          [
+            138.657361,
+            35.477444
+          ],
+          [
+            138.666528,
+            35.474778
+          ],
+          [
+            138.67956,
+            35.48426
+          ],
+          [
+            138.68247,
+            35.48792
+          ]
+        ]
+      }
+    ],
+    "method": "Use stable POIs and road/lake geometry as controls, fit the schematic to the project CRS, report residuals, and replace schematic segments with surveyed/GSI/GPX geometry wherever available."
+  },
+  "current_coverage_findings": [
+    "Narusawa sheet 533815 and Fuji sheet 533805 provide official 1:25,000 existing-vegetation polygon sources over much of the central/eastern AOI; their metadata lists JPEG and Shp.",
+    "The two identified sheets begin at approximately 138.6219 E, so the western Motosu/Shoji side still needs the adjoining vegetation sheet(s), with Shoji mesh 533814 the first retrieval target.",
+    "Current YAMAP evidence strongly improves the public Route 139 cave corridor and the Fugaku/Narusawa-to-Sankodai continuity, but it must not replace official route geometry.",
+    "The central high-ground and western interior remain the largest route-continuity and metre-scale visual gaps."
+  ],
+  "gsi_dem_tile_plan": {
+    "file": "Aokigahara_GSI_DEM_tile_plan.csv",
+    "research_aoi": {
+      "west": 138.55,
+      "south": 35.43,
+      "east": 138.72,
+      "north": 35.53
+    },
+    "candidate_tile_counts": {
+      "DEM1A": 2898,
+      "DEM5A": 192,
+      "DEM5B": 192,
+      "DEM5C": 192,
+      "DEM10B": 54
+    },
+    "official_tile_scheme": "GSI tile list: DEM1A PNG z17; DEM5A/B/C PNG z15; DEM10B PNG z14.",
+    "download_dataset_note": "GSI Fundamental Geospatial Data service separately distributes 1 m, 5 m and 10 m elevation models in JPGIS/GML. 1 m DEM1A and 5 m DEM5A are airborne-laser products; DEM5B/C are photogrammetric; 10B is contour-derived.",
+    "verification_warning": "This file is an acquisition plan. Tile URLs were generated from the official template but were not fetched in this environment, so the plan must not be read as proof that DEM1A/5A exists in every tile."
+  },
+  "access_and_conservation_note": "Current Yamanashi tourism guidance states that visitors must not enter areas outside the walking trails, for both hazard and environmental-protection reasons. Reconstruction geometry can model non-public terrain from remote/official data, but field validation should stay on permitted routes.",
+  "modern_vegetation_2024": {
+    "status": "available across the AOI",
+    "authority": "Ministry of the Environment, Biodiversity Center of Japan",
+    "survey_period": "1999-2023 source polygons; dataset published as Existing Vegetation Map 2024",
+    "polygon_crs": "JGD2011 / EPSG:6668",
+    "web_tiles": "EPSG:3857, zoom 5-15",
+    "attributes": [
+      "legend code/name",
+      "vegetation naturalness",
+      "vegetation class",
+      "source creation year"
+    ],
+    "build_rule": "Use for vegetation-zone assignment; retain polygon creation year; update apparent canopy condition from current aerial imagery; never infer exact tree positions from polygon class."
+  },
+  "route_topology_graph": {
+    "file": "Aokigahara_route_topology_graph.csv",
+    "principle": "Topology and geometry are separate confidence dimensions. Official schematic connectivity is authoritative for relationships but not metre-scale centreline geometry.",
+    "primary_sources": [
+      "Yamanashi 2026 eco-tour schematic",
+      "Yamanashi 2026 ancient pilgrimage-route report",
+      "Yamanashi walking-trail map"
+    ]
+  },
+  "terrain_verification_update": {
+    "gsi_source_hierarchy": [
+      "DEM1A",
+      "DEM5A",
+      "DEM5B",
+      "DEM5C",
+      "DEM10B"
+    ],
+    "api_capability": "GSI elevation API returns hsrc at a query point, making pointwise best-source verification possible.",
+    "remaining_blocker": "This environment cannot bulk-query/fetch all GSI tiles; tile-plan URLs remain candidates until external ingestion verifies existence and no-data coverage.",
+    "rule": "Do not label a cell 1 m simply because a DEM1A candidate URL can be constructed."
+  },
+  "new_source_register": "Aokigahara_authoritative_source_register.csv",
+  "temporal_imagery": {
+    "register": "Aokigahara_temporal_imagery_register.csv",
+    "principle": "Use current and historical orthophoto as change-detection evidence; service availability is not equivalent to local tile coverage.",
+    "key_eras": [
+      "latest seamless",
+      "2007+ annual/orthophoto",
+      "1987-1990",
+      "1984-1986",
+      "1979-1983",
+      "1974-1978",
+      "1961-1969"
+    ],
+    "single_photo_index": "GSI pp GeoJSON at z14 provides capture date, scale, altitude, colour type and agency for individual frames."
+  },
+  "boundary_model": {
+    "register": "Aokigahara_boundary_layer_register.csv",
+    "rule": "Maintain distinct geometry for present canopy/forest footprint, Jōgan lava units, natural-monument boundary, national-park zoning, forest compartments, administration and research AOI.",
+    "natural_monument_fact": "1926 designation; approximately 816 ha added in 2010; designated extent about 1,600 ha.",
+    "working_forest_boundary_status": "not frozen; derive from current orthophoto + vegetation GIS and QA manually",
+    "lava_boundary_status": "GSJ 2016 vector source identified; ingest before production terrain/material lock"
+  },
+  "live_atlas": "Aokigahara_Reconstruction_Atlas.html",
+  "geology_web_layers": [
+    {
+      "name": "GSI volcanic basic map",
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/vbm/{z}/{x}/{y}.png"
+    },
+    {
+      "name": "GSI volcanic coloured relief",
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/vbmd_colorrel/{z}/{x}/{y}.png"
+    },
+    {
+      "name": "GSI volcanic photo map",
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/vbmd_pm/{z}/{x}/{y}.png"
+    },
+    {
+      "name": "GSI volcanic land-condition map",
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/vlcd/{z}/{x}/{y}.png"
+    },
+    {
+      "name": "GSI Fuji digital volcanic geomorphology",
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/vlcd_fuji/{z}/{x}/{y}.png"
+    },
+    {
+      "name": "GSJ seamless geology V2",
+      "url": "https://gbank.gsj.jp/seamless/v2/api/1.3.1/tiles/{z}/{y}/{x}.png"
+    },
+    {
+      "name": "GSJ Fuji Volcano Geological Map 2nd ed. WMTS",
+      "url": "https://ows.gsj.jp/tilemap/miscellaneous/wmts/1.0.0/miscellaneous_00012/default/EPSG900913/{z}/{y}/{x}.png",
+      "note": "1:50,000 source map; overlay includes geological polygons, boundaries, crater rims/dykes/fissures and labels."
+    }
+  ]
+}

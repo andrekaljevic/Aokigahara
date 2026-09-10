@@ -1,0 +1,65 @@
+{
+  "validator": "pygltflib schema checks plus independent buffer/accessor/image verification",
+  "exports": [
+    {
+      "file": "Aokigahara_Regional_Terrain.glb",
+      "pygltflibValidationPassed": true,
+      "triangleCount": 524288,
+      "maximumNormalUnitLengthError": 1.7881393432617188e-07,
+      "embeddedImagesDecoded": [
+        {
+          "name": "GSI_Core_Aerial_JPEG",
+          "pixels": [
+            2447,
+            1717
+          ],
+          "format": "JPEG"
+        }
+      ],
+      "extensionsRequired": [],
+      "sha256": "83beff2d8bcfa3a8e3eab54257781218e70fb240a6afac18c6742f3faf0e9060"
+    },
+    {
+      "file": "Aokigahara_Surface_Terrain.glb",
+      "pygltflibValidationPassed": true,
+      "triangleCount": 895734,
+      "maximumNormalUnitLengthError": 1.7881393432617188e-07,
+      "embeddedImagesDecoded": [
+        {
+          "name": "PolyHaven_leaf_litter_baseColor",
+          "pixels": [
+            1024,
+            1024
+          ],
+          "format": "JPEG"
+        },
+        {
+          "name": "PolyHaven_leaf_litter_normal_GL",
+          "pixels": [
+            1024,
+            1024
+          ],
+          "format": "JPEG"
+        },
+        {
+          "name": "PolyHaven_leaf_litter_roughness",
+          "pixels": [
+            1024,
+            1024
+          ],
+          "format": "JPEG"
+        },
+        {
+          "name": "GSI_Core_Aerial_JPEG",
+          "pixels": [
+            2447,
+            1717
+          ],
+          "format": "JPEG"
+        }
+      ],
+      "extensionsRequired": [],
+      "sha256": "b993adef9f9c7ea4767801a5ea6e31ef81816ff43b74f776339cdfadd73e6e8b"
+    }
+  ]
+}

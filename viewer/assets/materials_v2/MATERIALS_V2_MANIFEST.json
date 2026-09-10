@@ -1,0 +1,24 @@
+{
+  "generator": "construction_code_v2/gen_textures.py",
+  "deterministic_seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "status": "PROCEDURAL representatives. Not captured at Aokigahara. Derived inputs: Poly Haven rock_3 (CC0) relief/roughness reused inside basalt maps; everything else synthesised.",
+  "physical_scale_m": {
+    "moss": 1.0,
+    "basalt": 1.5,
+    "litter": 0.8,
+    "trail": 1.0,
+    "blend_noise": 32.0
+  },
+  "evidence_basis": [
+    "GEO-002: Jogan products include aa and pahoehoe surfaces (blocky clinker and ropy folds)",
+    "IMG-007/008/013, ECO-016: moss carpets of varying thickness over irregular lava, roots gripping rock, litter collecting between roots",
+    "ECO-029: rope-like lava at Fugaku"
+  ],
+  "not_claimed": "Moss species, exact colours, litter composition and lava micro-form are interpretive."
+}

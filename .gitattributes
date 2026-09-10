@@ -1,0 +1,43 @@
+# Aokigahara free-roam — binary handling.
+#
+# The intended Git LFS ruleset is preserved verbatim in .gitattributes.lfs.
+# It is NOT active here: the environment in which this repository was first
+# published cannot reach lfs.github.com (blocked at the egress gateway), so the
+# binary assets are stored as ordinary Git objects to guarantee they are not
+# lost. Every file is well under GitHub's 100 MB per-file limit; the largest is
+# 29.8 MB and the whole tree is about 240 MB.
+#
+# To switch to LFS from a machine that can reach lfs.github.com:
+#     bash tools/enable_lfs.sh
+#
+# Until then, mark binaries so Git never attempts text diffing or EOL rewriting.
+*.glb   binary
+*.gltf  binary
+*.fbx   binary
+*.blend binary
+*.obj   binary
+*.exr   binary
+*.hdr   binary
+*.tif   binary
+*.tiff  binary
+*.f32   binary
+*.u8    binary
+*.npz   binary
+*.bin   binary
+*.zip   binary
+*.7z    binary
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+# Keep every text asset diffable, but never rewrite line endings: the recovered
+# research data and the SHA-256-verified manifests must stay byte-exact.
+*.json    -text
+*.csv     -text
+*.geojson -text
+*.html    -text
+*.md      -text
+*.js      -text
+*.mjs     -text
+*.py      -text

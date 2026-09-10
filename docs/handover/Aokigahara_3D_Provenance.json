@@ -1,0 +1,2107 @@
+{
+  "title": "Aokigahara georeferenced surface reconstruction",
+  "coordinateSystem": {
+    "originWgs84": [
+      138.658,
+      35.4775
+    ],
+    "localProjection": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +datum=WGS84 +units=m +no_defs",
+    "axes": {
+      "x": "east",
+      "y": "up",
+      "z": "south"
+    },
+    "units": "metres",
+    "heightOffsetM": 900,
+    "verticalExaggeration": 1
+  },
+  "observed": [
+    "GSI numerical macro terrain",
+    "Mapped community polygons",
+    "OSM mapped path centre lines"
+  ],
+  "procedural": [
+    "Individual trees, roots, leaf distribution, deadwood and stones",
+    "Estimated path widths and compacted surfaces",
+    "Representative CC0 forest-floor and bark materials",
+    "Pass 2: near-field lava micro-relief, root mounds, moss/rock/litter/trail layer distribution, tree library v2 forms/roots/foliage, small-stem and sub-canopy densification, lava blocks, embedded stones, log placement (see productionPass2)"
+  ],
+  "unknown": [
+    "Exact tree and root positions",
+    "Fine lava relief and ground structures below DEM sampling",
+    "Cave-mouth geometry and complete underground passages",
+    "Current visitor infrastructure dimensions"
+  ],
+  "attachment": "Aokigahara_Master_Consolidated_Dossier.pdf, 35 pages; cave conflicts retained in companion manifest",
+  "nearFieldDecor": "Representative CC0 ferns/logs and procedural rough rock near initial station. These are not surveyed site objects.",
+  "treeCount": 53999,
+  "exportDetail": "Detailed mature trees within 120 m of initial forest station; simplified crowns elsewhere. Shared meshes, independent editable tree nodes.",
+  "coreBoundsLocal": [
+    -1024,
+    -1024,
+    1024,
+    1024
+  ],
+  "coreAreaKm2": 4.194304,
+  "references": {
+    "terrain": "https://maps.gsi.go.jp/development/ichiran.html",
+    "vegetation": "https://www.biodic.go.jp/",
+    "geology": "https://www.gsj.jp/Map/EN/volcano.html",
+    "paths": "https://www.openstreetmap.org/copyright",
+    "materials": "https://polyhaven.com/license"
+  },
+  "manifests": {
+    "terrain": {
+      "version": 1,
+      "created": "2026-09-09",
+      "originWgs84": [
+        138.658,
+        35.4775
+      ],
+      "projection": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs",
+      "heightOffsetM": 900,
+      "metresPerWorldUnit": 1,
+      "axes": {
+        "x": "east",
+        "y": "up",
+        "z": "south"
+      },
+      "grids": {
+        "local": "local-height.json",
+        "study": "study-height.json",
+        "regional": "regional-height.json"
+      },
+      "contexts": {
+        "local": "local-context.json",
+        "study": "study-context.json",
+        "regional": "regional-context.json"
+      },
+      "landmarks": "landmarks.json",
+      "spawn": {
+        "coordinates": [
+          32.14,
+          -9.84
+        ],
+        "worldY": 101.4,
+        "elevationM": 1001.4,
+        "basis": "nearest point on mapped OSM trail to requested origin; ground DEM sampled",
+        "requestedOriginWgs84": [
+          138.658,
+          35.4775
+        ]
+      },
+      "files": [
+        {
+          "file": "landmarks.json",
+          "bytes": 33682,
+          "sha256": "c3f115a7a6de15e42f3ad2e80ac2bdba6f6f22020a066e527bd5c4175a068389"
+        },
+        {
+          "file": "local-context.json",
+          "bytes": 48693,
+          "sha256": "6924fc4ca93f56706c0d694b785ccb096f29e6f65c2dc0abbfe35aaffbb845a7"
+        },
+        {
+          "file": "local-height.f32",
+          "bytes": 264196,
+          "sha256": "0350d2a3510566487f9105b64a82bf62149adfdf848ca6c8e6ae27f56e0324ae"
+        },
+        {
+          "file": "local-height.json",
+          "bytes": 1421,
+          "sha256": "2c2abc7a7463b823802a05a9382fb2104decef664694b4f8d8351a8d33b2a9f4"
+        },
+        {
+          "file": "local-jogan.u8",
+          "bytes": 66049,
+          "sha256": "5e4b8dee514c9b3f9ef738d101e5ed2243f98eac603e1fe423b414d7b2d671af"
+        },
+        {
+          "file": "local-landcover.u8",
+          "bytes": 66049,
+          "sha256": "82c841246926d29309e8f1b797a9dd87dd04fd6809bf577077b30648269c3af5"
+        },
+        {
+          "file": "local-quality.u8",
+          "bytes": 66049,
+          "sha256": "e7d62ac3c5cdc188d28e28ce4438208a7291a2fdb31b7600b7084c1ee1b46f40"
+        },
+        {
+          "file": "regional-context.json",
+          "bytes": 909551,
+          "sha256": "d84c2add489c069e63084f861a10593edbf242789c58498ef5ca02a70f5fbde6"
+        },
+        {
+          "file": "regional-height.f32",
+          "bytes": 1052676,
+          "sha256": "5f61a1226d730b1b5478436bbff914bd22add7a6915d438a4d051403697b3a21"
+        },
+        {
+          "file": "regional-height.json",
+          "bytes": 1443,
+          "sha256": "e19eb8be2f8c4cfa90d2af3c751fa490316d23dfbab665a79f0e191ce7660ffb"
+        },
+        {
+          "file": "regional-jogan.u8",
+          "bytes": 263169,
+          "sha256": "113fbda3c3ae923bc73dbe3dbf4fd8d2aa5539cea558019be424e553657372b6"
+        },
+        {
+          "file": "regional-landcover.u8",
+          "bytes": 263169,
+          "sha256": "808801948d4a7f607ecb8bccac0e10a7e1bac18cd4b630ebff4d5507e845c2f6"
+        },
+        {
+          "file": "regional-quality.u8",
+          "bytes": 263169,
+          "sha256": "09981f72dc6377b5561cf3124a057d4177a1366c19805fd5fd1fee4857576a49"
+        },
+        {
+          "file": "study-context.json",
+          "bytes": 2804846,
+          "sha256": "f12bff8c501b366c5ba03938c8cd4cf3f84d1ba28043b127d8ab5f13a4394b57"
+        },
+        {
+          "file": "study-height.f32",
+          "bytes": 790020,
+          "sha256": "6b22ae174ca09d8288b0fb310ab7312cced48f0cfea5132e3c3b34fd59cd9183"
+        },
+        {
+          "file": "study-height.json",
+          "bytes": 1448,
+          "sha256": "81e67fbba43520d4a5888c1862cdc7da4f1dce6a46b69a074ea08c7b78eced2b"
+        },
+        {
+          "file": "study-jogan.u8",
+          "bytes": 197505,
+          "sha256": "486cb48f02fb9cd56c6b0a397f9389711ede3b4924f24e19b65d493dce919a43"
+        },
+        {
+          "file": "study-landcover.u8",
+          "bytes": 197505,
+          "sha256": "ed2baf4d3121339bb9b75da5ca86d2cdc429798c2df426a1cac8a6a284773bf4"
+        },
+        {
+          "file": "study-quality.u8",
+          "bytes": 197505,
+          "sha256": "95d87f83b071cc5d36d73c461b2a49291a2c026dceaa74a0fc51078c713f28ed"
+        }
+      ],
+      "sources": [
+        {
+          "id": "MAP-007",
+          "publisher": "Geospatial Information Authority of Japan (GSI)",
+          "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html#dem",
+          "asset": "research/assets/spatial/MAP-007_core_dem5a.tif",
+          "licenceUrl": "https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html",
+          "attribution": "Source: GSI; decoded, reprojected, bilinearly resampled and level-of-detail sampled for this scene."
+        },
+        {
+          "id": "DEM-REGIONAL",
+          "publisher": "Geospatial Information Authority of Japan (GSI)",
+          "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html#dem",
+          "tileManifest": "regional-source-dem.json",
+          "licenceUrl": "https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html",
+          "attribution": "Source: GSI; numeric DEM PNG tiles decoded and reprojected; lower-resolution contextual terrain."
+        },
+        {
+          "id": "MAP-013",
+          "publisher": "Ministry of the Environment, Japan",
+          "sourceUrl": "https://www.biodic.go.jp/trialSystem/top.html",
+          "serviceUrl": "https://arc-gis.biodic.go.jp/arcgis/rest/services/webgis/vg2024/MapServer/4",
+          "asset": "research/assets/spatial/MAP-013_vegetation2024_complete.geojson",
+          "licenceUrl": "https://www.env.go.jp/mail.html",
+          "attribution": "Source: MOE vegetation mapping; clipped, reprojected, simplified and grouped. Community polygons have creation years 2004 and 2011."
+        },
+        {
+          "id": "GEO-004",
+          "publisher": "Geological Survey of Japan / AIST; Takada, Yamamoto, Ishizuka and Nakano",
+          "sourceUrl": "https://www.gsj.jp/Map/JP/docs/misc_doc/misc_12_2nd.html",
+          "asset": "research/jogan_geology_study.geojson",
+          "licenceUrl": "https://www.gsj.jp/license/license.html",
+          "attribution": "Source: Geological Map of Fuji Volcano, second edition (2016), vector v03 (2019); transformed, clipped and simplified."
+        },
+        {
+          "id": "OSM-CONTEXT",
+          "publisher": "OpenStreetMap contributors",
+          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "asset": "research/osm_context_features.geojson + research/osm_candidate_points.geojson",
+          "licence": "ODbL 1.0",
+          "attribution": "© OpenStreetMap contributors; transformed, clipped and simplified mapped paths and points."
+        }
+      ],
+      "assetTruth": {
+        "macroTerrain": "measured numerical DEM, resampled; quality masks distinguish source and holes",
+        "vegetation": "mapped land-cover communities, not individual tree locations",
+        "paths": "mapped OSM line coordinates, not surveyed widths",
+        "water": "MOE mapped water polygons; DEM-derived visual surface levels",
+        "caves": "mapped surface entrances only; no interior geometry",
+        "geology": "official eruption-product unit footprint; no forest-boundary claim"
+      }
+    },
+    "terrainExports": {
+      "title": "Aokigahara standard GLB terrain exports",
+      "created": "2026-09-09",
+      "georeference": {
+        "originWgs84": [
+          138.658,
+          35.4775
+        ],
+        "localCRS": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs",
+        "axisConvention": "x east, y up, z south",
+        "metresPerUnit": 1,
+        "heightOffsetM": 900,
+        "forward": "Project WGS84 lon/lat into local CRS as E,N; x=E,z=-N,y=GSI elevationM-900",
+        "inverse": "Transform local CRS E=x,N=-z to WGS84; elevationM=y+900",
+        "elevationReference": "GSI published numerical elevation reference, not ellipsoid height"
+      },
+      "exports": [
+        {
+          "file": "Aokigahara_Regional_Terrain.glb",
+          "bytes": 11790668,
+          "sha256": "83beff2d8bcfa3a8e3eab54257781218e70fb240a6afac18c6742f3faf0e9060",
+          "format": "glTF 2.0 binary; all geometry and JPEG images embedded; no extensions",
+          "georeference": {
+            "originWgs84": [
+              138.658,
+              35.4775
+            ],
+            "localCRS": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs",
+            "axisConvention": "x east, y up, z south",
+            "metresPerUnit": 1,
+            "heightOffsetM": 900,
+            "forward": "Project WGS84 lon/lat into local CRS as E,N; x=E,z=-N,y=GSI elevationM-900",
+            "inverse": "Transform local CRS E=x,N=-z to WGS84; elevationM=y+900",
+            "elevationReference": "GSI published numerical elevation reference, not ellipsoid height"
+          },
+          "uniqueSourceVertices": 263169,
+          "exportedVertices": 265481,
+          "triangles": 524288,
+          "primitives": 6,
+          "pieces": [
+            {
+              "name": "GSI_Aerial_Context_00",
+              "material": "GSI_Core_Aerial",
+              "vertices": 34731,
+              "triangles": 68704
+            },
+            {
+              "name": "GSI_Aerial_Context_01",
+              "material": "GSI_Core_Aerial",
+              "vertices": 34731,
+              "triangles": 68704
+            },
+            {
+              "name": "Regional_Elevation_Context_00",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 49231,
+              "triangles": 96720
+            },
+            {
+              "name": "Regional_Elevation_Context_01",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 48882,
+              "triangles": 96720
+            },
+            {
+              "name": "Regional_Elevation_Context_02",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 48991,
+              "triangles": 96720
+            },
+            {
+              "name": "Regional_Elevation_Context_03",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 48915,
+              "triangles": 96720
+            }
+          ],
+          "boundsMin": [
+            -14000.0,
+            -656.3204345703125,
+            -11000.0
+          ],
+          "boundsMax": [
+            18000.0,
+            2865.618408203125,
+            19000.0
+          ],
+          "sourceSampleCounts": {
+            "regional": 263169
+          },
+          "validation": {
+            "allVerticesFinite": true,
+            "allNormalsFinite": true,
+            "allFaceNormalsUp": true,
+            "degenerateFacesRemoved": 0,
+            "projectedAreaM2": 960000000.0,
+            "expectedRectangleAreaM2": 960000000.0,
+            "coverageRelativeError": 0.0,
+            "allPrimitivesAtMost60000Vertices": true
+          },
+          "interpretationLimits": [
+            "Surface only; no cave interiors, trees, paths, water excavation, buildings or procedural ground displacement.",
+            "DEM input sampling: local approximately 8 m, study approximately 38 x 36 m, regional approximately 62.5 x 58.6 m. Grids carry the measured sources and their disclosed resampling limits.",
+            "Aerial texture depicts canopy/land surface at mixed acquisition dates. Leaf litter is representative CC0 material, not captured at this location. Outside aerial coverage, colours are an elevation-derived visual palette.",
+            "Geographic reference is recorded in standard glTF extras and companion manifest; glTF itself does not mandate a geographic CRS."
+          ],
+          "elapsedSeconds": 0.89
+        },
+        {
+          "file": "Aokigahara_Surface_Terrain.glb",
+          "bytes": 22589416,
+          "sha256": "b993adef9f9c7ea4767801a5ea6e31ef81816ff43b74f776339cdfadd73e6e8b",
+          "format": "glTF 2.0 binary; all geometry and JPEG images embedded; no extensions",
+          "georeference": {
+            "originWgs84": [
+              138.658,
+              35.4775
+            ],
+            "localCRS": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs",
+            "axisConvention": "x east, y up, z south",
+            "metresPerUnit": 1,
+            "heightOffsetM": 900,
+            "forward": "Project WGS84 lon/lat into local CRS as E,N; x=E,z=-N,y=GSI elevationM-900",
+            "inverse": "Transform local CRS E=x,N=-z to WGS84; elevationM=y+900",
+            "elevationReference": "GSI published numerical elevation reference, not ellipsoid height"
+          },
+          "uniqueSourceVertices": 448892,
+          "exportedVertices": 453624,
+          "triangles": 895734,
+          "primitives": 10,
+          "pieces": [
+            {
+              "name": "Local_Ground_00",
+              "material": "Local_Ground_CC0_Representative",
+              "vertices": 33153,
+              "triangles": 65536
+            },
+            {
+              "name": "Local_Ground_01",
+              "material": "Local_Ground_CC0_Representative",
+              "vertices": 33153,
+              "triangles": 65536
+            },
+            {
+              "name": "GSI_Aerial_Context_00",
+              "material": "GSI_Core_Aerial",
+              "vertices": 45632,
+              "triangles": 89933
+            },
+            {
+              "name": "GSI_Aerial_Context_01",
+              "material": "GSI_Core_Aerial",
+              "vertices": 45531,
+              "triangles": 89933
+            },
+            {
+              "name": "GSI_Aerial_Context_02",
+              "material": "GSI_Core_Aerial",
+              "vertices": 45535,
+              "triangles": 89933
+            },
+            {
+              "name": "GSI_Aerial_Context_03",
+              "material": "GSI_Core_Aerial",
+              "vertices": 45462,
+              "triangles": 89934
+            },
+            {
+              "name": "Regional_Elevation_Context_00",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 51643,
+              "triangles": 101232
+            },
+            {
+              "name": "Regional_Elevation_Context_01",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 51115,
+              "triangles": 101232
+            },
+            {
+              "name": "Regional_Elevation_Context_02",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 51274,
+              "triangles": 101232
+            },
+            {
+              "name": "Regional_Elevation_Context_03",
+              "material": "Regional_Elevation_Colors",
+              "vertices": 51126,
+              "triangles": 101233
+            }
+          ],
+          "boundsMin": [
+            -14000.0,
+            -656.3204345703125,
+            -11000.0
+          ],
+          "boundsMax": [
+            18000.0,
+            2865.618408203125,
+            19000.0
+          ],
+          "sourceSampleCounts": {
+            "local": 66049,
+            "study": 194481,
+            "regional": 188362
+          },
+          "validation": {
+            "allVerticesFinite": true,
+            "allNormalsFinite": true,
+            "allFaceNormalsUp": true,
+            "degenerateFacesRemoved": 0,
+            "projectedAreaM2": 960000003.9943047,
+            "expectedRectangleAreaM2": 960000000.0,
+            "coverageRelativeError": 4.160734017690023e-09,
+            "allPrimitivesAtMost60000Vertices": true
+          },
+          "interpretationLimits": [
+            "Surface only; no cave interiors, trees, paths, water excavation, buildings or procedural ground displacement.",
+            "DEM input sampling: local approximately 8 m, study approximately 38 x 36 m, regional approximately 62.5 x 58.6 m. Grids carry the measured sources and their disclosed resampling limits.",
+            "Aerial texture depicts canopy/land surface at mixed acquisition dates. Leaf litter is representative CC0 material, not captured at this location. Outside aerial coverage, colours are an elevation-derived visual palette.",
+            "Geographic reference is recorded in standard glTF extras and companion manifest; glTF itself does not mandate a geographic CRS."
+          ],
+          "elapsedSeconds": 1.97
+        }
+      ],
+      "sources": [
+        {
+          "id": "MAP-007",
+          "publisher": "Geospatial Information Authority of Japan (GSI)",
+          "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html#dem",
+          "asset": "research/assets/spatial/MAP-007_core_dem5a.tif",
+          "licenceUrl": "https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html",
+          "attribution": "Source: GSI; decoded, reprojected, bilinearly resampled and level-of-detail sampled for this scene."
+        },
+        {
+          "id": "DEM-REGIONAL",
+          "publisher": "Geospatial Information Authority of Japan (GSI)",
+          "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html#dem",
+          "tileManifest": "regional-source-dem.json",
+          "licenceUrl": "https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html",
+          "attribution": "Source: GSI; numeric DEM PNG tiles decoded and reprojected; lower-resolution contextual terrain."
+        },
+        {
+          "id": "MAP-013",
+          "publisher": "Ministry of the Environment, Japan",
+          "sourceUrl": "https://www.biodic.go.jp/trialSystem/top.html",
+          "serviceUrl": "https://arc-gis.biodic.go.jp/arcgis/rest/services/webgis/vg2024/MapServer/4",
+          "asset": "research/assets/spatial/MAP-013_vegetation2024_complete.geojson",
+          "licenceUrl": "https://www.env.go.jp/mail.html",
+          "attribution": "Source: MOE vegetation mapping; clipped, reprojected, simplified and grouped. Community polygons have creation years 2004 and 2011."
+        },
+        {
+          "id": "GEO-004",
+          "publisher": "Geological Survey of Japan / AIST; Takada, Yamamoto, Ishizuka and Nakano",
+          "sourceUrl": "https://www.gsj.jp/Map/JP/docs/misc_doc/misc_12_2nd.html",
+          "asset": "research/jogan_geology_study.geojson",
+          "licenceUrl": "https://www.gsj.jp/license/license.html",
+          "attribution": "Source: Geological Map of Fuji Volcano, second edition (2016), vector v03 (2019); transformed, clipped and simplified."
+        },
+        {
+          "id": "OSM-CONTEXT",
+          "publisher": "OpenStreetMap contributors",
+          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "asset": "research/osm_context_features.geojson + research/osm_candidate_points.geojson",
+          "licence": "ODbL 1.0",
+          "attribution": "© OpenStreetMap contributors; transformed, clipped and simplified mapped paths and points."
+        },
+        {
+          "id": "MAP-004",
+          "publisher": "GSI",
+          "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html#seamlessphoto",
+          "attribution": "Source: GSI; aerial mosaic converted to JPEG and UV mapped onto terrain.",
+          "boundsWsen": [
+            138.55999946594238,
+            35.40996902493774,
+            138.77002716064453,
+            35.52999105895351
+          ]
+        },
+        {
+          "id": "PBR-LEAF-LITTER",
+          "publisher": "Poly Haven; Dario Barresi and Dimitrios Savva",
+          "sourceUrl": "https://polyhaven.com/a/leaves_forest_ground",
+          "licence": "CC0-1.0",
+          "fidelity": "Representative photographic texture, not captured at Aokigahara"
+        }
+      ],
+      "recommendedUse": "Use Surface Terrain for continuous local-to-regional scene. Use Regional Terrain as a standalone alternative; do not overlay both complete meshes.",
+      "stitchMethod": "Delaunay triangulation of retained local samples, study samples outside local bounds, and regional samples outside study bounds. Boundary gaps are bridged by triangles between existing measured samples; no elevation flattening or invented displacement.",
+      "runtimeOverride": "Find material Local_Ground_CC0_Representative or nodes Local_Ground_* for nearfield PBR replacement. TEXCOORD_0 is x/1.26,z/1.26; other materials have geographic aerial UVs or no UV."
+    },
+    "materials": {
+      "schemaVersion": 1,
+      "title": "Representative photographic PBR materials for the Aokigahara reconstruction",
+      "retrievedOn": "2026-09-09",
+      "baseDirectory": "/workspace/scratch/f25aff235357/build-assets/materials",
+      "materials": [
+        {
+          "id": "leaves_forest_ground",
+          "use": "Forest floor leaf litter",
+          "displayName": "Photographic leaf litter · representative",
+          "geographicFidelity": "Representative autumn leaf litter; capture location and leaf species are not confirmed for Aokigahara. Do not present as a scan of the target site.",
+          "captureLocation": null,
+          "siteCaptured": false,
+          "notes": "Dense tan, ochre and brown leaves with twigs. The colour and seasonal appearance are from the original provider texture; no recolouring or generated image content.",
+          "sourceProvider": "Poly Haven",
+          "sourceUrl": "https://polyhaven.com/a/leaves_forest_ground",
+          "filesApiUrl": "https://api.polyhaven.com/files/leaves_forest_ground",
+          "metadataApiUrl": "https://api.polyhaven.com/assets?type=textures",
+          "authors": {
+            "Dario Barresi": "Processing",
+            "Dimitrios Savva": "Photography"
+          },
+          "license": {
+            "spdx": "CC0-1.0",
+            "url": "https://polyhaven.com/license",
+            "legalCodeUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "assetRedistributionAllowed": true
+          },
+          "physicalScale": {
+            "widthMetres": 1.26,
+            "heightMetres": 1.26,
+            "providerDimensionsMillimetres": [
+              1259.9999904632568,
+              1260.0001096725464
+            ],
+            "source": "https://api.polyhaven.com/info/leaves_forest_ground",
+            "unitDefinitionSource": "https://api.polyhaven.com/api-docs/swagger.json",
+            "note": "Units explicitly documented as millimetres in provider API schema; converted to metres. Values are the provider texture extent, not measured target-site surface dimensions."
+          },
+          "maps": {
+            "baseColor": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_diff_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/leaves_forest_ground_diff_1k.jpg",
+              "fileName": "leaves_forest_ground_diff_1k.jpg",
+              "bytes": 1135712,
+              "md5": "6e9cd579b50046182663e3ab33681fc8",
+              "sha256": "e4aa2be8f80192378bc8aca363fc01b1f01639ebea5a87a3973c549861a01b7a",
+              "pixels": [
+                1024,
+                1024
+              ],
+              "colorSpace": "sRGB"
+            },
+            "normal": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_nor_gl_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/leaves_forest_ground_nor_gl_1k.jpg",
+              "fileName": "leaves_forest_ground_nor_gl_1k.jpg",
+              "bytes": 1380468,
+              "md5": "68622609f38cc517f66c91288a009e71",
+              "sha256": "78b24836c2a1ddcfbd81a493de89ee0722319187b39016022a21e63d710c9284",
+              "pixels": [
+                1024,
+                1024
+              ],
+              "colorSpace": "linear / non-colour data",
+              "normalConvention": "Tangent-space OpenGL (+Y)"
+            },
+            "roughness": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_rough_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/leaves_forest_ground_rough_1k.jpg",
+              "fileName": "leaves_forest_ground_rough_1k.jpg",
+              "bytes": 514888,
+              "md5": "26fb788bdf3f082313a09e80305af458",
+              "sha256": "e035404a2e16ac23782145b4aa29fb1b923569b2bbb8f6c6c01e194ade37f505",
+              "pixels": [
+                1024,
+                1024
+              ],
+              "colorSpace": "linear / non-colour data",
+              "interpretation": "White is rough; black is smooth. Apply as data, without sRGB decoding."
+            }
+          },
+          "processing": {
+            "downloadedOriginalProviderFiles": true,
+            "generatedByAI": false,
+            "localImageEdits": []
+          },
+          "validation": {
+            "providerMd5Matches": true,
+            "allMapsDecoded": true,
+            "baseColorVisuallyInspected": true,
+            "normalChannelRangesChecked": true
+          }
+        },
+        {
+          "id": "japanese_cedar_bark",
+          "use": "Fibrous conifer trunk bark",
+          "displayName": "Japanese cedar bark · representative conifer",
+          "geographicFidelity": "Provider identifies this as Japanese cedar bark. It is not confirmed hinoki bark and is not a scan of an Aokigahara tree; use only as a visual conifer-bark approximation.",
+          "captureLocation": null,
+          "siteCaptured": false,
+          "notes": "Image is 1:2 in aspect ratio; its documented physical extent is 1 m horizontally by 2 m vertically. Keep the fibres aligned with the trunk.",
+          "sourceProvider": "Poly Haven",
+          "sourceUrl": "https://polyhaven.com/a/japanese_cedar_bark",
+          "filesApiUrl": "https://api.polyhaven.com/files/japanese_cedar_bark",
+          "metadataApiUrl": "https://api.polyhaven.com/assets?type=textures",
+          "authors": {
+            "Charlotte Baglioni": "All"
+          },
+          "license": {
+            "spdx": "CC0-1.0",
+            "url": "https://polyhaven.com/license",
+            "legalCodeUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "assetRedistributionAllowed": true
+          },
+          "physicalScale": {
+            "widthMetres": 1.0,
+            "heightMetres": 2.0,
+            "providerDimensionsMillimetres": [
+              1000,
+              2000
+            ],
+            "source": "https://api.polyhaven.com/info/japanese_cedar_bark",
+            "unitDefinitionSource": "https://api.polyhaven.com/api-docs/swagger.json",
+            "note": "Units explicitly documented as millimetres in provider API schema; converted to metres. Values are the provider texture extent, not measured target-site surface dimensions."
+          },
+          "maps": {
+            "baseColor": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_diff_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/japanese_cedar_bark_diff_1k.jpg",
+              "fileName": "japanese_cedar_bark_diff_1k.jpg",
+              "bytes": 1371666,
+              "md5": "51e45ec05fc2d9ce21f38f2613704fc7",
+              "sha256": "fa240510e9ef127a8979ebd63628950abdc048a1e091d8a1611c86bbe2c6cda4",
+              "pixels": [
+                1024,
+                2048
+              ],
+              "colorSpace": "sRGB"
+            },
+            "normal": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_nor_gl_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/japanese_cedar_bark_nor_gl_1k.jpg",
+              "fileName": "japanese_cedar_bark_nor_gl_1k.jpg",
+              "bytes": 2053757,
+              "md5": "437ca87e2f2a0d96deb4343ebf4b05f5",
+              "sha256": "7302db344bcd63f3a2eb2bd2321377798c54831b0ff691de44315509db83962e",
+              "pixels": [
+                1024,
+                2048
+              ],
+              "colorSpace": "linear / non-colour data",
+              "normalConvention": "Tangent-space OpenGL (+Y)"
+            },
+            "roughness": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_rough_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/japanese_cedar_bark_rough_1k.jpg",
+              "fileName": "japanese_cedar_bark_rough_1k.jpg",
+              "bytes": 373636,
+              "md5": "4ca55d434f325c124ce29aeef29c7532",
+              "sha256": "f0a984349c78a6ce5161eaa38540ab73cf72d062df2ab2e74130e1191125cda4",
+              "pixels": [
+                1024,
+                2048
+              ],
+              "colorSpace": "linear / non-colour data",
+              "interpretation": "White is rough; black is smooth. Apply as data, without sRGB decoding."
+            }
+          },
+          "processing": {
+            "downloadedOriginalProviderFiles": true,
+            "generatedByAI": false,
+            "localImageEdits": []
+          },
+          "validation": {
+            "providerMd5Matches": true,
+            "allMapsDecoded": true,
+            "baseColorVisuallyInspected": true,
+            "normalChannelRangesChecked": true
+          }
+        },
+        {
+          "id": "rock_3",
+          "use": "Rough grey rock surface",
+          "displayName": "Grey pitted rock · geological approximation",
+          "geographicFidelity": "Generic grey seaside rock. Lithology is not specified; this asset is not verified basalt or lava, and it is not an Aokigahara scan. Use as an explicitly labelled rock-surface approximation only.",
+          "captureLocation": null,
+          "siteCaptured": false,
+          "notes": "Pitted grey-brown surface with mottling. Supplier describes mossy patches. There is no dedicated moss-only texture in this set.",
+          "sourceProvider": "Poly Haven",
+          "sourceUrl": "https://polyhaven.com/a/rock_3",
+          "filesApiUrl": "https://api.polyhaven.com/files/rock_3",
+          "metadataApiUrl": "https://api.polyhaven.com/assets?type=textures",
+          "authors": {
+            "Rob Tuytel": "All"
+          },
+          "license": {
+            "spdx": "CC0-1.0",
+            "url": "https://polyhaven.com/license",
+            "legalCodeUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "assetRedistributionAllowed": true
+          },
+          "physicalScale": {
+            "widthMetres": 1.5,
+            "heightMetres": 1.5,
+            "providerDimensionsMillimetres": [
+              1500,
+              1500
+            ],
+            "source": "https://api.polyhaven.com/info/rock_3",
+            "unitDefinitionSource": "https://api.polyhaven.com/api-docs/swagger.json",
+            "note": "Units explicitly documented as millimetres in provider API schema; converted to metres. Values are the provider texture extent, not measured target-site surface dimensions."
+          },
+          "maps": {
+            "baseColor": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_3/rock_3_diff_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/rock_3_diff_1k.jpg",
+              "fileName": "rock_3_diff_1k.jpg",
+              "bytes": 850585,
+              "md5": "815bcc10e00c2abc43acc997b7d65361",
+              "sha256": "e68a81e113a4173c0e19f58bedda41b3b13adcfdeb2f8ae4808f63ec5de10225",
+              "pixels": [
+                1024,
+                1024
+              ],
+              "colorSpace": "sRGB"
+            },
+            "normal": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_3/rock_3_nor_gl_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/rock_3_nor_gl_1k.jpg",
+              "fileName": "rock_3_nor_gl_1k.jpg",
+              "bytes": 1188433,
+              "md5": "3839929816dcc8be0980b3f770765c09",
+              "sha256": "a83383a7468879605b0f2e72ffc7432b0b813f02a12c169a204409040f6ea4b3",
+              "pixels": [
+                1024,
+                1024
+              ],
+              "colorSpace": "linear / non-colour data",
+              "normalConvention": "Tangent-space OpenGL (+Y)"
+            },
+            "roughness": {
+              "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_3/rock_3_rough_1k.jpg",
+              "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/rock_3_rough_1k.jpg",
+              "fileName": "rock_3_rough_1k.jpg",
+              "bytes": 315170,
+              "md5": "a9300dbb8c64ed5ff1dd378f8830bfcb",
+              "sha256": "ec6b320bad456bcb45082c6c99cf60446dfe1da90f0bb0c66bdc71aecdc3c163",
+              "pixels": [
+                1024,
+                1024
+              ],
+              "colorSpace": "linear / non-colour data",
+              "interpretation": "White is rough; black is smooth. Apply as data, without sRGB decoding."
+            }
+          },
+          "processing": {
+            "downloadedOriginalProviderFiles": true,
+            "generatedByAI": false,
+            "localImageEdits": []
+          },
+          "validation": {
+            "providerMd5Matches": true,
+            "allMapsDecoded": true,
+            "baseColorVisuallyInspected": true,
+            "normalChannelRangesChecked": true
+          }
+        }
+      ],
+      "limitation": "These reusable appearance materials are not site-captured evidence and do not establish target-site geology, tree species, season, or centimetre-scale geometry. Terrain and placement accuracy must come from separate geographic sources.",
+      "licenseVerification": {
+        "sourceUrl": "https://polyhaven.com/license",
+        "checkedOn": "2026-09-09",
+        "summary": "Poly Haven publishes its texture assets under CC0, permitting reuse and redistribution, including in an exported 3D model."
+      },
+      "totalTextureBytes": 9184315,
+      "materialCount": 3,
+      "mapCount": 9
+    },
+    "models": {
+      "retrieved": "2026-09-09",
+      "notes": [
+        "Fir Sapling is an artistic evergreen stand-in, not a taxonomically verified Aokigahara species. Use sapling proportions, not as a mature tree.",
+        "Fern 02 is a generic fern stand-in; no Japanese species attribution.",
+        "Dead Tree Trunk is a generic decaying log, not a scan from Aokigahara.",
+        "Downloaded files were checked against provider MD5 and byte sizes. Output GLBs contain the mesh and embedded textures, no external URLs required.",
+        "Poly Haven Fir Tree 01 not acquired: its minimum glTF binary is 478462204 bytes (487358833 bytes including 1K textures)."
+      ],
+      "assets": [
+        {
+          "id": "fern_02",
+          "file": "/workspace/scratch/f25aff235357/build-assets/models/fern_02.glb",
+          "bytes": 1675784,
+          "sha256": "f6b2d9552d4258274e306ee172b4b879bc658f42a62f55238b7b0bad22a84c4d",
+          "source": "https://polyhaven.com/a/fern_02",
+          "provider": "Poly Haven",
+          "authors": {
+            "Rob Tuytel": "scanning",
+            "Rico Cilliers": "modeling"
+          },
+          "license": "CC0-1.0",
+          "license_url": "https://polyhaven.com/license",
+          "coordinates": "glTF standard: metres; right handed; +Y up; ground plane XZ. Geometry and source translations preserved.",
+          "triangles": 6232,
+          "nodes": [
+            {
+              "node": "fern_02_b",
+              "mesh_index": 0,
+              "source_translation": [
+                0,
+                0,
+                0
+              ],
+              "local_min": [
+                -0.5281425714492798,
+                -0.030510280281305313,
+                -0.421874463558197
+              ],
+              "local_max": [
+                0.4616048336029053,
+                0.39718443155288696,
+                0.4718152582645416
+              ],
+              "dimensions_m": [
+                0.9897474050521851,
+                0.4276947118341923,
+                0.8936897218227386
+              ],
+              "triangles": 2384,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            },
+            {
+              "node": "fern_02_c",
+              "mesh_index": 1,
+              "source_translation": [
+                1.0000009536743164,
+                0,
+                0
+              ],
+              "local_min": [
+                -0.4299395680427551,
+                -0.028773672878742218,
+                -0.4172818064689636
+              ],
+              "local_max": [
+                0.44438624382019043,
+                0.32024669647216797,
+                0.34794387221336365
+              ],
+              "dimensions_m": [
+                0.8743258118629456,
+                0.3490203693509102,
+                0.7652256786823273
+              ],
+              "triangles": 2248,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            },
+            {
+              "node": "fern_02_a",
+              "mesh_index": 2,
+              "source_translation": [
+                0,
+                0,
+                1.0000001192092896
+              ],
+              "local_min": [
+                -0.2976571321487427,
+                -0.028773518279194832,
+                -0.31126806139945984
+              ],
+              "local_max": [
+                0.25428348779678345,
+                0.2580300271511078,
+                0.3021530210971832
+              ],
+              "dimensions_m": [
+                0.5519406199455261,
+                0.2868035454303026,
+                0.6134210824966431
+              ],
+              "triangles": 784,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            },
+            {
+              "node": "fern_02_d",
+              "mesh_index": 3,
+              "source_translation": [
+                1,
+                0,
+                0.9999995827674866
+              ],
+              "local_min": [
+                -0.2907802164554596,
+                -0.013578944839537144,
+                -0.35213664174079895
+              ],
+              "local_max": [
+                0.28200197219848633,
+                0.19950860738754272,
+                0.2411416471004486
+              ],
+              "dimensions_m": [
+                0.5727821886539459,
+                0.21308755222707987,
+                0.5932782888412476
+              ],
+              "triangles": 816,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            }
+          ],
+          "source_files_metadata": "fern_02_files.json",
+          "modifications": "Embedded source geometry and PBR textures in GLB; packed supplied alpha channel in fern/sapling diffuse texture. Geometry unchanged."
+        },
+        {
+          "id": "dead_tree_trunk",
+          "file": "/workspace/scratch/f25aff235357/build-assets/models/dead_tree_trunk.glb",
+          "bytes": 4786912,
+          "sha256": "8dd0c9d5d92468e261a115936889bdd5d9bd8ad86c76cfac917ee83a098906a9",
+          "source": "https://polyhaven.com/a/dead_tree_trunk",
+          "provider": "Poly Haven",
+          "authors": {
+            "Rob Tuytel": "All"
+          },
+          "license": "CC0-1.0",
+          "license_url": "https://polyhaven.com/license",
+          "coordinates": "glTF standard: metres; right handed; +Y up; ground plane XZ. Geometry and source translations preserved.",
+          "triangles": 101802,
+          "nodes": [
+            {
+              "node": "dead_tree_trunk",
+              "mesh_index": 0,
+              "source_translation": [
+                0,
+                0,
+                0
+              ],
+              "local_min": [
+                -1.5391005277633667,
+                -0.02773353084921837,
+                -0.17080287635326385
+              ],
+              "local_max": [
+                1.5119144916534424,
+                0.2626980245113373,
+                0.10672463476657867
+              ],
+              "dimensions_m": [
+                3.051015019416809,
+                0.29043155536055565,
+                0.27752751111984253
+              ],
+              "triangles": 101802,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            }
+          ],
+          "source_files_metadata": "dead_tree_trunk_files.json",
+          "modifications": "Embedded source geometry and PBR textures in GLB; packed supplied alpha channel in fern/sapling diffuse texture. Geometry unchanged."
+        },
+        {
+          "id": "fir_sapling",
+          "file": "/workspace/scratch/f25aff235357/build-assets/models/fir_sapling.glb",
+          "bytes": 25720404,
+          "sha256": "9fc90ab67f618ffcb71e64f41aa9793092d7eb5ba1a587327d8b4c187c38a086",
+          "source": "https://polyhaven.com/a/fir_sapling",
+          "provider": "Poly Haven",
+          "authors": {
+            "Rob Tuytel": "photography",
+            "Rico Cilliers": "modeling"
+          },
+          "license": "CC0-1.0",
+          "license_url": "https://polyhaven.com/license",
+          "coordinates": "glTF standard: metres; right handed; +Y up; ground plane XZ. Geometry and source translations preserved.",
+          "triangles": 433021,
+          "nodes": [
+            {
+              "node": "fir_sapling_a",
+              "mesh_index": 0,
+              "source_translation": [
+                0,
+                0,
+                0
+              ],
+              "local_min": [
+                -0.43695688247680664,
+                -0.007901787757873535,
+                -0.42620566487312317
+              ],
+              "local_max": [
+                0.42418965697288513,
+                1.2928361892700195,
+                0.396030455827713
+              ],
+              "dimensions_m": [
+                0.8611465394496918,
+                1.300737977027893,
+                0.8222361207008362
+              ],
+              "triangles": 157402,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            },
+            {
+              "node": "fir_sapling_b",
+              "mesh_index": 1,
+              "source_translation": [
+                1,
+                0,
+                0
+              ],
+              "local_min": [
+                -0.32576000690460205,
+                -9.949319064617157e-06,
+                -0.4303826093673706
+              ],
+              "local_max": [
+                0.31415098905563354,
+                0.9515835642814636,
+                0.3871777057647705
+              ],
+              "dimensions_m": [
+                0.6399109959602356,
+                0.9515935136005282,
+                0.8175603151321411
+              ],
+              "triangles": 150876,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            },
+            {
+              "node": "fir_sapling_c",
+              "mesh_index": 2,
+              "source_translation": [
+                2,
+                0,
+                0
+              ],
+              "local_min": [
+                -0.31641829013824463,
+                -7.270835340023041e-05,
+                -0.3199334442615509
+              ],
+              "local_max": [
+                0.3057711124420166,
+                0.735627293586731,
+                0.31407177448272705
+              ],
+              "dimensions_m": [
+                0.6221894025802612,
+                0.7357000019401312,
+                0.634005218744278
+              ],
+              "triangles": 124743,
+              "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+            }
+          ],
+          "source_files_metadata": "fir_sapling_files.json",
+          "modifications": "Embedded source geometry and PBR textures in GLB; packed supplied alpha channel in fern/sapling diffuse texture. Geometry unchanged."
+        }
+      ]
+    },
+    "proceduralTrees": {
+      "generator": "generate_trees.py",
+      "generator_version": "1",
+      "provenance": "Original procedural geometry generated for this task; no third-party mesh copied. Species and site placement are interpretive.",
+      "arrays": {
+        "positions": "float32 (N,3)",
+        "normals": "float32 (N,3)",
+        "uv": "float32 (N,2)",
+        "indices": "uint32 (M,3)",
+        "colors": "float32 RGBA (N,4)"
+      },
+      "variants": [
+        {
+          "variant": "evergreen_spreading",
+          "seed": 73621,
+          "units": "metres",
+          "up_axis": "Y",
+          "origin": "trunk centre at ground; minimum y=0",
+          "approximate_leader_height_m": 17.0,
+          "description": "Asymmetric evergreen with long drooping lateral sprays; suggestive of Tsuga structure, not a botanically exact species.",
+          "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+          "material_slots": {
+            "bark": {
+              "double_sided": false,
+              "uv_repeat_metres": {
+                "around_branch": 0.7,
+                "along_branch": 1.8
+              },
+              "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+            },
+            "leaves": {
+              "double_sided": true,
+              "alpha_mode": "OPAQUE",
+              "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+              "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+            }
+          },
+          "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+          "files": {
+            "high": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/high_bark.npz",
+                "vertices": 9679,
+                "triangles": 12572,
+                "bounds_min": [
+                  -4.754047393798828,
+                  0.0,
+                  -3.520995855331421
+                ],
+                "bounds_max": [
+                  4.059769630432129,
+                  17.001155853271484,
+                  3.9838931560516357
+                ],
+                "sha256": "2c1b929899a45ee3193107c4b6ec6935a2f4264482ff9596ad0b09bc5fa1e876"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/high_leaves.npz",
+                "vertices": 29488,
+                "triangles": 14744,
+                "bounds_min": [
+                  -4.802140235900879,
+                  3.890193462371826,
+                  -3.6240200996398926
+                ],
+                "bounds_max": [
+                  4.182074546813965,
+                  16.893962860107422,
+                  4.048172950744629
+                ],
+                "sha256": "d2343f1571085fc0a19ca9bc56abdbfbefe78ad01b5fd574429d2722a984545c"
+              },
+              "triangles_total": 27316
+            },
+            "low": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/low_bark.npz",
+                "vertices": 332,
+                "triangles": 486,
+                "bounds_min": [
+                  -3.6021831035614014,
+                  0.0,
+                  -2.7635953426361084
+                ],
+                "bounds_max": [
+                  3.1853551864624023,
+                  17.000852584838867,
+                  3.17334246635437
+                ],
+                "sha256": "d73d0e5a0b5363f0575a175c16566bc16a2b8c10927834b15f807a2ba4e6bda0"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/low_leaves.npz",
+                "vertices": 304,
+                "triangles": 532,
+                "bounds_min": [
+                  -3.0508081912994385,
+                  3.6095571517944336,
+                  -3.4356040954589844
+                ],
+                "bounds_max": [
+                  3.8039846420288086,
+                  16.7450008392334,
+                  3.6426804065704346
+                ],
+                "sha256": "86cf3217b28c75927b593331a3c277c0575b26f203164de7a14445a4efbbe9c3"
+              },
+              "triangles_total": 1018
+            }
+          }
+        },
+        {
+          "variant": "evergreen_ascending",
+          "seed": 83019,
+          "units": "metres",
+          "up_axis": "Y",
+          "origin": "trunk centre at ground; minimum y=0",
+          "approximate_leader_height_m": 19.0,
+          "description": "Slender evergreen with ascending branches and flattened lance sprays; suggestive of Chamaecyparis, not a botanical specimen.",
+          "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+          "material_slots": {
+            "bark": {
+              "double_sided": false,
+              "uv_repeat_metres": {
+                "around_branch": 0.7,
+                "along_branch": 1.8
+              },
+              "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+            },
+            "leaves": {
+              "double_sided": true,
+              "alpha_mode": "OPAQUE",
+              "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+              "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+            }
+          },
+          "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+          "files": {
+            "high": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/high_bark.npz",
+                "vertices": 9679,
+                "triangles": 12572,
+                "bounds_min": [
+                  -3.5036802291870117,
+                  0.0,
+                  -3.9427731037139893
+                ],
+                "bounds_max": [
+                  3.7405238151550293,
+                  19.000455856323242,
+                  3.714524269104004
+                ],
+                "sha256": "86bb4a8db5f6b7f340b21ef216e2812407d54fb3cfebe90f2d563925798458a2"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/high_leaves.npz",
+                "vertices": 29488,
+                "triangles": 14744,
+                "bounds_min": [
+                  -3.6020631790161133,
+                  5.220743656158447,
+                  -4.100896835327148
+                ],
+                "bounds_max": [
+                  3.836423397064209,
+                  18.86785125732422,
+                  3.8544390201568604
+                ],
+                "sha256": "d6a5c25db98efa827fcf1def7741956157c42fcf60b8fa0772b76a30c0593d28"
+              },
+              "triangles_total": 27316
+            },
+            "low": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/low_bark.npz",
+                "vertices": 332,
+                "triangles": 486,
+                "bounds_min": [
+                  -2.7999422550201416,
+                  0.0,
+                  -3.184732675552368
+                ],
+                "bounds_max": [
+                  2.658107042312622,
+                  19.000450134277344,
+                  2.1410346031188965
+                ],
+                "sha256": "64f61ce60b2c8600dc0fa743654728113dfb3aca3eea502c3d4159eec1294821"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/low_leaves.npz",
+                "vertices": 304,
+                "triangles": 532,
+                "bounds_min": [
+                  -2.8477783203125,
+                  4.8599090576171875,
+                  -3.451786994934082
+                ],
+                "bounds_max": [
+                  3.673464298248291,
+                  18.71500015258789,
+                  2.95336651802063
+                ],
+                "sha256": "684f05dbab807862b1b96d769aaf1c67345e4ef191778d751441cf72862fe8bb"
+              },
+              "triangles_total": 1018
+            }
+          }
+        },
+        {
+          "variant": "broadleaf_spreading",
+          "seed": 99347,
+          "units": "metres",
+          "up_axis": "Y",
+          "origin": "trunk centre at ground; minimum y=0",
+          "approximate_leader_height_m": 14.5,
+          "description": "Broad deciduous crown with rising scaffold branches, irregular bent leaves.",
+          "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+          "material_slots": {
+            "bark": {
+              "double_sided": false,
+              "uv_repeat_metres": {
+                "around_branch": 0.7,
+                "along_branch": 1.8
+              },
+              "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+            },
+            "leaves": {
+              "double_sided": true,
+              "alpha_mode": "OPAQUE",
+              "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+              "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+            }
+          },
+          "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+          "files": {
+            "high": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/high_bark.npz",
+                "vertices": 8579,
+                "triangles": 10892,
+                "bounds_min": [
+                  -5.182211399078369,
+                  0.0,
+                  -4.589000701904297
+                ],
+                "bounds_max": [
+                  5.6606550216674805,
+                  14.556035995483398,
+                  5.247103691101074
+                ],
+                "sha256": "9993e77ef3ea3bdc93ae0e87495cd8157b629ecece3bfda2bb8218832dc02857"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/high_leaves.npz",
+                "vertices": 33528,
+                "triangles": 16764,
+                "bounds_min": [
+                  -5.34389066696167,
+                  8.207743644714355,
+                  -4.799230098724365
+                ],
+                "bounds_max": [
+                  5.717456817626953,
+                  14.685452461242676,
+                  5.339357852935791
+                ],
+                "sha256": "73c23e654db7787c1c005ad84cb6befaf8d757a2f746442b0c8f42c06e0df467"
+              },
+              "triangles_total": 27656
+            },
+            "low": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/low_bark.npz",
+                "vertices": 288,
+                "triangles": 422,
+                "bounds_min": [
+                  -4.422706127166748,
+                  0.0,
+                  -2.765109062194824
+                ],
+                "bounds_max": [
+                  4.823622226715088,
+                  14.501660346984863,
+                  4.530327796936035
+                ],
+                "sha256": "8fce2b4cbd76117b8c947bd27648547ef1a68ecaa1674c4f2aff95898c0dbf43"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/low_leaves.npz",
+                "vertices": 240,
+                "triangles": 420,
+                "bounds_min": [
+                  -5.089541435241699,
+                  8.484879493713379,
+                  -4.916833400726318
+                ],
+                "bounds_max": [
+                  5.628023147583008,
+                  14.331820487976074,
+                  5.347377777099609
+                ],
+                "sha256": "d12b289000eff7545d788e3a18b8d87b399a51cae5fb42ff3a24b32369236f16"
+              },
+              "triangles_total": 842
+            }
+          }
+        },
+        {
+          "variant": "broadleaf_leaning",
+          "seed": 17429,
+          "units": "metres",
+          "up_axis": "Y",
+          "origin": "trunk centre at ground; minimum y=0",
+          "approximate_leader_height_m": 16.2,
+          "description": "Leaning broadleaf crown with more upright limb distribution and bent oval-lance leaves.",
+          "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+          "material_slots": {
+            "bark": {
+              "double_sided": false,
+              "uv_repeat_metres": {
+                "around_branch": 0.7,
+                "along_branch": 1.8
+              },
+              "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+            },
+            "leaves": {
+              "double_sided": true,
+              "alpha_mode": "OPAQUE",
+              "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+              "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+            }
+          },
+          "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+          "files": {
+            "high": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/high_bark.npz",
+                "vertices": 8579,
+                "triangles": 10892,
+                "bounds_min": [
+                  -4.601630210876465,
+                  0.0,
+                  -4.246976375579834
+                ],
+                "bounds_max": [
+                  4.0419921875,
+                  17.21153450012207,
+                  4.915231227874756
+                ],
+                "sha256": "92eab0e9042db510112ed41c98b48d2310a68530f559b10898cb9f4a34908ab0"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/high_leaves.npz",
+                "vertices": 33528,
+                "triangles": 16764,
+                "bounds_min": [
+                  -4.848785877227783,
+                  8.702448844909668,
+                  -4.3357038497924805
+                ],
+                "bounds_max": [
+                  4.118749141693115,
+                  17.305946350097656,
+                  5.146394729614258
+                ],
+                "sha256": "cd7527f94ece177322c768d67b55b7fa78eaca35206df4c088332eb0c87646d4"
+              },
+              "triangles_total": 27656
+            },
+            "low": {
+              "bark": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/low_bark.npz",
+                "vertices": 288,
+                "triangles": 422,
+                "bounds_min": [
+                  -3.9303455352783203,
+                  0.0,
+                  -2.52439284324646
+                ],
+                "bounds_max": [
+                  2.916350841522217,
+                  16.201030731201172,
+                  2.962261915206909
+                ],
+                "sha256": "1dc3ff6e5da115602c95624e35ed5362a6a5dec26e35fb5e92b2c4fa158ca330"
+              },
+              "leaves": {
+                "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/low_leaves.npz",
+                "vertices": 240,
+                "triangles": 420,
+                "bounds_min": [
+                  -4.635317802429199,
+                  9.235069274902344,
+                  -4.388758182525635
+                ],
+                "bounds_max": [
+                  4.344109058380127,
+                  16.582902908325195,
+                  5.060665130615234
+                ],
+                "sha256": "ab904229362f443c565a8c1ae1f4d2ca3c0afb9cedaa9ace08e63401a1cda7d1"
+              },
+              "triangles_total": 842
+            }
+          }
+        }
+      ]
+    },
+    "caveConstraints": {
+      "source_note": "MLIT source is an HTML table, not a PDF; inspected 2026-09-09. Store source-specific values without averaging.",
+      "caves": [
+        {
+          "id": "ATT-CAVE-fugaku",
+          "name": "Fugaku Wind Cave",
+          "cultural_property_record": "NB0014",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0014.html",
+          "cultural_property_measurements": {
+            "length_m": 258.7,
+            "width_m": [
+              4,
+              10
+            ],
+            "average_height_m": [
+              2,
+              3
+            ],
+            "local_height_m": [
+              0.9,
+              6
+            ],
+            "branch_length_m": ">80"
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "length_m": 258.7,
+            "elevation_m": 1000
+          },
+          "operator_measurements": {
+            "source_ids": [
+              "ECO-007",
+              "ECO-013"
+            ],
+            "url": "https://www.mtfuji-cave.com/contents/wind_cave/",
+            "length_m": 201,
+            "maximum_height_m": 8.7
+          },
+          "reconciliation": "Total cave versus visitor/operator extent may differ; branch inclusion not definitively reconciled.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        },
+        {
+          "id": "ATT-CAVE-narusawa",
+          "name": "Narusawa Ice Cave",
+          "cultural_property_record": "NB0011",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0011.html",
+          "cultural_property_measurements": {
+            "elevation_m": 1025,
+            "northward_lava_slope_degrees": [
+              2,
+              3
+            ],
+            "verification": "Individual page fetch timed out; values attached, identity verified on official list"
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "length_m": 155.7,
+            "elevation_m": 1025
+          },
+          "operator_measurements": {
+            "source_ids": [
+              "ECO-008"
+            ],
+            "url": "https://www.mtfuji-cave.com/contents/ice_cave/",
+            "length_m": 153,
+            "rounded_length_m": 150,
+            "width_m": [
+              1.5,
+              11
+            ],
+            "height_m": [
+              1,
+              3.6
+            ]
+          },
+          "reconciliation": "Length differences unresolved; do not average.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        },
+        {
+          "id": "ATT-CAVE-saiko_bat",
+          "name": "Lake Saiko Bat Cave",
+          "cultural_property_record": "NB0018",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0018.html",
+          "cultural_property_measurements": {
+            "length_m": 350,
+            "morphology": "Large branch and rounded chamber roof; described as not freezing in winter"
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "length_m": 386.3,
+            "elevation_m": 925
+          },
+          "operator_measurements": null,
+          "reconciliation": "Length/extent disagreement unresolved.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        },
+        {
+          "id": "ATT-CAVE-fuji_wind",
+          "name": "Fuji Wind Cave",
+          "cultural_property_record": "NB0015",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0015.html",
+          "cultural_property_measurements": {
+            "length_m": ">230",
+            "floor_width_m": [
+              5,
+              10
+            ],
+            "average_height_m": 5
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "listed_name": "Fuji Wind Cave No.1",
+            "length_m": 582,
+            "elevation_m": 1110
+          },
+          "operator_measurements": null,
+          "reconciliation": "Named cave versus numbered inventory extent/identity requires reconciliation. Not Fugaku.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        },
+        {
+          "id": "ATT-CAVE-ryugu",
+          "name": "Ryugu Cave",
+          "cultural_property_record": "NB0017",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0017.html",
+          "cultural_property_measurements": {
+            "length_m": 60,
+            "elevation_m": 940,
+            "morphology": "Approximately north-south lava trough near mouth"
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "length_m": 95.9,
+            "elevation_m": 965
+          },
+          "operator_measurements": null,
+          "reconciliation": "Length and elevation conflicts. Local DEM sample at approximate dossier pin ~941.7m is not an interior survey.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        },
+        {
+          "id": "ATT-CAVE-motosu",
+          "name": "Motosu Wind Cave No.1",
+          "cultural_property_record": "NB0013",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0013.html",
+          "cultural_property_measurements": {
+            "length_m": "about494",
+            "northward_lava_slope_degrees": [
+              2,
+              7
+            ]
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "length_m": 494.3,
+            "elevation_m": 1140
+          },
+          "operator_measurements": null,
+          "reconciliation": "Compatible precision; maintain numbered cave/group identity.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        },
+        {
+          "id": "ATT-CAVE-omuro",
+          "name": "Omuro Cave",
+          "cultural_property_record": "NB0012",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0012.html",
+          "cultural_property_measurements": {
+            "elevation_m": 1190,
+            "entrance_status": "buried/no entry in cultural-property description"
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "listed_name": "Omuro Wind Cave No.1",
+            "length_m": 170.3,
+            "elevation_m": 1190
+          },
+          "operator_measurements": null,
+          "reconciliation": "Verify identity mapping; no current open entrance or cave survey established.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        },
+        {
+          "id": "ATT-CAVE-jinza",
+          "name": "Jinza Wind Cave, Kamaboko and Megane cluster",
+          "cultural_property_record": "NB0010",
+          "cultural_property_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0010.html",
+          "cultural_property_measurements": {
+            "area_elevation_m": "about1260",
+            "northward_lava_slope_degrees": [
+              3,
+              6
+            ]
+          },
+          "mlit_inventory_url": "https://www.cbr.mlit.go.jp/fujisabo/bosai/fuji_info/chisiki/a06/index.html",
+          "mlit_inventory_measurements": {
+            "members": [
+              {
+                "name": "Jinza No.1",
+                "length_m": 443.1,
+                "elevation_m": 1245
+              },
+              {
+                "name": "Kamaboko",
+                "length_m": 28,
+                "elevation_m": 1245
+              },
+              {
+                "name": "Megane",
+                "length_m": 154.5,
+                "elevation_m": 1210
+              }
+            ]
+          },
+          "operator_measurements": null,
+          "reconciliation": "Area elevation is not an exact entrance/floor value for every member.",
+          "mesh_constraint_status": "reference proportions only; full passage geometry not established",
+          "rights": "Factual measurements cited. No reproduction licence for source photos/maps established in this audit."
+        }
+      ]
+    },
+    "matureFir": {
+      "provider": "Poly Haven",
+      "source": "https://polyhaven.com/a/fir_tree_01",
+      "license": "CC0-1.0",
+      "authors": {
+        "Rico Cilliers": "Modeling",
+        "Rob Tuytel": "Photography"
+      },
+      "subject": "Mature fir representative; not a taxonomically verified Japanese hemlock or cypress",
+      "source_node": "fir_tree_01_c_LOD0",
+      "source_triangles": 505494,
+      "triangles": 301761,
+      "source_binary_range": {
+        "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/fir_tree_01/fir_tree_01.bin",
+        "start": 445212268,
+        "end": 478462203,
+        "bytes": 33249936,
+        "sha256": "9c21b774c1f6470d393e420c40282bfdc210533224ca1a4b8a4d0b67d7874561"
+      },
+      "processing": [
+        "Extracted only variant C through HTTP Range; response206, exactContent-Range and length checked.",
+        "Attribute-aware mesh simplification preserving existing normals and UVs; full detail source retained in partial binary.",
+        "Removed constant white COLOR_0 and unreferenced COLOR_1 channels.",
+        "Restored cylindrical bark UVs on trunk primitive because original glTF had no TEXCOORD_0. Same-source bark texture used; UV seam split.",
+        "Packed source twig alpha into diffuse RGBA, set MASK cutoff0.5.",
+        "Embedded original1K PBR images; source texture MD5 verified. No runtime compression extension needed."
+      ],
+      "primitive_statistics": [
+        {
+          "primitive": 0,
+          "material": 0,
+          "sourceTriangles": 9536,
+          "triangles": 9350,
+          "vertices": 5629,
+          "error": 0.0006939751910977066,
+          "scale": 9.302501678466797,
+          "missingOriginalUV": false
+        },
+        {
+          "primitive": 1,
+          "material": 2,
+          "sourceTriangles": 446074,
+          "triangles": 276565,
+          "vertices": 434261,
+          "error": 0.0003452654054854065,
+          "scale": 7.5182719230651855,
+          "missingOriginalUV": false
+        },
+        {
+          "primitive": 2,
+          "material": 3,
+          "sourceTriangles": 3616,
+          "triangles": 2892,
+          "vertices": 1979,
+          "error": 0.00048289389815181494,
+          "scale": 5.5048828125,
+          "missingOriginalUV": false
+        },
+        {
+          "primitive": 3,
+          "material": 5,
+          "sourceTriangles": 46268,
+          "triangles": 12954,
+          "vertices": 7023,
+          "error": 6.821794522693381e-05,
+          "scale": 13.322330474853516,
+          "missingOriginalUV": true
+        }
+      ],
+      "local_min": [
+        -2.747030735015869,
+        -0.09359125047922134,
+        -2.9962728023529053
+      ],
+      "local_max": [
+        3.5586700439453125,
+        14.426758766174316,
+        2.9699645042419434
+      ],
+      "dimensions_m": [
+        6.305700778961182,
+        14.520350456237793,
+        5.9662370681762695
+      ],
+      "axes": "metres; right-handed; +Y up; XZ ground",
+      "ground_offset_y": 0.09359125047922134,
+      "scale": 1.0,
+      "file": "/workspace/scratch/f25aff235357/build-assets/models/fir_tree_c.glb",
+      "bytes": 22510964,
+      "sha256": "b0053416c821e0af0660cc33b4b2e2c7366d2682ce8340c91806b8237f8cd22b"
+    },
+    "forestWide": {
+      "version": 1,
+      "file": "forest-wide.f32",
+      "count": 467601,
+      "stride": 6,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "uniformScale",
+        "yawRadians",
+        "variantId"
+      ],
+      "encoding": "float32 little-endian; tightly packed interleaved records",
+      "recordBytes": 24,
+      "bytes": 11222424,
+      "sha256": "c2763071c3907d7756fc05c6849a9488e6082440e2e95ae0b167738a77b850a4",
+      "spacingM": 8.5,
+      "jitterM": 5.8,
+      "hashGapFraction": 0.045,
+      "seedMethod": "Exact integer spatial hash from root build_world.py; implementation reproduced in build_forest_wide.py",
+      "coordinateSystem": {
+        "projection": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs",
+        "originWgs84": [
+          138.658,
+          35.4775
+        ],
+        "axes": "x east, y up, z south",
+        "height": "Root-compatible bilinear measured grid height, local first then study, y=elevationM-900-0.06"
+      },
+      "selection": {
+        "definition": "Outside the local rectangle, nearest study sample must have study-jogan=1 and study-landcover in [1,2,3]. Inside local x/z ±1024 m, use exact existing local forest instances, preserving forested local classes regardless of Jogan mask.",
+        "legalBoundary": false,
+        "interpretation": "PROJECT INTERPRETATION: mapped eruption-product footprint intersected with forested landcover plus forested local core; not a legal, surveyed or definitive Aokigahara forest boundary.",
+        "boundsXZ": [
+          -9000,
+          -6000,
+          10500,
+          8000
+        ],
+        "studyMappedIntersectionAreaM2": 35894012.451171905,
+        "studyIntersectionInsideLocalAreaM2": 4103668.2985026003,
+        "forcedLocalForestedAreaM2": 4170624.0,
+        "selectedAreaBeforeBuffersAndHashGapsM2": 35960968.1526693,
+        "selectedAreaBeforeBuffersAndHashGapsKm2": 35.9609681526693,
+        "areaBasis": "Exact clipped nearest-sample raster-cell area for the supplied categorical grids. Boundary sample cells extend half a cell inward. Study/local overlap is replaced, not double counted. This is a project mask area, not measured forest extent."
+      },
+      "placement": {
+        "individualTreesSurveyed": false,
+        "treeCountIsCensus": false,
+        "roadBufferM": 5,
+        "trailBufferM": 1.7,
+        "roadSource": "study-context.json OSM mapped centre lines; estimated exclusion widths include private/no-access tagged paths to match root exclusion rule",
+        "scaleFormula": ".72 + rand(i,j,5)*.5",
+        "yawFormula": "rand(i,j,6)*2*pi",
+        "variantFormula": "(2 if class==2 else 0)+int(rand(i,j,4)*2)",
+        "forestedClasses": {
+          "1": "natural conifer",
+          "2": "broadleaf/mixed woody",
+          "3": "plantation"
+        },
+        "outerEligibleCandidatesBeforeGaps": 439939,
+        "outerRejectedByHashGaps": 19984,
+        "outerRejectedByPathBuffersAfterGaps": 6353,
+        "outerCount": 413602
+      },
+      "localOverlap": {
+        "localPrefixCount": 53999,
+        "localPrefixBytes": 1295976,
+        "localPrefixSha256": "cab3bb0251647e26c98efd37c78dcd334e1afabb73282ffd7b9355c682240fca",
+        "originalFile": "/workspace/sites/aokigahara-field-world/dist/assets/forest-instances.f32",
+        "exactBytesPreserved": true,
+        "remainingRecords": "All appended records are outside abs(x)<=1024 AND abs(z)<=1024; local and appended records never overlap.",
+        "use": "Use this file to replace forest-instances.f32, or append only records after localPrefixCount to existing local instances. Do not append the complete file to the existing local instances."
+      },
+      "boundsMinXYZ": [
+        -5705.29052734375,
+        -0.2327905297279358,
+        -2697.030517578125
+      ],
+      "boundsMaxXYZ": [
+        3776.473876953125,
+        628.2476196289062,
+        5974.7861328125
+      ],
+      "variants": {
+        "0": 204243,
+        "1": 203551,
+        "2": 30015,
+        "3": 29792
+      },
+      "sourceFiles": [
+        {
+          "file": "study-jogan.u8",
+          "sha256": "486cb48f02fb9cd56c6b0a397f9389711ede3b4924f24e19b65d493dce919a43"
+        },
+        {
+          "file": "study-landcover.u8",
+          "sha256": "ed2baf4d3121339bb9b75da5ca86d2cdc429798c2df426a1cac8a6a284773bf4"
+        },
+        {
+          "file": "study-height.json",
+          "sha256": "81e67fbba43520d4a5888c1862cdc7da4f1dce6a46b69a074ea08c7b78eced2b"
+        },
+        {
+          "file": "study-height.f32",
+          "sha256": "6b22ae174ca09d8288b0fb310ab7312cced48f0cfea5132e3c3b34fd59cd9183"
+        },
+        {
+          "file": "local-landcover.u8",
+          "sha256": "82c841246926d29309e8f1b797a9dd87dd04fd6809bf577077b30648269c3af5"
+        },
+        {
+          "file": "local-height.json",
+          "sha256": "2c2abc7a7463b823802a05a9382fb2104decef664694b4f8d8351a8d33b2a9f4"
+        },
+        {
+          "file": "local-height.f32",
+          "sha256": "0350d2a3510566487f9105b64a82bf62149adfdf848ca6c8e6ae27f56e0324ae"
+        },
+        {
+          "file": "study-context.json",
+          "sha256": "f12bff8c501b366c5ba03938c8cd4cf3f84d1ba28043b127d8ab5f13a4394b57"
+        }
+      ],
+      "validation": {
+        "allFinite": true,
+        "localPrefixByteIdentical": true,
+        "rootHashAndHeightExactChecks": 88,
+        "duplicateXZCount": 0
+      },
+      "limits": [
+        "Procedural mature-tree transform positions, heights, scales, rotations and variant assignments are project interpretations, not an individual-tree survey or species census.",
+        "Mapped geology and landcover have different source dates, scales and semantics. Their intersection does not establish a forest boundary.",
+        "Ground heights are bilinear samples of measured numerical DEM grids; trunks are sunk 0.06 m to match the existing local scene.",
+        "Placement excludes approximate OSM road/trail buffers but does not describe public access or current trail conditions."
+      ],
+      "elapsedSeconds": 4.25
+    }
+  },
+  "productionPass2": {
+    "date": "2026-09-10",
+    "summary": "Production pass 2: near-field ground system, tree library v2, stand densification, deadwood/rock/fern layers, lighting presets. Coordinate framework, terrain grids, mapped paths, vegetation classes and the 53,999 corridor placements are unchanged; placements are re-used with deterministic per-instance size/form/tilt augmentation.",
+    "statusClasses": {
+      "OBSERVED / SOURCE-CONSTRAINED": [
+        "GSI DEM macro terrain (unchanged)",
+        "MOE community classes driving conifer/broadleaf/plantation variant mix (unchanged)",
+        "OSM path centre lines (unchanged); road vs trail class sets the base width only",
+        "IMG-013 published camera geotag used as an audit viewpoint (35.479278 N, 138.656892 E, heading 271.6°; precision uncalibrated)"
+      ],
+      "INFERRED": [
+        "Conifer-dominated stand with Tsuga-like and Chamaecyparis-like forms, dense small-stem regeneration, low gap fraction, exposed surface roots on thin soil over lava, moss on trunk bases/roots/rocks, litter collecting between roots and in hollows, fallen timber (ECO-001, ECO-002, IMG-007/008/013, ECO-016, GEO-002, ECO-029)",
+        "Path appearance: compacted dark cinder/soil with irregular edges, root and stone intrusion, litter at margins (route photographs; widths not measured)"
+      ],
+      "PROCEDURAL": [
+        "Lava micro-relief: metre-scale lobes/hummocks, 1–3 m block relief, sub-metre clinker, occasional linear clefts (amplitude ±0.6 m). Not surveyed; DEM cannot resolve it",
+        "Root mounds under each stem (Gaussian, 0.24 m × instance scale)",
+        "Moss / basalt / litter / trail layer weights from slope, curvature, noise, mound and path proximity",
+        "All textures in assets/materials_v2 (moss, basalt, litter, trail, blend noise); basalt reuses Poly Haven rock_3 relief (CC0)",
+        "Tree library v2: every trunk, buttress, surface root, branch and foliage card; species-suggestive only. Foliage cards cut from Poly Haven fir_tree_01 twig atlas (CC0) with alpha boosted; fir sprays stand in for Tsuga/Chamaecyparis sprays",
+        "Per-instance augmentation: size class (22% small, 66% mid, 12% dominant), 6% standing dead stems, ±2.6° tilt, variant by community class (class 1: 52% Tsuga-like / 48% hinoki-like; class 2: 50% broadleaf; class 3: hinoki-weighted)",
+        "Small stems (1.5–6 m) and sub-canopy stems (6–12 m) inserted in gaps with clustered density noise; radii 110–130 m and 170–230 m by quality setting",
+        "Lava blocks (5 noise-displaced icosahedra), embedded stones, fern instances (Poly Haven fern_02), fallen logs (Poly Haven dead_tree_trunk with procedural moss overlay)",
+        "Daylight presets (overcast reference / soft sun / clear) are adjustable visual states, not dated weather"
+      ],
+      "UNKNOWN": [
+        "Exact individual-tree positions, sizes and species; exact lava block and root arrangements; cave mouths/interiors; current signs, barriers and walkways; moss species composition and seasonal state"
+      ]
+    },
+    "runtimeHierarchy": {
+      "nearField": "<46 m (balanced) / <62 m (high): tree-library-v2 high LOD (8–12k tris with roots and dense spray cards), 120 m relief ground patch at 0.6 m sampling, shadows from crowns",
+      "midField": "to 230 m: low LOD (0.5–0.9k tris incl. crown-mass cards), sub-canopy stems, small stems to 110–130 m",
+      "farField": "230–360/460 m: 32-triangle crossed-card impostors",
+      "regional": "existing surface terrain GLB, base ground layers, lakes"
+    },
+    "notClaimed": [
+      "Photorealism is not claimed; the pass narrows the gap. See renders/ for identical-camera before/after evidence.",
+      "No FPS figures for the target M2 MacBook Air were measured (not available in this session). Measured only: triangle counts per frame from the headless audit renderer (5.2–7.0 M triangles, 80–95 draw calls)."
+    ],
+    "files": {
+      "viewer/app.js": {
+        "sha256": "289e3f4838fd72dbf36c1f867a527e1677349cf45959371452c590f4388984ed",
+        "bytes": 47433
+      },
+      "viewer/index.html": {
+        "sha256": "86143ef2aac2647fc5a6a94e5d5a27432b1bbf59a9adc4674306ba5b3a7222e7",
+        "bytes": 3967
+      },
+      "viewer/assets/tree-library-v2.glb": {
+        "sha256": "1a237cf7d2e801fcd2dabf2ded66d9eff29578ceeed73466ec442b53b87d244a",
+        "bytes": 12521860
+      },
+      "construction_code_v2/generate_trees_v2.py": {
+        "sha256": "9440912b87f783f7ddccd3b8d4d3c13ee182453488e423d05d229b54ea97b761",
+        "bytes": 27214
+      },
+      "construction_code_v2/gen_textures.py": {
+        "sha256": "cd575a5b5d78670d4b7c05b4547e49c9e3346b74b8e49f02ecad6b1aa4135a29",
+        "bytes": 13280
+      }
+    },
+    "materialsV2Manifest": {
+      "generator": "construction_code_v2/gen_textures.py",
+      "deterministic_seeds": [
+        101,
+        202,
+        303,
+        404,
+        505
+      ],
+      "status": "PROCEDURAL representatives. Not captured at Aokigahara. Derived inputs: Poly Haven rock_3 (CC0) relief/roughness reused inside basalt maps; everything else synthesised.",
+      "physical_scale_m": {
+        "moss": 1.0,
+        "basalt": 1.5,
+        "litter": 0.8,
+        "trail": 1.0,
+        "blend_noise": 32.0
+      },
+      "evidence_basis": [
+        "GEO-002: Jogan products include aa and pahoehoe surfaces (blocky clinker and ropy folds)",
+        "IMG-007/008/013, ECO-016: moss carpets of varying thickness over irregular lava, roots gripping rock, litter collecting between roots",
+        "ECO-029: rope-like lava at Fugaku"
+      ],
+      "not_claimed": "Moss species, exact colours, litter composition and lava micro-form are interpretive."
+    },
+    "treeLibraryV2Manifest": {
+      "file": "tree-library-v2.glb",
+      "sha256": "1a237cf7d2e801fcd2dabf2ded66d9eff29578ceeed73466ec442b53b87d244a",
+      "bytes": 12521860,
+      "meshes": {
+        "tsuga_a_high": 12187,
+        "tsuga_a_low": 906,
+        "tsuga_a_far": 32,
+        "tsuga_b_high": 11416,
+        "tsuga_b_low": 914,
+        "tsuga_b_far": 32,
+        "tsuga_c_high": 9119,
+        "tsuga_c_low": 890,
+        "tsuga_c_far": 32,
+        "hinoki_a_high": 11099,
+        "hinoki_a_low": 813,
+        "hinoki_a_far": 32,
+        "hinoki_b_high": 11330,
+        "hinoki_b_low": 805,
+        "hinoki_b_far": 32,
+        "hinoki_c_high": 9754,
+        "hinoki_c_low": 744,
+        "hinoki_c_far": 32,
+        "snag_a_high": 1623,
+        "snag_a_low": 378,
+        "snag_b_high": 1602,
+        "snag_b_low": 437,
+        "sap_tsuga_high": 3551,
+        "sap_tsuga_low": 426,
+        "sap_tsuga_far": 32,
+        "sap_hinoki_high": 4260,
+        "sap_hinoki_low": 426,
+        "sap_hinoki_far": 32,
+        "sap_small_high": 3652,
+        "sap_small_low": 426,
+        "sap_small_far": 32,
+        "log_a_high": 329,
+        "log_b_high": 294,
+        "rock_a_high": 1280,
+        "rock_b_high": 1280,
+        "rock_c_high": 1280,
+        "rock_d_high": 1280
+      },
+      "lods": [
+        "high",
+        "low",
+        "far"
+      ],
+      "variants": [
+        "tsuga_a",
+        "tsuga_b",
+        "tsuga_c",
+        "hinoki_a",
+        "hinoki_b",
+        "hinoki_c",
+        "snag_a",
+        "snag_b",
+        "sap_tsuga",
+        "sap_hinoki",
+        "sap_small"
+      ],
+      "generator": "construction_code_v2/generate_trees_v2.py",
+      "provenance": "Aokigahara tree library v2 — deterministic procedural conifers with exposed surface-root systems.\n\nSpecies-suggestive variants (NOT botanically exact, NOT surveyed individuals):\n  tsuga   : Tsuga-like hemlock; grey plated bark (Poly Haven fir_tree_01 bark, CC0), spreading/drooping laterals, dark blue-green sprays\n  hinoki  : Chamaecyparis-like cypress; reddish stringy bark (Poly Haven japanese_cedar_bark, CC0), ascending laterals, yellow-green sprays\n  snag    : dead standing hemlock-type stem, broken top, bare branches (dead_tree_trunk textures, CC0)\n  sapling : small hinoki/tsuga regeneration stems 1.5–6 m\nFoliage cards use the Poly Haven fir_tree_01 twig atlas (CC0). Fir sprays are a REPRESENTATIVE stand-in for Tsuga/Chamaecyparis sprays.\nEvidence basis for form: ECO-001/ECO-002 (Tsuga/hinoki stand, heterogeneous size classes, closed canopy, small gaps),\nIMG-007/008/013 & ECO-016 (surface roots spreading over lava, moss on roots and trunk bases, leaning trunks).\nOutput: viewer/assets/tree-library-v2.glb  with meshes  <variant>_<lod>  lod in {high, low, far}.\nY up, metres, trunk base at y=0. Deterministic seeds."
+    }
+  }
+}

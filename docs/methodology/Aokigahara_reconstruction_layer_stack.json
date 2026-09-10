@@ -1,0 +1,74 @@
+{
+  "title": "Aokigahara reconstruction geospatial layer stack",
+  "version": "2026-09-09 expansion 5",
+  "core_rule": "No single polygon is labelled “the exact Aokigahara boundary”. Forest, lava, natural-monument, national-park, administrative and research extents remain separate.",
+  "alignment": {
+    "authoring_crs": "EPSG:6676 (JGD2011 / Japan Plane Rectangular CS VIII) unless a later production decision standardises another metric CRS",
+    "web_display_crs": "EPSG:3857",
+    "source_datum_warning": "Current GSI downloadable elevation data may be JGD2024; normalise datum/vertical reference explicitly before asset placement."
+  },
+  "priority_layers": [
+    {
+      "order": 1,
+      "name": "Bare-earth terrain",
+      "source": "GSI DEM hierarchy",
+      "status": "source hierarchy known; best resolution must be verified per tile",
+      "role": "landscape geometry"
+    },
+    {
+      "order": 2,
+      "name": "Jōgan/Aokigahara lava units",
+      "source": "GSJ Fuji Volcano Geological Map 2nd ed. 2016 vector",
+      "status": "vector source identified, not yet locally ingested",
+      "role": "substrate and lava morphology"
+    },
+    {
+      "order": 3,
+      "name": "Current orthophoto/canopy",
+      "source": "GSI seamless/latest/orthophoto",
+      "status": "live services identified",
+      "role": "present-day edge, roads, clearings, canopy QA"
+    },
+    {
+      "order": 4,
+      "name": "Historical aerial time slices",
+      "source": "GSI 1961-69, 1974-78, 1979-83, 1984-86, 1987-90, annual 2007+",
+      "status": "service templates catalogued; local coverage to verify",
+      "role": "change detection / historical edge validation"
+    },
+    {
+      "order": 5,
+      "name": "Vegetation classes",
+      "source": "MoE Existing Vegetation Map 2024",
+      "status": "available across AOI; polygon source years 1999-2023",
+      "role": "biome zoning"
+    },
+    {
+      "order": 6,
+      "name": "Volcanic landforms",
+      "source": "GSI Fuji volcanic basic/land-condition/digital geomorphology tiles",
+      "status": "live tile services identified",
+      "role": "micro-/meso-landform interpretation"
+    },
+    {
+      "order": 7,
+      "name": "Routes and caves",
+      "source": "Yamanashi 2026 schematic + official cultural-property sources + validated GPX/GSI controls",
+      "status": "topology strong; centreline geometry mixed",
+      "role": "navigation/POI topology"
+    },
+    {
+      "order": 8,
+      "name": "Legal/protected-area overlays",
+      "source": "MoE national-park maps + Cultural Affairs/Yamanashi natural-monument records",
+      "status": "official sources identified; exact local polygons pending",
+      "role": "context, access, QA — not asset boundary"
+    }
+  ],
+  "temporal_imagery_register": "Aokigahara_temporal_imagery_register.csv",
+  "boundary_register": "Aokigahara_boundary_layer_register.csv",
+  "source_register": "Aokigahara_authoritative_source_register.csv",
+  "route_topology": "Aokigahara_route_topology_graph.csv",
+  "control_points": "Aokigahara_georegistration_control_points.csv",
+  "coverage_grid": "Aokigahara_250m_coverage_grid.geojson"
+}

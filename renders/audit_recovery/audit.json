@@ -1,0 +1,115 @@
+{
+ "baseUrl": "http://127.0.0.1:8765/viewer/",
+ "viewport": [
+  1280,
+  800
+ ],
+ "readySeconds": 12.3,
+ "results": [
+  {
+   "ms": 6,
+   "pos": [
+    32.14,
+    103.67,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 95,
+   "tris": 7507695,
+   "name": "C1_start_corridor",
+   "wallSeconds": 79.3
+  },
+  {
+   "ms": 4,
+   "pos": [
+    32.14,
+    103.67,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 86,
+   "tris": 7200799,
+   "name": "C2_start_lookdown",
+   "wallSeconds": 6.4
+  },
+  {
+   "ms": 8,
+   "pos": [
+    44,
+    100.99,
+    -24
+   ],
+   "trees": 5137,
+   "calls": 92,
+   "tris": 7153585,
+   "name": "C3_offpath_trunks",
+   "wallSeconds": 13.1
+  },
+  {
+   "ms": 8,
+   "pos": [
+    20,
+    103.38,
+    4
+   ],
+   "trees": 5141,
+   "calls": 89,
+   "tris": 7702147,
+   "name": "C4_path_ahead",
+   "wallSeconds": 12.1
+  },
+  {
+   "ms": 4,
+   "pos": [
+    -38,
+    95.9,
+    -18
+   ],
+   "trees": 5136,
+   "calls": 87,
+   "tris": 7111871,
+   "name": "C5_fugaku_approach",
+   "wallSeconds": 11.8
+  },
+  {
+   "ms": 5,
+   "pos": [
+    95,
+    104.14,
+    30
+   ],
+   "trees": 5145,
+   "calls": 91,
+   "tris": 7353326,
+   "name": "C6_arbitrary_east",
+   "wallSeconds": 12.4
+  },
+  {
+   "ms": 5,
+   "pos": [
+    -100.4,
+    94.51,
+    -197.6
+   ],
+   "trees": 5125,
+   "calls": 94,
+   "tris": 7861107,
+   "name": "R1_img013_geotag_overcast",
+   "wallSeconds": 11.6
+  },
+  {
+   "ms": 5,
+   "pos": [
+    32.14,
+    103.67,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 95,
+   "tris": 7507695,
+   "name": "C1_start_corridor_overcast",
+   "wallSeconds": 12.2
+  }
+ ],
+ "events": []
+}

@@ -1,0 +1,410 @@
+{
+  "generator": "generate_trees.py",
+  "generator_version": "1",
+  "provenance": "Original procedural geometry generated for this task; no third-party mesh copied. Species and site placement are interpretive.",
+  "arrays": {
+    "positions": "float32 (N,3)",
+    "normals": "float32 (N,3)",
+    "uv": "float32 (N,2)",
+    "indices": "uint32 (M,3)",
+    "colors": "float32 RGBA (N,4)"
+  },
+  "variants": [
+    {
+      "variant": "evergreen_spreading",
+      "seed": 73621,
+      "units": "metres",
+      "up_axis": "Y",
+      "origin": "trunk centre at ground; minimum y=0",
+      "approximate_leader_height_m": 17.0,
+      "description": "Asymmetric evergreen with long drooping lateral sprays; suggestive of Tsuga structure, not a botanically exact species.",
+      "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+      "material_slots": {
+        "bark": {
+          "double_sided": false,
+          "uv_repeat_metres": {
+            "around_branch": 0.7,
+            "along_branch": 1.8
+          },
+          "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+        },
+        "leaves": {
+          "double_sided": true,
+          "alpha_mode": "OPAQUE",
+          "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+          "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+        }
+      },
+      "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+      "files": {
+        "high": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/high_bark.npz",
+            "vertices": 9679,
+            "triangles": 12572,
+            "bounds_min": [
+              -4.754047393798828,
+              0.0,
+              -3.520995855331421
+            ],
+            "bounds_max": [
+              4.059769630432129,
+              17.001155853271484,
+              3.9838931560516357
+            ],
+            "sha256": "2c1b929899a45ee3193107c4b6ec6935a2f4264482ff9596ad0b09bc5fa1e876"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/high_leaves.npz",
+            "vertices": 29488,
+            "triangles": 14744,
+            "bounds_min": [
+              -4.802140235900879,
+              3.890193462371826,
+              -3.6240200996398926
+            ],
+            "bounds_max": [
+              4.182074546813965,
+              16.893962860107422,
+              4.048172950744629
+            ],
+            "sha256": "d2343f1571085fc0a19ca9bc56abdbfbefe78ad01b5fd574429d2722a984545c"
+          },
+          "triangles_total": 27316
+        },
+        "low": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/low_bark.npz",
+            "vertices": 332,
+            "triangles": 486,
+            "bounds_min": [
+              -3.6021831035614014,
+              0.0,
+              -2.7635953426361084
+            ],
+            "bounds_max": [
+              3.1853551864624023,
+              17.000852584838867,
+              3.17334246635437
+            ],
+            "sha256": "d73d0e5a0b5363f0575a175c16566bc16a2b8c10927834b15f807a2ba4e6bda0"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/low_leaves.npz",
+            "vertices": 304,
+            "triangles": 532,
+            "bounds_min": [
+              -3.0508081912994385,
+              3.6095571517944336,
+              -3.4356040954589844
+            ],
+            "bounds_max": [
+              3.8039846420288086,
+              16.7450008392334,
+              3.6426804065704346
+            ],
+            "sha256": "86cf3217b28c75927b593331a3c277c0575b26f203164de7a14445a4efbbe9c3"
+          },
+          "triangles_total": 1018
+        }
+      }
+    },
+    {
+      "variant": "evergreen_ascending",
+      "seed": 83019,
+      "units": "metres",
+      "up_axis": "Y",
+      "origin": "trunk centre at ground; minimum y=0",
+      "approximate_leader_height_m": 19.0,
+      "description": "Slender evergreen with ascending branches and flattened lance sprays; suggestive of Chamaecyparis, not a botanical specimen.",
+      "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+      "material_slots": {
+        "bark": {
+          "double_sided": false,
+          "uv_repeat_metres": {
+            "around_branch": 0.7,
+            "along_branch": 1.8
+          },
+          "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+        },
+        "leaves": {
+          "double_sided": true,
+          "alpha_mode": "OPAQUE",
+          "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+          "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+        }
+      },
+      "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+      "files": {
+        "high": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/high_bark.npz",
+            "vertices": 9679,
+            "triangles": 12572,
+            "bounds_min": [
+              -3.5036802291870117,
+              0.0,
+              -3.9427731037139893
+            ],
+            "bounds_max": [
+              3.7405238151550293,
+              19.000455856323242,
+              3.714524269104004
+            ],
+            "sha256": "86bb4a8db5f6b7f340b21ef216e2812407d54fb3cfebe90f2d563925798458a2"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/high_leaves.npz",
+            "vertices": 29488,
+            "triangles": 14744,
+            "bounds_min": [
+              -3.6020631790161133,
+              5.220743656158447,
+              -4.100896835327148
+            ],
+            "bounds_max": [
+              3.836423397064209,
+              18.86785125732422,
+              3.8544390201568604
+            ],
+            "sha256": "d6a5c25db98efa827fcf1def7741956157c42fcf60b8fa0772b76a30c0593d28"
+          },
+          "triangles_total": 27316
+        },
+        "low": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/low_bark.npz",
+            "vertices": 332,
+            "triangles": 486,
+            "bounds_min": [
+              -2.7999422550201416,
+              0.0,
+              -3.184732675552368
+            ],
+            "bounds_max": [
+              2.658107042312622,
+              19.000450134277344,
+              2.1410346031188965
+            ],
+            "sha256": "64f61ce60b2c8600dc0fa743654728113dfb3aca3eea502c3d4159eec1294821"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/low_leaves.npz",
+            "vertices": 304,
+            "triangles": 532,
+            "bounds_min": [
+              -2.8477783203125,
+              4.8599090576171875,
+              -3.451786994934082
+            ],
+            "bounds_max": [
+              3.673464298248291,
+              18.71500015258789,
+              2.95336651802063
+            ],
+            "sha256": "684f05dbab807862b1b96d769aaf1c67345e4ef191778d751441cf72862fe8bb"
+          },
+          "triangles_total": 1018
+        }
+      }
+    },
+    {
+      "variant": "broadleaf_spreading",
+      "seed": 99347,
+      "units": "metres",
+      "up_axis": "Y",
+      "origin": "trunk centre at ground; minimum y=0",
+      "approximate_leader_height_m": 14.5,
+      "description": "Broad deciduous crown with rising scaffold branches, irregular bent leaves.",
+      "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+      "material_slots": {
+        "bark": {
+          "double_sided": false,
+          "uv_repeat_metres": {
+            "around_branch": 0.7,
+            "along_branch": 1.8
+          },
+          "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+        },
+        "leaves": {
+          "double_sided": true,
+          "alpha_mode": "OPAQUE",
+          "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+          "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+        }
+      },
+      "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+      "files": {
+        "high": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/high_bark.npz",
+            "vertices": 8579,
+            "triangles": 10892,
+            "bounds_min": [
+              -5.182211399078369,
+              0.0,
+              -4.589000701904297
+            ],
+            "bounds_max": [
+              5.6606550216674805,
+              14.556035995483398,
+              5.247103691101074
+            ],
+            "sha256": "9993e77ef3ea3bdc93ae0e87495cd8157b629ecece3bfda2bb8218832dc02857"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/high_leaves.npz",
+            "vertices": 33528,
+            "triangles": 16764,
+            "bounds_min": [
+              -5.34389066696167,
+              8.207743644714355,
+              -4.799230098724365
+            ],
+            "bounds_max": [
+              5.717456817626953,
+              14.685452461242676,
+              5.339357852935791
+            ],
+            "sha256": "73c23e654db7787c1c005ad84cb6befaf8d757a2f746442b0c8f42c06e0df467"
+          },
+          "triangles_total": 27656
+        },
+        "low": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/low_bark.npz",
+            "vertices": 288,
+            "triangles": 422,
+            "bounds_min": [
+              -4.422706127166748,
+              0.0,
+              -2.765109062194824
+            ],
+            "bounds_max": [
+              4.823622226715088,
+              14.501660346984863,
+              4.530327796936035
+            ],
+            "sha256": "8fce2b4cbd76117b8c947bd27648547ef1a68ecaa1674c4f2aff95898c0dbf43"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/low_leaves.npz",
+            "vertices": 240,
+            "triangles": 420,
+            "bounds_min": [
+              -5.089541435241699,
+              8.484879493713379,
+              -4.916833400726318
+            ],
+            "bounds_max": [
+              5.628023147583008,
+              14.331820487976074,
+              5.347377777099609
+            ],
+            "sha256": "d12b289000eff7545d788e3a18b8d87b399a51cae5fb42ff3a24b32369236f16"
+          },
+          "triangles_total": 842
+        }
+      }
+    },
+    {
+      "variant": "broadleaf_leaning",
+      "seed": 17429,
+      "units": "metres",
+      "up_axis": "Y",
+      "origin": "trunk centre at ground; minimum y=0",
+      "approximate_leader_height_m": 16.2,
+      "description": "Leaning broadleaf crown with more upright limb distribution and bent oval-lance leaves.",
+      "procedural_status": "Entire tree is original deterministic procedural geometry; not an observed individual Aokigahara tree, scanned species or surveyed placement.",
+      "material_slots": {
+        "bark": {
+          "double_sided": false,
+          "uv_repeat_metres": {
+            "around_branch": 0.7,
+            "along_branch": 1.8
+          },
+          "note": "Approximate physical UV repeats; rings vary with tapered circumference. Use white basecolor multiplier if applying bark texture; vertex tint optional."
+        },
+        "leaves": {
+          "double_sided": true,
+          "alpha_mode": "OPAQUE",
+          "vertex_colors": "RGBA linear-like natural green tints, not calibrated leaf reflectance",
+          "note": "Folded single-surface leaf/spray geometry. Enable double sided rendering/export material. No alpha or billboard textures."
+        }
+      },
+      "lod_note": "High has individually modelled foliage sprigs/leaves and tapered branches. Low has closed irregular ellipsoidal crown lobes, no cones or billboards. LODs share local origin but crown silhouettes are approximate.",
+      "files": {
+        "high": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/high_bark.npz",
+            "vertices": 8579,
+            "triangles": 10892,
+            "bounds_min": [
+              -4.601630210876465,
+              0.0,
+              -4.246976375579834
+            ],
+            "bounds_max": [
+              4.0419921875,
+              17.21153450012207,
+              4.915231227874756
+            ],
+            "sha256": "92eab0e9042db510112ed41c98b48d2310a68530f559b10898cb9f4a34908ab0"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/high_leaves.npz",
+            "vertices": 33528,
+            "triangles": 16764,
+            "bounds_min": [
+              -4.848785877227783,
+              8.702448844909668,
+              -4.3357038497924805
+            ],
+            "bounds_max": [
+              4.118749141693115,
+              17.305946350097656,
+              5.146394729614258
+            ],
+            "sha256": "cd7527f94ece177322c768d67b55b7fa78eaca35206df4c088332eb0c87646d4"
+          },
+          "triangles_total": 27656
+        },
+        "low": {
+          "bark": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/low_bark.npz",
+            "vertices": 288,
+            "triangles": 422,
+            "bounds_min": [
+              -3.9303455352783203,
+              0.0,
+              -2.52439284324646
+            ],
+            "bounds_max": [
+              2.916350841522217,
+              16.201030731201172,
+              2.962261915206909
+            ],
+            "sha256": "1dc3ff6e5da115602c95624e35ed5362a6a5dec26e35fb5e92b2c4fa158ca330"
+          },
+          "leaves": {
+            "path": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/low_leaves.npz",
+            "vertices": 240,
+            "triangles": 420,
+            "bounds_min": [
+              -4.635317802429199,
+              9.235069274902344,
+              -4.388758182525635
+            ],
+            "bounds_max": [
+              4.344109058380127,
+              16.582902908325195,
+              5.060665130615234
+            ],
+            "sha256": "ab904229362f443c565a8c1ae1f4d2ca3c0afb9cedaa9ace08e63401a1cda7d1"
+          },
+          "triangles_total": 842
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "generated": "2026-09-09",
+  "grid": {
+    "cell_size_m": 250,
+    "feature_count": 2790,
+    "research_aoi_wgs84_bbox": {
+      "west": 138.55,
+      "south": 35.43,
+      "east": 138.72,
+      "north": 35.53
+    },
+    "generation_crs": "EPSG:6676",
+    "serialized_geometry_crs": "EPSG:4326"
+  },
+  "overall_evidence_counts": {
+    "High": 81,
+    "Medium": 1283,
+    "Low": 1426
+  },
+  "research_priority_counts": {
+    "P1": 1051,
+    "P2": 789,
+    "P3": 950
+  },
+  "methodology": [
+    "The grid covers a broad research AOI and must not be interpreted as the forest boundary.",
+    "Evidence confidence is a heuristic based on proximity to known/geotagged control points, simplified route-evidence corridors and identified vegetation-GIS sheet coverage.",
+    "Route-evidence corridors are deliberately simplified and are NOT surveyed trail geometry.",
+    "GSI terrain data sources are identified, but this pass does not claim 1 m or 5 m DEM tile availability until the actual mesh files are downloaded and checked.",
+    "A cell can be high-confidence for research coverage while still lying outside Aokigahara proper; boundary membership must come from aligned forest/lava/protection layers."
+  ],
+  "vegetation_gis_sheets": [
+    {
+      "sheet_id": "533815",
+      "name": "Narusawa 1:25,000 Existing Vegetation Map",
+      "extent": {
+        "west": 138.6219,
+        "east": 138.7052,
+        "south": 35.4199,
+        "north": 35.5449
+      },
+      "survey_period": "2004-04-01/2005-03-31",
+      "formats": "JPEG, Shp",
+      "source": "https://www.biodic.go.jp/chm/dataset/9e762c9ab2e86fc651f47989c60f9f07",
+      "note": "Official Ministry of the Environment Biodiversity Center metadata. Direction labels in metadata appear inverted; this build normalises the numeric min/max extent only."
+    },
+    {
+      "sheet_id": "533805",
+      "name": "Fuji 1:25,000 Existing Vegetation Map",
+      "extent": {
+        "west": 138.6219,
+        "east": 138.7052,
+        "south": 35.3366,
+        "north": 35.4616
+      },
+      "survey_period": "2004-04-01/2005-03-31",
+      "formats": "JPEG, Shp",
+      "source": "https://www.biodic.go.jp/chm/dataset/fac603a7f0494ecc052793c5d5e92095",
+      "note": "Official Ministry of the Environment Biodiversity Center metadata. Direction labels in metadata appear inverted; this build normalises the numeric min/max extent only."
+    }
+  ],
+  "route_evidence": [
+    {
+      "id": "R1",
+      "name": "Fugaku–Narusawa public cave corridor",
+      "confidence": "B",
+      "basis": "YAMAP model course 2.5 km / 1:02 / 58 m up-down plus Yamanashi current route context",
+      "source_url": "https://yamap.com/model-courses/95828",
+      "points": [
+        [
+          138.657361,
+          35.477444
+        ],
+        [
+          138.666528,
+          35.474778
+        ]
+      ]
+    },
+    {
+      "id": "R2",
+      "name": "Saiko cave / viewpoint evidence chain",
+      "confidence": "C+",
+      "basis": "control-point chain for evidence proximity only; not a claimed surveyed trail line",
+      "source_url": "https://www.pref.yamanashi.jp/documents/97765/guidelineryakuzu.pdf",
+      "points": [
+        [
+          138.672861,
+          35.493111
+        ],
+        [
+          138.66813,
+          35.48509
+        ],
+        [
+          138.67956,
+          35.48426
+        ],
+        [
+          138.68247,
+          35.48792
+        ]
+      ]
+    },
+    {
+      "id": "R3",
+      "name": "Route 139 to Sankodai evidence chain",
+      "confidence": "C+",
+      "basis": "2026 YAMAP 11.8 km activity confirms Fugaku → Narusawa → Koyodai/Sankodai ordering; simplified for coverage scoring only",
+      "source_url": "https://yamap.com/activities/47364623",
+      "points": [
+        [
+          138.657361,
+          35.477444
+        ],
+        [
+          138.666528,
+          35.474778
+        ],
+        [
+          138.67956,
+          35.48426
+        ],
+        [
+          138.68247,
+          35.48792
+        ]
+      ]
+    }
+  ],
+  "control_points": [
+    {
+      "name": "Fugaku Wind Cave",
+      "lat": 35.477444,
+      "lon": 138.657361,
+      "type": "cave / route control",
+      "confidence": "B+",
+      "coordinate_basis": "geotagged/open-map cross-check; validate against GSI before final lock",
+      "source_url": "https://commons.wikimedia.org/wiki/Category:Fugaku_Wind_Cave",
+      "official_geometry_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0014.html"
+    },
+    {
+      "name": "Narusawa Ice Cave",
+      "lat": 35.474778,
+      "lon": 138.666528,
+      "type": "cave / route control",
+      "confidence": "B+",
+      "coordinate_basis": "geotagged/open-map cross-check; validate against GSI before final lock",
+      "source_url": "https://commons.wikimedia.org/wiki/Category:Narusawa_Ice_Cave",
+      "official_geometry_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0014.html"
+    },
+    {
+      "name": "Lake Saiko Bat Cave",
+      "lat": 35.493111,
+      "lon": 138.672861,
+      "type": "cave / route control",
+      "confidence": "B+",
+      "coordinate_basis": "geotagged/open-map cross-check; validate against GSI before final lock",
+      "source_url": "https://commons.wikimedia.org/wiki/Category:Lake_Saiko_Bat_Cave",
+      "official_geometry_url": "https://www.pref.yamanashi.jp/bunka/bunkazaihogo/bunkazai_data/yamanashinobunkazai_nb0014.html"
+    },
+    {
+      "name": "Ryugu Cave",
+      "lat": 35.48509,
+      "lon": 138.66813,
+      "type": "cave / route control",
+      "confidence": "B",
+      "coordinate_basis": "OSM/secondary map cross-check; source spread is tens of metres",
+      "source_url": "https://www.openstreetmap.org/search?query=Ryugu%20Cave%20Yamanashi",
+      "official_geometry_url": "https://www.yamanashi-kankou.jp/kankou/spot/p1_4357.html"
+    },
+    {
+      "name": "Sankodai",
+      "lat": 35.48792,
+      "lon": 138.68247,
+      "type": "panorama / camera validation",
+      "confidence": "B",
+      "coordinate_basis": "secondary map cross-check; validate exact camera stations in field/GPX",
+      "source_url": "https://www.openstreetmap.org/search?query=Sankodai%20Yamanashi",
+      "official_geometry_url": ""
+    },
+    {
+      "name": "Koyodai ridge / viewpoint",
+      "lat": 35.48426,
+      "lon": 138.67956,
+      "type": "panorama / camera validation",
+      "confidence": "B",
+      "coordinate_basis": "secondary map cross-check; several nearby named viewpoint points exist",
+      "source_url": "https://www.openstreetmap.org/search?query=Koyodai%20Yamanashi",
+      "official_geometry_url": "https://www.yamanashi-kankou.jp/kankou/spot/kouyo_dai.html"
+    },
+    {
+      "name": "Omuro Cave",
+      "lat": 35.44784,
+      "lon": 138.66147,
+      "type": "protected cave control",
+      "confidence": "B",
+      "coordinate_basis": "secondary geographic gazetteer cross-check; validate against official schematic/GSI",
+      "source_url": "https://www.openstreetmap.org/search?query=Omuro%20Cave%20Yamanashi",
+      "official_geometry_url": "https://www.pref.yamanashi.jp/documents/97765/guidelineryakuzu.pdf"
+    }
+  ],
+  "next_high_value_actions": [
+    "Retrieve the western 1:25,000 vegetation sheet(s), beginning with the Shoji mesh 533814, because the identified Narusawa/Fuji sheets begin at ~138.6219 E.",
+    "Download actual GSI elevation mesh files for the AOI and record which cells have 1 m, DEM5A, DEM5B/5C or only 10 m coverage.",
+    "Georegister the Yamanashi 2026 route/cave schematic using Fugaku, Narusawa, Saiko Bat Cave, Lake Sai/Route 139 and other stable controls; store residual error rather than treating the schematic as survey geometry.",
+    "Acquire or extract route geometry from current public GPX/activity sources for the Route 139 cave corridor, Saiko/Wild Bird Forest and Shoji entrance routes.",
+    "Hunt cell-by-cell for geotagged imagery/video in P1 cells, especially the western Motosu/Shoji and central/high-ground sectors."
+  ]
+}

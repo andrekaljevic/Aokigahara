@@ -1,0 +1,37 @@
+# Dependencies / build output
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+# Local scratch used by construction scripts (generate_trees_v2.py writes work/tex)
+work/
+tmp/
+temp/
+*.tmp
+# Logs and local server output
+*.log
+http.log
+# Environment / credentials — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# OS / editor metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+# Headless browser profiles and audit scratch
+.playwright/
+playwright-report/
+test-results/

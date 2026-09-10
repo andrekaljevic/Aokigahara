@@ -1,0 +1,279 @@
+{
+  "retrieved": "2026-09-09",
+  "notes": [
+    "Fir Sapling is an artistic evergreen stand-in, not a taxonomically verified Aokigahara species. Use sapling proportions, not as a mature tree.",
+    "Fern 02 is a generic fern stand-in; no Japanese species attribution.",
+    "Dead Tree Trunk is a generic decaying log, not a scan from Aokigahara.",
+    "Downloaded files were checked against provider MD5 and byte sizes. Output GLBs contain the mesh and embedded textures, no external URLs required.",
+    "Poly Haven Fir Tree 01 not acquired: its minimum glTF binary is 478462204 bytes (487358833 bytes including 1K textures)."
+  ],
+  "assets": [
+    {
+      "id": "fern_02",
+      "file": "/workspace/scratch/f25aff235357/build-assets/models/fern_02.glb",
+      "bytes": 1675784,
+      "sha256": "f6b2d9552d4258274e306ee172b4b879bc658f42a62f55238b7b0bad22a84c4d",
+      "source": "https://polyhaven.com/a/fern_02",
+      "provider": "Poly Haven",
+      "authors": {
+        "Rob Tuytel": "scanning",
+        "Rico Cilliers": "modeling"
+      },
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "coordinates": "glTF standard: metres; right handed; +Y up; ground plane XZ. Geometry and source translations preserved.",
+      "triangles": 6232,
+      "nodes": [
+        {
+          "node": "fern_02_b",
+          "mesh_index": 0,
+          "source_translation": [
+            0,
+            0,
+            0
+          ],
+          "local_min": [
+            -0.5281425714492798,
+            -0.030510280281305313,
+            -0.421874463558197
+          ],
+          "local_max": [
+            0.4616048336029053,
+            0.39718443155288696,
+            0.4718152582645416
+          ],
+          "dimensions_m": [
+            0.9897474050521851,
+            0.4276947118341923,
+            0.8936897218227386
+          ],
+          "triangles": 2384,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        },
+        {
+          "node": "fern_02_c",
+          "mesh_index": 1,
+          "source_translation": [
+            1.0000009536743164,
+            0,
+            0
+          ],
+          "local_min": [
+            -0.4299395680427551,
+            -0.028773672878742218,
+            -0.4172818064689636
+          ],
+          "local_max": [
+            0.44438624382019043,
+            0.32024669647216797,
+            0.34794387221336365
+          ],
+          "dimensions_m": [
+            0.8743258118629456,
+            0.3490203693509102,
+            0.7652256786823273
+          ],
+          "triangles": 2248,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        },
+        {
+          "node": "fern_02_a",
+          "mesh_index": 2,
+          "source_translation": [
+            0,
+            0,
+            1.0000001192092896
+          ],
+          "local_min": [
+            -0.2976571321487427,
+            -0.028773518279194832,
+            -0.31126806139945984
+          ],
+          "local_max": [
+            0.25428348779678345,
+            0.2580300271511078,
+            0.3021530210971832
+          ],
+          "dimensions_m": [
+            0.5519406199455261,
+            0.2868035454303026,
+            0.6134210824966431
+          ],
+          "triangles": 784,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        },
+        {
+          "node": "fern_02_d",
+          "mesh_index": 3,
+          "source_translation": [
+            1,
+            0,
+            0.9999995827674866
+          ],
+          "local_min": [
+            -0.2907802164554596,
+            -0.013578944839537144,
+            -0.35213664174079895
+          ],
+          "local_max": [
+            0.28200197219848633,
+            0.19950860738754272,
+            0.2411416471004486
+          ],
+          "dimensions_m": [
+            0.5727821886539459,
+            0.21308755222707987,
+            0.5932782888412476
+          ],
+          "triangles": 816,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        }
+      ],
+      "source_files_metadata": "fern_02_files.json",
+      "modifications": "Embedded source geometry and PBR textures in GLB; packed supplied alpha channel in fern/sapling diffuse texture. Geometry unchanged."
+    },
+    {
+      "id": "dead_tree_trunk",
+      "file": "/workspace/scratch/f25aff235357/build-assets/models/dead_tree_trunk.glb",
+      "bytes": 4786912,
+      "sha256": "8dd0c9d5d92468e261a115936889bdd5d9bd8ad86c76cfac917ee83a098906a9",
+      "source": "https://polyhaven.com/a/dead_tree_trunk",
+      "provider": "Poly Haven",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "coordinates": "glTF standard: metres; right handed; +Y up; ground plane XZ. Geometry and source translations preserved.",
+      "triangles": 101802,
+      "nodes": [
+        {
+          "node": "dead_tree_trunk",
+          "mesh_index": 0,
+          "source_translation": [
+            0,
+            0,
+            0
+          ],
+          "local_min": [
+            -1.5391005277633667,
+            -0.02773353084921837,
+            -0.17080287635326385
+          ],
+          "local_max": [
+            1.5119144916534424,
+            0.2626980245113373,
+            0.10672463476657867
+          ],
+          "dimensions_m": [
+            3.051015019416809,
+            0.29043155536055565,
+            0.27752751111984253
+          ],
+          "triangles": 101802,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        }
+      ],
+      "source_files_metadata": "dead_tree_trunk_files.json",
+      "modifications": "Embedded source geometry and PBR textures in GLB; packed supplied alpha channel in fern/sapling diffuse texture. Geometry unchanged."
+    },
+    {
+      "id": "fir_sapling",
+      "file": "/workspace/scratch/f25aff235357/build-assets/models/fir_sapling.glb",
+      "bytes": 25720404,
+      "sha256": "9fc90ab67f618ffcb71e64f41aa9793092d7eb5ba1a587327d8b4c187c38a086",
+      "source": "https://polyhaven.com/a/fir_sapling",
+      "provider": "Poly Haven",
+      "authors": {
+        "Rob Tuytel": "photography",
+        "Rico Cilliers": "modeling"
+      },
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "coordinates": "glTF standard: metres; right handed; +Y up; ground plane XZ. Geometry and source translations preserved.",
+      "triangles": 433021,
+      "nodes": [
+        {
+          "node": "fir_sapling_a",
+          "mesh_index": 0,
+          "source_translation": [
+            0,
+            0,
+            0
+          ],
+          "local_min": [
+            -0.43695688247680664,
+            -0.007901787757873535,
+            -0.42620566487312317
+          ],
+          "local_max": [
+            0.42418965697288513,
+            1.2928361892700195,
+            0.396030455827713
+          ],
+          "dimensions_m": [
+            0.8611465394496918,
+            1.300737977027893,
+            0.8222361207008362
+          ],
+          "triangles": 157402,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        },
+        {
+          "node": "fir_sapling_b",
+          "mesh_index": 1,
+          "source_translation": [
+            1,
+            0,
+            0
+          ],
+          "local_min": [
+            -0.32576000690460205,
+            -9.949319064617157e-06,
+            -0.4303826093673706
+          ],
+          "local_max": [
+            0.31415098905563354,
+            0.9515835642814636,
+            0.3871777057647705
+          ],
+          "dimensions_m": [
+            0.6399109959602356,
+            0.9515935136005282,
+            0.8175603151321411
+          ],
+          "triangles": 150876,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        },
+        {
+          "node": "fir_sapling_c",
+          "mesh_index": 2,
+          "source_translation": [
+            2,
+            0,
+            0
+          ],
+          "local_min": [
+            -0.31641829013824463,
+            -7.270835340023041e-05,
+            -0.3199334442615509
+          ],
+          "local_max": [
+            0.3057711124420166,
+            0.735627293586731,
+            0.31407177448272705
+          ],
+          "dimensions_m": [
+            0.6221894025802612,
+            0.7357000019401312,
+            0.634005218744278
+          ],
+          "triangles": 124743,
+          "integration": "Clone this child, set its position to desired world placement, then raise Y by -local_min[1] to align base to ground."
+        }
+      ],
+      "source_files_metadata": "fir_sapling_files.json",
+      "modifications": "Embedded source geometry and PBR textures in GLB; packed supplied alpha channel in fern/sapling diffuse texture. Geometry unchanged."
+    }
+  ]
+}

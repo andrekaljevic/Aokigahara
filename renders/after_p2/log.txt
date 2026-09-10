@@ -1,0 +1,7 @@
+ready in 9.8 s
+C1_start_corridor {"ms":4,"pos":[32.14,103.67,-9.84],"trees":5146,"calls":83,"tris":5645723} wall 122.9 s
+C2_start_lookdown {"ms":9,"pos":[32.14,103.67,-9.84],"trees":5146,"calls":78,"tris":5343879} wall 14.4 s
+C3_offpath_trunks {"ms":13,"pos":[44,100.99,-24],"trees":5137,"calls":84,"tris":5293253} wall 30.7 s
+C4_path_ahead {"ms":14,"pos":[20,103.38,4],"trees":5141,"calls":81,"tris":5717774} wall 28.8 s
+C5_fugaku_approach {"ms":3,"pos":[-38,95.9,-18],"trees":5136,"calls":79,"tris":5201497} wall 28.1 s
+C6_arbitrary_east {"ms":13,"pos":[95,104.14,30],"trees":5145,"calls":83,"tris":5584298} wall 30.5 s

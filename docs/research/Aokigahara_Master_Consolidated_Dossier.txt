@@ -1,0 +1,1763 @@
+C O N S O L I D AT E D M A S T E R R E S E A R C H D O S S I E R
+
+
+
+
+Aokigahara
+Visual, geographical and geospatial reconstruction
+research for a geographically faithful free-roam digital
+recreation
+
+
+
+
+Consolidated 9 September 2026
+Combines every research pass and machine-readable artifact produced in this chat into one PDF
+package.
+
+Core rule: the forest, the Jogan lava field, legal protection boundaries and the practical build area
+are related, but are not one polygon.
+Contents
+1. Scope, method and limits                                      3
+
+2. What each research pass added                                 4
+
+3. Executive synthesis                                           5
+
+4. Geography, extent and boundary model                          7
+
+5. Geology and terrain                                           9
+
+6. Vegetation and forest structure                              10
+
+7. Cave inventory and scale anchors                             11
+
+8. Routes, topology and controls                                12
+
+9. Ten-sector reconstruction plan                               14
+
+10. 250 m evidence grid                                         15
+
+11. GSI DEM acquisition plan                                    16
+
+12. Temporal aerial imagery and change detection                17
+
+13. Production layer stack                                      19
+
+14. What still prevents a 'perfect' recreation claim            21
+
+15. Authoritative-source register                               22
+
+16. Complete 152-entry visual/map/GIS catalogue                 24
+
+17. Embedded raw artifacts                                      35
+
+
+
+
+Aokigahara Reconstruction Research Dossier             Page 2 of 35
+1. Scope, method and limits
+This PDF consolidates the full Aokigahara work produced across the conversation: visual sourcing,
+official mapping, geology, terrain, vegetation, caves, routes, sector planning, evidence-density
+scoring, temporal aerial layers, boundary separation and the machine-readable outputs used to
+organise the reconstruction.
+
+
+    It is not evidence of a literally perfect digital twin. Broad geography, lava geology, principal routes/caves
+    and many visual conditions are well constrained. Exact tree placement, deadwood, local undergrowth,
+    obscure footpath geometry and fine micro-topography in poorly photographed interior cells remain partly
+    inferred.
+
+
+
+
+Research hierarchy
+     1. Geology first: GSJ eruptive-unit mapping and GSI volcanic landform data define the substrate.
+     2. Terrain second: GSI bare-earth DEM/LiDAR products recover the physical surface hidden by canopy.
+     3. Modern surface third: current aerial/vegetation/road data constrain present canopy, edges and
+        infrastructure.
+     4. Ground truth fourth: geolocated and route-continuous images validate appearance and scale.
+     5. Viewpoint validation: macro camera matches at Sankodai, Koyodai, Lake Sai and other anchors test skyline
+        and landscape alignment.
+
+
+    Visual-file note. The original research workflow indexed and hot-linked external image sources; it did not
+    locally redistribute every original photograph. Accordingly, this PDF contains the complete 152-entry linked
+    visual/map/GIS catalogue and preserves the full manifest as an embedded attachment. The externally hosted
+    original image binaries themselves are not repackaged here.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                  Page 3 of 35
+2. What each research pass added
+   Pass 1 - visual and geography foundation
+   Initial dossier assembled 109 still-image references, one motion reference and 13 dedicated map/GIS/geology
+   sources. The central finding was that the named forest, the Jogan lava field, protected-area boundaries and the
+   practical reconstruction extent must not be treated as one boundary.
+
+
+
+   Pass 2 - reconstruction blueprint
+   The research was reorganised into a ten-sector build plan, cave scale anchors, terrain/geology rules, vegetation
+   communities and a confidence framework. The indexed asset base rose to 122.
+
+
+
+   Pass 3 - measurable spatial coverage
+   A 250 m grid over a deliberately broad research AOI produced 2,790 evidence cells. The first strict pass classified 81
+   as high evidence, 1,283 medium and 1,426 low. A GSI terrain acquisition plan catalogued 3,528 candidate DEM tile
+   URLs, and the first georegistration-control register was created.
+
+
+
+   Pass 4 - modern vegetation, topology and source audit
+   The Ministry of the Environment Existing Vegetation Map 2024 was added as the current vegetation-class layer,
+   with underlying polygon source years retained. Route topology was separated from route geometry and access
+   status. An authoritative-source register and a live reconstruction atlas were added.
+
+
+
+   Pass 5 - time-series aerial evidence and boundary separation
+   The atlas was expanded with historical GSI aerial series from 1961-69 through current imagery, Fuji volcanic
+   terrain/geomorphology layers and the GSJ 2016 Fuji Volcano Geological Map WMTS. A dedicated boundary
+   register separated research AOI, canopy, Jogan lava, Natural Monument, national-park, administrative and forest-
+   management geometries. The final manifest in this master build contains 152 visual/map/GIS entries and 22
+   authoritative-source records.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                    Page 4 of 35
+3. Executive synthesis
+
+   152                             22                         2,790                          3,528
+   visual/map/GIS entries          audited authoritative/     250 m evidence cells           candidate GSI DEM tile
+                                   source records                                            URLs
+
+
+
+
+Aokigahara should be rebuilt as a layered volcanic landscape, not as a generic dense forest. The critical relationship
+is between the 864 Jogan eruption products, the present forest canopy, the Fuji Five Lakes, Mt Omuro and associated
+lava caves. The build should retain these as separate source layers and then reconcile them in one metric project
+coordinate system.
+
+
+
+    Strongest evidence                                           Weakest evidence
+          • Macro location and lake/Fuji relationships               • Exact object placement in deep central/
+          • Principal lava geology and volcanic                        western interior
+            morphology                                               • Continuous micro-route geometry away
+          • Public cave corridor and major cave                        from well documented corridors
+            dimensions                                               • Individual-tree species/diameter/position
+          • Current/historical aerial and vegetation-                • Fine deadwood and understory
+            class services                                             distribution
+          • Public Route 139 and Lake Sai visitor                    • Actual highest DEM class per 250 m cell
+            sectors                                                    until data are ingested
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                    Page 5 of 35
+Figure 1. Evidence-density grid from the final research pass. The grid is a project research instrument, not a forest boundary.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                        Page 6 of 35
+4. Geography, extent and boundary
+model
+There is no defensible reason to force all uses of 'Aokigahara' into a single exact polygon. The final
+project must keep physical, geological, legal and operational extents separate.
+
+
+
+   ~3,000 ha                                    ~1,600 ha                                       864-866                                       10
+   official tourism                             National Natural                                Jogan eruption period                         reconstruction sectors
+   description of the forest /                  Monument after the 2010                         relevant to Aokigahara
+   ~30 km²                                      extension                                       lava
+
+
+
+
+The Natural Monument was originally designated in 1926 and expanded by roughly 816 ha in 2010. The protected
+legal area is not synonymous with the entire forest. Nor is present canopy synonymous with the Jogan/Aokigahara
+lava field. National-park zoning, municipal boundaries, forest-management compartments and the research AOI are
+additional geometries with different purposes.
+
+
+
+
+Boundary-layer register
+layer_id boundary_concept status                  best_source                                     geometry_status confidence             reconstruction_use do_not_conflate_with next_ac
+
+BND001   Research AOI /       constructed         Aokigahara_250m_coverage_grid.geojson Available                       A as project     Data management,       forest extent; lava field;   Keep vis
+         evidence-grid        research                                                                                  AOI, zero        tiling and gap         protected area;              distinct
+         envelope             envelope                                                                                  authority as     analysis only          national park                labelled
+                                                                                                                        Aokigahara                                                           only.
+                                                                                                                        boundary
+
+BND002   Present Aokigahara   working             Current GSI seamless aerial + MoE               Not yet derived       B for broad      Defines where          864 lava-flow field or       Derive c
+         forest / canopy      physical            Existing Vegetation Map 2024 + official         as authoritative      extent; lower    Aokigahara-like        1,600 ha natural             canopy p
+         footprint            boundary not        local descriptions                              polygon               for exact        forest assets should   monument                     from ort
+                              yet frozen                                                                                edge until       be distributed today                                vegetati
+                                                                                                                        orthophoto                                                           manuall
+                                                                                                                        classification                                                       against r
+                                                                                                                                                                                             lakes/
+                                                                                                                                                                                             develop
+
+BND003   Aokigahara / Jōgan   scientific          GSJ Fuji Volcano Geological Map 2nd ed.         Authoritative         A for source;    Ground substrate,      present canopy or            Ingest G
+         864-866 lava-flow    geological          (2016), vector shapefile; GSI Fuji volcanic     vector source         geometry         lava lobes/fronts,     protected-area               vector d
+         field                boundary            landform tiles                                  identified; not yet   pending          crater/fissure         boundary                     isolate
+                                                                                                  ingested locally      ingestion        relationships and                                   Aokigah
+                                                                                                                                         cave genesis                                        units int
+                                                                                                                                                                                             CRS.
+
+BND004   National Natural     legal cultural-     Yamanashi cultural-property database +          Area/descriptive      A for            Protection/access/     whole Aokigahara             Acquire/
+         Monument: Fuji       property            Cultural Affairs designation records +          extent                designation/     legal-context          forest                       official
+         Primeval Forest      boundary            official property maps                          authoritative;        area;            overlay and                                         designat
+         and Aokigahara                                                                           exact polygon not     geometry         historical forest                                   boundar
+         Jukai                                                                                    yet ingested          pending          preservation                                        preserve
+                                                                                                                                         context                                             1926 cor
+                                                                                                                                                                                             2010 add
+                                                                                                                                                                                             separate
+                                                                                                                                                                                             if possib
+
+BND005   Fuji-Hakone-Izu      legal natural-      Ministry of the Environment Fuji area           Official detailed     A for official   Land-management        Aokigahara forest or         Georegis
+         National Park        park zoning         official zone maps                              PDF maps              map source;      and protection         cultural-property            west Fuj
+         zoning                                                                                   identified; no        boundaries       context;               boundary                     sheets; o
+                                                                                                  local vector          on published     distinguishes                                       vector/o
+                                                                                                  ingested              PDFs are         regulatory zones                                    confirma
+                                                                                                                        described as                                                         any regu
+                                                                                                                        approximate                                                          decision
+
+BND006   Administrative       administrative GSI / national administrative boundary               Source available;     A                Source attribution,    natural or geological        Add only
+         boundary:                           data                                                 not needed as                          planning and           extent                       for data
+         Narusawa /                                                                               proxy for forest                       jurisdiction context                                provena
+         Fujikawaguchiko                                                                          boundary                                                                                   manage
+
+BND007
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                                          Page 7 of 35
+layer_id boundary_concept status            best_source                            geometry_status confidence          reconstruction_use do_not_conflate_with next_ac
+         Forest ownership /    forest-      Yamanashi prefectural forest plans /   Official map        A for           Explains straight/    canopy edge or          Use com
+         compartment           management   Narusawa forest-area and ownership     sources             management      management edges      Aokigahara definition   geometr
+         boundaries            geometry     maps                                   identified; local   source; not a   and historical                                alignme
+                                                                                   vector not yet      natural         intervention; aids                            especial
+                                                                                   ingested            boundary        national-park/legal                           legal bou
+                                                                                                                       boundary                                      follow fo
+                                                                                                                       alignment                                     subcom
+
+BND008   Fuji World Heritage   heritage-    Fujisan comprehensive preservation/    Official context    A as heritage   Context only; helps   forest/lava/natural     Keep op
+         property/buffer       management   management plans                       maps identified;    source          explain overlapping   monument                ingest on
+         context               context                                             not treated as                      cultural-property                             heritage
+                                                                                   Aokigahara                          and road                                      manage
+                                                                                   boundary                            boundaries                                    reconstr
+                                                                                                                                                                     required
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                       Page 8 of 35
+5. Geology and terrain
+The terrain is a lava landscape. Research in the Motosu sector distinguishes major Jogan/Aokigahara flows including
+Ishizuka Lava and Nagaoyama Lava. Work on the Motosu front described roughly 36 protruding lava lobes,
+together with pinching, swelling, branching, clefts and clinker-rich surfaces. Those structures should drive the
+environment's ground geometry and material masks rather than be replaced by generic procedural woodland noise.
+
+
+
+
+Coordinate and terrain pipeline
+Project logic: use a metric Japan Plane Rectangular Zone VIII grid for Yamanashi, retain WGS84 for interchange, and
+normalise every source datum at ingest. The working blueprint identifies EPSG:6676 (JGD2011 / Japan Plane
+Rectangular CS VIII) as a stable documented project CRS, but GSI's current download services may use JGD2024.
+Mixing generations silently would create metre-scale alignment errors.
+
+     • Check GSI 1 m DEM coverage first; if unavailable for the required mesh, use 5 m DEM5A airborne-laser data
+       where available, then DEM5B/5C photogrammetry, with 10 m as fallback only.
+     • Generate bare-earth terrain first; GSI DEM removes trees/buildings from ground surface.
+     • Overlay GSI Fuji volcanic-landform classification and GSJ geology; preserve lava fronts, lobes, clefts,
+       depressions and flow breaks instead of smoothing them into generic forest ground.
+     • Treat photogrammetric/aerial canopy as a separate surface/vegetation validation layer, not terrain elevation.
+
+
+
+
+Figure 2. Candidate terrain acquisition plan. Candidate URLs are not proof that the corresponding high-resolution DEM exists in every cell.
+
+
+
+
+Geological source priority
+The preferred detailed geology source is the Geological Survey of Japan's Fuji Volcano Geological Map, 2nd edition
+(2016). Its vector Shapefile source is the correct future production input for isolating the Jogan/Aokigahara eruptive
+units. The live WMTS is useful for visual overlay and QA but should not replace vector ingestion where exact polygon
+geometry is needed.
+
+
+Aokigahara Reconstruction Research Dossier                                                                                          Page 9 of 35
+6. Vegetation and forest structure
+A uniform 'dense conifer forest' biome would be wrong. A University of Tokyo survey distinguished seven forest-
+community types used in the blueprint:
+
+
+     open Pinus, Pinus, Tsuga-Pinus, Tsuga, Chamaecyparis-Tsuga, Chamaecyparis, deciduous broadleaved
+
+
+     • Tsuga forest occupies a large part of Aokigahara in the Tokyo University survey.
+     • Chamaecyparis-Tsuga and Chamaecyparis forest occur toward higher elevations in that survey.
+     • Deciduous broadleaved forest is associated with deeper-soil sites that escaped lava cover.
+     • Open Pinus is associated with exposed lava/disturbance sites; do not scatter all seven types uniformly.
+
+The modern spatial layer is the Ministry of the Environment Existing Vegetation Map 2024. Its underlying polygon
+observations span 1999-2023; the polygon creation/source year must be retained rather than presenting all
+vegetation as surveyed in 2024. Current GSI orthophotography should then be used to detect later clearing, road-
+edge and canopy changes.
+
+
+
+
+Older 1:25,000 vegetation GIS sheets located
+ Sheet                                         Extent         Survey period               Formats     Source
+
+ 533815                                        W 138.6219     2004-04-01/2005-03-31       JPEG, Shp   official metadata
+ Narusawa 1:25,000 Existing Vegetation Map     E 138.7052
+                                               S 35.4199
+                                               N 35.5449
+
+ 533805                                        W 138.6219     2004-04-01/2005-03-31       JPEG, Shp   official metadata
+ Fuji 1:25,000 Existing Vegetation Map         E 138.7052
+                                               S 35.3366
+                                               N 35.4616
+
+
+
+
+     Tree-level caution: vegetation polygons can determine community/biome families. They cannot justify the
+     precise position, diameter or species of an individual tree.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                     Page 10 of 35
+7. Cave inventory and scale anchors
+Official cultural-property and government sources provide unusually useful dimensional controls for the lava-cave
+system. These should be treated as real scale anchors for entrances, passages, thermal/ice behaviour and vertical
+placement.
+
+ Cave                  Dimensions / elevation             Status                      Notes                                            Confidence
+
+ Fugaku Wind Cave      Length: 258.7 m; Width: 4–10 m;    tourist cave / national                                                      A
+                       Height: average 2–3; local 0.9–6   natural monument
+                       m
+
+ Lake Saiko Bat Cave   Length: 350 m                      tourist cave / national     Largest among Fuji north-foot lava caves per     A
+                                                          natural monument            Yamanashi; relatively warm in winter and not
+                                                                                      normally ice-forming.
+
+ Fuji Wind Cave        Length: 230+ m; Floor width: 5–    national natural                                                             A
+                       10 m; Height: average 5 m          monument; access
+                                                          controlled
+
+ Ryugu Cave            Length: 60 m; Elevation: 940 m     national natural                                                             A
+                                                          monument / shrine context
+
+ Motosu Wind Cave      Length: about 494 m                national natural            On south-west edge of Aokigahara lava flow;      A
+ No.1                                                     monument group /            local lava surface slopes north 2–7°.
+                                                          controlled
+
+ Karuimizu Wind Cave   Length: 432.8 m; Max height: 14    Yamanashi-designated                                                         A
+                       m; Max width: 28 m; Depth: 75 m    natural monument /
+                                                          controlled
+
+ Narusawa Ice Cave     Elevation: 1025 m                  tourist cave / national     Two large chambers; ice feature; surface lava    A
+                                                          natural monument            slopes north 2–3°.
+
+ Omuro Cave            Elevation: 1190 m                  entrance buried; no entry                                                    A
+
+ Jinza Wind Cave +     Elevation: about 1260 m            national natural                                                             A
+ Kamaboko/megane                                          monument / controlled
+ caves
+
+
+
+The main visual dossier separately indexes nine Fugaku Wind Cave images, six Narusawa Ice Cave images and
+thirteen Lake Saiko Bat Cave images, including entrance geometry, stairs, ice, ropy lava, lava shelves, visitor
+infrastructure and interior passage forms.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                            Page 11 of 35
+8. Routes, topology and
+georegistration controls
+Topology and geometry are deliberately separated. The 2026 Yamanashi schematic is strong
+evidence that route/cave connections exist, but schematic lines must not be traced as if they were
+surveyed centrelines.
+
+
+
+Route topology graph
+edge_id from_node     to_node          route_name       route_type      geometry_status         access_status         confidence      source           notes
+
+E001    Shoji /       Mt Omuro         Shoji-guchi      historic/       officially described;   public trail          A topology /    Yamanashi        Report: starts at
+        Akaike        sector           trail            current trail   exact GIS polyline      segments; follow      B continuity    2026             Akaike on south
+        trailhead                                                       not yet ingested        current signage/                      pilgrimage       Lake Shoji; broad,
+                                                                                                rules                                 report; eco-     prepared route
+                                                                                                                                      tour             through forest.
+                                                                                                                                      schematic
+
+E002    Mt Omuro      upper Fuji       Shoji-guchi      historic/       officially described;   route continues       A topology      Yamanashi        Whole route >17 km
+        sector        flank /          trail            current trail   exact GIS polyline      beyond core                           2026             and ~1400 m climb
+                      Komitake                                          not yet ingested        forest; conditions                    pilgrimage       from Shoji to
+                                                                                                vary                                  report           Komitake.
+
+E003    Shoji-guchi   Narusawa         Narusawa-        historic        crossing explicitly     historic route; do    A topology /    Yamanashi        Historically part of
+        trail         direction        michi            cross-route     described; precise      not assume            C geometry      2026             Uchi-Hakkai
+                                                                        polyline not yet        present public                        pilgrimage       pilgrimage
+                                                                        ingested                access for every                      report           circulation.
+                                                                                                segment
+
+E004    Fugaku Wind   Narusawa Ice     public cave      public trail/   strong modern           public                A/B+            Yamanashi        Best-documented
+        Cave          Cave             corridor         roadside        continuity evidence;                                          walking map      corridor; suitable
+                                                        corridor        exact public polyline                                         + recent         early build/
+                                                                        still to ingest                                               YAMAP model      validation sector.
+                                                                                                                                      course
+
+E005    Lake Saiko    Wild Bird        Saiko public     public trail    official visitor-map    public                A topology /    Yamanashi        Use current official
+        Bat Cave      Forest / Saiko   trail network                    topology; exact                               B geometry      walking map      signs and closures
+                      trail network                                     vector pending                                                + eco-tour       at implementation
+                                                                                                                                      schematic        time.
+
+E006    Wild Bird     Ryugu Cave       Saiko–Ryugu      public trail/   official visitor-map    public approaches     A topology /    Yamanashi        Important for lake-
+        Forest /      vicinity         connection       local road      topology; exact         only; cave access     B geometry      walking map      edge-to-forest
+        Saiko trail                                     network         vector pending          rules apply                                            transition.
+        network
+
+E007    Mt Omuro      Fuji Wind        former haul-     former haul     schematic only          guide rules apply;    A topology /    Yamanashi        Do not trace
+        sector        Cave / beech-    road network     road                                    not a blanket         C geometry      eco-tour         schematic lines as
+                      square sector                                                             public-access                         schematic        surveyed road
+                                                                                                statement                                              centerlines.
+
+E008    Mt Omuro      Jinza /          upper cave-      former haul     schematic only          Jinza Cave 1 and      A topology /    Yamanashi        Geometry and
+        sector        Kamaboko /       cluster former   road /                                  other protected       C geometry      eco-tour         access must remain
+                      Megane cave      haul roads       protected                               caves have                            schematic +      separate data fields.
+                      cluster                           cave access                             restrictions; some                    cultural-
+                                                                                                entry prohibited                      property
+                                                                                                                                      records
+
+E009    Motosu side   Mt Omuro /       Motosu forest-   forest road     schematic whole-        variable; validate    B topology /    Yamanashi        Use GSI/official road
+                      central forest   road                             area relationship       by current official   C geometry      eco-tour         vector before build
+                                       relationships                                            source                                schematic        lock.
+
+
+
+
+Georegistration controls
+ name          lat          lon             type                 confidence      coordinate_basis                              source_url       official_geometry_url
+
+ Fugaku        35.477444    138.657361      cave / route         B+              geotagged/open-map cross-check;               link             link
+ Wind Cave                                  control                              validate against GSI before final lock
+
+               35.474778    138.666528                           B+                                                            link             link
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                                  Page 12 of 35
+ name         lat         lon          type             confidence   coordinate_basis                         source_url   official_geometry_url
+
+ Narusawa                              cave / route                  geotagged/open-map cross-check;
+ Ice Cave                              control                       validate against GSI before final lock
+
+ Lake Saiko   35.493111   138.672861   cave / route     B+           geotagged/open-map cross-check;          link         link
+ Bat Cave                              control                       validate against GSI before final lock
+
+ Ryugu Cave   35.48509    138.66813    cave / route     B            OSM/secondary map cross-check;           link         link
+                                       control                       source spread is tens of metres
+
+ Sankodai     35.48792    138.68247    panorama /       B            secondary map cross-check; validate      link
+                                       camera                        exact camera stations in field/GPX
+                                       validation
+
+ Koyodai      35.48426    138.67956    panorama /       B            secondary map cross-check; several       link         link
+ ridge /                               camera                        nearby named viewpoint points exist
+ viewpoint                             validation
+
+ Omuro Cave   35.44784    138.66147    protected cave   B            secondary geographic gazetteer           link         link
+                                       control                       cross-check; validate against official
+                                                                     schematic/GSI
+
+ Jinza Wind   35.44072    138.66047    protected cave   B-           OpenStreetMap-derived secondary          link         link
+ Cave                                  control                       coordinate surfaced via Mapcarta;
+                                                                     must validate against GSI/official
+                                                                     map before final lock
+
+ Motosu       35.4467     138.65052    protected cave   B-           OpenStreetMap-derived secondary          link         link
+ Wind Cave                             control                       coordinate surfaced via Mapcarta;
+                                                                     must validate against GSI/official
+                                                                     map before final lock
+
+
+
+
+    Continuity evidence already located: a current YAMAP model route reports 2.5 km / 1:02 / 58 m ascent and
+    descent between Fugaku Wind Cave and Narusawa Ice Cave; a 2026 activity confirms the sequence Fugaku ->
+    Narusawa -> Koyodai -> Sankodai within an 11.8 km route; current Shōji-entrance activity records provide
+    western discovery leads. These are corroborating route-continuity evidence, not authoritative survey
+    geometry.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                         Page 13 of 35
+9. Ten-sector reconstruction plan
+The world is divided into ten practical evidence/reconstruction sectors so that quality control can be spatial rather
+than based on an overall impression.
+
+ sector_id   sector             priority   primary_subject                          current_confidence               remaining_gap
+
+ S1          Motosu south-      High       Ishizuka flow lobes, Motosu              A terrain/geology; B visual      Need denser geolocated lake-
+             west lava front               lakeshore, Motosu wind caves, lava       continuity                       edge/lava-front sequences and
+                                           fronts                                                                    DEM coverage check.
+
+ S2          Shoji / north-     Medium     Lake Shoji edge, Shoji entrance trail,   B+                               Need exact trail geometry and
+             west transition               stone/lake relationships, transition                                      seasonally matched shoreline/
+                                           into forest                                                               forest photos.
+
+ S3          Mt Omuro base /    High       Fuji, Shojiko, Omuro, Jinza,             A schematic routes; B terrain;   Need precise GIS alignment of
+             central high                  Kamaboko, Megane caves; former           C exact micro-route geometry     schematic cave/transport-road
+             ground                        transport roads; beech square                                             drawing and modern terrain.
+
+ S4          Upper south-       High       upper-flow cave morphology, forest-      B+                               Need better public imagery; cave/
+             east flow /                   road network, higher-elevation                                            forest-road access is controlled.
+             Karuimizu                     Chamaecyparis-dominant biomes
+
+ S5          Route 139 cave     Medium     Fugaku Wind Cave, Narusawa Ice           A/B; strongest public visual     Need current infrastructure
+             corridor                      Cave, roadside forest edge, parking/     coverage                         survey and exact route meshes;
+                                           visitor infrastructure                                                    otherwise well covered.
+
+ S6          Lake Sai south /   Medium     Lake Saiko Bat Cave, Ryugu Cave,         A/B                              Need full trail-sequence coverage
+             bat-cave                      Wild Bird Forest, tourist home-village                                    between POIs and updated visitor
+             corridor                      approaches                                                                structures.
+
+ S7          Nenba / Saiko      Medium     forest-to-lake transition, panoramic     B+                               Need geotagged edge-condition
+             edge                          context, exposed lava, human                                              sequence, especially lava/
+                                           landscape                                                                 lakeshore transitions.
+
+ S8          Sankodai/          Medium     macro silhouette, canopy height          A/B                              Need exact camera coordinates/
+             Koyodai                       variation, three-lake context and                                         azimuth/FOV for panorama
+             panorama belt                 Mount Fuji alignment                                                      matching.
+
+ S9          Shoji entrance     High       southern trail continuity, higher-       B route; C micro-ground truth    Largest visual continuity gap;
+             ascent toward                 elevation forest succession,                                              prioritise hiking footage, GPX and
+             Fuji                          connection to Fuji slope                                                  official route geometry.
+
+ S10         Outer context      Medium     lakes, roads, settlements, mountain      A macro; variable local detail   Need only LOD/context fidelity
+             shell                         ridges and skyline required for                                           outside the playable core.
+                                           physically convincing free roam
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                Page 14 of 35
+10. 250 m evidence grid
+The evidence grid was created metrically in EPSG:6676 and exported in WGS84. Its purpose is to expose blind spots,
+not to define Aokigahara.
+
+
+
+
+   81                                  1,283                               1,426                               250 m
+   high-evidence cells                 medium-evidence cells               low-evidence cells                  cell size
+
+
+
+
+Figure 3. Strict evidence-density scoring. Low evidence does not mean physically unknown; it means the present research pack has less direct
+terrain/route/visual corroboration there.
+
+
+The low-evidence cells cluster especially away from the Route 139/Lake Sai public corridors and across deeper
+central/western areas. This converts an otherwise vague problem - 'we need more references' - into a location-
+specific research queue.
+
+
+     Full data preserved: all 2,790 cell geometries and attributes are embedded in this PDF as GeoJSON and CSV
+     attachments.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                      Page 15 of 35
+11. GSI DEM acquisition plan
+GSI distinguishes approximately 1 m DEM1A, 5 m airborne-laser DEM5A, 5 m photogrammetric DEM5B/5C and 10 m
+products. The generated acquisition plan contains 3,528 candidate tile URLs intersecting the broad research AOI.
+
+
+
+
+   2,898                           192                        192 + 192                     54
+   DEM1A candidates                DEM5A candidates           DEM5B / DEM5C                 DEM10B candidates
+                                                              candidates
+
+
+
+
+    Important: a constructed candidate URL is not evidence that a 1 m tile exists there. Production ingestion
+    must test tile/GML availability and record the best actual source class per cell.
+
+
+The correct fallback hierarchy is DEM1A -> DEM5A -> DEM5B -> DEM5C -> DEM10B. Bare-earth terrain should be
+built before canopy/vegetation.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                Page 16 of 35
+12. Temporal aerial imagery and
+change detection
+Historical imagery prevents a present-day reconstruction from mistaking a temporary clearing, a recent road edge or
+a transient canopy discontinuity for a persistent geographical feature.
+
+
+
+
+Figure 4. GSI time-series imagery layers catalogued in the final atlas. Local coverage still requires cell-by-cell verification.
+
+
+
+
+Temporal imagery register
+layer_id provider title                 period         tile_url zoom status                  use                          confidence        notes
+
+IMG001    GSI       Nationwide latest   latest         link    14-18   live service; local   Current canopy, roads,       A for service /   Composite from multiple
+                    seamless aerial     available by                   capture date          clearings, forest edge and   local vintage     GSI/public aerial sources;
+                    photography         locality                       must be checked       infrastructure; primary      variable          not a single acquisition
+                                                                                             visual-change baseline.                        date.
+
+IMG002    GSI       Electronic          2007+          link    14-18   live service;         Orthorectified post-2007     A for service /   Use capture metadata
+                    National Land                                      coverage varies       comparison and geometry      coverage          where exact year matters.
+                    Basic Map                                                                check.                       variable
+                    orthophoto
+
+IMG003    GSI       Annual aerial       2007+ by       link    14-18   template service;     Time-slice canopy/road/      A for service /   Replace {year} with four-
+                    photography         year                           availability varies   clearing change detection.   year coverage     digit year; do not assume
+                                                                       by year and                                        variable          a given year exists over
+                                                                       location                                                             every cell.
+
+IMG004    GSI       1987-1990 aerial    1987-1990      link    10-17   live historical       Late-20th-century canopy     A for service /   National Land Image
+                    photography                                        service; local        and development baseline.    local coverage    Information.
+                                                                       coverage must be                                   unverified
+                                                                       checked
+
+IMG005    GSI       1984-1986 aerial    1984-1986      link    10-17   live historical       Temporal canopy/             A for service /   National Land Image
+                    photography                                        service; local        infrastructure comparison.   local coverage    Information.
+                                                                       coverage must be                                   unverified
+                                                                       checked
+
+IMG006    GSI       1979-1983 aerial    1979-1983      link    10-17   live historical       Temporal canopy/             A for service /   National Land Image
+                    photography                                        service; local        infrastructure comparison.   local coverage    Information.
+                                                                       coverage must be                                   unverified
+                                                                       checked
+
+IMG007    GSI       1974-1978 aerial    1974-1978      link    10-17   live historical       Earliest broad colour-era    A for service /   National Land Image
+                    photography                                        service; local        baseline commonly useful     local coverage    Information.
+                                                                       coverage must be      for forest-edge              unverified
+                                                                       checked               comparison.
+
+IMG008    GSI       1961-1969 aerial    1961-1969      link    10-17   live historical       Older forest/road baseline   A for service /   Useful where coverage
+                    photography                                        service; local        and human-change             local coverage    exists; do not infer
+                                                                                             detection.                   unverified        absence from blank tiles
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                             Page 17 of 35
+layer_id provider title             period     tile_url zoom status             use                         confidence   notes
+                                                             coverage must be                                            without checking source
+                                                             checked                                                     catalogue.
+
+IMG009   GSI       Single-photo     multiple   link    14    metadata service   Locate individual aerial    A            Best route to identify the
+                   metadata index   eras                                        frames with acquisition                  exact underlying photo
+                                                                                date, scale, altitude and                when mosaic vintage is
+                                                                                agency.                                  ambiguous.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                           Page 18 of 35
+13. Production layer stack
+
+
+
+
+Figure 5. Production data hierarchy. The ordering is about reconstruction logic, not visual draw order.
+
+
+Core alignment rule: do not collapse forest, lava, protected area, municipal and research extents. Preserve source
+dates and datums. Every procedural asset layer should be able to point back to the terrain, vegetation or
+photographic evidence that justifies it.
+
+
+
+
+Layer statuses
+ Order   Layer                  Source                                             Status                                 Role
+
+ 1       Bare-earth terrain     GSI DEM hierarchy                                  source hierarchy known; best           landscape geometry
+                                                                                   resolution must be verified per tile
+
+ 2       Jōgan/Aokigahara       GSJ Fuji Volcano Geological Map 2nd ed. 2016       vector source identified, not yet      substrate and lava
+         lava units             vector                                             locally ingested                       morphology
+
+ 3       Current                GSI seamless/latest/orthophoto                     live services identified               present-day edge, roads,
+         orthophoto/canopy                                                                                                clearings, canopy QA
+
+ 4       Historical aerial      GSI 1961-69, 1974-78, 1979-83, 1984-86, 1987-90,   service templates catalogued;          change detection /
+         time slices            annual 2007+                                       local coverage to verify               historical edge validation
+
+ 5       Vegetation classes     MoE Existing Vegetation Map 2024                   available across AOI; polygon          biome zoning
+                                                                                   source years 1999-2023
+
+ 6       Volcanic landforms     GSI Fuji volcanic basic/land-condition/digital     live tile services identified          micro-/meso-landform
+                                geomorphology tiles                                                                       interpretation
+
+ 7       Routes and caves                                                                                                 navigation/POI topology
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                               Page 19 of 35
+ Order   Layer              Source                                          Status                               Role
+
+                            Yamanashi 2026 schematic + official cultural-   topology strong; centreline
+                            property sources + validated GPX/GSI controls   geometry mixed
+
+ 8       Legal/protected-   MoE national-park maps + Cultural Affairs/      official sources identified; exact   context, access, QA — not
+         area overlays      Yamanashi natural-monument records              local polygons pending               asset boundary
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                     Page 20 of 35
+14. What still prevents a 'perfect'
+recreation claim
+The project has moved beyond the stage where the main problem is not knowing where Aokigahara is or what it
+broadly looks like. The remaining bottlenecks are data-ingestion and local ground-truth problems.
+
+
+
+Geometry still to ingest or derive                             Visual ground truth still weak
+     • GSJ 2016 Jogan/Aokigahara lava polygons from               • Deep central/western P1 cells away from public
+       the vector Shapefile                                         corridors
+     • Verified per-cell GSI best DEM class, not candidate        • Continuous route imagery through less
+       URLs                                                         photographed sectors
+     • A current canopy/forest polygon derived from               • Fine ground texture and microrelief under canopy
+       orthophoto + vegetation classes                            • Exact tree/deadwood placement
+     • Exact Natural Monument polygon, ideally retaining          • Seasonally matched edge conditions in western
+       1926 and 2010 sublayers                                      lake sectors
+     • Verified route centrelines from official vectors/GSI/
+       appropriate GPX sources
+
+
+
+
+    Access constraint: current Yamanashi guidance prohibits leaving public walking trails for safety and
+    environmental protection. Off-trail reconstruction should therefore rely on legitimate remote sensing, official
+    mapping and archival evidence rather than turning this dossier into an off-trail access guide.
+
+
+
+
+Highest-value next actions
+     • Retrieve the western 1:25,000 vegetation sheet(s), beginning with the Shoji mesh 533814, because the
+       identified Narusawa/Fuji sheets begin at ~138.6219 E.
+     • Download actual GSI elevation mesh files for the AOI and record which cells have 1 m, DEM5A, DEM5B/5C or
+       only 10 m coverage.
+     • Georegister the Yamanashi 2026 route/cave schematic using Fugaku, Narusawa, Saiko Bat Cave, Lake Sai/Route
+       139 and other stable controls; store residual error rather than treating the schematic as survey geometry.
+     • Acquire or extract route geometry from current public GPX/activity sources for the Route 139 cave corridor,
+       Saiko/Wild Bird Forest and Shoji entrance routes.
+     • Hunt cell-by-cell for geotagged imagery/video in P1 cells, especially the western Motosu/Shoji and central/high-
+       ground sectors.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                  Page 21 of 35
+15. Authoritative-source register
+This is the complete final source audit table produced in the chat. 'A' sources are the preferred basis for geometry,
+dimensions or legal context; lower tiers are used for visual or continuity corroboration.
+
+title                                     date_or_period                         reconstruction_use                                               confidence          url
+
+Existing Vegetation Map 2024 / 現存         survey/source polygons 1999-2023;      Primary vegetation-class zoning and naturalness layer.           A                   link
+植生図2024                                   dataset current in 2026                Attribute 作成年度 preserves source vintage by polygon.
+
+Existing Vegetation Map 2024 raster/      current 2026 service                   Live visual QA overlay in reconstruction atlas.                  A                   link
+vector tiles
+
+GSI DEM hierarchy and tile                current 2026                           Bare-earth terrain source hierarchy. Use the highest available   A                   link
+specification                                                                    class per cell and retain source metadata.
+
+GSI server-side elevation API             current 2026                           Spot-check terrain source class (hsrc) and elevation at          A                   link
+                                                                                 control points.
+
+Aokigahara Jukai Eco Tour Guideline 2026 current guidance page; schematic        Primary topology source for permitted routes, former haul        A topology / C      link
+schematic                           linked by prefecture                         roads/forest roads and protected caves.                          geometry
+
+Ancient Fuji pilgrimage routes            2026-03-31                             Current surface character of Shoji-guchi route; historic route   A                   link
+research report (summary)                                                        logic; Narusawa road crossing; protected corridor context.
+
+Aokigahara surrounding walking-           current public map                     Secondary route and visitor-infrastructure cross-check.          A topology / C      link
+trail map                                                                                                                                         geometry
+
+Aokigahara rediscovery project            2025 event materials published 2026    Recent route-specific visual ground truth and human-use          A publication / B   link
+route materials                                                                  context.                                                         geometry
+
+Fuji lava caves table                     current web reference                  Scale/elevation constraints for cave assets and vertical         A                   link
+                                                                                 placement.
+
+Jinza Wind Cave incl. Kamaboko            designation 1929; database current     Protected-cave cluster placement and geomorphological            A                   link
+and Megane caves                                                                 relationship.
+
+Motosu Wind Cave                          designation 1929; database current     Western lava-front/cave scale anchor.                            A                   link
+
+Fuji Wind Cave                            designation 1929; database current     Controlled-access cave scale/thermal morphology anchor.          A                   link
+
+Aokigahara lava tunnel topography         web reference current                  Macro lava-flow morphology and cave-distribution sanity          B+                  link
+                                                                                 check.
+
+Shojin O-ana / pilgrimage map and         2024                                   Targeted western visual evidence; use only after cross-check     C+                  link
+visual sequence                                                                  with official route constraints.
+
+Nationwide latest seamless aerial         latest available varies by locality    Current canopy/edge/infrastructure validation                    A                   link
+photography
+
+GSI historical aerial-photo tile series   1961-69; 1974-78; 1979-83; 1984-86;    Time-series forest-edge, road, clearings and land-use change     A                   link
+                                          1987-90                                detection
+
+GSI Fuji volcanic basic map / digital     current official service               Volcanic surface morphology, relief and lava-form                A                   link
+volcanic geomorphology tiles                                                     interpretation
+
+Fuji Volcano Geological Map, 2nd          2016                                   Primary vector source for mapped lava/eruptive units; isolate A                      link
+ed. vector data                                                                  Jōgan/Aokigahara units
+
+Fuji-Hakone-Izu National Park — Fuji current page reflects changes through       Special Protection/Special Zone/Ordinary-area context            A                   link
+area official zone maps              2022; maps current on published page
+
+Fuji Primeval Forest and Aokigahara       1926 designation; 2010 addition        Protected forest extent and legal/historical boundary context    A                   link
+Jukai designation
+
+Yamanashi prefectural forest and          2025-2026 current planning materials   Management edge and legal-boundary alignment control             A                   link
+Narusawa forest-area maps
+
+Fuji Volcano Geological Map (2nd          2016 map; current web service          Direct visual overlay of detailed eruptive-unit polygons,        A                   link
+ed.) WMTS                                                                        boundaries, crater rims, dykes and eruptive fissures
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                                 Page 22 of 35
+Figure 6. Distribution of the final 152-entry visual/map/GIS manifest by research group.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                 Page 23 of 35
+16. Complete visual/map/GIS
+catalogue
+All 152 final manifest entries are reproduced below as linked source cards. This includes the
+complete Wikimedia Aokigahara category captured during the research, dedicated cave sets,
+official mapping/GIS documents, route evidence, geology/terrain layers, protected-area sources,
+historical aerial services and later western/central gap-filling references.
+
+
+    Licensing: use each linked source page to verify author, licence, attribution and original resolution before
+    downloading or reusing an image in production. A research link is not a blanket licence grant.
+
+
+
+
+  main                                                                                                                                               82
+
+ 038 Mount Fuji and Aokigahara forest (Japan) at sunrise Photo             Aerial panorama of Mount Fuji from Lake Saiko. June 2023.jpg
+ by Giles Laurent.jpg                                                      aokigahara; macro / edge / skyline
+ aokigahara; macro / edge / skyline; interior / vegetation                 Source (commons.wikimedia.org) Media / map
+ Source (commons.wikimedia.org) Media / map                                Wikimedia Commons; open source page for author, exact licence, original
+ Wikimedia Commons; open source page for author, exact licence, original   resolution and any geotags.
+ resolution and any geotags.
+
+
+
+ Aerial panorama of Mount Fuji with Saiko Iyashi-no-Sato Nenba             Aokigahara (suicide forest) + very tired Liz (42885146671).jpg
+ in the foreground. June 2023.jpg                                          aokigahara; interior / vegetation
+ aokigahara; macro / edge / skyline                                        Source (commons.wikimedia.org) Media / map
+ Source (commons.wikimedia.org) Media / map                                Wikimedia Commons; open source page for author, exact licence, original
+ Wikimedia Commons; open source page for author, exact licence, original   resolution and any geotags.
+ resolution and any geotags.
+
+
+
+ Aokigahara 05.jpg                                                         Aokigahara 2013-11-13 (10863088565).jpg
+ aokigahara                                                                aokigahara
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara 2013-11-13 (10863124286).jpg                                   Aokigahara 2013-11-13 (10863208834).jpg
+ aokigahara                                                                aokigahara
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara 2013-11-13 (10863407043).jpg                                   Aokigahara 2013-11-13 (10863419343).jpg
+ aokigahara                                                                aokigahara
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara and Misak Mountains s2.jpg                                     Aokigahara and Misaka Mountains.JPG
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                   Page 24 of 35
+ Aokigahara and Tenshi Mountains from Mount Ashiwada.jpg                   Aokigahara Forest (10863114695).jpg
+ aokigahara; macro / edge / skyline                                        aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863115895).jpg                                       Aokigahara Forest (10863122085).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863125735).jpg                                       Aokigahara Forest (10863133755).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863156655).jpg                                       Aokigahara Forest (10863169686).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863170736).jpg                                       Aokigahara Forest (10863177636).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863181206).jpg                                       Aokigahara Forest (10863196716).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863201036).jpg                                       Aokigahara Forest (10863202696).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863271994).jpg                                       Aokigahara Forest (10863283354).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863292224).jpg                                       Aokigahara Forest (10863293524).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                   Page 25 of 35
+ Aokigahara Forest (10863294354).jpg                                       Aokigahara Forest (10863296084).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863296864).jpg                                       Aokigahara Forest (10863297654).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863453833).jpg                                       Aokigahara Forest (10863460263).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863465773).jpg                                       Aokigahara Forest (10863467383).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863468883).jpg                                       Aokigahara Forest (10863480593).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Forest (10863487993).jpg                                       Aokigahara forest 01.jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara forest 02.jpg                                                  Aokigahara forest 03.jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara forest 04.jpg                                                  Aokigahara Forest.jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigahara Suicide Forest Japan.jpg                                       Aokigahara.JPG
+ aokigahara; interior / vegetation                                         aokigahara
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                   Page 26 of 35
+ Aokigara forest near wind cave 01.jpg                                     Aokigara forest near wind cave 02.jpg
+ aokigahara; interior / vegetation; cave / lava                            aokigahara; interior / vegetation; cave / lava
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigara forest near wind cave 03.jpg                                     Aokigara forest near wind cave 04.jpg
+ aokigahara; interior / vegetation; cave / lava                            aokigahara; interior / vegetation; cave / lava
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigara forest near wind cave 05.jpg                                     Aokigara forest near wind cave 06.jpg
+ aokigahara; interior / vegetation; cave / lava                            aokigahara; interior / vegetation; cave / lava
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Aokigara forest near wind cave 07.jpg                                     Entrance @ Ice Cave @ Aokigahara Forest (10863265844).jpg
+ aokigahara; interior / vegetation; cave / lava                            aokigahara; interior / vegetation; cave / lava
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Entrance @ Wind Cave @ Aokigahara Forest (10863287014).jpg                Fujisan, sacred place and source of artistic inspiration banner
+ aokigahara; interior / vegetation; cave / lava                            (Mount Fuji and Aokigahara).jpg
+ Source (commons.wikimedia.org) Media / map                                aokigahara; macro / edge / skyline
+
+ Wikimedia Commons; open source page for author, exact licence, original   Source (commons.wikimedia.org) Media / map
+ resolution and any geotags.                                               Wikimedia Commons; open source page for author, exact licence, original
+                                                                           resolution and any geotags.
+
+
+
+ Hiking in Aokigahara Sea of Trees (50295849761).jpg                       Inside Aokigara forest.ogv
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation; motion reference
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Lake Motosu from Mount Ashiwada.jpg                                       Lake Sai and Aokigahara Forest Aerial photograph.jpg
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Lake Sai and Aokigahara from Koyodai.jpg                                  Lake Sai and Mount Ashiwada.jpg
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Lake Shōji from Panoramadai.JPG                                           Leave @ Aokigahara Forest (10863491293).jpg
+ aokigahara; macro / edge / skyline                                        aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                   Page 27 of 35
+ LianaSwing.jpg                                                            Lightbathing (22769737922).jpg
+ aokigahara; interior / vegetation                                         aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Mount Ashiwada and Aokigahara.jpg                                         Mount Ashiwada and Mount Fuji.jpg
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Mount Ashiwada from Panoramadai.JPG                                       Mount Eboshi (Misaka Mountains).JPG
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Mount Kenashi and Mount Ryu from Mount Ashiwada.jpg                       Mount O and Lake Sai.JPG
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Mount O and Mount Oni from Mount Ryu.JPG                                  Mount O and Mount Oni.JPG
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Mount O from Mount Ryu.JPG                                                Mount O from Sankodai.JPG
+ aokigahara; macro / edge / skyline                                        aokigahara; macro / edge / skyline
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ SaiKo.jpg                                                                 Suicide Forest.jpg
+ aokigahara; macro / edge / skyline                                        aokigahara; interior / vegetation
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Tenshi Mountains from Mount Ashiwada (with note).jpg                      Warning signal for suicides in Aokigahara.jpg
+ aokigahara; macro / edge / skyline                                        aokigahara; signage / visitor infrastructure
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+  Fugaku Wind Cave                                                                                                                                   9
+
+ Facility for storing eggs of silk worms, Fugaku Wind Cave - July          Fugaku fuketsu - Ice pond.jpg
+ 2012.jpg                                                                  cave / lava; Fugaku Wind Cave
+ cave / lava; Fugaku Wind Cave                                             Source (commons.wikimedia.org) Media / map
+ Source (commons.wikimedia.org) Media / map                                Wikimedia Commons; open source page for author, exact licence, original
+ Wikimedia Commons; open source page for author, exact licence, original   resolution and any geotags.
+ resolution and any geotags.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                   Page 28 of 35
+ Fugaku fuketsu - Natural refrigerator.jpg                                 Fugaku fuketsu - Walking in the cave.jpg
+ cave / lava; Fugaku Wind Cave                                             cave / lava; Fugaku Wind Cave
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Fugaku Fuketu Entrance 20161025.jpg                                       Fugaku Fuketu Entrance Stairs 20161025.jpg
+ cave / lava; Fugaku Wind Cave                                             cave / lava; Fugaku Wind Cave
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Ice Block in Fugaku wind cave.jpg                                         Lava shelf in Fugaku wind cave.jpg
+ cave / lava; Fugaku Wind Cave                                             cave / lava; Fugaku Wind Cave
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Ropy lava in Fugaku wind cave.jpg
+ cave / lava; Fugaku Wind Cave
+ Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.
+
+
+
+
+  Narusawa Ice Cave                                                                                                                                  6
+
+ Icicle in Narusawa Ice Cave.jpg                                           Lighting-uped Narusawa Ice Cave.jpg
+ cave / lava; Narusawa Ice Cave                                            cave / lava; Narusawa Ice Cave
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Narusawa Hyoketsu Entrance 20161025.jpg                                   Narusawa-Hyoketsu-entrance.JPG
+ cave / lava; Narusawa Ice Cave                                            cave / lava; Narusawa Ice Cave
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+ Stairs and passage towards the Narusawa Hyoketsu                          頭上 足元 (1244710628).jpg
+ 20161025.jpg                                                              Narusawa Ice Cave
+ cave / lava; Narusawa Ice Cave                                            Source (commons.wikimedia.org) Media / map
+ Source (commons.wikimedia.org) Media / map                                Wikimedia Commons; open source page for author, exact licence, original
+ Wikimedia Commons; open source page for author, exact licence, original   resolution and any geotags.
+ resolution and any geotags.
+
+
+
+
+  Lake Saiko Bat Cave                                                                                                                                13
+
+ Inside the Lake Saiko Bat Cave A-Point.JPG                                Inside the Lake Saiko Bat Cave B-Point.JPG
+ macro / edge / skyline; cave / lava; Lake Saiko Bat Cave                  macro / edge / skyline; cave / lava; Lake Saiko Bat Cave
+ Source (commons.wikimedia.org) Media / map                                Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original   Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                               resolution and any geotags.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                   Page 29 of 35
+ Inside the Lake Saiko Bat Cave C-Point.JPG                                         Japan - Fujisan Area - Volcano Cave.jpg
+ macro / edge / skyline; cave / lava; Lake Saiko Bat Cave                           cave / lava; Lake Saiko Bat Cave
+ Source (commons.wikimedia.org) Media / map                                         Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original            Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                                        resolution and any geotags.
+
+
+
+
+ Lake Saiko Bat Cave Corded Lava.JPG                                                Lake Saiko Bat Cave Diatom Earth Line.JPG
+ macro / edge / skyline; cave / lava; Lake Saiko Bat Cave                           macro / edge / skyline; cave / lava; Lake Saiko Bat Cave
+ Source (commons.wikimedia.org) Media / map                                         Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original            Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                                        resolution and any geotags.
+
+
+
+
+ Lake Saiko Bat Cave Entrance.JPG                                                   Lake Saiko Bat Cave Helmet rental.JPG
+ macro / edge / skyline; cave / lava; Lake Saiko Bat Cave                           macro / edge / skyline; cave / lava; Lake Saiko Bat Cave
+ Source (commons.wikimedia.org) Media / map                                         Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original            Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                                        resolution and any geotags.
+
+
+
+
+ Lake Saiko Bat Cave Lava Dome.JPG                                                  Lake Saiko Bat Cave Lava Stalactites.JPG
+ macro / edge / skyline; cave / lava; Lake Saiko Bat Cave                           macro / edge / skyline; cave / lava; Lake Saiko Bat Cave
+ Source (commons.wikimedia.org) Media / map                                         Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original            Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.                                                        resolution and any geotags.
+
+
+
+
+ The written version of the name of Lake Sai and Aokigahara                         Trail toward the Lake Saiko Bat Cave.JPG
+ Forest Aerial photograph.jpg                                                       macro / edge / skyline; cave / lava; Lake Saiko Bat Cave
+ macro / edge / skyline; interior / vegetation; Lake Saiko Bat Cave                 Source (commons.wikimedia.org) Media / map
+ Source (commons.wikimedia.org) Media / map                                         Wikimedia Commons; open source page for author, exact licence, original
+ Wikimedia Commons; open source page for author, exact licence, original            resolution and any geotags.
+ resolution and any geotags.
+
+
+
+ Viewed from outside the Lake Saiko Bat Cave.JPG
+ macro / edge / skyline; cave / lava; Lake Saiko Bat Cave
+ Source (commons.wikimedia.org) Media / map
+ Wikimedia Commons; open source page for author, exact licence, original
+ resolution and any geotags.
+
+
+
+
+  web extension                                                                                                                                                     11
+
+ Sea of trees, Yamanashi, Japan - drone aerial toward Mount                         Aokigahara moss-covered lava shelf
+ Fuji                                                                               lava shelf; moss; roots; trail; ground morphology
+ aerial; canopy; macro geography; Mount Fuji; forest extent                         Source (gettyimages.com)
+ Source (dronestagr.am) Media / map                                                 Getty result indexed in web research; licence required before production use.
+ Useful canopy-scale reference. Treat as appearance evidence, not boundary          Useful morphology reference only.
+ evidence.
+
+
+
+ Aokigahara trail with moss-covered roots                                           Aerial view of Aokigahara canopy toward Lake Sai
+ trail; moss; roots; interior; human-access layer                                   aerial; canopy; Lake Sai; macro geography
+ Source (gettyimages.com)                                                           Source (gettyimages.com)
+ Getty result indexed in web research; licence required before production use.      Getty result indexed in web research; licence required before production use.
+ Useful trail-scale reference only.
+
+
+
+
+ Aokigahara mossy root network                                                      Lake-edge forest and Mount Fuji hiking reference
+ roots; moss; thin soil; interior; ground morphology                                lake edge; Mount Fuji; forest edge; path; context
+ Source (kshouse.jp) Media / map                                                    Source (fujibiketour.com) Media / map
+ Strong ground-scale root and moss reference. Confirm source rights before reuse.   Context reference; verify exact lake/viewpoint before using as a camera match.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                               Page 30 of 35
+ Ryugu Cave entrance, Aokigahara                                                        Saiko-side Aokigahara trail, low sun
+ Ryugu Cave; cave entrance; moss; basalt; safety rope                                   trail; low sun; moss; interior; Saiko; light
+ Source (f.hatena.ne.jp) Media / map                                                    Source (saikonaturestay.com) Media / map
+ Entrance morphology reference. Verify licence/permission before production reuse.      Useful light and trail condition reference. Verify rights before reuse.
+
+
+
+
+ Shoji entrance trailhead in wet summer forest                                          Motosu-to-Tokai Nature Trail Aokigahara flat route image
+ Shoji entrance; trailhead; wet season; signage; forest edge                            (2026)
+ Source (minkara.carview.co.jp) Media / map                                             Motosu; Tokai Nature Trail; current; forest road/path
+
+ Secondary photographic ground truth. Shows Shoji entrance trailhead sign at 983        Source (note.com)
+ m and wet deciduous/conifer edge conditions.                                           Current secondary route reference; use only after source-page validation. Added to
+                                                                                        strengthen western route appearance coverage.
+
+
+
+ Aokigahara current route junction sign — Ice Cave / Wind Cave /
+ Lake Shoji
+ trail junction; signage; Tokai Nature Trail; route continuity
+ Source (discover.hubpages.com) Media / map
+ Secondary photo showing a bilingual junction sign linking Ice Cave, Wind Cave and
+ Lake Shoji; useful for signage/material reference, not route survey.
+
+
+
+
+  official map/document                                                                                                                                                   7
+
+ Yamanashi 2026 Aokigahara Jukai Eco Tour Guideline map                                 Yamanashi 2026 Aokigahara official English visual brochure
+ official; route map; Mt Omuro; Lake Sai; caves; roads; 2026                            official; visual reference; seasons; key spots; forest; map
+ Source (pref.yamanashi.jp) Media / map                                                 Source (pref.yamanashi.jp) Media / map
+ Primary reconstruction source. Page 1 schematically distinguishes usable routes        Six-page official 2026 brochure with canopy, interior, seasonal, cave, lake-edge and
+ and named natural-monument lava caves; page 2 sets protection/use rules.               illustrated regional-context material.
+
+
+
+
+ GSI Fuji Volcano Land Condition Map / data                                             GSJ Geological Map of Fuji Volcano, 2nd Edition
+ GSI; volcanic landforms; DEM; LiDAR; terrain classification; GIS                       GSJ; geology; 1:25000; lava flow; Fuji volcano
+ Source (gsi.go.jp)                                                                     Source (gsj.jp)
+ Primary terrain/landform authority. GSI states Fuji map uses aerial-photo              Geological foundation for separating 864 lava-flow geometry from modern forest
+ interpretation, field survey, DEM and airborne laser scanning.                         cover.
+
+
+
+
+ Yamanashi 2026 official usable-route / cave schematic                                  Yamanashi 2025 Aokigahara three-course official experience
+ route network; caves; forest roads; Mt Omuro; Lake Sai                                 flyer
+ Source (pref.yamanashi.jp)                                                             Motosu; Shoji; Saiko; route concepts; current public programme
+
+ Primary official schematic. Distinguishes usable routes, old transport roads/forest    Source (pref.yamanashi.jp)
+ roads and protected lava caves. Georegister; do not treat as survey geometry.          Official itinerary evidence for Motosu forest walk, Shoji/Kamahata forest walk and
+                                                                                        Saiko/Sankodai/Fugaku course.
+
+
+
+ Yamanashi Aokigahara official current tourism page (2026)
+ public trails; visitor access; cave corridor; Koyodai
+ Source (yamanashi-kankou.jp)
+ Current official visitor context. Use for public-route/infrastructure validation and
+ conservation constraints.
+
+
+
+
+  official GIS/document                                                                                                                                                   4
+
+ Ministry of Environment 1:25,000 existing vegetation map —                             Ministry of Environment 1:25,000 existing vegetation map —
+ Narusawa 533815                                                                        Fuji 533805
+ vegetation GIS; 1:25000; Narusawa; polygons                                            vegetation GIS; 1:25000; Fuji; polygons
+ Source (biodic.go.jp)                                                                  Source (biodic.go.jp)
+ Official Biodiversity Center metadata; JPEG and Shp formats; 2004–05 survey. Use       Official Biodiversity Center metadata; JPEG and Shp formats; 2004–05 survey.
+ as polygon source for spatial vegetation classes.                                      Complements Narusawa sheet to the south.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                                        Page 31 of 35
+ GSI elevation tile catalogue — DEM1A/DEM5A/B/C/DEM10B                                GSI Fundamental Geospatial Data DEM download specification
+ DEM; elevation tiles; 1m; 5m; 10m; acquisition                                       (2026)
+ Source (maps.gsi.go.jp)                                                              DEM; GML; 1m; 5m; 10m; accuracy; JGD2024
+
+ Official tile catalogue. DEM1A PNG uses z17; DEM5A/B/C z15; DEM10B z14. Use with     Source (service.gsi.go.jp)
+ tile plan; tile existence still needs validation.                                    Official download-service documentation for DEM1A, 5A, 5B, 5C, 10A/10B and
+                                                                                      accuracy/source methods.
+
+
+
+
+  route / GPX evidence                                                                                                                                                  3
+
+ YAMAP current Fugaku Wind Cave – Narusawa Ice Cave model                             YAMAP 2026 Aokigahara – Sankodai – Ashiwadayama activity
+ course                                                                               route; 2026; Fugaku; Narusawa; Koyodai; Sankodai
+ route; current activity; Fugaku; Narusawa; Tokai Nature Trail                        Source (yamap.com)
+ Source (yamap.com)                                                                   11.8 km activity dated 2026-04-11; checkpoint order provides current continuity
+ Current public route evidence. Model course reports 2.5 km, 1:02, 58 m ascent/       evidence from cave corridor to Koyodai/Sankodai.
+ descent; useful for route continuity, not authoritative survey geometry.
+
+
+
+ YAMAP Shoji entrance trail activity index
+ Shoji entrance; route; 2026; western/central coverage
+ Source (yamap.com)
+ Current activity index includes a 2026-08-10 10.8 km Shoji entrance trail hike and
+ several longer Aokigahara/Omuro routes; useful discovery source for western route
+ ground truth.
+
+
+
+
+  maps / west-central                                                                                                                                                   1
+
+ Aokigahara pilgrimage / Shojin O-ana route map (2024 field
+ report)
+ map; Shoji; pilgrimage; Aokigahara lava extent; west-central gap
+ Source (ameblo.jp) Media / map
+ Secondary field-report map. Valuable for western visual research; cross-check
+ geometry against official sources.
+
+
+
+
+  maps / macro                                                                                                                                                          1
+
+ Aokigahara and Fuji surroundings schematic – niponica
+ map; macro geography; lakes; caves; Fuji context
+ Source (web-japan.org) Media / map
+ Government-affiliated Web Japan visual overview; schematic only.
+
+
+
+
+  maps / geology                                                                                                                                                        1
+
+ Aokigahara lava-tunnel topography 3D view
+ 3D terrain; lava; caves; lakes; macro morphology
+ Source (web-gis.jp) Media / map
+ Secondary 3D visualization made from GSI source tiles; strong interpretation aid.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                                Page 32 of 35
+  maps / official route topology                                                                                                                                     1
+
+ Yamanashi official eco-tour route/cave schematic (2026)
+ official; route topology; Mt Omuro; Saiko; caves; forest roads
+ Source (pref.yamanashi.jp) Media / map
+ Primary official topology source. Schematic rather than survey-grade.
+
+
+
+
+  maps / official visitor routes                                                                                                                                     1
+
+ Yamanashi official Aokigahara surrounding walking-trail map
+ official; trails; Saiko; Ryugu; Fugaku; Narusawa; visitor infrastructure
+ Source (pref.yamanashi.jp) Media / map
+ Current public-route and POI cross-check.
+
+
+
+
+  GIS / vegetation                                                                                                                                                   1
+
+ Existing Vegetation Map 2024 raster tile service
+ official; vegetation; raster tile; current national dataset
+ Source (biodic.go.jp) Media / map
+ Live tile service; source polygon survey year varies 1999-2023.
+
+
+
+
+  map / current orthophoto                                                                                                                                           1
+
+ GSI nationwide latest seamless aerial photography
+ current aerial; canopy; forest edge; roads; orthophoto
+ Source (maps.gsi.go.jp) Media / map
+ Live tile layer. Local acquisition date varies; use GSI capture-period metadata when
+ date matters.
+
+
+
+
+  map / historical aerial                                                                                                                                            2
+
+ GSI aerial photography 1974-1978                                                       GSI aerial photography 1961-1969
+ historic aerial; 1970s; canopy change; roads                                           historic aerial; 1960s; canopy change; roads
+ Source (maps.gsi.go.jp) Media / map                                                    Source (maps.gsi.go.jp) Media / map
+ Official historical tile layer; coverage must be verified locally.                     Official historical tile layer; coverage must be verified locally.
+
+
+
+
+  map / terrain                                                                                                                                                      1
+
+ GSI Fuji volcanic basic-map data — coloured relief
+ Fuji; volcanic relief; lidar; terrain; lava morphology
+ Source (maps.gsi.go.jp) Media / map
+ Official GSI volcanic-map data compiled using airborne laser, fundamental
+ geospatial and volcanic-disaster data.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                                   Page 33 of 35
+  map / geology geomorphology                                                                                                                                                    2
+
+ GSI Fuji volcanic land-condition map                                                    GSI Fuji digital volcanic geomorphology classification
+ Fuji; volcanic landforms; lava; geomorphology                                           Fuji; volcanic geomorphology; digital classification; lava
+ Source (maps.gsi.go.jp) Media / map                                                     Source (maps.gsi.go.jp) Media / map
+ Official GSI volcanic land-condition raster tile layer.                                 Fuji-specific GSI digital volcanic geomorphology tile identifier verified in official
+                                                                                         supplemental URL table.
+
+
+
+
+  map / geology                                                                                                                                                                  1
+
+ GSJ Seamless Digital Geological Map of Japan V2
+ geology; AIST; seamless; lava substrate
+ Source (gbank.gsj.jp) Media / map
+ Official GSJ/AIST geology tiles; useful contextual cross-check, but Fuji Volcano 2016
+ vector map is preferred for detailed eruptive units.
+
+
+
+
+  map / geology vector                                                                                                                                                           1
+
+ GSJ Fuji Volcano Geological Map 2nd edition vector data
+ Fuji; geology; shapefile; Aokigahara lava; Jogan eruption; vector
+ Source (gbank.gsj.jp)
+ 2016 1:50,000 special geological map vector dataset (catalogue lists Shapefile, 8.6
+ MB). Primary future source for extracting Jōgan/Aokigahara lava polygons.
+
+
+
+
+  map / protected area                                                                                                                                                           2
+
+ Ministry of Environment Fuji-Hakone-Izu National Park — Fuji                            Yamanashi Natural Monument: Fuji Primeval Forest and
+ north/west zone maps                                                                    Aokigahara Jukai
+ national park; zoning; protected area; Fuji north; Fuji west                            natural monument; protected forest; 1926; 2010; Aokigahara
+ Source (env.go.jp)                                                                      Source (pref.yamanashi.jp)
+ Official detailed PDF zoning sheets. Keep separate from forest/lava/cultural-           Official designation record: original 1926 protected corridor/areas plus ~816 ha
+ property boundaries.                                                                    added in 2010; total ~1,600 ha.
+
+
+
+
+  map / geology vector-rendered                                                                                                                                                  1
+
+ GSJ Fuji Volcano Geological Map 2nd ed. — live WMTS
+ Fuji; 2016; 1:50000; geology; Aokigahara lava; crater; fissure; WMTS
+ Source (gbank.gsj.jp) Media / map
+ Official GSJ WMTS rendering of the second-edition Fuji Volcano Geological Map;
+ now included as a switchable atlas overlay.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                                        Page 34 of 35
+17. Embedded raw artifacts
+To make this genuinely a one-file consolidation, the PDF contains the raw files generated through the chat as
+embedded PDF attachments. In viewers that expose PDF attachments, these can be extracted directly from this
+document. The main narrative does not depend on them, but they preserve all detailed per-cell and per-tile data
+without printing thousands of repetitive rows.
+
+ Embedded file                                     Purpose                                                                                      Size
+
+ Aokigahara_Reconstruction_Research_Dossier.html   Original evolving research dossier from the chat.                                            110.5 KB
+
+ Aokigahara_Reconstruction_Atlas.html              Interactive Leaflet atlas with current/historical aerial, terrain, geology, vegetation,      2065.4
+                                                   grid and controls.                                                                           KB
+
+ Aokigahara_250m_Coverage_Map.html                 Interactive evidence-grid map.                                                               2726.7
+                                                                                                                                                KB
+
+ Aokigahara_Reconstruction_Blueprint.json          Machine-readable master reconstruction specification.                                        18.5 KB
+
+ Aokigahara_coverage_methodology.json              Coverage scoring assumptions and caveats.                                                    7.8 KB
+
+ Aokigahara_reconstruction_layer_stack.json        Geospatial layer hierarchy and alignment rules.                                              3.1 KB
+
+ Aokigahara_250m_coverage_grid.geojson             Full 2,790-cell geometry and evidence attributes.                                            4050.8
+                                                                                                                                                KB
+
+ Aokigahara_250m_coverage_grid.csv                 Full 2,790-cell tabular evidence grid.                                                       2692.7
+                                                                                                                                                KB
+
+ Aokigahara_GSI_DEM_tile_plan.csv                  All 3,528 candidate GSI DEM tile URLs and bounds.                                            868.2 KB
+
+ Aokigahara_authoritative_source_register.csv      Full source audit register.                                                                  10.1 KB
+
+ Aokigahara_boundary_layer_register.csv            Separate physical, geological, legal and project boundary concepts.                          4.2 KB
+
+ Aokigahara_georegistration_control_points.csv     Control-point coordinates and confidence.                                                    2.7 KB
+
+ Aokigahara_route_topology_graph.csv               Route connectivity, geometry confidence and access status.                                   2.9 KB
+
+ Aokigahara_sector_gap_matrix.csv                  Ten-sector reconstruction coverage/gap plan.                                                 2.3 KB
+
+ Aokigahara_temporal_imagery_register.csv          Aerial/time-series source inventory.                                                         3.0 KB
+
+ Aokigahara_visual_asset_manifest.csv              Complete 152-entry visual/map/GIS catalogue.                                                 55.0 KB
+
+ build_aokigahara_dossier.py                       Generation/provenance script for the initial dossier.                                        22.3 KB
+
+ expand_aokigahara_coverage.py                     Generation/provenance script for coverage expansion.                                         31.0 KB
+
+
+
+
+    One-file completeness: the embedded GeoJSON/CSV files carry all 2,790 evidence cells and all 3,528
+    candidate DEM tile records; the embedded HTML files preserve the interactive atlas and coverage map; the
+    JSON files preserve the reconstruction logic and methodology; the manifest preserves every indexed visual/
+    map/GIS source.
+
+
+
+
+Aokigahara Reconstruction Research Dossier                                                                                                   Page 35 of 35
+

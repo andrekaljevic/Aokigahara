@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "file": "forest-wide.f32",
+  "count": 467601,
+  "stride": 6,
+  "fields": [
+    "x",
+    "y",
+    "z",
+    "uniformScale",
+    "yawRadians",
+    "variantId"
+  ],
+  "encoding": "float32 little-endian; tightly packed interleaved records",
+  "recordBytes": 24,
+  "bytes": 11222424,
+  "sha256": "c2763071c3907d7756fc05c6849a9488e6082440e2e95ae0b167738a77b850a4",
+  "spacingM": 8.5,
+  "jitterM": 5.8,
+  "hashGapFraction": 0.045,
+  "seedMethod": "Exact integer spatial hash from root build_world.py; implementation reproduced in build_forest_wide.py",
+  "coordinateSystem": {
+    "projection": "+proj=aeqd +lat_0=35.4775 +lon_0=138.658 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs",
+    "originWgs84": [
+      138.658,
+      35.4775
+    ],
+    "axes": "x east, y up, z south",
+    "height": "Root-compatible bilinear measured grid height, local first then study, y=elevationM-900-0.06"
+  },
+  "selection": {
+    "definition": "Outside the local rectangle, nearest study sample must have study-jogan=1 and study-landcover in [1,2,3]. Inside local x/z ±1024 m, use exact existing local forest instances, preserving forested local classes regardless of Jogan mask.",
+    "legalBoundary": false,
+    "interpretation": "PROJECT INTERPRETATION: mapped eruption-product footprint intersected with forested landcover plus forested local core; not a legal, surveyed or definitive Aokigahara forest boundary.",
+    "boundsXZ": [
+      -9000,
+      -6000,
+      10500,
+      8000
+    ],
+    "studyMappedIntersectionAreaM2": 35894012.451171905,
+    "studyIntersectionInsideLocalAreaM2": 4103668.2985026003,
+    "forcedLocalForestedAreaM2": 4170624.0,
+    "selectedAreaBeforeBuffersAndHashGapsM2": 35960968.1526693,
+    "selectedAreaBeforeBuffersAndHashGapsKm2": 35.9609681526693,
+    "areaBasis": "Exact clipped nearest-sample raster-cell area for the supplied categorical grids. Boundary sample cells extend half a cell inward. Study/local overlap is replaced, not double counted. This is a project mask area, not measured forest extent."
+  },
+  "placement": {
+    "individualTreesSurveyed": false,
+    "treeCountIsCensus": false,
+    "roadBufferM": 5,
+    "trailBufferM": 1.7,
+    "roadSource": "study-context.json OSM mapped centre lines; estimated exclusion widths include private/no-access tagged paths to match root exclusion rule",
+    "scaleFormula": ".72 + rand(i,j,5)*.5",
+    "yawFormula": "rand(i,j,6)*2*pi",
+    "variantFormula": "(2 if class==2 else 0)+int(rand(i,j,4)*2)",
+    "forestedClasses": {
+      "1": "natural conifer",
+      "2": "broadleaf/mixed woody",
+      "3": "plantation"
+    },
+    "outerEligibleCandidatesBeforeGaps": 439939,
+    "outerRejectedByHashGaps": 19984,
+    "outerRejectedByPathBuffersAfterGaps": 6353,
+    "outerCount": 413602
+  },
+  "localOverlap": {
+    "localPrefixCount": 53999,
+    "localPrefixBytes": 1295976,
+    "localPrefixSha256": "cab3bb0251647e26c98efd37c78dcd334e1afabb73282ffd7b9355c682240fca",
+    "originalFile": "/workspace/sites/aokigahara-field-world/dist/assets/forest-instances.f32",
+    "exactBytesPreserved": true,
+    "remainingRecords": "All appended records are outside abs(x)<=1024 AND abs(z)<=1024; local and appended records never overlap.",
+    "use": "Use this file to replace forest-instances.f32, or append only records after localPrefixCount to existing local instances. Do not append the complete file to the existing local instances."
+  },
+  "boundsMinXYZ": [
+    -5705.29052734375,
+    -0.2327905297279358,
+    -2697.030517578125
+  ],
+  "boundsMaxXYZ": [
+    3776.473876953125,
+    628.2476196289062,
+    5974.7861328125
+  ],
+  "variants": {
+    "0": 204243,
+    "1": 203551,
+    "2": 30015,
+    "3": 29792
+  },
+  "sourceFiles": [
+    {
+      "file": "study-jogan.u8",
+      "sha256": "486cb48f02fb9cd56c6b0a397f9389711ede3b4924f24e19b65d493dce919a43"
+    },
+    {
+      "file": "study-landcover.u8",
+      "sha256": "ed2baf4d3121339bb9b75da5ca86d2cdc429798c2df426a1cac8a6a284773bf4"
+    },
+    {
+      "file": "study-height.json",
+      "sha256": "81e67fbba43520d4a5888c1862cdc7da4f1dce6a46b69a074ea08c7b78eced2b"
+    },
+    {
+      "file": "study-height.f32",
+      "sha256": "6b22ae174ca09d8288b0fb310ab7312cced48f0cfea5132e3c3b34fd59cd9183"
+    },
+    {
+      "file": "local-landcover.u8",
+      "sha256": "82c841246926d29309e8f1b797a9dd87dd04fd6809bf577077b30648269c3af5"
+    },
+    {
+      "file": "local-height.json",
+      "sha256": "2c2abc7a7463b823802a05a9382fb2104decef664694b4f8d8351a8d33b2a9f4"
+    },
+    {
+      "file": "local-height.f32",
+      "sha256": "0350d2a3510566487f9105b64a82bf62149adfdf848ca6c8e6ae27f56e0324ae"
+    },
+    {
+      "file": "study-context.json",
+      "sha256": "f12bff8c501b366c5ba03938c8cd4cf3f84d1ba28043b127d8ab5f13a4394b57"
+    }
+  ],
+  "validation": {
+    "allFinite": true,
+    "localPrefixByteIdentical": true,
+    "rootHashAndHeightExactChecks": 88,
+    "duplicateXZCount": 0
+  },
+  "limits": [
+    "Procedural mature-tree transform positions, heights, scales, rotations and variant assignments are project interpretations, not an individual-tree survey or species census.",
+    "Mapped geology and landcover have different source dates, scales and semantics. Their intersection does not establish a forest boundary.",
+    "Ground heights are bilinear samples of measured numerical DEM grids; trunks are sunk 0.06 m to match the existing local scene.",
+    "Placement excludes approximate OSM road/trail buffers but does not describe public access or current trail conditions."
+  ],
+  "elapsedSeconds": 4.25
+}

@@ -1,0 +1,230 @@
+{
+  "status": "pass",
+  "mesh_count": 16,
+  "checks": [
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/high_bark.npz",
+      "vertices": 8579,
+      "triangles": 10892,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/high_leaves.npz",
+      "vertices": 33528,
+      "triangles": 16764,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 8.702448844909668,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/low_bark.npz",
+      "vertices": 288,
+      "triangles": 422,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_leaning/low_leaves.npz",
+      "vertices": 240,
+      "triangles": 420,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 9.235069274902344,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/high_bark.npz",
+      "vertices": 8579,
+      "triangles": 10892,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/high_leaves.npz",
+      "vertices": 33528,
+      "triangles": 16764,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 8.207743644714355,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/low_bark.npz",
+      "vertices": 288,
+      "triangles": 422,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/broadleaf_spreading/low_leaves.npz",
+      "vertices": 240,
+      "triangles": 420,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 8.484879493713379,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/high_bark.npz",
+      "vertices": 9679,
+      "triangles": 12572,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/high_leaves.npz",
+      "vertices": 29488,
+      "triangles": 14744,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 5.220743656158447,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/low_bark.npz",
+      "vertices": 332,
+      "triangles": 486,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_ascending/low_leaves.npz",
+      "vertices": 304,
+      "triangles": 532,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 4.8599090576171875,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/high_bark.npz",
+      "vertices": 9679,
+      "triangles": 12572,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/high_leaves.npz",
+      "vertices": 29488,
+      "triangles": 14744,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 3.890193462371826,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/low_bark.npz",
+      "vertices": 332,
+      "triangles": 486,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 0.0,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "file": "/workspace/scratch/f25aff235357/build-assets/procedural_trees/evergreen_spreading/low_leaves.npz",
+      "vertices": 304,
+      "triangles": 532,
+      "all_finite": true,
+      "indices_valid": true,
+      "minimum_y": 3.6095571517944336,
+      "degenerate_triangles": 0,
+      "inconsistent_winding": 0,
+      "normal_length_range": [
+        0.9999999403953552,
+        1.0
+      ]
+    }
+  ]
+}

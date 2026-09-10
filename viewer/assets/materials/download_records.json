@@ -1,0 +1,128 @@
+[
+  {
+    "id": "leaves_forest_ground",
+    "channel": "Diffuse",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_diff_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/leaves_forest_ground_diff_1k.jpg",
+    "fileName": "leaves_forest_ground_diff_1k.jpg",
+    "bytes": 1135712,
+    "md5": "6e9cd579b50046182663e3ab33681fc8",
+    "sha256": "e4aa2be8f80192378bc8aca363fc01b1f01639ebea5a87a3973c549861a01b7a",
+    "pixels": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "leaves_forest_ground",
+    "channel": "nor_gl",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_nor_gl_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/leaves_forest_ground_nor_gl_1k.jpg",
+    "fileName": "leaves_forest_ground_nor_gl_1k.jpg",
+    "bytes": 1380468,
+    "md5": "68622609f38cc517f66c91288a009e71",
+    "sha256": "78b24836c2a1ddcfbd81a493de89ee0722319187b39016022a21e63d710c9284",
+    "pixels": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "leaves_forest_ground",
+    "channel": "Rough",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/leaves_forest_ground/leaves_forest_ground_rough_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/leaves_forest_ground_rough_1k.jpg",
+    "fileName": "leaves_forest_ground_rough_1k.jpg",
+    "bytes": 514888,
+    "md5": "26fb788bdf3f082313a09e80305af458",
+    "sha256": "e035404a2e16ac23782145b4aa29fb1b923569b2bbb8f6c6c01e194ade37f505",
+    "pixels": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "japanese_cedar_bark",
+    "channel": "Diffuse",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_diff_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/japanese_cedar_bark_diff_1k.jpg",
+    "fileName": "japanese_cedar_bark_diff_1k.jpg",
+    "bytes": 1371666,
+    "md5": "51e45ec05fc2d9ce21f38f2613704fc7",
+    "sha256": "fa240510e9ef127a8979ebd63628950abdc048a1e091d8a1611c86bbe2c6cda4",
+    "pixels": [
+      1024,
+      2048
+    ]
+  },
+  {
+    "id": "japanese_cedar_bark",
+    "channel": "nor_gl",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_nor_gl_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/japanese_cedar_bark_nor_gl_1k.jpg",
+    "fileName": "japanese_cedar_bark_nor_gl_1k.jpg",
+    "bytes": 2053757,
+    "md5": "437ca87e2f2a0d96deb4343ebf4b05f5",
+    "sha256": "7302db344bcd63f3a2eb2bd2321377798c54831b0ff691de44315509db83962e",
+    "pixels": [
+      1024,
+      2048
+    ]
+  },
+  {
+    "id": "japanese_cedar_bark",
+    "channel": "Rough",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_rough_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/japanese_cedar_bark_rough_1k.jpg",
+    "fileName": "japanese_cedar_bark_rough_1k.jpg",
+    "bytes": 373636,
+    "md5": "4ca55d434f325c124ce29aeef29c7532",
+    "sha256": "f0a984349c78a6ce5161eaa38540ab73cf72d062df2ab2e74130e1191125cda4",
+    "pixels": [
+      1024,
+      2048
+    ]
+  },
+  {
+    "id": "rock_3",
+    "channel": "Diffuse",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_3/rock_3_diff_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/rock_3_diff_1k.jpg",
+    "fileName": "rock_3_diff_1k.jpg",
+    "bytes": 850585,
+    "md5": "815bcc10e00c2abc43acc997b7d65361",
+    "sha256": "e68a81e113a4173c0e19f58bedda41b3b13adcfdeb2f8ae4808f63ec5de10225",
+    "pixels": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "rock_3",
+    "channel": "nor_gl",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_3/rock_3_nor_gl_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/rock_3_nor_gl_1k.jpg",
+    "fileName": "rock_3_nor_gl_1k.jpg",
+    "bytes": 1188433,
+    "md5": "3839929816dcc8be0980b3f770765c09",
+    "sha256": "a83383a7468879605b0f2e72ffc7432b0b813f02a12c169a204409040f6ea4b3",
+    "pixels": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "id": "rock_3",
+    "channel": "Rough",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_3/rock_3_rough_1k.jpg",
+    "localPath": "/workspace/scratch/f25aff235357/build-assets/materials/rock_3_rough_1k.jpg",
+    "fileName": "rock_3_rough_1k.jpg",
+    "bytes": 315170,
+    "md5": "a9300dbb8c64ed5ff1dd378f8830bfcb",
+    "sha256": "ec6b320bad456bcb45082c6c99cf60446dfe1da90f0bb0c66bdc71aecdc3c163",
+    "pixels": [
+      1024,
+      1024
+    ]
+  }
+]

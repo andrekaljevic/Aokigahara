@@ -1,0 +1,11 @@
+sector_id,sector,priority,primary_subject,current_confidence,remaining_gap
+S1,Motosu south-west lava front,High,"Ishizuka flow lobes, Motosu lakeshore, Motosu wind caves, lava fronts",A terrain/geology; B visual continuity,Need denser geolocated lake-edge/lava-front sequences and DEM coverage check.
+S2,Shoji / north-west transition,Medium,"Lake Shoji edge, Shoji entrance trail, stone/lake relationships, transition into forest",B+,Need exact trail geometry and seasonally matched shoreline/forest photos.
+S3,Mt Omuro base / central high ground,High,"Fuji, Shojiko, Omuro, Jinza, Kamaboko, Megane caves; former transport roads; beech square",A schematic routes; B terrain; C exact micro-route geometry,Need precise GIS alignment of schematic cave/transport-road drawing and modern terrain.
+S4,Upper south-east flow / Karuimizu,High,"upper-flow cave morphology, forest-road network, higher-elevation Chamaecyparis-dominant biomes",B+,Need better public imagery; cave/forest-road access is controlled.
+S5,Route 139 cave corridor,Medium,"Fugaku Wind Cave, Narusawa Ice Cave, roadside forest edge, parking/visitor infrastructure",A/B; strongest public visual coverage,Need current infrastructure survey and exact route meshes; otherwise well covered.
+S6,Lake Sai south / bat-cave corridor,Medium,"Lake Saiko Bat Cave, Ryugu Cave, Wild Bird Forest, tourist home-village approaches",A/B,Need full trail-sequence coverage between POIs and updated visitor structures.
+S7,Nenba / Saiko edge,Medium,"forest-to-lake transition, panoramic context, exposed lava, human landscape",B+,"Need geotagged edge-condition sequence, especially lava/lakeshore transitions."
+S8,Sankodai/Koyodai panorama belt,Medium,"macro silhouette, canopy height variation, three-lake context and Mount Fuji alignment",A/B,Need exact camera coordinates/azimuth/FOV for panorama matching.
+S9,Shoji entrance ascent toward Fuji,High,"southern trail continuity, higher-elevation forest succession, connection to Fuji slope",B route; C micro-ground truth,"Largest visual continuity gap; prioritise hiking footage, GPX and official route geometry."
+S10,Outer context shell,Medium,"lakes, roads, settlements, mountain ridges and skyline required for physically convincing free roam",A macro; variable local detail,Need only LOD/context fidelity outside the playable core.

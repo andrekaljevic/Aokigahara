@@ -1,0 +1,177 @@
+{
+  "id": "DEM-REGIONAL",
+  "publisher": "Geospatial Information Authority of Japan",
+  "layer": "dem_png",
+  "zoom": 12,
+  "requestedBoundsWsen": [
+    138.49,
+    35.29,
+    138.87,
+    35.59
+  ],
+  "tileBounds": [
+    3623,
+    1614,
+    3628,
+    1618
+  ],
+  "tiles": [
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3623/1614.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3623/1615.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3623/1616.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3623/1617.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3623/1618.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3624/1614.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3624/1615.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3624/1616.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3624/1617.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3624/1618.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3625/1614.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3625/1615.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3625/1616.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3625/1617.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3625/1618.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3626/1614.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3626/1615.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3626/1616.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3626/1617.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3626/1618.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3627/1614.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3627/1615.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3627/1616.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3627/1617.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3627/1618.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3628/1614.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3628/1615.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3628/1616.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3628/1617.png",
+      "ok": true,
+      "validFraction": 1.0
+    },
+    {
+      "url": "https://cyberjapandata.gsi.go.jp/xyz/dem_png/12/3628/1618.png",
+      "ok": true,
+      "validFraction": 1.0
+    }
+  ],
+  "encoding": "RGB signed 24-bit \u00d7 0.01 m; 2^23 is nodata",
+  "sourceUrl": "https://maps.gsi.go.jp/development/ichiran.html#dem",
+  "formatUrl": "https://maps.gsi.go.jp/development/demtile.html",
+  "licenceUrl": "https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html",
+  "accessed": "2026-09-09",
+  "validFraction": 1.0,
+  "notes": "Numeric GSI DEM, not coloured relief; z12 resampling, native source DEM nominal 10 m, display pixel ~31 m here."
+}
