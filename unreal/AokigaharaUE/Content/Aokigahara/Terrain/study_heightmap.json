@@ -1,0 +1,85 @@
+{
+  "generator": "unreal/AokigaharaUE/Scripts/export_heightmaps.py",
+  "grid": "study",
+  "source": {
+    "meta": "viewer/assets/terrain/study-height.json",
+    "raw": "viewer/assets/terrain/study-height.f32",
+    "width": 513,
+    "height": 385,
+    "dx_m": 38.0859375,
+    "dz_m": 36.458333333333336,
+    "minX": -9000,
+    "minZ": -6000,
+    "maxX": 10500,
+    "maxZ": 8000,
+    "elevation_msl_m": [
+      387.1973876953125,
+      1842.323974609375
+    ]
+  },
+  "resample": {
+    "from": [
+      513,
+      385
+    ],
+    "to": [
+      505,
+      505
+    ],
+    "native_config": {
+      "section_quads": 63,
+      "sections_per_component": 1,
+      "components": 8,
+      "component_quads": 63,
+      "total_quads": 504
+    },
+    "metres_per_quad": {
+      "north": 27.77777777777778,
+      "east": 38.69047619047619
+    },
+    "reason": "513x385 is not a valid Landscape vertex count; 505 is"
+  },
+  "landscape": {
+    "resolution": [
+      505,
+      505
+    ],
+    "section_size_quads": 63,
+    "sections_per_component": "1x1",
+    "component_count": "8x8",
+    "scale": {
+      "X_north_cm_per_quad": 2777.777777777778,
+      "Y_east_cm_per_quad": 3869.047619047619,
+      "Z": 284.2130850016785
+    },
+    "actor_location_cm": {
+      "X_north": -800000.0,
+      "Y_east": -900000.0,
+      "Z": 21476.068115234375
+    },
+    "note_scale_axes": "Scale X is NORTH and comes from the source dz; Scale Y is EAST and comes from dx. Swapping them tilts the world."
+  },
+  "height_encoding": {
+    "formula": "height_uu = (h - 32768) / 128 * ScaleZ, then + actor Z location",
+    "quantisation_cm_per_lsb": 2.2204147265756133,
+    "quantisation_mm_per_lsb": 22.204147265756134,
+    "scene_y_range_m": [
+      -512.8026123046875,
+      942.323974609375
+    ],
+    "msl_range_m": [
+      387.1973876953125,
+      1842.323974609375
+    ]
+  },
+  "orientation": {
+    "image_row_0": "SOUTHERN edge of the grid (source row height-1); rows increase NORTH",
+    "image_col_0": "WESTERN edge (source column 0); columns increase EAST",
+    "rationale": "source rows run north-to-south because z is south, while UE X increases north, so rows are flipped on export"
+  },
+  "ground_footprint_m": {
+    "east_west": 19500.0,
+    "north_south": 14000.0
+  },
+  "vertical_datum": "UE Z = 0 is 900 m MSL"
+}

@@ -1,0 +1,60 @@
+{
+  "generator": "unreal/AokigaharaUE/Scripts/export_placements.py",
+  "source": "data/forest-wide.f32",
+  "source_record": "6 x float32 LE: x east m, y scene m, z south m, scale, yaw rad, class",
+  "output_record": "6 x float32 LE: UE_X_cm, UE_Y_cm, UE_Z_cm, yaw_deg, scale, class",
+  "count": 467601,
+  "corridor_file_is_prefix_of_wide": true,
+  "note": "viewer/assets/forest-instances.f32 is byte-identical to the first 53,999 records of the wide file. Ingest the wide file ONLY; the total number of unique placements is 467601, not 521600.",
+  "class_histogram": {
+    "0": 204243,
+    "1": 203551,
+    "2": 30015,
+    "3": 29792
+  },
+  "class_meaning": {
+    "0": "community class 0 - conifer-dominant stand",
+    "1": "community class 1 - conifer-dominant stand, second variant group",
+    "2": "community class 2 - deciduous broadleaved association (app.js biases these to broadleaf)",
+    "3": "community class 3 - mixed / transitional"
+  },
+  "scale_range": [
+    0.7200011014938354,
+    1.2199989557266235
+  ],
+  "bounds_scene_m": {
+    "min": [
+      -5705.29052734375,
+      -0.2327905297279358,
+      -2697.030517578125
+    ],
+    "max": [
+      3776.473876953125,
+      628.2476196289062,
+      5974.7861328125
+    ],
+    "axes": "x east, y up (elevation-900), z south"
+  },
+  "bounds_ue_cm": {
+    "min": [
+      -597478.61328125,
+      -570529.052734375,
+      -23.27905297279358
+    ],
+    "max": [
+      269703.0517578125,
+      377647.3876953125,
+      62824.761962890625
+    ],
+    "axes": "X north, Y east, Z up"
+  },
+  "extent_m": {
+    "east_west": 9481.764404296875,
+    "north_south": 8671.816650390625,
+    "vertical": 628.4804101586342
+  },
+  "coordinate_mapping": "UE_X = -z*100, UE_Y = x*100, UE_Z = y*100 (determinant -1)",
+  "yaw_mapping": "UE_yaw_deg = (90 - degrees(scene_yaw)) mod 360",
+  "vertical_datum": "UE Z = 0 is 900 m MSL, not sea level",
+  "roundtrip_max_error_m": 0.0
+}

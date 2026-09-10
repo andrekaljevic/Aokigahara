@@ -52,3 +52,8 @@ unreal/**/*.sln
 *.opensdf
 *.sdf
 *.suo
+# Derived Unreal import data - regenerate with Scripts/export_*.py rather than committing.
+# The JSON sidecars ARE tracked: they are small and carry the exact Landscape transform.
+unreal/AokigaharaUE/Content/Aokigahara/Data/*.bin
+unreal/AokigaharaUE/Content/Aokigahara/Data/*.csv
+unreal/AokigaharaUE/Content/Aokigahara/Terrain/*.png

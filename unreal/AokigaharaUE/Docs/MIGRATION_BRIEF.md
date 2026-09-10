@@ -41,28 +41,67 @@ source_y = published GSI elevation (m MSL) − 900
 That 900 m is an origin shift, **not** a vertical datum conversion. Local terrain elevations run
 933.39–1064.52 m MSL; the regional grid spans 243.68–3765.62 m MSL (the top of that range is Fuji).
 
-### Proposed Unreal mapping (verify before global use)
+### The Unreal mapping — SETTLED, and it is not the one the brief proposed
 
-Unreal is X = forward/north, Y = right/east, Z = up, in **centimetres**. The brief proposed
-X = east, Y = north. Taking that:
+Unreal is X = forward, Y = right, Z = up, in **centimetres**, and it is **left-handed**. The scene
+frame is **right-handed** (east x up = south). Converting between them must flip exactly one axis:
+the mapping determinant must be **-1**.
+
+The brief proposed `UE_X = x` (east), `UE_Y = -z` (north), `UE_Z = y` (up). That has determinant
+**+1**. It preserves handedness, so inside a left-handed engine it builds a **mirrored world**.
+
+This was checked three independent ways, all agreeing:
+
+| test | result |
+|---|---|
+| Determinant of the mapping matrix | `+1` — preserves handedness, therefore mirrors |
+| Bearing sum over 2,916 landmark pairs >300 m apart | `(true + proposed) mod 360 = 89.9924° ± 0.0208°`. A constant **sum** is the algebraic signature of a reflection; a rotation gives a constant difference. Mean azimuth error 88°, max 180° |
+| Signed area of 4,000 landmark triangles | proposed mapping preserves the real-world ENU orientation sign in **4000/4000** cases, which is exactly wrong for a left-handed engine |
+
+**Use this instead** (determinant −1, verified faithful on all 4,000 triangles, and reproducing
+true geodetic azimuth to a mean of 56 arcsec over 2,916 pairs):
 
 ```
-UE_X_cm = source_x_m × 100
-UE_Y_cm = −source_z_m × 100        # source z is SOUTH, so negate to get north
-UE_Z_cm = source_y_m × 100         # already elevation − 900
+UE_X_cm = -scene_z * 100      # north
+UE_Y_cm =  scene_x * 100      # east
+UE_Z_cm =  scene_y * 100      # up
+UE_yaw_degrees = (90 - degrees(scene_yaw)) mod 360
 ```
 
-**This is a left/right-handed flip and it is the classic place to introduce a mirrored world.**
-Do not accept it on inspection. Verify numerically against control points whose real-world
-position is independently known — the georegistration control points and the IMG-013 camera
-geotag are in `docs/research/`, and the viewer's destination table in `viewer/app.js` carries
-known scene positions (e.g. Fugaku Wind Cave approach at source x −38, z −18; Narusawa Ice Cave
-at 785, 284). Round-trip at least three of them through the AEQD projection back to WGS 84 and
-compare against the published coordinates before building anything on top.
+A second valid fix exists — `UE_X = x`, `UE_Y = +z`, i.e. deleting the minus sign, which leaves
+UE +X pointing east. It is equally faithful. The mapping above was chosen because +X = north is
+the convention georeferenced tooling and sun-position maths expect.
 
-If you keep the elevation shift, **document it in the level** — a UE Z of 0 is 900 m MSL, not sea
-level. Alternatively drop the shift for Unreal and use true MSL; either is fine, but pick one,
-write it down, and make every importer agree.
+All of this is implemented once, in `Scripts/aokigahara_geo.py`, and asserted by
+`Scripts/test_geo.py`, which passes 12 checks against 78 surveyed control points:
+
+```
+  projection reproduces 78 landmarks         median 0.0044 m, max 0.0062 m
+  falsifier: unnegated northing is wrong     median 2312.7 m
+  scene -> wgs84 -> scene round-trips        max 3.3e-06 m
+  height offset matches 78 elevation pairs   max 0.0000 m
+  UE mapping flips handedness                det = -1000000
+  agrees with pyproj over 78 landmarks       max 0.000003 m
+```
+
+The projection is **ellipsoidal geodesic** AEQD, not spherical. A spherical approximation
+(R = 6371008.8) is wrong by a mean of 7.6 m and a maximum of 31 m across the same landmarks — far
+larger than anything being reconstructed, and invisible without a control check. `aokigahara_geo`
+implements Vincenty geodesics directly and has no dependencies, so it runs inside Unreal's
+embedded Python.
+
+### What the control points do NOT prove
+
+They validate the **transform** to millimetres. They are **not** independent ground truth for
+**absolute** position: the scene and WGS 84 fields of those landmarks were both generated from the
+same OSM nodes by the same pipeline, and every one is tagged `locationConfidence: approximate`.
+Absolute georeferencing still rests on the 9 B+/B/B− controls in the research register, each of
+which says "validate against GSI before final lock", and those disagree with the OSM landmarks by
+up to **536 m** at Omuro Cave.
+
+So: the world is internally consistent and correctly oriented. Whether it sits in exactly the right
+place on Earth is a separate, still-open question, and one worth closing against GSI before any
+survey-grade claim is made.
 
 ---
 
