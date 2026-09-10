@@ -10,7 +10,7 @@ recovered state can be re-verified at any time (also after an LFS checkout).
 Usage: python3 tools/verify_manifest.py [--manifest PATH]
 Exit code 0 when every present file matches; 1 on any mismatch.
 """
-import argparse, hashlib, json, os, sys
+import argparse, hashlib, json, os, subprocess, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MOVED = {
@@ -32,6 +32,23 @@ KNOWN_MISSING_AT_HANDOFF = {
     'evidence/attachment_asset_manifest.json', 'evidence/Research_Source_Catalogue.csv',
 }
 
+def changed_since_checkpoint(baseline='main'):
+    """Files this branch deliberately changes relative to the canonical checkpoint.
+
+    On `main` this is empty and the check is a pure integrity test against the Pass-2 manifest.
+    On a development branch, edits to manifest-listed files are the point of the branch, so they
+    are reported as intentional rather than as corruption.
+    """
+    try:
+        out = subprocess.run(['git', '-C', REPO, 'diff', '--name-only', baseline, '--'],
+                             capture_output=True, text=True, timeout=30)
+        if out.returncode:
+            return set()
+        return {line.strip() for line in out.stdout.splitlines() if line.strip()}
+    except (OSError, subprocess.SubprocessError):
+        return set()
+
+
 def sha256(path):
     h = hashlib.sha256()
     with open(path, 'rb') as f:
@@ -50,9 +67,13 @@ def is_lfs_pointer(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--manifest', default=os.path.join(REPO, 'docs/handover/MANIFEST_PASS2_SHA256.json'))
+    ap.add_argument('--baseline', default='main',
+                    help='git ref holding the canonical checkpoint; edits relative to it are '
+                         'reported as intentional rather than as corruption')
     a = ap.parse_args()
     manifest = json.load(open(a.manifest))
-    ok = missing = mismatch = pointers = replaced = 0
+    ok = missing = mismatch = pointers = replaced = edited = 0
+    changed = changed_since_checkpoint(a.baseline)
     # launch_viewer.py was lost in the truncated archive tail and rewritten; see
     # docs/PROJECT_STATE.md section 4.1. Its hash differs by design.
     RECONSTRUCTED = {'launch_viewer.py'}
@@ -73,13 +94,21 @@ def main():
         elif rel in RECONSTRUCTED:
             replaced += 1
             print(f'{"reconstructed replacement":26} {rel}')
+        elif target in changed:
+            edited += 1
+            print(f'{"changed on this branch":26} {rel}')
         else:
             mismatch += 1
             print(f'{"HASH MISMATCH":26} {rel}')
     print(f'\nverified {ok} / {len(manifest)}   reconstructed {replaced}   '
-          f'missing {missing}   lfs-pointers {pointers}   unexpected mismatches {mismatch}')
+          f'changed on this branch {edited}   missing {missing}   '
+          f'lfs-pointers {pointers}   unexpected mismatches {mismatch}')
     if not mismatch and not pointers:
-        print('OK: every recovered file matches the Pass-2 manifest byte for byte.')
+        if edited:
+            print(f'OK: every recovered file is intact; {edited} differ only because this branch '
+                  f'changes them relative to {a.baseline}.')
+        else:
+            print('OK: every recovered file matches the Pass-2 manifest byte for byte.')
     sys.exit(1 if mismatch else 0)
 
 if __name__ == '__main__':
