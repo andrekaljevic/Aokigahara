@@ -135,9 +135,10 @@ recovery.
 | `viewer/assets/forest-instances.f32` | 1.3 MB | 53,999 corridor placements |
 | `renders/exports/Aokigahara_patch_E32_S10_compressed.glb` | 29.8 MB | Patch export from the deployed site |
 
-Three derived exports referenced by the viewer's download buttons — the cave corridor, the instanced
-forest and the assembled world — were **not** in the recovered archive. They are rebuildable from
-`construction_code/`. This is recorded in `docs/PROJECT_STATE.md` §3.1 rather than hidden.
+Three derived exports — the cave corridor, the instanced forest and the assembled world — were
+**not** in the recovered archive. They are rebuildable from `construction_code/`. The viewer greys
+out downloads for whichever of them a checkout lacks, naming the script that rebuilds each, rather
+than offering links that fail. `launch_viewer.py` keeps that index current.
 
 ---
 

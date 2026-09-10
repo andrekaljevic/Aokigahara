@@ -21,7 +21,15 @@ const events = [];
 page.on('console', m => { const t = m.type(); if (t === 'error' || t === 'warning') { events.push({type: t, text: m.text().slice(0, 500)}); say('[browser ' + t + ']', m.text().slice(0, 300)); } });
 page.on('pageerror', e => { events.push({type: 'pageerror', text: String(e.message).slice(0, 500)}); say('[pageerror]', e.message); });
 page.on('requestfailed', r => { events.push({type: 'requestfailed', text: r.url() + ' ' + (r.failure()?.errorText || '')}); say('[requestfailed]', r.url()); });
-page.on('response', r => { if (r.status() >= 400) { events.push({type: 'http' + r.status(), text: r.url()}); say('[http ' + r.status() + ']', r.url()); } });
+// A HEAD that 404s is the viewer's own download-availability probe, not a fault: the derived GLB
+// exports are rebuildable products that a given checkout may legitimately not contain. Record
+// those separately so a clean audit stays readable.
+page.on('response', r => {
+  if (r.status() < 400) return;
+  const probe = r.request().method() === 'HEAD';
+  events.push({type: probe ? 'availability-probe' : 'http' + r.status(), text: r.url()});
+  say(probe ? '[availability probe 404]' : '[http ' + r.status() + ']', r.url());
+});
 const t0 = Date.now();
 await page.goto(baseUrl, {waitUntil: 'load'});
 await page.waitForFunction(() => window.__aoki && window.__aoki.ready, null, {timeout: 1200000, polling: 500});

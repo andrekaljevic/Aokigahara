@@ -223,7 +223,8 @@ checkpoint, so `main` still holds the exact state the Fable session reached.
   (`export_forest.py`, `assemble_world.py`).
 
 None of these three is required to run the world. All three are documented here rather than
-silently dropped.
+silently dropped, and since the repair in §4.2 the viewer no longer advertises them as downloads
+when they are absent.
 
 ---
 
@@ -283,6 +284,17 @@ intermediate stage as well, with side-by-side composites at `renders/BEFORE_AFTE
 elevated cameras show the defects at full extent — 45.0 % of pixels change at
 `D5_above_canopy_look_down` and 37.6 % at `D4_above_canopy_look_out` — while eye-level cameras
 change 7.5 % or less because canopy and trunks occlude most distant ground.
+
+**4. Download controls made honest.** Two of the three derived exports the panel advertised are
+absent from the recovered archive, so those controls returned HTTP 404. The corridor button
+reported "The model download was interrupted. Try again." — advice that could never succeed.
+`launch_viewer.py` now records which derived exports a checkout actually contains in
+`viewer/assets/derived-exports.json`, rewriting it only when it changes, and the viewer greys out
+the ones that are missing, naming the script that rebuilds each. Where that index is absent — some
+other static server — it falls back to probing, which is noisier but always truthful. The audit
+renderer classifies an availability probe separately from a genuine failure so a clean audit stays
+readable. Verified: the panel now offers the regional terrain and the in-browser patch export,
+marks the corridor and wider-forest exports unavailable, and produces no console errors.
 
 **Checked and deliberately not chased.** Magnifying the distant ground reveals a fine dotted moiré.
 It is texture aliasing at oblique angles and it pre-dates this work: measured as the fraction of
@@ -375,7 +387,11 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
 
 1. Re-render the fixed cameras and compare distant-ground appearance against
    `renders/after_p4/` before/after evidence.
-2. Rebuild the three missing derived GLB exports so the viewer's download paths resolve.
+2. Rebuild the three missing derived GLB exports. The viewer no longer misreports them, but they
+   are still absent. The blocker is that `export_scene.py` and `export_forest.py` source tree
+   geometry from the Pass-1 `.npz` arrays, three of which were lost with the archive tail; they
+   would need to read the compiled `tree-library.glb` instead. Note also that the assembled world
+   would likely exceed GitHub's 100 MB per-file limit, so it may belong outside the repository.
 3. Ingest the GSJ 2016 Fuji Volcano vector geology in place of the current raster-derived Jōgan
    mask, which the dossier names as the highest-value geometry still to ingest.
 4. Add Pinus and Tsuga-Pinus community types so all seven surveyed communities are representable,

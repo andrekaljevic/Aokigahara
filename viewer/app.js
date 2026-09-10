@@ -205,7 +205,7 @@ async function init(){try{status('Loading measured terrain and mapped communitie
  indexLibrary(lib2,lib);indexLibrary(libOld,lib);for(const k of Object.keys(lib))if(k.startsWith('tree_')){for(const p of lib[k]){if(p.material.name.includes('leaves')){p.material.color.setRGB(.55,.62,.42);p.material.roughness=.95;}}}
  fernProto=protoMeshes(fern);const logParts=protoMeshes(log);if(logParts.length){logGeo=logParts[0].geometry;const lm=logParts[0].material;logMat=layerMaterial('log',{d:lm.map,n:lm.normalMap,r:lm.roughnessMap});logMat.name='Fallen log: dead_tree_trunk (CC0) + procedural moss overlay';}
  for(let k=0;k<5;k++)rockGeos.push(makeRockGeo(k*17+3));
- buildPaths(contexts.local);addWater(contexts.study);status('Opening the Fugaku forest corridor…',88);camera.position.set(32.14,0,-9.84);buildGroundPatch(32.14,-9.84);camera.position.y=groundY(32.14,-9.84)+1.72;camera.rotation.set(pitch,yaw,0);setSun();rebuildForest(true);ready=true;$('loading').style.opacity='0';setTimeout(()=>$('loading').style.display='none',650);updateLocation();animate();}catch(e){console.error(e);$('load-message').textContent='The landscape could not finish loading. Reload to retry, or download the GLB files.';$('menu-button').onclick=()=>{$('loading').style.display='none';$('panel').hidden=false;};}}
+ buildPaths(contexts.local);addWater(contexts.study);status('Opening the Fugaku forest corridor…',88);camera.position.set(32.14,0,-9.84);buildGroundPatch(32.14,-9.84);camera.position.y=groundY(32.14,-9.84)+1.72;camera.rotation.set(pitch,yaw,0);setSun();rebuildForest(true);ready=true;auditDownloads();$('loading').style.opacity='0';setTimeout(()=>$('loading').style.display='none',650);updateLocation();animate();}catch(e){console.error(e);$('load-message').textContent='The landscape could not finish loading. Reload to retry, or download the GLB files.';$('menu-button').onclick=()=>{$('loading').style.display='none';$('panel').hidden=false;};}}
 // ---------------------------------------------------------------- navigation
 const keys=new Set();let movePad={x:0,y:0},vertical=0;const clock=new THREE.Clock();let uiTimer=0;
 function tick(dt){const isPanel=!$('panel').hidden;if(entered&&!isPanel){let forward=(keys.has('KeyW')||keys.has('ArrowUp')?1:0)-(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-movePad.y;let side=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0)+movePad.x;const len=Math.max(1,Math.hypot(forward,side));forward/=len;side/=len;const speed=(mode==='fly'?(keys.has('ShiftLeft')?170:45):(keys.has('ShiftLeft')?4.6:1.9))*dt;const dx=(-Math.sin(yaw)*forward+Math.cos(yaw)*side)*speed,dz=(-Math.cos(yaw)*forward-Math.sin(yaw)*side)*speed;let nx=THREE.MathUtils.clamp(camera.position.x+dx,-13860,17860),nz=THREE.MathUtils.clamp(camera.position.z+dz,-10860,18860);if(mode==='walk'){let hit=false;for(const t of trees){if(t[6]>25)break;if(Math.hypot(nx-t[0],nz-t[2])<.28*t[3]+.15){hit=true;break;}}if(!hit){camera.position.x=nx;camera.position.z=nz;}const y=groundY(camera.position.x,camera.position.z);if(y!==null)camera.position.y=THREE.MathUtils.lerp(camera.position.y,y+1.72,Math.min(1,dt*10));}else{camera.position.x=nx;camera.position.z=nz;const up=(keys.has('Space')||keys.has('KeyE')?1:0)-(keys.has('ControlLeft')||keys.has('KeyQ')?1:0)+vertical;camera.position.y+=up*speed-Math.sin(pitch)*forward*speed;camera.position.y=Math.max(camera.position.y,(groundY(nx,nz)??0)+1.5);}}
@@ -236,6 +236,33 @@ $('export-patch').onclick=async()=>{const btn=$('export-patch');btn.disabled=tru
  for(const o of forestGroup.children){if(!o.isInstancedMesh)continue;const matrix=new THREE.Matrix4();for(let i=0;i<o.count;i++){o.getMatrixAt(i,matrix);const p=new THREE.Vector3().setFromMatrixPosition(matrix);if(Math.abs(p.x-camera.position.x)>60||Math.abs(p.z-camera.position.z)>60)continue;const c=new THREE.Mesh(o.geometry,o.material);c.name=o.name.split(' ')[0];c.applyMatrix4(matrix);g.add(c);}}
  for(const o of decorGroup.children){if(o.isInstancedMesh){const matrix=new THREE.Matrix4();for(let i=0;i<o.count;i++){o.getMatrixAt(i,matrix);const c=new THREE.Mesh(o.geometry,o.material===groundMats.rock?new THREE.MeshStandardMaterial({map:T.rockD,normalMap:T.rockN,roughness:1}):o.material===logMat?new THREE.MeshStandardMaterial({map:logMat.userData.shader?.uniforms.tRockD.value,roughness:1}):o.material);c.name=o.name;c.applyMatrix4(matrix);g.add(c);}}else g.add(o.clone(true));}
  const exporter=new GLTFExporter();const ab=await exporter.parseAsync(g,{binary:true,onlyVisible:true,maxTextureSize:1024});const url=URL.createObjectURL(new Blob([ab],{type:'model/gltf-binary'}));const a=document.createElement('a');a.href=url;a.download=`Aokigahara_patch_E${Math.round(camera.position.x)}_S${Math.round(camera.position.z)}.glb`;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);toast('GLB exported. Preserve the source manifest with your model.');}catch(e){console.error(e);toast('This browser could not export the patch. Use the prepared corridor GLB instead.');}finally{btn.disabled=false;btn.textContent='Export current forest patch · GLB';}};
+// ---------------------------------------------------------------- download availability
+// The corridor, wider-forest and assembled-world GLBs are derived exports, rebuilt by
+// construction_code/ rather than authored. They were not part of the recovered handover, so the
+// panel was advertising downloads that 404 — the corridor button in particular told the user to
+// "try again", which can never succeed. Check once and say what is actually true.
+const REBUILD={'Aokigahara_Cave_Corridor.glb':'construction_code/export_scene.py','Aokigahara_Instanced_Forest.glb':'construction_code/export_forest.py','Aokigahara_World.glb':'construction_code/assemble_world.py'};
+function markUnavailable(el,file){el.classList.add('unavailable');el.removeAttribute('href');el.removeAttribute('download');
+ const script=REBUILD[file]||'construction_code/';el.title=`${file} is a derived export and is not present in this checkout. Rebuild it with ${script}.`;
+ el.textContent=el.textContent.replace(/^Download\s+/,'')+' · not in this checkout';}
+// assets/derived-exports.json lists which of these a checkout actually contains. launch_viewer.py
+// refreshes it from models/ at startup, so it cannot go stale through the supported path. When it
+// is absent — some other static server — fall back to probing, which is slower and noisier but
+// always tells the truth.
+async function exportAvailability(){
+ try{const m=await json('assets/derived-exports.json');return f=>m.present.includes(f);}
+ catch(e){return async(f,url)=>{try{return (await fetch(url,{method:'HEAD'})).ok;}catch(_){return false;}};}}
+async function auditDownloads(){
+ const avail=await exportAvailability();
+ for(const a of [...document.querySelectorAll('#panel a.download')]){
+  const href=a.getAttribute('href');if(!href||href.startsWith('#'))continue;
+  const file=href.split('/').pop();
+  if(!await avail(file,href))markUnavailable(a,file);}
+ const btn=$('download-model');if(!btn)return;
+ let file='Aokigahara_Cave_Corridor.glb',url=null;
+ try{const m=await json('assets/corridor-download.json');file=m.fileName||file;url=new URL('assets/'+m.parts[0].file,location.href).href;}catch(e){}
+ if(!url||!await avail(file,url)){markUnavailable(btn,file);
+  btn.onclick=e=>{e.preventDefault();toast(`${file} is a derived export and is not in this checkout. Rebuild it with ${REBUILD[file]||'construction_code/'}, or use the regional terrain and the in-browser patch export.`,8000);};}}
 window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
 $('asset-credit').textContent='GSI elevation and aerial imagery; MOE vegetation; GSJ geology; © OpenStreetMap contributors (ODbL). Representative CC0 textures and fern, log and fir-spray/bark sources: Poly Haven. Trees, roots, lava relief, moss/litter distribution: procedural.';
 // Inspection hook for headless audit renders (fixed cameras, identical before/after). No visual effect.
