@@ -1,0 +1,89 @@
+{
+ "baseUrl": "http://127.0.0.1:8765/viewer/",
+ "viewport": [
+  1280,
+  800
+ ],
+ "readySeconds": 9,
+ "results": [
+  {
+   "ms": 5,
+   "pos": [
+    120,
+    139.16,
+    450
+   ],
+   "trees": 5303,
+   "calls": 101,
+   "tris": 9296860,
+   "name": "B1_deciduous_stand",
+   "wallSeconds": 151.9
+  },
+  {
+   "ms": 9,
+   "pos": [
+    120,
+    139.16,
+    450
+   ],
+   "trees": 5303,
+   "calls": 106,
+   "tris": 9590821,
+   "name": "B2_deciduous_lookup",
+   "wallSeconds": 10.6
+  },
+  {
+   "ms": 6,
+   "pos": [
+    120,
+    166.27,
+    450
+   ],
+   "trees": 5303,
+   "calls": 98,
+   "tris": 8998032,
+   "name": "B3_deciduous_above",
+   "wallSeconds": 12.3
+  },
+  {
+   "ms": 16,
+   "pos": [
+    60,
+    136.44,
+    520
+   ],
+   "trees": 5327,
+   "calls": 108,
+   "tris": 8301705,
+   "name": "B4_deciduous_midfield",
+   "wallSeconds": 12.9
+  },
+  {
+   "ms": 4,
+   "pos": [
+    120,
+    217.51,
+    450
+   ],
+   "trees": 5303,
+   "calls": 52,
+   "tris": 3947641,
+   "name": "B5_deciduous_distance",
+   "wallSeconds": 5.6
+  },
+  {
+   "ms": 5,
+   "pos": [
+    180,
+    137.83,
+    390
+   ],
+   "trees": 5312,
+   "calls": 102,
+   "tris": 9446789,
+   "name": "B6_deciduous_edge",
+   "wallSeconds": 12
+  }
+ ],
+ "events": []
+}

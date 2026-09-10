@@ -1,0 +1,98 @@
+{
+  "generator": "construction_code_v2/gen_broadleaf_atlas.py",
+  "seed": 7701,
+  "atlas": 1024,
+  "boxes": [
+    {
+      "box": [
+        16,
+        16,
+        330,
+        300
+      ],
+      "laterals": 9,
+      "leaves": 123,
+      "arrangement": "alternate"
+    },
+    {
+      "box": [
+        346,
+        16,
+        660,
+        300
+      ],
+      "laterals": 6,
+      "leaves": 157,
+      "arrangement": "opposite"
+    },
+    {
+      "box": [
+        676,
+        16,
+        1008,
+        300
+      ],
+      "laterals": 10,
+      "leaves": 136,
+      "arrangement": "alternate"
+    },
+    {
+      "box": [
+        16,
+        316,
+        330,
+        600
+      ],
+      "laterals": 6,
+      "leaves": 160,
+      "arrangement": "opposite"
+    },
+    {
+      "box": [
+        346,
+        316,
+        660,
+        600
+      ],
+      "laterals": 9,
+      "leaves": 116,
+      "arrangement": "alternate"
+    },
+    {
+      "box": [
+        676,
+        316,
+        1008,
+        600
+      ],
+      "laterals": 7,
+      "leaves": 198,
+      "arrangement": "opposite"
+    },
+    {
+      "box": [
+        16,
+        616,
+        240,
+        820
+      ],
+      "laterals": 4,
+      "leaves": 60,
+      "arrangement": "alternate"
+    },
+    {
+      "box": [
+        256,
+        616,
+        480,
+        820
+      ],
+      "laterals": 3,
+      "leaves": 88,
+      "arrangement": "opposite"
+    }
+  ],
+  "status": "PROCEDURAL representative deciduous foliage. Not a scan, not a species determination, not captured at Aokigahara.",
+  "evidence_basis": "The vegetation survey behind the project blueprint distinguishes a deciduous broadleaved community associated with deeper-soil sites that escaped the Jogan lava. Leaf outline, venation, colour spread and shoot arrangement are interpretive.",
+  "coverage_above_cutoff": 0.2605
+}

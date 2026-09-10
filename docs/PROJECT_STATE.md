@@ -109,8 +109,10 @@ images it cannot account for.
 The recovered package is **production pass 2**, dated 2026-09-10 in
 `Aokigahara_3D_Provenance.json` → `productionPass2`. It is the most advanced coherent state
 available and it is what this repository preserves. Pass 1 is present only where pass 2 still
-depends on it (the Pass-1 `tree-library.glb` supplies the `tree_2` / `tree_3` broadleaf variants
-that pass 2 continues to instance).
+depends on it: at the checkpoint the Pass-1 `tree-library.glb` supplied the `tree_2` / `tree_3`
+broadleaf variants that pass 2 continued to instance. On `dev/generational-visual-upgrade` that
+dependency has been replaced by a purpose-built broadleaf library (§4.2.5), and the Pass-1 file is
+retained as a record rather than loaded.
 
 The `Aokigahara_patch_E32_S10_compressed.glb` export supplied from the deployed site independently
 confirms the deployed runtime is pass 2: its 8,857 nodes carry tree-library-v2 mesh names
@@ -145,6 +147,9 @@ blends four PBR sets in world space with anti-tiling rotation and a moss-height 
 | `snag_a/b` | Standing dead stems, broken tops | 1,602–1,623 |
 | `sap_tsuga`, `sap_hinoki`, `sap_small` | Regeneration stems 1.5–6 m | 3,551–4,260 |
 | `log_a/b`, `rock_a–d` | Fallen timber and lava blocks | 294–1,280 |
+
+The deciduous component was **not** part of this library and kept the Pass-1 representation. That
+gap is closed on `dev/generational-visual-upgrade` by a separate broadleaf library; see §4.2.5.
 
 Every mature tree carries a modelled surface-root system: 7–11 roots per stem riding over the lava
 with wobble, forking and moss vertex-tint on upper surfaces. Bark uses buttress flare in the lowest
@@ -234,7 +239,8 @@ checkpoint, so `main` still holds the exact state the Fable session reached.
 | World terrain mesh | `models/Aokigahara_Surface_Terrain.glb` (22.6 MB) | 32 × 30 km, 895,734 triangles, includes Fuji relief |
 | Regional terrain | `models/Aokigahara_Regional_Terrain.glb` (11.8 MB) | Lighter context import |
 | Canonical vegetation | `viewer/assets/tree-library-v2.glb` | See §2.2 |
-| Legacy vegetation | `viewer/assets/tree-library.glb` | Pass-1 library, **still required** for `tree_2`/`tree_3` broadleaf variants |
+| Deciduous vegetation | `viewer/assets/tree-library-broadleaf.glb` | 3 variants × 3 LODs; added on `dev`, see §4.2.5 |
+| Legacy vegetation | `viewer/assets/tree-library.glb` | Pass-1 library. Required at the `main` checkpoint for `tree_2`/`tree_3`; **retained but no longer loaded** on `dev` |
 | Corridor placements | `viewer/assets/forest-instances.f32` | 53,999 records, 6 floats each |
 | Wide forest placements | `data/forest-wide.f32` | 467,601 records; first 53,999 duplicate the corridor set |
 | Hero and detail models | `viewer/assets/models/{fir_tree_c,fern_02,dead_tree_trunk}.glb` | Poly Haven CC0 |
@@ -326,6 +332,88 @@ renderer classifies an availability probe separately from a genuine failure so a
 readable. Verified: the panel now offers the regional terrain and the in-browser patch export,
 marks the corridor and wider-forest exports unavailable, and produces no console errors.
 
+**5. The deciduous component given a real tree library.** Tree library v2 gave the conifers
+modelled roots, alpha-cut spray foliage and three levels of detail. The deciduous broadleaved
+community never got that pass, and kept the Pass-1 representation. Probed in the running page, the
+Pass-1 broadleaf material reported `map=false`, `alphaTest=0`, `color=#c4cead` — flat untextured
+geometry, coloured in the runtime because there was no foliage source for it at all — and the
+library held only `high` and `low` meshes, with no `far`, so `rebuildForest` substituted the `low`
+mesh at every distance beyond the high threshold.
+
+Counted from `tree-library.glb` itself, `tree_2_high` and `tree_3_high` are **27,656 triangles**
+each — more than twice the most expensive conifer in library v2 — and `tree_2_low` / `tree_3_low`
+are 842, which is what every broadleaf beyond about 50 m rendered at, however far away, against 32
+for a conifer impostor at the same range. So the Pass-1 broadleaves were simultaneously the most
+expensive tree in the near field and 26× the cost of a conifer in the far field, while reading as
+pale blobs on bare stems.
+
+(An earlier note in this session put the far-field figure at 1,684 triangles and "fifty-three
+times". That was taken from a runtime probe that double-counted the mesh's two primitives. The
+file is the authority: 842 and 26×.)
+
+`construction_code_v2/gen_broadleaf_atlas.py` builds the missing foliage source and
+`construction_code_v2/generate_broadleaf.py` builds the trees, importing the mesh and GLB machinery
+from `generate_trees_v2.py` so the output format cannot drift from the conifer library.
+
+| Variant | Form | high | low | far |
+|---|---|---|---|---|
+| `broadleaf_a` | Fagus-like: smooth bole, high fork, dense rounded crown | 13,530 | 1,427 | 32 |
+| `broadleaf_b` | Quercus-like: stout bole, heavy low limbs, broad irregular crown | 12,901 | 1,075 | 32 |
+| `broadleaf_c` | Acer-like: slender, opposite branching, open airy crown | 10,367 | 1,102 | 32 |
+
+Against Pass-1 that is less than half the near-field cost (27,656 → 10,367–13,530), a little more
+in the mid band (842 → 1,075–1,427, buying a crown that reads as a crown instead of a bare stem),
+and 26× less beyond 230 m (842 → 32). It also puts them in the same band as the conifers
+(9,119–12,187 high, 744–914 low, 32 far) rather than at twice their near-field cost.
+
+Two findings drove the shape of the work, and both are worth recording because they are easy to get
+wrong again:
+
+- *A crown is a volume, not a plate.* Emitting every primary limb from one fork point produces a
+  shallow umbrella. The primaries now leave a continuing leader at staggered heights, with the
+  lowest running out near-horizontal and the highest steeply, so the crown closes as a dome.
+- *An atlas box is scaled by the card, not by the leaf.* A runtime foliage card is roughly a metre
+  across, so whatever fraction of its box one lamina occupies is the fraction of a metre that leaf
+  appears to be. The first atlas drew a single shoot with sixteen large leaves per box, which put
+  each lamina at about 0.35 m — five times a Fagus crenata leaf, and unmistakable at eye level.
+  Each box now holds a branchlet: a main axis carrying lateral shoots with their own small leaves,
+  1,038 laminae across the eight boxes, each about 0.12 of its box height and so about 0.1 m on a
+  card. Mean alpha coverage within a box is 0.429. This cost no triangles at all.
+
+**Wiring.** `V2` variants 8 and 9 now resolve to `broadleaf_a` and `broadleaf_b`, the sub-canopy
+densification layer draws `broadleaf_b` and `broadleaf_c`, and the `far`-to-`low` substitution is
+gone. `viewer/assets/tree-library.glb` supplied only `tree_0`–`tree_3`, of which the runtime used
+two; nothing else referenced it, so it is **no longer loaded**. The file is retained in the
+repository as the Pass-1 record — it is not deleted — but a checkout no longer fetches 12.2 MB of
+meshes that no bucket can ask for. The runtime warns to the console if any of the nine expected
+broadleaf meshes is missing rather than silently rendering nothing.
+
+**Measured, at six deciduous-stand cameras** (`tools/cams_broadleaf.json`; evidence in
+`renders/broadleaf_library/`, composites at `renders/BEFORE_AFTER_B*.jpg`):
+
+| Camera | triangles before | after | change |
+|---|---|---|---|
+| B1 stand, eye level | 9,296,860 | 8,219,201 | −11.6 % |
+| B2 looking up into crowns | 9,590,821 | 8,513,162 | −11.2 % |
+| B3 above canopy | 8,998,032 | 7,920,373 | −12.0 % |
+| B4 midfield | 8,301,705 | 8,006,357 | −3.6 % |
+| B5 elevated, distance | 3,947,641 | 3,402,948 | −13.8 % |
+| B6 stand edge | 9,446,789 | 8,684,864 | −8.1 % |
+
+Draw calls are unchanged except at B4, where they rise from 108 to 112 because three broadleaf
+variants now occupy more LOD buckets than two did. Both runs recorded zero console errors, zero page
+errors and zero failed requests.
+
+Between 50 % and 74 % of pixels change at the five cameras that look into the stand, and 9.4 % at
+B5, where the broadleaves occupy one corner of a frame that is mostly conifer, ground and haze —
+yet B5 is the camera that sheds the most triangles, because it is where the missing `far` impostor
+was costing the most. Read the numbers with the plates, not instead of them.
+
+Dropping the Pass-1 library takes the bytes a cold load transfers from **110.1 MB to 102.2 MB**.
+It does **not** measurably change load time: three cold loads each way in this environment gave
+2.8, 2.8, 3.1 s on both sides. An earlier single-run comparison appeared to show a large
+improvement and was warm-up noise; the figure above is the one that reproduces.
+
 **Checked and deliberately not chased.** Magnifying the distant ground reveals a fine dotted moiré.
 It is texture aliasing at oblique angles and it pre-dates this work: measured as the fraction of
 image energy in the 3–12 pixel band over the same crop, the Fable session's own renders score
@@ -333,10 +421,35 @@ image energy in the 3–12 pixel band over the same crop, the Fable session's ow
 surface raised it by about 4 % relative, which is the surface becoming visible rather than a new
 artifact. It has not been tested on hardware GL.
 
-**Regression check.** The eight standard audit cameras were re-rendered after every change. All
-eight still reproduce the source session's triangle and draw-call counts exactly, with zero console
-errors, and the two cameras that see only near-field ground (`C2_start_lookdown`,
-`C5_fugaku_approach`) remain bit-identical to the checkpoint. The near-field path was not touched.
+**Regression check.** The eight standard audit cameras were re-rendered after every change. Through
+repairs 1–4 all eight still reproduced the source session's triangle and draw-call counts exactly,
+with zero console errors, and the two cameras that see only near-field ground
+(`C2_start_lookdown`, `C5_fugaku_approach`) remained bit-identical to the checkpoint. The
+near-field path was not touched.
+
+Repair 5 necessarily ends that exact correspondence, because it changes which meshes are
+instanced. It is worth recording what it does and does not move
+(`renders/broadleaf_library/regression/`, against `renders/audit_recovery/audit.json`):
+
+| Camera | checkpoint | now | change | draw calls |
+|---|---|---|---|---|
+| C1_start_corridor | 7,507,695 | 7,405,713 | −1.4 % | 95 → 99 |
+| C2_start_lookdown | 7,200,799 | 7,097,311 | −1.4 % | 86 → 90 |
+| C3_offpath_trunks | 7,153,585 | 6,985,711 | −2.3 % | 92 → 92 |
+| C4_path_ahead | 7,702,147 | 7,620,507 | −1.1 % | 89 → 89 |
+| C5_fugaku_approach | 7,111,871 | 7,111,871 | **0.0 %** | 87 → 87 |
+| C6_arbitrary_east | 7,353,326 | 7,187,669 | −2.3 % | 91 → 94 |
+| R1_img013_geotag_overcast | 7,861,107 | 7,894,814 | +0.4 % | 94 → 94 |
+| C1_start_corridor_overcast | 7,507,695 | 7,405,713 | −1.4 % | 95 → 99 |
+
+`C5_fugaku_approach` is the control and it is exact to the triangle: no deciduous stem falls in
+that frame, so nothing about it moves. Where broadleaves are present the count falls by 1–2 %, and
+draw calls rise by up to four because three variants across three LODs occupy more buckets than two
+variants across two. `R1` is the single camera that costs *more*, by 0.4 %, and it should: it has
+broadleaves close enough to draw at `high`, where the change is 27,656 triangles of Pass-1 blob
+traded for 10,367–13,530 of tree — cheaper per stem, but instanced against a `high` bucket that
+previously held far less geometry than the conifers around it. Zero console errors, zero page
+errors, zero failed requests across all eight.
 
 ---
 
@@ -426,6 +539,18 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
    mask, which the dossier names as the highest-value geometry still to ingest.
 4. Add Pinus and Tsuga-Pinus community types so all seven surveyed communities are representable,
    and drive the mix from the MoE vegetation classes already in the terrain masks.
+4a. Apply the mid-LOD crown-mass treatment from §4.2.5 to the **conifers**. The broadleaf work
+   exposed the same defect in `tree-library-v2.glb`: its `low` meshes carry 744–914 triangles of
+   spray cards sized off the shoot rather than off the crown, so between roughly 46 m and 230 m a
+   conifer thins to a pole with a small tuft. It is plainly visible as the bare band across the
+   middle distance in `renders/broadleaf_library/after/B3_deciduous_above.png` and across the whole
+   stand in `B5_deciduous_distance.png`, and it is *pre-existing* — it is equally present in the
+   `before/` renders and in the checkpoint. The fix is mechanical, and `generate_broadleaf.py`
+   already contains the working form of it: size crown cards in metres against the crown the limb
+   system actually reaches, and let the card count follow crown area. The reason it was not done in
+   this pass is that regenerating `tree-library-v2.glb` would change Fable's canonical asset and
+   with it the eight-camera triangle-count regression that currently pins the recovery as faithful.
+   It should be done as its own pass, with a fresh baseline recorded first.
 5. Give the ground beyond the 120 m patch real micro-relief. Material and shading are now
    continuous across that boundary, but the geometry is not: the patch carries lava relief at 0.6 m
    sampling while the corridor terrain outside it is the plain 8 m DEM surface. A coarser

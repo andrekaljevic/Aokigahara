@@ -23,15 +23,22 @@ built it. The world loads and renders. Verified in this environment under softwa
 | Fixed-camera audit | 8 of 8 cameras reproduce the source session's triangle and draw-call counts **exactly** |
 | Per frame | 7.1–7.9 M triangles, 86–95 draw calls at 1280 × 800 |
 
+Those figures describe the checkpoint on `main`. On `dev` the broadleaf library changes which
+meshes are instanced, so the counts shift by −2.3 % to +0.4 %; the one camera with no deciduous
+stem in frame is still exact to the triangle. The comparison is in `docs/PROJECT_STATE.md` §4.2.
+
 No frame rate has been measured on any target device.
 
 Running today: the near-field procedural lava and moss ground system, tree library v2 with modelled
-surface roots, stand densification across three stem-size layers, deadwood, lava blocks, ferns and
-three daylight presets.
+surface roots, a deciduous broadleaf library, stand densification across three stem-size layers,
+deadwood, lava blocks, ferns and three daylight presets.
 
 On `dev/generational-visual-upgrade`, the interrupted pass has been continued: the preset selector
 is finished and the distant-ground defect the source session was diagnosing is fixed, with
-identical-camera evidence in `renders/distant_ground_fix/`.
+identical-camera evidence in `renders/distant_ground_fix/`. The deciduous component, which tree
+library v2 never reached, now has a tree library of its own instead of the Pass-1 untextured
+placeholders — three species-suggestive variants across three levels of detail, evidence in
+`renders/broadleaf_library/`.
 
 ---
 
@@ -77,6 +84,12 @@ an import map. Terrain grids are raw little-endian `Float32Array` and `Uint8Arra
 directly. Asset generation is Python (NumPy, Pillow, SciPy, trimesh) under `construction_code/` and
 `construction_code_v2/`.
 
+Trees are built by `construction_code_v2/`: `generate_trees_v2.py` for the conifers, snags,
+saplings, logs and lava blocks, and `generate_broadleaf.py` for the deciduous variants, which
+imports the former's mesh and GLB machinery so the two libraries cannot drift apart. Foliage is
+alpha-cut cards sampled from an atlas; the deciduous atlas is procedural
+(`gen_broadleaf_atlas.py`), the conifer one is Poly Haven CC0.
+
 Ground shading is a custom multi-layer material: four PBR sets — moss, basalt, litter and trail —
 blended in world space per vertex or procedurally, with anti-tiling rotation and triplanar
 projection for rocks and logs.
@@ -114,7 +127,7 @@ construction_code/    Pass-1 asset build scripts
 construction_code_v2/ Pass-2 tree-library and texture generators
 construction_inputs/  Pass-1 procedural tree arrays
 source_manifests/  Per-asset provenance, checksums and licence records
-tools/             Manifest verification, portable audit renderer, research generation scripts
+tools/             Manifest verification, portable audit renderer, library preview, before/after composites
 ```
 
 Directory names follow the original package so that no path inside `viewer/` was rewritten during
@@ -130,7 +143,8 @@ recovery.
 | `models/Aokigahara_Regional_Terrain.glb` | 11.8 MB | Coarser context terrain |
 | `viewer/assets/models/fir_tree_c.glb` | 22.5 MB | Mature fir representative, Poly Haven CC0 |
 | `viewer/assets/tree-library-v2.glb` | 12.5 MB | 11 procedural variants, 37 meshes across 3 LODs |
-| `viewer/assets/tree-library.glb` | 12.2 MB | Pass-1 library, still required for broadleaf variants |
+| `viewer/assets/tree-library-broadleaf.glb` | 5.2 MB | 3 deciduous variants across 3 LODs, with foliage atlas |
+| `viewer/assets/tree-library.glb` | 12.2 MB | Pass-1 library. Retained as a record; no longer loaded on `dev` |
 | `data/forest-wide.f32` | 11.2 MB | 467,601 tree placements |
 | `viewer/assets/forest-instances.f32` | 1.3 MB | 53,999 corridor placements |
 | `renders/exports/Aokigahara_patch_E32_S10_compressed.glb` | 29.8 MB | Patch export from the deployed site |
@@ -205,15 +219,19 @@ protection boundaries and the practical build extent are related but are **not o
 
 - No individual tree, root, rock or log is surveyed; placement is procedural, constrained by mapped
   community classes rather than by a census.
-- Bark, foliage, fern and log sources are Poly Haven CC0 representatives, not captured at
-  Aokigahara. The "hinoki" and "tsuga" variants are species-suggestive only, and establish no
-  botanical identity.
+- Bark, fern and log sources are Poly Haven CC0 representatives, not captured at Aokigahara. The
+  conifer foliage atlas is theirs too; the deciduous one is drawn procedurally. The "hinoki",
+  "tsuga", beech, oak and maple variants are species-suggestive only and establish no botanical
+  identity: no leaf outline here is a species determination.
 - Ground materials are procedurally synthesised, not photogrammetry of the site.
 - Terrain is 8 m output sampling of the GSI DEM5A web grid, not a native 1 m survey; lava fissures
   and overhangs below that sampling are absent.
 - Cave destinations are surface approach references only. No cave interior is modelled.
 - Of the seven forest community types the underlying survey distinguishes, the runtime represents
   three. Pinus and Tsuga-Pinus communities are not modelled at all.
+- Between roughly 46 m and 230 m a conifer switches to a mid-detail mesh whose foliage is too
+  sparse, so the middle distance thins to poles. This is visible in `renders/broadleaf_library/`
+  and pre-dates this work; the fix is described in `docs/PROJECT_STATE.md` §6.4a.
 - The 120 m near-field patch edge is no longer a change in material or shading, but it is still a
   change in ground geometry detail: inside it the lava relief is sampled at 0.6 m, outside it the
   surface is the plain 8 m DEM.

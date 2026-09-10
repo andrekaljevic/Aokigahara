@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Tree library preview</title>
+<style>html,body{margin:0;background:#8a99a6;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"../viewer/vendor/three.module.js","three/addons/":"../viewer/vendor/addons/"}}</script>
+</head><body><script type="module">
+// Renders every mesh of a tree library GLB in a row, at one metre-consistent scale, so a
+// generator change can be judged without loading the whole world. Query parameters:
+//   ?lib=viewer/assets/tree-library-broadleaf.glb&lod=high&sun=38&only=tsuga_a,hinoki_a
+// Names are matched as <variant>_<lod>. Used by tools/preview_library.mjs.
+import*as THREE from 'three';
+import{GLTFLoader}from 'three/addons/loaders/GLTFLoader.js';
+const q=new URLSearchParams(location.search);
+const lib=q.get('lib')||'viewer/assets/tree-library-broadleaf.glb';
+const lod=q.get('lod')||'high';
+const only=(q.get('only')||'').split(',').filter(Boolean);  // substring filter on mesh name
+const sunEl=+(q.get('sun')||38);
+const W=innerWidth,H=innerHeight;
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+renderer.setSize(W,H);renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x8a99a6);
+scene.fog=new THREE.Fog(0x8a99a6,90,420);
+const sun=new THREE.DirectionalLight(0xfff2dd,2.6);
+sun.position.set(Math.cos(sunEl*Math.PI/180)*60,Math.sin(sunEl*Math.PI/180)*60,26);
+scene.add(sun);
+scene.add(new THREE.HemisphereLight(0xbcd0e0,0x4a4636,1.5));
+scene.add(new THREE.AmbientLight(0xffffff,0.35));
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(600,600),
+  new THREE.MeshStandardMaterial({color:0x5d5a44,roughness:1}));
+ground.rotation.x=-Math.PI/2;scene.add(ground);
+const camera=new THREE.PerspectiveCamera(38,W/H,0.1,2000);
+new GLTFLoader().load('../'+lib,g=>{
+  const picked=[];
+  g.scene.traverse(o=>{if(o.isMesh&&o.name.endsWith('_'+lod))picked.push(o);});
+  // a node may hold several primitives under one mesh name; group by the node above it
+  const groups=new Map();
+  g.scene.traverse(o=>{if(o.isMesh&&(o.name.endsWith('_'+lod)||(o.parent&&o.parent.name.endsWith('_'+lod)))){
+    const key=o.name.endsWith('_'+lod)?o.name:o.parent.name;
+    if(!groups.has(key))groups.set(key,[]);groups.get(key).push(o);}});
+  let keys=[...groups.keys()].sort();
+  if(only.length)keys=keys.filter(k=>only.some(o=>k.includes(o)));
+  let x=0;const spans=[];
+  for(const k of keys){
+    const holder=new THREE.Group();
+    for(const m of groups.get(k))holder.add(m.clone());
+    const bb=new THREE.Box3().setFromObject(holder);
+    const w=Math.max(bb.max.x-bb.min.x,bb.max.z-bb.min.z),ht=bb.max.y;
+    holder.position.x=x+w/2;scene.add(holder);
+    spans.push({name:k,width:+w.toFixed(2),height:+ht.toFixed(2),
+      tris:groups.get(k).reduce((s,m)=>s+m.geometry.index.count/3,0)});
+    x+=w*1.18+1.5;
+  }
+  const maxH=Math.max(...spans.map(s=>s.height),4);
+  const total=x;
+  const dist=Math.max(total,maxH*1.6)/(2*Math.tan(19*Math.PI/180))*1.05;
+  camera.position.set(total/2,maxH*0.52,dist);
+  camera.lookAt(total/2,maxH*0.46,0);
+  // fog has to follow the pull-back distance, or a wide row renders uniformly grey
+  scene.fog.near=dist*0.85;scene.fog.far=dist*3.2;
+  sun.position.set(total/2+Math.cos(sunEl*Math.PI/180)*80,Math.sin(sunEl*Math.PI/180)*80,dist*0.5);
+  sun.target.position.set(total/2,maxH*0.4,0);scene.add(sun.target);
+  window.__stats={lib,lod,meshes:spans};
+  window.__render=()=>renderer.render(scene,camera);
+  window.__done=true;
+},undefined,e=>{window.__error=String(e);window.__done=true;window.__render=()=>{};});
+</script></body></html>

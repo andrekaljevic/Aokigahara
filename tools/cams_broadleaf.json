@@ -1,0 +1,8 @@
+[
+ {"name":"B1_deciduous_stand","x":120,"z":450,"yaw":0.5,"pitch":-0.05,"preset":"soft","sun":38},
+ {"name":"B2_deciduous_lookup","x":120,"z":450,"yaw":2.6,"pitch":0.42,"preset":"soft","sun":38},
+ {"name":"B3_deciduous_above","x":120,"z":450,"yaw":0.9,"pitch":-0.45,"eye":34,"preset":"soft","sun":38},
+ {"name":"B4_deciduous_midfield","x":60,"z":520,"yaw":-1.0,"pitch":-0.05,"preset":"soft","sun":38},
+ {"name":"B5_deciduous_distance","x":120,"z":450,"yaw":0.9,"pitch":-0.30,"eye":95,"preset":"overcast","sun":52},
+ {"name":"B6_deciduous_edge","x":180,"z":390,"yaw":-2.1,"pitch":-0.08,"preset":"clear","sun":60}
+]
