@@ -35,3 +35,20 @@ Thumbs.db
 .playwright/
 playwright-report/
 test-results/
+
+# ---------------------------------------------------------------- Unreal Engine
+# Generated, machine-local or gigabyte-scale. The .uproject, Config/, Content/,
+# Source/, Plugins/ and Docs/ under unreal/ ARE tracked.
+unreal/**/Binaries/
+unreal/**/Build/
+unreal/**/DerivedDataCache/
+unreal/**/Intermediate/
+unreal/**/Saved/
+unreal/**/.vs/
+unreal/**/*.xcworkspace/
+unreal/**/*.xcodeproj/
+unreal/**/*.sln
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
