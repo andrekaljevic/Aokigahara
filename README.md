@@ -44,7 +44,28 @@ sixth of the crown so the whole middle distance thinned to bare poles, have been
 
 ---
 
-## Running it
+## Exploring it in a browser
+
+**https://andrekaljevic.github.io/Aokigahara/**
+
+Published from `dev/generational-visual-upgrade` by `.github/workflows/pages.yml`, which ships
+`viewer/` and `models/` — the only two directories a headless capture proved the runtime fetches.
+The render evidence, research corpus, construction scripts and manifests stay in the repository
+and are not published.
+
+A cold load transfers about 102 MB, so first entry takes a while on a slow connection; the browser
+caches it afterwards. Walk with WASD, look with the mouse, `F` to fly.
+
+**One-time setup, and it needs a repository admin:** the deploy job builds the site correctly but
+cannot switch Pages on for the first time — the Actions token gets `Resource not accessible by
+integration` from the create-a-Pages-site endpoint. In **Settings → Pages**, set **Source** to
+**GitHub Actions**. After that the workflow deploys on every push touching `viewer/` or `models/`,
+and can be run by hand from the Actions tab. Note that this repository is private: GitHub serves
+Pages for a private repository only on a paid plan, and the site is then visible only to accounts
+with repository access. On a free plan the repository would have to be made public first — which
+is a decision about the research corpus in `docs/`, not just about the viewer.
+
+## Running it locally
 
 Requires Python 3 and a browser with WebGL 2. No build step and no dependencies.
 
