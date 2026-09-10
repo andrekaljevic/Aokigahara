@@ -1,0 +1,89 @@
+{
+ "baseUrl": "http://127.0.0.1:8765/viewer/",
+ "viewport": [
+  1280,
+  800
+ ],
+ "readySeconds": 4.2,
+ "results": [
+  {
+   "ms": 4,
+   "pos": [
+    32.14,
+    127.42,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 94,
+   "tris": 7568142,
+   "name": "M1_canopy_start",
+   "wallSeconds": 79.8
+  },
+  {
+   "ms": 3,
+   "pos": [
+    32.14,
+    177.82,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 58,
+   "tris": 3657275,
+   "name": "M2_high_overlook",
+   "wallSeconds": 5.2
+  },
+  {
+   "ms": 3,
+   "pos": [
+    32.14,
+    103.67,
+    -9.84
+   ],
+   "trees": 5146,
+   "calls": 99,
+   "tris": 7882857,
+   "name": "M3_eye_level_through_stand",
+   "wallSeconds": 13.2
+  },
+  {
+   "ms": 8,
+   "pos": [
+    -38,
+    144.86,
+    -18
+   ],
+   "trees": 5136,
+   "calls": 55,
+   "tris": 3861588,
+   "name": "M4_fugaku_overcast",
+   "wallSeconds": 7
+  },
+  {
+   "ms": 5,
+   "pos": [
+    400,
+    109.11,
+    -400
+   ],
+   "trees": 5210,
+   "calls": 70,
+   "tris": 5402615,
+   "name": "M5_east_clear",
+   "wallSeconds": 8.6
+  },
+  {
+   "ms": 6,
+   "pos": [
+    785,
+    162.3,
+    284
+   ],
+   "trees": 4913,
+   "calls": 67,
+   "tris": 5203911,
+   "name": "M6_narusawa_canopy",
+   "wallSeconds": 8
+  }
+ ],
+ "events": []
+}

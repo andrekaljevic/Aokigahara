@@ -1,0 +1,8 @@
+[
+ {"name":"M1_canopy_start","x":32.14,"z":-9.84,"yaw":0.45,"pitch":-0.35,"eye":30,"preset":"soft","sun":38},
+ {"name":"M2_high_overlook","x":32.14,"z":-9.84,"yaw":0.45,"pitch":-0.30,"eye":90,"preset":"soft","sun":38},
+ {"name":"M3_eye_level_through_stand","x":32.14,"z":-9.84,"yaw":0.45,"pitch":0.02,"preset":"soft","sun":38},
+ {"name":"M4_fugaku_overcast","x":-38,"z":-18,"yaw":-2.8,"pitch":-0.38,"eye":60,"preset":"overcast","sun":52},
+ {"name":"M5_east_clear","x":400,"z":-400,"yaw":1.1,"pitch":-0.28,"eye":40,"preset":"clear","sun":60},
+ {"name":"M6_narusawa_canopy","x":785,"z":284,"yaw":0.7,"pitch":-0.30,"eye":45,"preset":"soft","sun":38}
+]

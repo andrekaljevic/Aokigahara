@@ -10,6 +10,20 @@ Evidence basis for form: ECO-001/ECO-002 (Tsuga/hinoki stand, heterogeneous size
 IMG-007/008/013 & ECO-016 (surface roots spreading over lava, moss on roots and trunk bases, leaning trunks).
 Output: viewer/assets/tree-library-v2.glb  with meshes  <variant>_<lod>  lod in {high, low, far}.
 Y up, metres, trunk base at y=0. Deterministic seeds.
+
+--- modified on dev/generational-visual-upgrade -------------------------------------------------
+The mid-detail (`low`) crown-mass cards were rebuilt. As shipped they were four cards sized
+`cw*1.1` and then passed through `sz*h*1.15`, where h is the atlas box height as a fraction of the
+atlas: about 2 m of card inside a crown 12 m across, so between roughly 46 m and 230 m — most of
+the visible forest — a stand thinned to poles. They are now sized in metres and seeded on the
+foliage the branch pass already built, so the added mass follows each tree's real habit. `high`,
+`far`, snag, log and rock meshes are untouched and remain byte-identical to the shipped library.
+
+Rebuilding needs two steps, because textures here are embedded by reading the files in `work/tex/`
+verbatim and that directory is scratch the repository does not carry. Use
+`tools/rebuild_tree_library.sh`, which regenerates and then grafts the shipped image payload back
+on; run unmodified it reproduces the original library byte-for-byte. Rebuilding without the graft
+inflates the file from 12.5 MB to 16.0 MB for no visual gain.
 """
 from pathlib import Path
 import json, math, struct, hashlib
@@ -219,12 +233,40 @@ def build_conifer(kind, seed, height, lod, dead=False, lean=None, multistem=Fals
                     q = 0.3 + 0.7*m2/3
                     put_card(interp(sp, q) + sideways*rng.uniform(-0.15, 0.15), sd, sideways, 1.1, drop, crossed=(m2 == 3))
     if not hi and not dead:
-        # crown-mass cards for the mid-distance LOD: large horizontal/vertical spray cards inside the crown (canopy closure from below)
-        ctop = interp(trunk, 0.86); cmid = interp(trunk, 0.66); cw = (4.2 if hemlock else 3.4)*(height/18)
-        for k, (c, sd, nm, sz) in enumerate([(ctop, np.array([1, 0, 0]), np.array([0, 1, 0]), cw*1.1), (ctop + np.array([0, -1.2, 0]), np.array([0, 0, 1]), np.array([0, 1, 0]), cw*1.0),
-                                             (cmid, np.array([0, 1, 0]), np.array([1, 0, 0.3]), cw*0.9), (cmid, np.array([0, 1, 0]), np.array([-0.3, 0, 1]), cw*0.9)]):
-            box = CARDS[3 if k % 2 == 0 else 4]; w = (box[2]-box[0])/ATLAS; h = (box[3]-box[1])/ATLAS
-            foliage.card(c, sd, nm, sz*h*1.15, sz*w*1.15, box, tint*0.8, fold=0.05)
+        # Crown-mass cards for the mid-distance LOD. These carry the silhouette between roughly
+        # 46 m and 230 m, which is most of the visible forest, so they have to fill the crown the
+        # branches actually reach.
+        #
+        # They previously did not. Four cards were sized as cw*1.1 and then passed through
+        # `sz*h*1.15`, where h is the atlas box's height as a fraction of the atlas — about 0.39.
+        # That put each card at roughly 2 m inside a crown 12 m across: about a sixth of the width,
+        # four times over. The stand thinned to poles across the whole middle distance.
+        #
+        # Sizing here is in metres, against the bounding box the branch cards just built, so it
+        # cannot drift out of step with the branch geometry again. The vertical taper follows the
+        # conical habit of both species.
+        P = np.asarray(foliage.p, np.float32)
+        if len(P):
+            lo, hb = P.min(0), P.max(0)
+            crown_r = max(hb[0] - lo[0], hb[2] - lo[2])*0.5
+            crown_v = max(hb[1] - lo[1], 0.5)
+            # Each card is seeded on a vertex of the foliage already built, jittered slightly.
+            # Sampling the real distribution rather than a guessed cone means the added mass lands
+            # exactly where this tree's branches are: it densifies the crown instead of reshaping
+            # it, and both species keep their own habit — the spreading, drooping laterals of the
+            # hemlock and the ascending ones of the cypress — with no per-species tuning here.
+            ncards = int(np.clip(round(34*crown_r*crown_v/60.0), 26, 54))
+            jit = crown_v*0.035
+            for k, i in enumerate(rng.integers(0, len(P), ncards)):
+                c = P[i] + np.array([rng.uniform(-1, 1), rng.uniform(-0.6, 0.6), rng.uniform(-1, 1)])*jit
+                box = CARDS[3 if k % 2 == 0 else 4]
+                aspect = (box[2]-box[0])/(box[3]-box[1])
+                length = crown_v*rng.uniform(0.13, 0.21)      # metres, along `sd`
+                width = length*aspect
+                sd = unit(np.array([rng.uniform(-1, 1), rng.uniform(0.15, 1.25), rng.uniform(-1, 1)]))
+                a = k*2.399963
+                nm = unit(np.array([math.cos(a), rng.uniform(-0.3, 0.5), math.sin(a)]))
+                foliage.card(c, sd, nm, length, width, box, tint*rng.uniform(0.72, 0.96), fold=0.12)
     # leader
     for j in range(8 if hi else 3):
         t = 0.9 + 0.1*j/8; start = interp(trunk, t); a = j*2.399963

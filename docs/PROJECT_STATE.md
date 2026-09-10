@@ -414,6 +414,59 @@ It does **not** measurably change load time: three cold loads each way in this e
 2.8, 2.8, 3.1 s on both sides. An earlier single-run comparison appeared to show a large
 improvement and was warm-up noise; the figure above is the one that reproduces.
 
+**6. The conifer mid-detail crown rebuilt.** Repair 5's evidence exposed a defect it could not
+fix: across the whole middle distance the stand thinned to bare poles. That is the conifers, and it
+was there from the start.
+
+`tree-library-v2.glb` switches a conifer to its mid-detail mesh at 46 m (balanced) or 62 m (high)
+and holds it to 230 m, which is most of the visible forest. Measured in the running page from above the canopy at the corridor start, that tier carries **8,092 of the instanced stems** against 400 at high detail and 5,732 impostors: more than either of the tiers either side of it. That mesh carried four crown-mass
+cards, sized `cw*1.1` and then passed through `sz*h*1.15`, where `h` is the atlas box's height as a
+fraction of the atlas — about 0.39. Roughly **2 m of card inside a crown 12 m across**: a sixth of
+the width, four times over. Precisely the mistake the Pass-1 broadleaves made, in the library that
+otherwise got everything right.
+
+They are now sized in metres and seeded on a vertex of the foliage the branch pass has already
+built, jittered slightly. Sampling the tree's real foliage distribution instead of a guessed cone
+means the mass lands where its branches actually are, so the hemlock keeps its spreading, drooping
+laterals and the cypress its ascending ones with no per-species tuning in this block.
+
+**Regenerating the canonical library safely.** This required touching `tree-library-v2.glb`, the
+asset the recovery is pinned to, so the first thing established was whether the recovered generator
+even reproduces it. It does — for geometry, exactly: running `generate_trees_v2.py` unmodified
+produces all **330 of the shipped library's accessor buffer views byte-for-byte**. Its textures it
+does not reproduce, because it embeds each one by reading the file in `work/tex/` verbatim and that
+directory is scratch the repository does not carry; rebuilding from textures re-extracted at source
+resolution inflates the file from 12.5 MB to 16.0 MB for no visual gain, the shipped library
+carrying more strongly compressed versions of the same 1024 × 1024 images.
+
+So `tools/graft_textures.py` copies a reference GLB's image payload onto new geometry by image
+name, and `tools/rebuild_tree_library.sh` chains the two steps. **Run with the generator unmodified,
+that chain reproduces `tree-library-v2.glb` byte-for-byte, sha256 `1a237cf7…d244a`.** The Pass-2
+conifer library is therefore reproducible from this repository, which it was not before. That is
+also the check to run before changing the generator: if it does not reproduce, something other than
+your edit is different.
+
+With the change in, `tools/compare_glb.py` reports **28 of 37 meshes byte-identical** to the shipped
+library. The nine that differ are all and only mid-detail meshes — `tsuga_a/b/c_low`,
+`hinoki_a/b/c_low`, `sap_tsuga/hinoki/small_low`. Every `_high` and `_far` mesh, and every snag, log
+and rock, is untouched. The file grows from 12,521,860 to 12,610,808 bytes.
+
+| Mesh | before | after |
+|---|---|---|
+| `tsuga_a/b/c_low` | 906 / 914 / 890 | 1,066 / 1,114 / 1,026 |
+| `hinoki_a/b/c_low` | 813 / 805 / 744 | 929 / 961 / 836 |
+| `sap_*_low` | 426 | 474 |
+
+**This pass costs triangles**, where repair 5 saved them: 5.5–7.8 % more per frame at the six
+mid-distance cameras in `tools/cams_middistance.json`, with **no additional draw calls**. That is
+the trade, and `renders/BEFORE_AFTER_M4_fugaku_overcast.jpg` is what it buys — a see-through
+lattice of bare stems with the forest floor visible between them becomes a closed canopy. Evidence
+and the full table are in `renders/conifer_midlod/`.
+
+The `far` impostor beyond 230 m was deliberately not touched. It is cheap, it is what the horizon
+is made of, and changing it would have put `_far` meshes in the changed list and muddied this
+comparison. Whether it holds up is a separate question.
+
 **Checked and deliberately not chased.** Magnifying the distant ground reveals a fine dotted moiré.
 It is texture aliasing at oblique angles and it pre-dates this work: measured as the fraction of
 image energy in the 3–12 pixel band over the same crop, the Fable session's own renders score
@@ -427,9 +480,10 @@ with zero console errors, and the two cameras that see only near-field ground
 (`C2_start_lookdown`, `C5_fugaku_approach`) remained bit-identical to the checkpoint. The
 near-field path was not touched.
 
-Repair 5 necessarily ends that exact correspondence, because it changes which meshes are
-instanced. It is worth recording what it does and does not move
-(`renders/broadleaf_library/regression/`, against `renders/audit_recovery/audit.json`):
+Repairs 5 and 6 necessarily end that exact correspondence, because they change which meshes are
+instanced and what those meshes contain. It is worth recording what they do and do not move.
+
+After repair 5 alone (broadleaf library only):
 
 | Camera | checkpoint | now | change | draw calls |
 |---|---|---|---|---|
@@ -442,14 +496,31 @@ instanced. It is worth recording what it does and does not move
 | R1_img013_geotag_overcast | 7,861,107 | 7,894,814 | +0.4 % | 94 → 94 |
 | C1_start_corridor_overcast | 7,507,695 | 7,405,713 | −1.4 % | 95 → 99 |
 
-`C5_fugaku_approach` is the control and it is exact to the triangle: no deciduous stem falls in
-that frame, so nothing about it moves. Where broadleaves are present the count falls by 1–2 %, and
-draw calls rise by up to four because three variants across three LODs occupy more buckets than two
-variants across two. `R1` is the single camera that costs *more*, by 0.4 %, and it should: it has
-broadleaves close enough to draw at `high`, where the change is 27,656 triangles of Pass-1 blob
-traded for 10,367–13,530 of tree — cheaper per stem, but instanced against a `high` bucket that
-previously held far less geometry than the conifers around it. Zero console errors, zero page
-errors, zero failed requests across all eight.
+`C5_fugaku_approach` was the control there and it was exact to the triangle: no deciduous stem
+falls in that frame, so nothing about it moved. Where broadleaves are present the count fell by
+1–2 %, and draw calls rose by up to four because three variants across three LODs occupy more
+buckets than two variants across two. `R1` was the single camera that cost *more*, by 0.4 %, and it
+should: it has broadleaves close enough to draw at `high`, where the change is 27,656 triangles of
+Pass-1 blob traded for 10,367–13,530 of tree — cheaper per stem, but instanced against a `high`
+bucket that previously held far less geometry than the conifers around it.
+
+With repair 6 as well (`renders/conifer_midlod/regression/`):
+
+| Camera | checkpoint | now | change | draw calls |
+|---|---|---|---|---|
+| C1_start_corridor | 7,507,695 | 7,882,857 | +5.0 % | 95 → 99 |
+| C2_start_lookdown | 7,200,799 | 7,574,455 | +5.2 % | 86 → 90 |
+| C3_offpath_trunks | 7,153,585 | 7,454,639 | +4.2 % | 92 → 92 |
+| C4_path_ahead | 7,702,147 | 8,103,687 | +5.2 % | 89 → 89 |
+| C5_fugaku_approach | 7,111,871 | 7,592,975 | +6.8 % | 87 → 87 |
+| C6_arbitrary_east | 7,353,326 | 7,673,065 | +4.3 % | 91 → 94 |
+| R1_img013_geotag_overcast | 7,861,107 | 8,347,006 | +6.2 % | 94 → 94 |
+| C1_start_corridor_overcast | 7,507,695 | 7,882,857 | +5.0 % | 95 → 99 |
+
+`C5_fugaku_approach` moves the most now, which is the expected sign rather than a worry: it is a
+pure conifer stand, the one frame with no deciduous stem in it, so it is exactly where a conifer
+change should show and a broadleaf change should not. Zero console errors, zero page errors, zero
+failed requests across all eight, in every run.
 
 ---
 
@@ -539,18 +610,14 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
    mask, which the dossier names as the highest-value geometry still to ingest.
 4. Add Pinus and Tsuga-Pinus community types so all seven surveyed communities are representable,
    and drive the mix from the MoE vegetation classes already in the terrain masks.
-4a. Apply the mid-LOD crown-mass treatment from §4.2.5 to the **conifers**. The broadleaf work
-   exposed the same defect in `tree-library-v2.glb`: its `low` meshes carry 744–914 triangles of
-   spray cards sized off the shoot rather than off the crown, so between roughly 46 m and 230 m a
-   conifer thins to a pole with a small tuft. It is plainly visible as the bare band across the
-   middle distance in `renders/broadleaf_library/after/B3_deciduous_above.png` and across the whole
-   stand in `B5_deciduous_distance.png`, and it is *pre-existing* — it is equally present in the
-   `before/` renders and in the checkpoint. The fix is mechanical, and `generate_broadleaf.py`
-   already contains the working form of it: size crown cards in metres against the crown the limb
-   system actually reaches, and let the card count follow crown area. The reason it was not done in
-   this pass is that regenerating `tree-library-v2.glb` would change Fable's canonical asset and
-   with it the eight-camera triangle-count regression that currently pins the recovery as faithful.
-   It should be done as its own pass, with a fresh baseline recorded first.
+4a. ~~Apply the mid-LOD crown-mass treatment to the conifers.~~ **Done** — §4.2.6. What it leaves
+   open is the tier beyond it: from 230 m out a conifer is three crossed cards, and above the
+   canopy that band still reads as ground showing through a thin scatter of stems. It is visible
+   in the upper half of `renders/BEFORE_AFTER_M2_high_overlook.jpg`. The same treatment applies —
+   size the impostor against the crown, and consider a fourth card or a wider one — but it should
+   be its own pass with its own baseline, because it touches the `_far` meshes that the current
+   comparison holds fixed as a control.
+
 5. Give the ground beyond the 120 m patch real micro-relief. Material and shading are now
    continuous across that boundary, but the geometry is not: the patch carries lava relief at 0.6 m
    sampling while the corridor terrain outside it is the plain 8 m DEM surface. A coarser

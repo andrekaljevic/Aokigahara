@@ -23,9 +23,9 @@ built it. The world loads and renders. Verified in this environment under softwa
 | Fixed-camera audit | 8 of 8 cameras reproduce the source session's triangle and draw-call counts **exactly** |
 | Per frame | 7.1–7.9 M triangles, 86–95 draw calls at 1280 × 800 |
 
-Those figures describe the checkpoint on `main`. On `dev` the broadleaf library changes which
-meshes are instanced, so the counts shift by −2.3 % to +0.4 %; the one camera with no deciduous
-stem in frame is still exact to the triangle. The comparison is in `docs/PROJECT_STATE.md` §4.2.
+Those figures describe the checkpoint on `main`. On `dev` the broadleaf library and the rebuilt
+conifer mid-detail meshes change what is instanced, so the counts move by +4.2 % to +6.8 %. The
+comparison, and what each pass costs on its own, is in `docs/PROJECT_STATE.md` §4.2.
 
 No frame rate has been measured on any target device.
 
@@ -38,7 +38,9 @@ is finished and the distant-ground defect the source session was diagnosing is f
 identical-camera evidence in `renders/distant_ground_fix/`. The deciduous component, which tree
 library v2 never reached, now has a tree library of its own instead of the Pass-1 untextured
 placeholders — three species-suggestive variants across three levels of detail, evidence in
-`renders/broadleaf_library/`.
+`renders/broadleaf_library/`. And the conifer mid-detail meshes, whose crown cards were sized at a
+sixth of the crown so the whole middle distance thinned to bare poles, have been rebuilt:
+`renders/conifer_midlod/`.
 
 ---
 
@@ -63,6 +65,18 @@ toggle fly mode, Escape to release the pointer. On touch devices use the two pad
 ```bash
 python3 tools/verify_manifest.py
 ```
+
+**Rebuild the conifer tree library** (needs `work/tex`, see the note in `generate_trees_v2.py`):
+
+```bash
+sh tools/rebuild_tree_library.sh <reference.glb>
+python3 tools/compare_glb.py viewer/assets/tree-library-v2.glb <reference.glb>
+```
+
+Run with the generator unmodified against the `main` checkpoint's library, this reproduces it
+byte-for-byte. The two steps exist because the generator embeds textures by reading `work/tex/`
+verbatim, and that scratch directory is not in the repository; the second step grafts the shipped
+image payload back so a geometry change does not also re-encode every texture.
 
 **Re-render the fixed audit cameras** (needs Node and Playwright):
 
@@ -142,7 +156,7 @@ recovery.
 | `models/Aokigahara_Surface_Terrain.glb` | 22.6 MB | 32 × 30 km, 895,734 triangles, real Fuji relief |
 | `models/Aokigahara_Regional_Terrain.glb` | 11.8 MB | Coarser context terrain |
 | `viewer/assets/models/fir_tree_c.glb` | 22.5 MB | Mature fir representative, Poly Haven CC0 |
-| `viewer/assets/tree-library-v2.glb` | 12.5 MB | 11 procedural variants, 37 meshes across 3 LODs |
+| `viewer/assets/tree-library-v2.glb` | 12.6 MB | 11 procedural variants, 37 meshes across 3 LODs |
 | `viewer/assets/tree-library-broadleaf.glb` | 5.2 MB | 3 deciduous variants across 3 LODs, with foliage atlas |
 | `viewer/assets/tree-library.glb` | 12.2 MB | Pass-1 library. Retained as a record; no longer loaded on `dev` |
 | `data/forest-wide.f32` | 11.2 MB | 467,601 tree placements |
@@ -229,9 +243,9 @@ protection boundaries and the practical build extent are related but are **not o
 - Cave destinations are surface approach references only. No cave interior is modelled.
 - Of the seven forest community types the underlying survey distinguishes, the runtime represents
   three. Pinus and Tsuga-Pinus communities are not modelled at all.
-- Between roughly 46 m and 230 m a conifer switches to a mid-detail mesh whose foliage is too
-  sparse, so the middle distance thins to poles. This is visible in `renders/broadleaf_library/`
-  and pre-dates this work; the fix is described in `docs/PROJECT_STATE.md` §6.4a.
+- Beyond 230 m a tree becomes three crossed cards, and seen from above the canopy that band still
+  reads as ground showing through a thin scatter of stems. The nearer mid-detail tier had the same
+  fault and is fixed on `dev` (`renders/conifer_midlod/`); the far tier is not.
 - The 120 m near-field patch edge is no longer a change in material or shading, but it is still a
   change in ground geometry detail: inside it the lava relief is sampled at 0.6 m, outside it the
   surface is the plain 8 m DEM.
