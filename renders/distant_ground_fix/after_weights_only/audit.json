@@ -4,10 +4,10 @@
   1280,
   800
  ],
- "readySeconds": 4.3,
+ "readySeconds": 6.1,
  "results": [
   {
-   "ms": 6,
+   "ms": 5,
    "pos": [
     32.14,
     107.26,
@@ -17,10 +17,10 @@
    "calls": 97,
    "tris": 7793610,
    "name": "D1_midfield_from_start",
-   "wallSeconds": 66.3
+   "wallSeconds": 77.2
   },
   {
-   "ms": 11,
+   "ms": 9,
    "pos": [
     300,
     129.45,
@@ -30,10 +30,10 @@
    "calls": 104,
    "tris": 8756171,
    "name": "D2_open_ground_east",
-   "wallSeconds": 12.9
+   "wallSeconds": 11.8
   },
   {
-   "ms": 6,
+   "ms": 4,
    "pos": [
     32.14,
     107.26,
@@ -43,7 +43,7 @@
    "calls": 97,
    "tris": 7793610,
    "name": "D3_overcast_midfield",
-   "wallSeconds": 14
+   "wallSeconds": 12.5
   },
   {
    "ms": 3,
@@ -56,7 +56,7 @@
    "calls": 66,
    "tris": 5048085,
    "name": "D4_above_canopy_look_out",
-   "wallSeconds": 7.7
+   "wallSeconds": 6.8
   },
   {
    "ms": 3,
@@ -69,10 +69,10 @@
    "calls": 59,
    "tris": 3805457,
    "name": "D5_above_canopy_look_down",
-   "wallSeconds": 5.6
+   "wallSeconds": 5
   },
   {
-   "ms": 12,
+   "ms": 10,
    "pos": [
     600,
     102.52,
@@ -82,7 +82,7 @@
    "calls": 88,
    "tris": 7469225,
    "name": "D6_patch_boundary",
-   "wallSeconds": 10.9
+   "wallSeconds": 10.4
   }
  ],
  "events": []

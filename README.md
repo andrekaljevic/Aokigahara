@@ -207,8 +207,9 @@ protection boundaries and the practical build extent are related but are **not o
 - Cave destinations are surface approach references only. No cave interior is modelled.
 - Of the seven forest community types the underlying survey distinguishes, the runtime represents
   three. Pinus and Tsuga-Pinus communities are not modelled at all.
-- The transition at the 120 m near-field patch edge is still a change in ground geometry detail,
-  though no longer a change in material.
+- The 120 m near-field patch edge is no longer a change in material or shading, but it is still a
+  change in ground geometry detail: inside it the lava relief is sampled at 0.6 m, outside it the
+  surface is the plain 8 m DEM.
 
 ---
 

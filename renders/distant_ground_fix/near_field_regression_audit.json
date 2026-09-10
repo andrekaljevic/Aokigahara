@@ -4,10 +4,10 @@
   1280,
   800
  ],
- "readySeconds": 5.1,
+ "readySeconds": 4.4,
  "results": [
   {
-   "ms": 5,
+   "ms": 11,
    "pos": [
     32.14,
     103.67,
@@ -17,10 +17,10 @@
    "calls": 95,
    "tris": 7507695,
    "name": "C1_start_corridor",
-   "wallSeconds": 74.9
+   "wallSeconds": 79.8
   },
   {
-   "ms": 4,
+   "ms": 10,
    "pos": [
     32.14,
     103.67,
@@ -30,10 +30,10 @@
    "calls": 86,
    "tris": 7200799,
    "name": "C2_start_lookdown",
-   "wallSeconds": 6.1
+   "wallSeconds": 6.9
   },
   {
-   "ms": 6,
+   "ms": 7,
    "pos": [
     44,
     100.99,
@@ -43,10 +43,10 @@
    "calls": 92,
    "tris": 7153585,
    "name": "C3_offpath_trunks",
-   "wallSeconds": 12.9
+   "wallSeconds": 12.5
   },
   {
-   "ms": 7,
+   "ms": 5,
    "pos": [
     20,
     103.38,
@@ -56,10 +56,10 @@
    "calls": 89,
    "tris": 7702147,
    "name": "C4_path_ahead",
-   "wallSeconds": 12.2
+   "wallSeconds": 11.5
   },
   {
-   "ms": 5,
+   "ms": 4,
    "pos": [
     -38,
     95.9,
@@ -72,7 +72,7 @@
    "wallSeconds": 12
   },
   {
-   "ms": 4,
+   "ms": 6,
    "pos": [
     95,
     104.14,
@@ -82,10 +82,10 @@
    "calls": 91,
    "tris": 7353326,
    "name": "C6_arbitrary_east",
-   "wallSeconds": 11.8
+   "wallSeconds": 12.9
   },
   {
-   "ms": 4,
+   "ms": 5,
    "pos": [
     -100.4,
     94.51,
@@ -95,10 +95,10 @@
    "calls": 94,
    "tris": 7861107,
    "name": "R1_img013_geotag_overcast",
-   "wallSeconds": 12
+   "wallSeconds": 12.9
   },
   {
-   "ms": 5,
+   "ms": 4,
    "pos": [
     32.14,
     103.67,
@@ -108,7 +108,7 @@
    "calls": 95,
    "tris": 7507695,
    "name": "C1_start_corridor_overcast",
-   "wallSeconds": 12.7
+   "wallSeconds": 13.4
   }
  ],
  "events": []

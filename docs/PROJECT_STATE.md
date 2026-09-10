@@ -271,15 +271,30 @@ tuning. Measured mean layer weights:
 | Base terrain, before | 0.000 | 0.000 | 0.000 | **1.000** |
 | Base terrain, after | 0.468 | 0.206 | 0.311 | 0.015 |
 
-Identical-camera evidence is in `renders/distant_ground_fix/`, with side-by-side composites at
-`renders/BEFORE_AFTER_D*.jpg`. The elevated cameras show the defect at full extent — 26.8 % of
-pixels change at `D5_above_canopy_look_down`, 19.9 % at `D4_above_canopy_look_out` — while
-eye-level cameras change only 1.7–2.2 % because canopy and trunks occlude most distant ground.
+**3. The brightness step behind it removed.** With the materials matched, a second seam became the
+visible one. The canopy term is spatial and continuous — `(0.8 + 0.2 * world noise)` — but the base
+material scaled it by a further 0.62 while the patch used 1.0. That is a 38 % albedo step along an
+edge that is rebuilt around the camera every 12 m, so it could not produce anything except a seam
+that follows the player. One value now serves both surfaces and the floor is continuous by
+construction rather than by tuning. The near field is unaffected: it already used 1.0.
 
-**Regression check.** The eight standard audit cameras were re-rendered after the fix. All eight
-still reproduce the source session's triangle and draw-call counts exactly, with zero console
+Identical-camera evidence for all three is in `renders/distant_ground_fix/`, which keeps the
+intermediate stage as well, with side-by-side composites at `renders/BEFORE_AFTER_D*.jpg`. The
+elevated cameras show the defects at full extent — 45.0 % of pixels change at
+`D5_above_canopy_look_down` and 37.6 % at `D4_above_canopy_look_out` — while eye-level cameras
+change 7.5 % or less because canopy and trunks occlude most distant ground.
+
+**Checked and deliberately not chased.** Magnifying the distant ground reveals a fine dotted moiré.
+It is texture aliasing at oblique angles and it pre-dates this work: measured as the fraction of
+image energy in the 3–12 pixel band over the same crop, the Fable session's own renders score
+0.441 and 0.450, the checkpoint scores 0.432, and current `dev` scores 0.448. Brightening the
+surface raised it by about 4 % relative, which is the surface becoming visible rather than a new
+artifact. It has not been tested on hardware GL.
+
+**Regression check.** The eight standard audit cameras were re-rendered after every change. All
+eight still reproduce the source session's triangle and draw-call counts exactly, with zero console
 errors, and the two cameras that see only near-field ground (`C2_start_lookdown`,
-`C5_fugaku_approach`) are bit-identical to the checkpoint. The near-field path was not touched.
+`C5_fugaku_approach`) remain bit-identical to the checkpoint. The near-field path was not touched.
 
 ---
 
@@ -365,5 +380,10 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
    mask, which the dossier names as the highest-value geometry still to ingest.
 4. Add Pinus and Tsuga-Pinus community types so all seven surveyed communities are representable,
    and drive the mix from the MoE vegetation classes already in the terrain masks.
-5. Extend the near-field ground system outward, or add a mid-field tier, so the transition at the
-   120 m patch edge stops being a material boundary.
+5. Give the ground beyond the 120 m patch real micro-relief. Material and shading are now
+   continuous across that boundary, but the geometry is not: the patch carries lava relief at 0.6 m
+   sampling while the corridor terrain outside it is the plain 8 m DEM surface. A coarser
+   intermediate tier, or displacing the corridor vertices by the same `reliefRaw` field already
+   used for their weights, would close the remaining discontinuity. Displacing the base requires
+   reworking the patch's edge fade, which currently blends to flat rather than to the surrounding
+   relief, so the two surfaces would otherwise part company by up to 0.6 m at the seam.
