@@ -1,5 +1,5 @@
 {
-  "source": "Google Drive, account andre.kaljevic@googlemail.com",
+  "source": "Google Drive, account the project owner",
   "note": "Aokigahara research documents held in the project owner’s Drive, pulled in so the written research travels with the reconstruction. Each file is byte-identical to its Drive original and records the Drive file id, so the source is always locatable. A .txt extraction sits beside each PDF for searching and diffing.",
   "classifications": {
     "project-research": "Research generated for this project. Historical and cultural, not geospatial: it constrains meaning and context rather than geometry.",
