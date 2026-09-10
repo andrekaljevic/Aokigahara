@@ -180,6 +180,12 @@ the 2,790-cell 250 m evidence grid, 3,528 candidate GSI DEM tile URLs, the 152-e
 catalogue, a 22-source authoritative register, the route topology graph, the boundary-layer
 register, georegistration control points and the master reconstruction blueprint.
 
+`docs/research/drive/` adds a further body of research from the project owner's Drive: about 200
+pages of century-by-century historical work from the 7th century to the present, plus one
+third-party academic paper held for reference. Each carries a text extraction and records the Drive
+file id it came from. That material is cultural and historical rather than geospatial — it
+constrains what the place means, not where anything is.
+
 The project distinguishes what is source-constrained from what is inferred and what is invented:
 
 - **Source-constrained** — macro terrain (GSI DEM), vegetation communities (Ministry of the

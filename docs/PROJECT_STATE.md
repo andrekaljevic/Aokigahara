@@ -72,6 +72,36 @@ extracted and filed. This recovers most of the lost `evidence/` set and adds con
 The dossier's own core rule is retained: **the named forest, the Jōgan lava field, the legal
 protection boundaries and the practical build area are related but are not one polygon.**
 
+### 1.5 Research pulled in from Drive
+
+A search of the project owner's Google Drive found a further body of Aokigahara research, now in
+`docs/research/drive/` with a `.txt` extraction beside each PDF and full provenance in
+`DRIVE_SOURCES.json`:
+
+| File | Pages | Content |
+|---|---|---|
+| `Aokigahara_by_century_7th_to_19th.pdf` | 101 | Century-by-century historical research |
+| `Aokigahara_by_century_20th_to_21st.pdf` | 40 | The modern period, in three parts |
+| `Aokigahara_century_12th.pdf` | 8 | Matsudai Shōnin, Dainichi-ji at the summit, 1149 |
+| `Aokigahara_century_13th.pdf` | 10 | The 1203 Hitoana cave exploration in *Azuma Kagami* |
+| `Aokigahara_century_14th.pdf` | 9 | Lay ascent, *oshi* and *shukubō*, the 1384 Subashiri *kakebotoke* |
+| `Aokigahara_century_15th.pdf` | 9 | Murayama Shugendō, Dōkō's 1486 *Kaikoku Zakki*, the Fuji Mandala |
+| `Chang_2022_EcoGothic_Sea_of_Trees.pdf` | 22 | Third-party academic work, reference only |
+
+Each is byte-identical to its Drive original and records its Drive file id. This is the **cultural
+and historical** layer: it constrains what the place means, not where anything is.
+
+**What Drive does not contain is geospatial data** — no shapefiles, GeoJSON, DEM tiles or GPX. That
+matters less than it sounds: the GSI elevation grids, MOE land-cover masks and GSJ Jōgan masks the
+runtime uses were ingested during the original research and are already in
+`viewer/assets/terrain/`. The one geometry upgrade still wanting new data is the GSJ 2016 **vector**
+geology that would replace the raster-derived Jōgan mask.
+
+Two images were found and deliberately **not** committed: a 4K Aokigahara photograph of unknown
+provenance, and an iStock-licensed stock photograph. Both are recorded in `DRIVE_SOURCES.json`
+under `notIngested`. A project that tracks the licence of every visual source cannot quietly absorb
+images it cannot account for.
+
 ---
 
 ## 2. Latest Fable 5.1 Max state

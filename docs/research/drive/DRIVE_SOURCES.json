@@ -1,0 +1,86 @@
+{
+  "source": "Google Drive, account andre.kaljevic@googlemail.com",
+  "note": "Aokigahara research documents held in the project owner’s Drive, pulled in so the written research travels with the reconstruction. Each file is byte-identical to its Drive original and records the Drive file id, so the source is always locatable. A .txt extraction sits beside each PDF for searching and diffing.",
+  "classifications": {
+    "project-research": "Research generated for this project. Historical and cultural, not geospatial: it constrains meaning and context rather than geometry.",
+    "third-party-academic": "Published academic work by others. Reference only; copyright is not the project’s to grant."
+  },
+  "notInDrive": "No geospatial data was found: no shapefiles, GeoJSON, DEM tiles or GPX. The GSI elevation grids, Ministry of the Environment land-cover masks and Geological Survey of Japan Jōgan masks the runtime uses were already ingested and live in viewer/assets/terrain/. What is still missing is the GSJ 2016 vector geology that would replace the raster-derived Jōgan mask, and that is not held in Drive.",
+  "notIngested": [
+    {
+      "driveTitle": "Aokigahara_true4K_portrait_2160x3840.jpg",
+      "driveId": "1TcN9BRM9jxH_6I2o__yZZxpEnbNULJsO",
+      "reason": "Provenance and licence unknown. This project tracks the licence of every visual source, so it is recorded rather than committed."
+    },
+    {
+      "driveTitle": "istockphoto-1345233259-1024x1024.jpg",
+      "driveId": "1cWv1LB4L-9i-PMR1kg2UrxmmaTdD__TT",
+      "reason": "Stock photograph under an iStock licence. Not redistributable in a repository."
+    }
+  ],
+  "files": [
+    {
+      "file": "Aokigahara_by_century_7th_to_19th.pdf",
+      "bytes": 372735,
+      "sha256": "fc8660c1f4099d25d228a04b403f1bae5f0d42a58bee3b05cf8600f41c792ca8",
+      "driveId": "1Xsay5JZdyTzzgdgSov-GWoO5FC3RslLE",
+      "driveTitle": "aokigahara_century_answers_7th_to_19th.pdf",
+      "classification": "project-research",
+      "note": "Century-by-century historical research, 7th to 19th century. 101 pages. Project research output."
+    },
+    {
+      "file": "Aokigahara_by_century_20th_to_21st.pdf",
+      "bytes": 748157,
+      "sha256": "83ee74222a83b382996fdc9dd501afb11db54fe2a42ed63f8ada2086bb2e56f6",
+      "driveId": "17-74_3pHoESp-TrmZJX2CCq2DtviPEUm",
+      "driveTitle": "aokigahara_20th_21st_century_answers.pdf",
+      "classification": "project-research",
+      "note": "Modern period: first half of the 20th century, second half, and the 21st. 40 pages. Project research output. Also present in Drive as document_pdf.pdf (1A4hv1zEj1U9nRJ3qtwq9UDz8Byabl3ab), byte-identical."
+    },
+    {
+      "file": "Aokigahara_century_12th.pdf",
+      "bytes": 292759,
+      "sha256": "01f15e6b6f803c388d316ce1df35e691c6b5c08b7ef6a683ae313019756823cb",
+      "driveId": "1TNtjF1m6BI36lZPaNzH3krdH6t8vZKNW",
+      "driveTitle": "Aokigahara Research Request (3).pdf",
+      "classification": "project-research",
+      "note": "Twelfth century only. Matsudai Shonin, Dainichi-ji at the summit in 1149, Fuji as an ascetic Buddhist mountain."
+    },
+    {
+      "file": "Aokigahara_century_13th.pdf",
+      "bytes": 285818,
+      "sha256": "996db8e92efcb0716da45ee44b05b729a0055f4432d7ec5ef471f9b4d6ef06ea",
+      "driveId": "1jrANRye3doARV9qpczSdx1J6j-wr3iMp",
+      "driveTitle": "Aokigahara Research Request (2).pdf",
+      "classification": "project-research",
+      "note": "Thirteenth century only. The 1203 Hitoana cave exploration in Azuma Kagami; Fuji lava caves as underworld thresholds."
+    },
+    {
+      "file": "Aokigahara_century_14th.pdf",
+      "bytes": 321789,
+      "sha256": "dc7ad54d1a5897190375cd41fc5cad600c7000040646d7660dce5497d176b020",
+      "driveId": "1H7dzQv2mLfSq6bmVAN709Hp7wrWFmxmZ",
+      "driveTitle": "Aokigahara Research Request (1).pdf",
+      "classification": "project-research",
+      "note": "Fourteenth century only. Lay ascent, oshi and shukubo, the Yoshida route, the 1384 Subashiri kakebotoke."
+    },
+    {
+      "file": "Aokigahara_century_15th.pdf",
+      "bytes": 4285935,
+      "sha256": "daf68c2dbd250f90ba3289a24f67fd44daaaa642ee90d7179b2773b4761ec135",
+      "driveId": "134oll9-g5EtrZ-VOunhzd-_7YJ-XUNxN",
+      "driveTitle": "Aokigahara Research Request.pdf",
+      "classification": "project-research",
+      "note": "Fifteenth century only. Murayama Shugendo, Doko’s 1486 Kaikoku Zakki, the Fuji Mandala tradition."
+    },
+    {
+      "file": "Chang_2022_EcoGothic_Sea_of_Trees.pdf",
+      "bytes": 371006,
+      "sha256": "1483da817d81bd4c31be50fcb7a2987225b67d8d9f1edbf5b09f830903d36834",
+      "driveId": "1x0OaeLMFfYmboRKp414R86FwXrXOo88Q",
+      "driveTitle": "92896.pdf",
+      "classification": "third-party-academic",
+      "note": "Kathryn Yalan Chang, \"A Perfect Place to Die\": Thinking the EcoGothic, Darkness, and the Dark Sweet in Gus Van Sant’s The Sea of Trees. SARE vol. 59 issue 1, 2022. Third-party academic work, included for reference; copyright remains with its author and publisher."
+    }
+  ]
+}

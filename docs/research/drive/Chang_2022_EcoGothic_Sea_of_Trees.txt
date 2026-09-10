@@ -1,0 +1,1122 @@
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+“A Perfect Place to Die”: Thinking the EcoGothic, Darkness, and the Dark
+Sweet in Gus Van Sant’s The Sea of Trees
+
+Kathryn Yalan Chang
+National Taitung University, Taiwan
+
+
+
+Abstract
+ Aokigahara Jukai, situated at the foot of Mount Fuji in Yamanashi Prefecture, has historically been known
+as the home of people who commit suicide. Stories about Aokigahara as a popular suicide spot have fuelled
+interest. Drawing on filmic representation of Aokigahara, alias “suicide forest,” this article proposes to read
+Gus Van Sant’s film The Sea of Trees (2015) through the genre of the EcoGothic, addressing how the film
+deals with nature, death, precarity, and vulnerability to account for the (im)possibility of transformation in
+the dark woods. The uniqueness of Van Sant’s film compared to other filmic and literary representations of
+Jukai or the sea of trees, including Jason Zada’s film The Forest (2016), has been attributed to Van Sant’s
+incorporation of Aokigahara as a place for meditation and his treatment of the protagonist’s relationship
+with the Gothic forest. Based on new materialist theorist Timothy Morton’s thinking on “darkness,” this
+article is divided into three parts: Thinking the EcoGothic; Thinking Darkness; and Thinking Dark Sweet.
+The essay explores how the film challenges conventional representations of the dark woods by showing
+how the protagonist, by grieving for his dead wife in the forest, comes to acknowledge death as renewal.
+
+
+Keywords: EcoGothic, Aokigahara, dark ecology, Timothy Morton, Gus Van Sant, The Sea of Trees
+
+
+
+
+It is estimated that every year Aokigahara Jukai, located on the northwestern side of Mount Fuji in Japan,
+is home to between “fifty and one hundred people [who] take their own lives” (O’Keefe 187).1 Since 2003,
+
+the Japanese government has ceased to publish the annual number of suicides committed in Aokigahara.
+
+With its strong association with suicide and corpses, Aokigahara has become an affective force in horror
+
+films, novels, television, and the press, which acknowledges it to be an important feature and thus almost
+
+like a “protagonist” (Mauro) in the topic of suicide in Jukai (sea of trees).2 American film director Gus Van
+
+Sant’s movie The Sea of Trees (2015), starring Matthew McConaughey (Arthur Brennan) and Naomi Watts
+
+(Joan Brennan) as a troubled couple and Ken Watanabe (Takumi Nakamura) as a suicidal man who meets
+
+                                                                                               88 | Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+McConaughey in the dark woods, marks the first time that Aokigahara has featured in a film. One year later,
+
+Jason Zada’s horror film The Forest (2016) continued the supernatural tradition but turned Aokigahara into
+
+a place of banal horror (rather than ecoGothic) fraught with vengeful ghosts and cheap jump scares.
+
+      Since so many media representations of Aokigahara simply reinforce stereotypical images about the
+
+forest as a location for suicide,3 Van Sant’s film, which registers Aokigahara as a suicide forest, falls into a
+
+predicament. The film received boos at the end of its premiere at the Cannes Film Festival in 2015
+
+(Hammond) and relentless criticisms since it was released in 2015. Shallow criticism apart, negative reviews
+
+reveal that the film represents Aokigahara as “a hostile place” where the leading character Arthur not only
+
+stumbles easily but is almost drowned by floods (Bradshaw). Other negative reviews find fault with The
+
+Sea of Trees for failing to discuss Japanese suicide culture. Some claim that the film uses a Japanese man,
+
+Takumi, but “his [Arthur’s] relationship with Japanese culture appears to be no more than cursory” (Mowe),
+
+and “Takumi’s pain and his story is second-class” (Bradshaw). Some even mistake Takumi for a female
+
+since Arthur finally realizes that Takumi was Joan’s spirit at the end of the film. 4 And still others just
+
+condemn the film as “inert” (Bradshaw) and “kitsch” (Chang).
+
+       In contrast to the many horror stories and media, which focus on the notorious suicide forest,
+
+Aokigahara Jukai, Van Sant’s movie The Sea of Trees, this article argues, is different in its treatment of the
+
+strange ambience of this Japanese forest and its manifestations. It transforms a presumed and stereotypical
+
+dark forest into a contemplative place for liminal beings. Moreover, the Aokigahara forest fits readily within
+
+the context of the ecoGothic, given that bodies, for example, could be found “in monthly sweeps” in 2011
+
+(Gilhooly). As a critique of negative reviews that misunderstand Van Sant’s film, this article argues that the
+
+film not only invokes new materialist Timothy Morton’s sense of a (dark-sweet) meditative space for people
+
+to ponder the meaning of life but also helps us to recognize the re-enchantment of the Gothic forest where
+
+strangers encounter each other. Furthermore, this article also argues that viewing Aokigahara as an
+
+ecoGothic forest with an emphasis on its distinct geology and local customs and traditions offers an
+
+alternative epistemological understanding of a “transcultural” Gothic.
+
+                                                                                               89 | Chang
+                                                              SARE, Vol. 59, Issue 1 | 2022
+
+        The dark woods have three dimensions in the popular imagination, according to Elizabeth Parker,
+
+author of The Forest and the EcoGothic (2020): (1) as a living and animated threat in itself; (2) as a space
+
+teeming with monsters; and (3) as a former idyll darkly infected by human interference (67). If the first
+
+category implies plant intelligence or the unpredictable power that plants possess, the second invokes the
+
+sense of fear while encountering corpses, predators, and spirits in the unruly wilderness. The third resonates
+
+with Morton’s notion of dark ecology. Coining the term “dark ecology” in 2004 and furthering discussions
+
+in Ecology Without Nature (2007), Morton not only problematizes the idea of the “beautiful soul syndrome”
+
+(118), which connotes a “good” nature out there for us to protect, but also rethinks environmental aesthetics
+
+as darkness. Tracing the three trajectories as “dark-depressing,” “dark-uncanny,” and “dark-sweet” with
+
+regard to the comprehension of ecological awareness (2016b, 5), Morton maintains that these three threads
+
+in dark ecology map out the trajectories from experiencing nihilism and transversing uncanny darkness to
+
+ending with dark sweetness, from which “ethics and politics” will emerge (160). Drawing on Morton’s dark
+
+ecology, ecocritic Heather I. Sullivan proposes the notion of “dark green,” embodied by gothic nature and
+
+plant horror, which harbours three meanings: humanity’s dependencies on the vegetal; human impacts; and
+
+plant agency (Sullivan). Her association of “dark” green with Morton’s dark ecology reveals that it is “dark”
+
+because we tend to forget “we have serious plant interdependency,” tend to idealize “isolated purity” where
+
+“nature” is construed as “a far-away place separate from human culture,” and fail to recognize the plant’s
+
+power (Sullivan). With its inhospitable terrain, spectral woods, and macabre history of death, Aokigahara
+
+Jukai seduces people with (or without) suicidal thoughts to visit. Thus, it should not be viewed as a “virgin”
+
+forest in itself.
+
+       Etymologically, “Ao” means blue or green, “ki” means trees, and “hara” means field, or ocean if
+
+“used in the word unabara [ocean or sea]” (Devlin 2019b, 8). Known as “Sea of Trees,” which gets its name
+
+because “a vast sea of green trees” is spotted if one “look[s] down upon Aokigahara from up high” (8),
+
+Aokigahara (some call it “Fuji Jukai” or “Jukai” in Japan) is never “untouched” (11). It is a national park
+
+that attracts large numbers of tourists from all over the world every year and that sits adjacent to a busy
+
+                                                                                              90 | Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+national highway, several tourist routes, and a large settlement around the outskirts, not to mention “people
+
+[who] live there” (11). Dark tourism in Japan includes Aokigahara as one of its destinations, as well as the
+
+Fukushima nuclear disaster area. Videos and photos redolent of an eerie atmosphere or dead bodies are often
+
+posted of Aokigahara on the Internet, many without official approval, along with frequent references to
+
+supernatural elements and lurkers. Urban legends and folklore also enhance the image of uncertainty and
+
+mystery that the dark woods, which take people’s lives, inspires.
+
+          The setting of Aokigahara deeply affects the protagonist’s body and mind in The Sea of Trees. The
+
+story revolves around a grieving American professor, Arthur, who wanders the mysterious regions of
+
+Aokigahara, contemplating his dark past and plotting to commit suicide following the death of his wife,
+
+Joan. In Aokigahara, the tourist trails and off-path areas have been carefully demarcated. After detouring
+
+from the path and taking an overdose of pills in the maze-like forest, Arthur encounters a stranger, a Japanese
+
+man, Takumi, who regrets his attempt at suicide via wrist-cutting and has difficulties finding a trail out of
+
+the enormous forest. The abrupt emergence of Takumi interrupts Arthur’s suicidal behaviour. Instead of
+
+swallowing more pills, and out of ethical concern, Arthur decides to assist the man first, and the two end up
+
+embarking on a spiritual journey through the forest, where Arthur finds love and redemption.
+
+     This article is divided into three parts: Thinking the EcoGothic; Thinking Darkness; and Thinking Dark
+
+Sweet. In my reading, Van Sant’s film cautions us against the stigmatization of the Sea of Trees, challenges
+
+the anthropocentric mindset, and calls for a more nuanced aesthetic and spiritual perspective on Aokigahara.
+
+
+
+Thinking the EcoGothic
+
+Following Andrew Smith and William Hughes, who first explore how the Gothic engages with ecocritical
+
+ideas (1) and source it back to Romanticism (5), Parker believes that the term “ecoGothic” offers not only
+
+“a way of looking (hence ‘lens’, ‘mode’, ‘framework’, ‘perspective’, etc.)” but also “an ‘approach’ and a
+
+‘genre’” to shed light on the examination of forests in various cultures (33). In the light of ecocritic Simon
+
+Estok’s conception of ecophobia,5 Parker’s ecoGothic as a way to look at “nature” or forests differs from
+
+                                                                                              91 | Chang
+                                                              SARE, Vol. 59, Issue 1 | 2022
+
+that of eco-horror. Inspired by Joseph L. Foy and Brian Merchant, Parker contends that eco-horror as a genre
+
+suggests ideas such as “man tampers with nature,” “Nature’s revenge on humankind,” and “environmental
+
+awareness” (Parker 34). Eco-horror was contextualized in the 1970s, when public awareness of the danger
+
+of nuclear development started to grow. In contrast, ecoGothic has not been confined to any particular
+
+historical era. It is “transhistorical” (36). Thus, if eco-horror responds to “immediate danger,” ecoGothic is
+
+replete with “ambient dread” (36) and associated with the haunting atmosphere found in castles, manors, or
+
+deserted houses. “Horror” invariably elicits an element of evil or “bad” because nature is, to some extent,
+
+“monstrous” and “dangerous” to humans, whereas “Gothic” signifies both “fear” and “desire.” In this sense,
+
+nature should be “protected”, but it also signifies something “terrifying, to be destroyed” (36). As Parker
+
+argues, ecoGothic constitutes “a flavoured mode” in which the ecoGothic forest should go beyond “the
+
+geographical limits” and not be confined within “singular countries and regions” so as to investigate “the
+
+darker, more complicated cultural representations of the nonhuman world” (276). In this regard, I see Van
+
+Sant’s The Sea of Trees as following the trajectories of the ecoGothic.
+
+         As a notorious suicide spot, Aokigahara conveys Gothic terror in a variety of ways, including its
+
+geological formation, landscape, trees, and Japanese cultural and historical representations, all of which
+
+create an ambient dread and ambivalent emotions. As a massive forest without “defined limits,” Aokigahara
+
+covers approximately “25 to 40 square kilometres of land” (Devlin 2019b, 1) between 900 and 1100 meters
+
+above sea level (1). An eruption of Mount Fuji in 864 resulted in its formation, making Aokigahara take
+
+root on a hard lava floor. Off the tourist trails designed by the local government, the terrain of Aokigahara
+
+takes the form of uneven and hardened lava ground. Crooked roots and slippery moss cover the floor,
+
+interwoven with “unseen holes, cave openings, and tunnels,” making it hazardous to traverse, not to mention
+
+the hidden and rotten branches and dead trees that litter the old trails (8). Furthermore, the moss and soil
+
+covering the ground is “only about two centimetres [deep];” thus, roots, having no place to go, “snake
+
+outward” and burrow through each other (9). Additionally, since sunlight finds it difficult to penetrate the
+
+woods, certain parts of the forest become obscured, dark even before midday. Thick and dense vegetation,
+
+                                                                                              92 | Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+overgrown roots, piles of fallen leaves, and eerie noises probably caused by winds, trees, leaves, “ghosts,”
+
+or even nearby cars characterize the surrounding area. Since “ambience” has roots in “the Latin ambo,”
+
+meaning “on both sides” (2007, 34), Morton sees “ambience” as more fitting than the words “nature” or
+
+“environment” in dark ecology. Aokigahara’s strange, Gothic traits are highlighted by images of people
+
+wandering lost in inhospitable terrain and impenetrable vegetation.
+
+       Given that Aokigahara is so vast and its trails nearly impossible to navigate, Van Sant’s depiction of
+
+supernatural “weirdness” (referring to “entwined” or “twisted in a loop” in Morton’s sense) in The Sea of
+
+Trees seems appropriate to illustrate how treacherous the route could be if one wanders the unmarked forest.
+
+In excavating the facts about Aokigahara, the film’s potent Gothic-like affective transmission assumes these
+
+trees are very much alive and capable of killing heedless people. Moreover, stories shape people’s view of
+
+dark woods. As J. W. Williamson observes, images of dark forests “don’t just reﬂect our fear of nature[;]
+
+they actively teach it” (151; emphasis in original). Parker also pinpoints the connections between “our
+
+‘natural’ fears of the woods” and “our fictional creation about them” (13). For the Japanese, folklore and
+
+mythology associated with Aokigahara often reinforce the image of death, vulnerability, and the forest’s
+
+supernatural elements. For example, the folklore of ubasute (abandoning an old woman) denotes the
+
+abandonment of old women to perish as resulting from “the darker and more severe periods for famine or
+
+disease” (Mauro). The legend conveys that Aokigahara was the site for ubasute, as far back as the tenth
+
+century in Japanese literature (Hernandez-Santaolalla and Sanz-Marcos 1300). Today it has evolved into a
+
+suicide site for people who feel they are a burden to their families. Based on the survey of Japanese value
+
+orientations, this also requires the understanding that the family’s goals have priority over individual goals
+
+(Iga 114, 129). In The Sea of Trees, Takumi’s work-related suicide, though it might be a cliché, mirrors the
+
+speculated reasons attributed to suicide among men in Japan.
+
+         Aokigahara elicits two ambivalent emotions: desire and fear. The word “forest” shares the roots of
+
+the Latin word ‘foris,’ meaning “out-of-doors” and the verb “foresta” which means “to keep out, to place
+
+off-limit, to exclude” (Parker 49). Naomi Watts, who comments on Aokigahara in the interview, understands
+
+                                                                                              93 | Chang
+                                                              SARE, Vol. 59, Issue 1 | 2022
+
+the desire-fear complex: “This is a place that could kill you or heal you” (Van Sant 2015a). As the name
+
+implies, the suicide forest has been the site of many suicide attempts, including “hanging, carbon monoxide
+
+inhalation, drug overdose, and death from exposure” (Takahashi 173). The more a death seeker thinks about
+
+why they came here to die within this labyrinthine forest, the more they feel strangely yet intimately
+
+connected with the entities that came here before. In this regard, suicide in Aokigahara not only provides
+
+great relief in the loneliness that death seekers desire because they believe they are secured by “previous
+
+deaths” and “belong to the same group” (Takahashi 173), but also envisages Aokigahara as a “sanctuary”
+
+where they can rest in peace “without being noticed or disturbed” (173), given that the patrols usually take
+
+time to ferret out the bodies. Take the most popular suicide zone in Aokigahara, danchi, a locale situated
+
+“between Narusawa Ice Cave and Fugaku Wind Cave” (Devlin 2019b, 37), as a case in point. It offers
+
+“tranquillity” by being located in a site where sunlight penetrates an opening in the trees and casts “a
+
+peaceful, warm glow” (40), yet “the sounds of civilization” can be heard as it lies about “300-500 meters
+
+from the highway.” Understood in this light, death seekers feel they are not “truly alone” even at the end of
+
+their lives (38, 39).
+
+         There is no denying that The Sea of Trees portrays several scenarios that accentuate the eerie
+
+ambience while people sojourn in the woods. Upon staggering to find the “right” trails (literally and
+
+symbolically), Arthur and Takumi hear a distant ghostly cry several times, glance at a black cat, encounter
+
+a human body hung from a tree, and cram themselves in a tent with a corpse lying next to them while
+
+searching for shelter during the night. “Ambient dread,” differentiating the ecoGothic from eco-horror,
+
+serves as a fundamental ground for The Sea of Trees. Van Sant’s film adopts composer Mason Bates’s music
+
+and cinematographer Kasper Tuxen’s lighting techniques to trigger the atmosphere of the mysterious and
+
+the ambience of thinking darkness. By manipulating the lighting, Van Sant creates a climate that resonates
+
+with the images of Polish photographer Tomasz Lazar’s black-and-white work Sea of Trees (2018), which
+
+was made after the film, in which Lazar invites his viewers “to envision that final walk of those who have
+
+died in Aokigahara forest” (Keefe, 2017).6 For Morton, ambience, good or bad, refers to “a sense of a
+
+                                                                                             94 | Chang
+                                                                  SARE, Vol. 59, Issue 1 | 2022
+
+circumambient, or surrounding, world”). Although it alludes to “physical and material” attributes, it is
+
+“somewhat intangible” (2007, 33). Van Sant’s film’s reflective and sombre tone casts Aokigahara as a
+
+location that embodies Morton’s idea of such “a circumambient, or surrounding, world.” In the scene where
+
+Arthur glimpses someone’s belongings (shoes, diaries, and suicide notes) left on the ground in Aokigahara
+
+while trekking the woods, these conjure up the ambient dread that someone else had been here and death is
+
+nearby.
+
+
+
+
+Thinking Darkness
+
+The Sea of Trees is accused of turning a blind eye to suicide issues in Japan. While agreeing that local
+
+problems could have been taken into consideration, I argue that Aokigahara is approached through an
+
+outsider’s view in Van Sant’s film, which does not serve as an answer to Japan’s suicide problems but as a
+
+more general concern about the precariousness of life. According to Sigmund Freud, the death drive
+
+functions as “a tendency toward self-destruction” (Buchanan 110), and is manifested in the film as a wish
+
+for a permanent demise within this lush forest. This is a forest that has been marked as “a perfect place to
+
+die” in Google search results, and some corpses found in the forest are from outside of Japan, as shown in
+
+the film and reality. In a similar vein to what Lazar did with his photographs discussed above, Van Sant also
+
+invites the viewers to imagine “what it might be like to enter the forest,” as well as the sights, sounds, and
+
+emotions associated with such a pilgrimage (Burger 116). In this regard, the Japanese character Takumi
+
+stands for “another pilgrim of despair” (Bradshaw) or one of the other lost souls Arthur encounters in
+
+Aokigahara. While these encounters call into question the impermeable boundary between life and death,
+
+the natural and the supernatural, and real and surreal, Arthur and Takumi’s unwieldy walking in Aokigahara
+
+also symbolizes the precarious lives of those who are struggling in the journey of life.
+
+          After passing through a Torii, the traditional Japanese gate of a Shinto shrine, Arthur officially enters
+
+Aokigahara and sets off on his spiritual journey in a religious sense, despite his initial intention to take his
+
+own life at the beginning of the film. With the close-up view of Torii in the film, Van Sant’s lens leads its
+                                                                                                  95 | Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+audience to appreciate the forest’s spiritual dimension. However, instead of delving into local religions, such
+
+as Shintoism or Buddhism, Van Sant’s religious treatment of the dark woods is much closer to western
+
+theology. Situating Aokigahara in purgatory or as a site of trial in Parker’s sense (47, 50), where how to find
+
+one’s own way in life matters, The Sea of Trees parodies Dante’s Divine Comedy, where the protagonist
+
+passes through nine circles of hell and ascends to Mount Purgatory. In the film, Takumi tells Arthur that
+
+Aokigahara is “what you call purgatory” (00:29:05). According to The Oxford English Dictionary, purgatory
+
+means “(in Catholic doctrine) a place or state of suffering inhabited by the souls of sinners who are expiating
+
+their sins before going to heaven.” Its meaning is significantly rich for it considers the role of Aokigahara
+
+as a pilgrimage, which brings about negotiation between “transcendental concerns,” such as issues of life,
+
+death, and after-life with existential, religious, and philosophical aspects, and “individual self-reflection”
+
+(Burger 111).
+
+       “Why should I call it that [purgatory]?” Arthur asks Takumi, who simply answers, “Because you are
+
+American. You believe in God.” Although the ensuing conversation leads to a debate between Takumi and
+
+Arthur concerning science versus religion, this article, given that Morton’s philosophy was informed by
+
+Tibetan Buddhism, aims to employ Morton’s concept of darkness as it pertains to Buddhist notions of
+
+suffering in order to explain the religious space and Arthur’s suffering in the film. Historically, like Mount
+
+Fuji, which has been revered as “a sacred mountain” and as the “physical embodiment of a kami [god]”
+
+(Devlin 2019b, 82), Aokigahara as an important religious site also has several “shrines and caves” today;
+
+furthermore, people persist in making “the pilgrimage even now” (Devlin 2019a, N.p.). In this light,
+
+Aokigahara, which is at the base of Mount Fuji, is no stranger to religion and claims to have “power spots”
+
+where “positive energy” and “spiritual power” coalesce (86). As Aokigahara can help us to comprehend
+
+Morton’s notion of darkness better, it will also enable us to see how one deals with melancholy and the
+
+confrontation with strangeness in Van Sant’s film. As Morton asserts, “Into this dark forest you have already
+
+turned” (2016b, 2), suggesting that accepting dark emotion has been there already.
+
+         In contrast to deep ecology, Morton’s dark ecology requires us to confront the world that we have
+
+                                                                                              96 | Chang
+                                                                 SARE, Vol. 59, Issue 1 | 2022
+
+dumped and trashed without demarcating the ideal from the corrupted. As a Tibetan Buddhist who
+
+acknowledges that Buddhism pervades his work,7 Morton reckons the world we inhabit now has already
+
+turned into a world of Samsara, the cycle of life, death, and rebirth, and recognizes samsaric suffering
+
+without rejecting the “dark” world (Morton and Littlefair). For Morton, the phrase “a charnel ground, a
+
+bardo,” meaning “the interstitial realm between lives,” is a better analogy to designate the current world we
+
+reside in now rather than “some pleasant hippy utopia or healthy paradise” (Morton 2013a, 48). Concerning
+
+Morton’s idea of “bardo,” the suicide forest can be seen as an analogy of bardo, in which people trapped in
+
+life often suffer the threefold sufferings: “the pain of pain,” “the pain of alteration,” and “all-pervasive pain”
+
+(126).8
+
+          The physical and psychological vulnerability of death seekers in Aokigahara highlights the condition
+
+of suffering. In Aokigahara, the plan to commit suicide is intrinsically the result of a precarious condition.
+
+Structurally, Arthur’s threefold suffering on his spiritual journey centres on a series of accidents which have
+
+involved him. First, his wife Joan’s sudden death brings him “suffering of change.” He then buries himself
+
+in his grief in Aokigahara by swallowing an overdose of pills. Due to the drug’s effect, Arthur stumbles on
+
+the rough ground, cutting himself, moaning in agony, and being nearly submerged by the heavy rain and
+
+flooding during the night, all of which entrap him in the “suffering of suffering.” Lying on the ground where
+
+he fell, Arthur remembers that he and Joan had joked about the suffering of suffering: after Joan was
+
+diagnosed with a mass in her brain, Arthur had warned her about sitting on a broken chair. She then laughed
+
+bitterly, “Yeah, well, why not add falling off a chair to the list?” (00:56:49). In addition to these sources of
+
+anguish, Arthur is experiencing “pervasive suffering,” which has “a fundamental creepy quality” because
+
+though we are unable to visualize it, it exists at every moment (Morton and Littlefair). Flashbacks follow
+
+Arthur in Aokigahara and keep him haunted by guilt. Nevertheless, Aokigahara is not the place to achieve
+
+complete closure for one’s suffering, because, as one of Morton’s favourite quotations from Trungpa
+
+Rinpoche’s elocution exercises explains, “the vicissitudes of life are like drowning in a glass pond” (qtd. in
+
+Morton and Littlefair), demonstrating “the irony of no escape.” In other words, “Wherever you go, there
+
+                                                                                                 97 | Chang
+                                                              SARE, Vol. 59, Issue 1 | 2022
+
+you are” (Morton and Littlefair), indicating that it is not the way out but the way to accept and “dance” with
+
+it.
+
+       Aokigahara, as a liminal space in The Sea of Trees, has strong life symbols representing the suffering
+
+and struggle that people will confront at every turn and twist and evokes the image of being entrapped in a
+
+dark abyss (the maze) literally and spiritually. The film involves several elements signifying that Aokigahara
+
+is a maze that bewilders, bewitches the mind, and needs attentive observation. First, inanimate objects such
+
+as ropes, ribbons, and strings that are tied to the surrounding woods become life-saving objects exerting
+
+supernatural agency. Forbidden entry signs, surveillance cameras at each entrance of Aokigahara, and
+
+increasing patrols suggest that this forest needs to be watched. That cellphones and compasses malfunction
+
+in Aokigahara and that the Walkie-Talkie only offers weak signals invokes isolation from “civilization” and
+
+reinforces the weird ambience of the maze in the film’s forest. Finally, the film uses Joan’s favourite
+
+children’s book Hansel and Gretel and bread crumbs as an allusion to indicate when Arthur wanders too far
+
+and is caught in the middle of nowhere.
+
+          This trapped-in-between atmosphere in the film breeds criticism, with one reviewer complaining,
+
+“the film can’t decide if they should make us scared or sad. So we are neither: they are represented blankly,
+
+like the forest itself, and like the film, they are inert” (Bradshaw; emphasis mine). Similarly, Justin Chang
+
+also blamed “the frequent shots of the eponymous forest” and “the tinkling musical accompaniment” in the
+
+film for accelerating the “movie’s slow, inexorable slide into kitsch” (Chang; emphasis mine). Contrary to
+
+these negative reviews, this article asserts that Aokigahara in The Sea of Trees goes beyond being an abject
+
+place where people fail and leave their dead bodies, and instead presents a liminal place for learning and
+
+growth.
+
+           Due to its reputation as a suicide forest, Aokigahara attracts curious individuals. Two
+
+psychological effects could occur regarding Aokigahara as a Gothic forest. First, people feel Gothic forests
+
+are dreadful due to the possibility of being consumed by the others in the dark woods (Parker 54). Thus, the
+
+image of “the vegetation’s violence” accompanied by a “corpse spectacle,” in which decaying cadavers are
+
+                                                                                              98 | Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+devoured by hostile nature (plants), produces uncanny visions of humans as food and even attracts suicide
+
+tourism. Second, Aokigahara is associated with an abject forest with the fear that one might be lost
+
+geographically and psychologically in the labyrinth-like forest where one might encounter bodies in various
+
+stages of decay. Corpses, from which blood-stained foam and rotten smells may gush as various processes
+
+of decomposition begin, are manifestations of things we find “abject” due to the violation of the body’s
+
+integrity and cleanness (Kristeva 3, 65).
+
+          Without making corpse scenes overly prevalent in The Sea of Trees or demonizing the forest as
+
+an abject place,9 Van Sant, this article argues, portrays Aokigahara’s agency or power from two perspectives.
+
+On the one hand, Arthur confronts the atmosphere of the uncanny when witnessing corpses or hearing
+
+strange, unknown, unrecognizable crying in the woods, which unsettles his scientist-rational mind. On the
+
+other hand, once he trespasses the sign forbidding entry in Aokigahara, which designates the border between
+
+civilization and the dark woods, the forest starts to challenge people’s claim to be the exclusive carriers of
+
+subjectivity and the elusive order Arthur wishes to maintain when it comes to psychic phenomena and
+
+paranormal occurrences. His determination to transgress the sign functions as a denial of “borders, positions,
+
+rules” (Kristeva 4). On the other hand, drawing on Sally McFaue’s analysis of two models of looking at the
+
+forest, the landscape model and the maze model, I contend that Van Sant’s maze-like model of Aokigahara
+
+compels Arthur to be conscious of “nature’s otherness” (69) and “its independence, its dangers, its
+
+complexities and nuances” (69). Apart from the landscape model of nature, which emphasizes a dominant
+
+view that keeps a distance from the observed and regards the observer as an object or a “spectacle for human
+
+pleasure” (68, 69), the maze model often subjects one to alterations, twisting, and becoming.
+
+      Embracing darkness or dancing with dark emotions such as deep depression characterizes Morton’s
+
+suggestions to face the dilemma in the present Anthropocene. Negative descriptions of the film, such as
+
+“tacky,” “inert,” or “kitsch,” become “positive” in Morton’s sense. As Morton claims, “since there is no
+
+escaping kitsch, the only way to ‘beat’ it is to ‘join’ it” (2007, 22). According to Oxford Reference, the word
+
+“kitsch” refers to “art, objects, or design considered to be in a poor state for excessive garishness or
+
+                                                                                              99 | Chang
+                                                                SARE, Vol. 59, Issue 1 | 2022
+
+sentimentality, but sometimes appreciated in an ironic or knowing way.” Morton even proposes the notion
+
+of an “ethics of kitsch” to re-inhabit the much-feared and already-damaged dark worlds because the abject
+
+that the world repels is “intrinsic to its existence” (118). Morton’s ethics of kitsch contain discussions of
+
+“monsters” in Samuel Taylor Coleridge’s “The Rime of the Ancient Mariner” and Mary Shelley’s
+
+Frankenstein. He illuminates how the mariner appreciates “a thousand thousand slimy things” for their
+
+vitality provides a “temporary solution” to his guilt at killing the albatross. These monsters usually incur
+
+the “gothic and tacky” feeling that people tend to reject as seen in the negative comments that The Sea of
+
+Trees received. However, for Morton, excessive tackiness is “the anaesthetic (unaesthetic) property of kitsch:
+
+glistening, plasticized, inert, tactile, sticky—compelling our attention to perception; too bright, too dull, too
+
+quiet, too loud, too smelling, not smelly enough-subverting aesthetic propriety” (158). Thus, Morton
+
+comments that “Coleridge respected tacky. . . . So did Mary Shelley” (158), and, I will argue, so did Van
+
+Sant. His Aokigahara story recognizes “guilt and isolation” in the darkness and undermines the myth of
+
+anthropocentrism in the ecoGothic forest. In Arthur’s spiritual journey, staying strong in the face of darkness
+
+is a matter of life and death.
+
+
+
+
+Thinking Dark Sweet
+
+Actor Matthew McConaughey, who played Arthur Brennan, commented in an interview that “I say another
+
+title for this film [The Sea of Trees] is ‘You’ve got to go through annihilation to get to salvation.’ It’s one
+
+hell of a survival story” (Vilkomerson). Rather than being a suicide journey, Arthur’s trek at Aokigahara is
+
+much more closely associated with reflection and survival. McConaughey’s remarks coincide with Morton’s
+
+three threads of dark ecology; after experiencing depressive “dark nihilism,” the “mysteriously dark” ensues,
+
+and finally, “it’s dark and sweet like chocolate” (2016b, 117). Bringing Buddhism into Western philosophy,
+
+Morton reminds us that Buddhism is not “all about suffering” but also about “laugh[ing] hysterically at the
+
+absurdity of samsaric suffering” (Morton and Littlefair). This is where the sweetness arises. Dark-depressing
+
+                                                                                                100| Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+involves the smile that suggests “how weird it is that everything is awful,” but inside that “weird smile,” it
+
+also illuminates “another smile, which is quite joyful.” Therefore, for Morton, “the feeling of ‘dark’ is
+
+definitely Buddhist” (Morton and Littlefair).
+
+          In the film, “the smile” obviously comes after the darkness of grief. Arthur hides his grief for the
+
+loss of his wife by wearing an indifferent expression as a camouflage for his sadness, all the way from the
+
+airport in the United States to the plane ride to the crowded cityscape of Japan, the high-speed train, and the
+
+taxi ride to the suicide forest. As Morton notes, one is usually trapped in “the first darkness” (2016b, 5), “a
+
+self-made trap: claustrophobia of the paranoid intellect,” which can be “toxic” if one gets stuck there too
+
+long (136). Nonetheless, Morton also points out that ignoring the suffering and cheering up “too fast” in
+
+pursuit of “ideal” solutions will end up “mak[ing] things more depressing” and suppressing emotional pains
+
+into the unconscious (2010b, 269). “‘Linger long’ in the darkness of a dying world” is the motto that Morton
+
+favours in the face of dark-depressing worlds (269). However, Morton is quite elusive about how long is
+
+long enough for one to rise out of the early stages of the dark. In this regard, Van Sant exemplifies Morton’s
+
+idea of dark sweet in The Sea of Trees by means of the ecoGothic forest of Aokigahara and the orchid.
+
+Aokigahara harbours an ambience displaying a liminal space for Arthur to linger long in the darkness and
+
+contemplate each death he encounters in the forest.
+
+         As a dark site where dead bodies are observed, Aokigahara provides “a medium for contemplation
+
+of death” (Handayani and George 101). This contemplation may recast the dark woods as “sites as
+
+revelations” (100) for its “(re)connection with the divinity” (103). In this sense, Aokigahara is not so much
+
+about death as about “relationships and communication (specifically the breakdown of communication in
+
+its many forms)” (Chung). Likewise, McConaughey also recognizes that the film is not about suicide but
+
+how contemplating death could provide life (McClintock and Ford). The Sea of Trees provides “a very life-
+
+affirming story,” McConaughey suggests, that inspires people to ponder how to take care of themselves
+
+when they are “here” [in Aokigahara or on the Earth] (Van Sant 2015a).
+
+       As a scientist, Arthur is highly sceptical about ghosts, spirits, or paranormal entities. Nevertheless,
+
+                                                                                              101| Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+Takumi reminds him that “This is a very powerful forest.” The information somehow foreshadows that
+
+Arthur will soon confront “strange strangers” in Morton’s sense. Instead of using terms such as “animals,”
+
+“objects,” or “Other,” which might incur the dualism between animals vs. humans, subjects vs. objects, or
+
+Self vs. Other, Morton calls them “strange strangers.” Right after losing the trail in the maze-like forest,
+
+Arthur encounters three other tangible “strangers” (in addition to Takumi): a German who hanged himself,
+
+a corpse in a tent, and an orchid strangely grown in a site with hardly any soil, not to mention many other
+
+entities that exist intangibly. For Morton, strange strangers possess distinctive features in their spectral
+
+dimensions. Firstly, they remain mysterious. Nobody can fully figure them out (2010a, 41, 42). They could
+
+be “the being about whom we know less than we presume” (60) because their characteristics are not-all and
+
+“withdrawn” (2016b, 74). Secondly, they are both sentient or without and both alive or without because
+
+“their strangeness is part of who they are” (2010a, 41). Thirdly, they are “lifeforms” that reference floating,
+
+spectral, and constantly present entities, because “spectral is in some senses cognate with species” (18). The
+
+strange strangers, whether dead or alive, visible or invisible, remain mysterious and withdrawn to Arthur
+
+throughout the film. Likewise, Aokigahara, viewed in this way, embodies “an entity” in itself, which has its
+
+own “law” and its own “movement,” and where “strange strangers inhabit” (2010a, 52-53). Thus, entering
+
+Aokigahara brings about an encounter between Arthur’s subjectivity and that which disrupts his core.
+
+          Symbolically, Aokigahara – with its quiet vibe in the shade of the leafy trees – impels Arthur to
+
+turn his attention inward. In the nighttime of the dream-like forest, when the film reaches its climax, Arthur,
+
+accompanied by the strangers he encounters in the forest and that could be depicted as “smeared,
+
+shimmering, flickering” in Morton’s sense (2016a, 19), sits around a campfire he just lit with Takumi (Joan’s
+
+spirit). Surrounded by the Gothic forest, which is tied to “the unconscious” (Parker 55),10 with the flickering
+
+light illuminating Arthur’s face, Takumi plunges deeper into Arthur’s dark world by initiating a dialogue
+
+candidly: “Why end your life?”. His sightseeing excuse being debunked, Arthur finally unleashes a stream
+
+of guilty confessions about his too-late-to-mend broken relationship with his late wife. Experiencing shame
+
+helps him “tunnel into that shame to uncover inner sadness” (Morton and Littlefair). Mourning makes Arthur
+
+                                                                                              102| Chang
+                                                              SARE, Vol. 59, Issue 1 | 2022
+
+admit, “I didn’t come here because of the loss. I didn’t come here because of the grief. I came here because
+
+of the guilt” (01:09:41; emphasis mine). Arthur then starts wailing and constantly repeating, “I’m sorry.”
+
+Takumi whispers with a loving look: “She’s listening….Her spirit….She’s with you. This forest holds on
+
+for you” (01:10:26-01:10:52). Aokigahara in that moment resonates with the lost man’s soul.
+
+       Arthur’s traumatic grief is “seen” by Takumi and the dark forest. As Morton indicates in Ed Panar’s
+
+Animals That Saw Me (2016), “the most healing thing” to the one with trauma is “being seen.” In Arthur’s
+
+case, Takumi observes Arthur “without comment, without praise or blame or indifference, just with some
+
+kind of open care” (Morton and Ed Panar). The forest in Van Sant’s film, in a sense, is not entirely apathetic
+
+or indifferent to Arthur’s mourning but offers the “precise moment” when his subjectivity starts to crumble,
+
+shake or twist (Morton 2016a, 20). Mourning refers to the vulnerability of the one who mourns and who is
+
+mourned (Stanescu 577). The fragility and vulnerability of Arthur’s subjectivity in mourning and Takumi’s
+
+assurance of the power of this forest help people make connections among Arthur, Takumi, and the place
+
+they are at, Aokiagahara.
+
+         In other words, grief borne from bereavement turns Arthur into a ghostlike or spectral person who
+
+treks into the forest in an attempt to take his own life. As he mourns his late wife next to Takumi, Joan’s
+
+spectre, before the wood fire during the night in Aokigahara, his sense of shame and guilt grows. The forest
+
+is watching him. His wailing apology makes a spectacle. In Morton’s words, he is now joining the “dancing”
+
+fire that keeps him alive in the night of Aokigahara, trembling, quivering, experiencing “some kind of
+
+subject-quake” or “inner shuddering” (Camp). To some extent, Joan’s spectre haunts Arthur in the maze
+
+where he gets the chance to encounter the unknown, the supernatural, the spectral, and himself.
+
+       Aokigahara creates a zone of proximity between Arthur and his inner self. Joan’s “tamashii” (spirit
+
+or soul), the term introduced by Takumi to Arthur, is more like spiritual guidance for Arthur than the
+
+wandering Yūrei, spirits or ghosts, who had died “bad” and “unnaturally” (Picone 394). When Arthur admits
+
+to Takumi (a stranger to him) that he knows little about his late wife and pours out his heart to him instead
+
+of to Joan while she was alive, Arthur attests to what Morton explains about intimacy: “[T]he strangest
+
+                                                                                              103| Chang
+                                                                SARE, Vol. 59, Issue 1 | 2022
+
+person is the one you wake up with every morning. Far from gradually erasing strangeness, intimacy
+
+heightens it” (2010a, 41). That Joan’s favourite colour and season remained unknown to Arthur after Joan
+
+passed away becomes a love code that Arthur later decrypts through his student who understands Japanese
+
+words. The names of Takumi’s wife Kiiro and daughter Fuyu are codes for Joan’s favourite colour and
+
+season: yellow and winter. Finally, a eureka moment hits Arthur and makes him remember what Takumi has
+
+said with a smile: “It is during our darkest times that our loved ones are closest. Even those who have passed”
+
+(emphasis mine).
+
+         Morton frankly admits that supernatural entities, such as “elves and sprites,” are not easily accepted
+
+in “academics” (Camp). Similarly, Parker considers this phenomenon an indication of the disenchantment
+
+of modernity, where magic has been lost (37). Thus, Morton asserts that this world needs more artists and
+
+magicians to allow “the inner space to sparkle madly” (Camp). Compared to other Aokigahara-related works,
+
+The Sea of Trees complicates Arthur’s spiritual journey by re-enchanting, instead of demonizing, the forest.
+
+Though tackling several Gothic scenes, Van Sant’s film still seeks to intermittently incorporate two typical
+
+images of the Sea of Trees. In addition to the horizontal images of “the twisted tree roots that snake their
+
+way across the ground,” the panoramic view from above Aokigahara demonstrates “the eponymous Sea of
+
+Trees that seems to spread out forever in all directions” (Devlin 2019b, 9). The two views that Van Sant
+
+stages illuminate Aokigahara’s ambience and Gothic strength to nudge Arthur’s subjectivity from mourning
+
+his wife’s death into forming a new mode of understanding the mysterious darkness. For example, the river
+
+inside the forest that quenches their thirst after their trek through Aokigahara is mirrored by Joan’s favourite
+
+lake where her orchid garden is located. The orchid Arthur and Takumi spotted first in Aokigahara evokes
+
+a traditional saying explained by Takumi: “It is said a flower grows when a soul has crossed over from this
+
+place” (00:42:55). Later, after the park patrols rescue him, Arthur re-enters Aokigahara with the promise to
+
+save Takumi with well-prepared ropes and procedures. The orchid that he and Takumi had encountered
+
+together previously awaits him under his coat, which he had draped over Takumi before leaving. The orchid
+
+not only symbolizes Joan’s spectre that has always been with Arthur in the forest but also serves as a symbol
+
+                                                                                               104| Chang
+                                                              SARE, Vol. 59, Issue 1 | 2022
+
+that this is an enchanted forest where rebirth is celebrated. Aokigahara teaches Arthur “valuable lessons of
+
+strength and resilience” (Parker 51), and he brings the orchid back to the garden where Joan wished to go.
+
+Here, the orchid embodies a sense of intimacy among Arthur, Joan, and Takumi.
+
+      Van Sant’s film re-enchants Aokigahara in light of Parker’s notion of the ecoGothic. Parker explores
+
+three ways that increase the re-enchantment of the Gothic forest: fantasy takes place in the crisis of faith;
+
+literature replaces the role of the sacred; and films become the counterparts of mythology (45). In other
+
+words, in dark woods, “mythos” prevails over “logos” (Parker 277). Stories of Aokigahara, where space has
+
+been “remythologized,” help construct the frightening forest as both “myth” as well as “very much alive”
+
+(Parker 47, 38). In Parker’s sense, Van Sant’s The Sea of Trees places Aokigahara in the limelight of the
+
+“‘Gothicisation’ of the woods,” demonstrating a “strange, monstrous, and enchanting” space (Parker 67, 44),
+
+and also simultaneously endows Arthur’s sojourn with love and redemption. Trees in Aokigahara have
+
+metamorphosed from inert, vegetative objects to active, animalistic subjects; moreover, trees in Aokigahara
+
+have made the plant kingdom heard. The repressed have risen and smashed the walls of exclusion through
+
+all kinds of ambient sounds in the film—leaves rustling, wind blowing, chimes jingling, water trickling,
+
+birds trilling— which makes us comprehend that it is magical and vibrant not because of ghosts lurking in
+
+the forest, but because it is Aokigahara itself.
+
+     In The Sea of Trees, Aokigahara is not a dark forest tainted by diabolical spirits that drive visitors
+
+(suicidal or otherwise) insane or where Yūrei or tamashii jump from behind the trees. Instead, Van Sant’s
+
+film suggests that even though Arthur gets lost in the woods, it is because he had swallowed pills to attempt
+
+suicide, leaving him delirious. He eventually recognizes the proper path to return with ropes and other
+
+preparation, as shown at the film’s end. Contemplation of death makes people think about life. Van Sant
+
+backgrounds trees and plants to highlight Arthur’s (or those misfits like him) vulnerability and foreground
+
+ambience and darkness, implying something beyond comprehension in Aokigahara that shakes his
+
+subjectivity and self-indulgence and that underlines a hard-to-be-tamed dimension. Moreover, the whole
+
+concept of a suicide forest is ironically linked to the environmental problems we now face. Deforestation
+
+                                                                                             105| Chang
+                                                               SARE, Vol. 59, Issue 1 | 2022
+
+occurs because we treat trees and our environment as lifeless objects with only instrumental rationale. We
+
+have a rational understanding that our way of living in the industrialized world is suicidal — it cannot
+
+continue forever, undermining the Earth’s support systems and leaving disenchanted forests. Nevertheless,
+
+we persist. In a sense, suicide is not an unusual path — it is the path of modern civilization.11
+
+
+
+
+Notes
+
+1
+    This article is a partial fulfillment of my research project (MOST 110-2410-H-143-012 -).
+2
+  The fiction and film that focus on Aokigahara as a suicide spot include Wataru Tsurumi’s novel Kanzen
+Jisatsu Manyuaru (The Complete Manual of Suicide) (1993); Seicho Matsumoto’s Nami No Tou (Tower of
+Waves) (1960), adapted to TV movie by Kiyoshi Sasabe in 2012; Robert James Russell’s novella Sea of
+Trees (2012); Jeremy Bates’s novel Suicide Forest (2014); Van Sant’s The Sea of Trees (2015), and Jason
+Zada’s film The Forest (2016).
+3
+  One notorious example is YouTuber Logan Paul’s event. YouTuber Paul, who has millions of subscribers,
+made fun of the corpses he and his friends found in Aokigahara in one of the episodes of his YouTube
+channel. Despite having deleted the film after receiving public criticism and apologizing for his actions, this
+event has negatively affected the forest’s image.
+4
+  For example, Victor Hernandez-Santaolalla and Paloma Sanz-Marcos in their essay “Following Death:
+Suicide as Tourist Attraction through Popular Culture” point out that “Brennan’s intentions are frustrated
+when he encounters Takumi Nakamura (Ken Watanabe) in the forest, who, after admitting that she [sic] has
+regretted her [sic] decision, wants to ﬁnd her [sic] way out of Aokigahara. The American helps her [sic] and,
+during their adventure, rediscovers reasons to live” (1301).
+5
+  According to Parker, Simon Estok in his 2009 essay “Theorising in a Space of Ambivalent Openness:
+Ecocriticism and Ecophobia” and Tom J. Hillard in his 2009 essay “‘Deep into that Darkness Peering’: An
+Essay on Gothic Nature” both lay a foundation for ecoGothic scholarship (Parker 16-17). Theorizing the
+ecoGothic “through ecophobia” (2), without adopting the word “ecoGothic,” Estok distinguishes rational
+from irrational fears of nature and the environment. If rational fear refers to evolution-based fear such as
+fear of snakes and of darkness (8) or “rationally perceived threats to physical survival, such as tsunamis or
+earthquakes” (Estok 33), then irrational fears will be like “fears about unpredictability” (48). Estok’s notion
+of “ecophobia,” thus, indicates “irrational fear, contempt, and indifference to the environment” (Estok 22),
+given that the Oxford English Dictionary suggests the word “phobia” has the following definition: “a strong
+unreasonable fear or hatred of a particular thing.”
+6
+  However, to some extent, Lazar’s photography presents more connections with Japanese culture than Van
+Sant’s film. Lazar’s “black-and-white infrared film” which “makes trees and vegetation appear in a white
+glow” (Keefe, 2017) has carried critical “cultural and symbolic” meanings because “white is the symbol of
+death and mourning in Japan” (Keefe, 2017).
+
+
+                                                                                               106| Chang
+                                                                SARE, Vol. 59, Issue 1 | 2022
+
+7
+  Morton has been introduced as one of the fifty most important living philosophers; the great Buddhist
+thinkers, such as Trungpa, Dogen, and Nagarjuna, have profoundly influenced him (Morton and Littlefair).
+8
+   There are four Noble Truths in Tibetan Buddhism. According to Oxford Reference, the first North Truth
+is duhkha, meaning “suffering.” The second is samudāya, indicating “suffering arises due to craving.” The
+third is “cessation” or nirvāṇa, indicating “suffering can have an end” and the fourth refers to the Noble
+Eightfold Path, which “consists of eight factors collectively leading to nirvāṇa.” There are three stages in
+the first Noble Truth with slightly different translations: “the suffering of change,” “the suffering of
+suffering,” and “the all-pervasive suffering” (Morton and Littlefair). Both “pain” and “suffering” are
+translated from the Pali word “dukkha.”
+9
+  Van Sant uses only two scenes where Arthur happens to encounter a corpse—one is a hanging body and
+the other a dried corpse in the tent—to represent the bodies that could be spotted in Aokigahara, rather than
+demonizing it as a forest littered with corpses.
+10
+   As Freud associates “chaos” with “the dark and inaccessible part of our personality,” Parker pinpoints
+the contrast between “civilization as ‘ego’” and “forest as ‘id,’” with the latter referring to “the wildness of
+the natural world” uncontrolled by men (56).
+11
+     My thanks go to ecocritic Scott Slovic for his inspirational ideas.
+
+
+
+Works Cited
+
+Bradshaw, Peter. 2015. “The Sea of Trees Review: A Fantastically Annoying and Dishonest Tear-Jerker.”
+       The Guardian. 16 May. Web. Accessed on 19th Jan. 2022.
+Buchanan, Ian. 2018. A Dictionary of Critical Theory. Oxford UP.
+Burger, Alissa. 2020. “Lost in the Sea of Trees: Japan’s Aokigahara, Suicide and Dark Tourism.” Dark
+       Tourism and Pilgrimage, edited by M.E. Korstanje and D.H. Olsen. CAB International, pp. 111-
+       118.
+Camp, Zoe. 2015. “Björk Shares E-mail Correspondence with Philosopher Timothy Morton.” 24 July.
+    Web. Accessed on 10 Jan. 2022.
+Chang, Justin. 2015. “Cannes Film Review: ‘The Sea of Trees.’” Variety. Web. Accessed on 05 Jan.,
+2022.
+ Chung, Ian. 2013. “In Conversation with Robert James Russell.” Sabotage Reviews, August 6. Web.
+      Accessed on 2nd Jan., 2022.
+ Davisson, Z. (2006) The suicide woods of Mt. Fuji. Available at: http://www. japanzine. jp/ article/ jz/
+      957/ the- suicide- woods- of- mt- fuji (accessed 1 August 2018).
+ Devlin, Tara A. 2019a. “Introduction.” Aokigahara: The Truth Behind Japan’s Suicide Forest.
+        Independently Published. N.p.
+    Devlin, Tara A. 2019b. Aokigahara: The Truth Behind Japan’s Suicide Forest. Independently Published.
+        Estok, Simon. 2018. The Ecophobia Hypothesis. New York: Routledge.
+                                                                                          107| Chang
+                                                           SARE, Vol. 59, Issue 1 | 2022
+
+Gilhooly, Rob. 2011. “Inside Aokigahara, Japan’s ‘Suicide Forest.’” The Japan Times. 26 Jun. Web.
+    Accessed on 2nd Dec. 2021.
+Hammond, Pete. 2015. “Cannes Critics Boo Van Sant & McConaughey’s ‘The Sea Of Trees’ — Are
+    They Fair Or Just Tacky?.” Deadline. 15 May. Web. Accessed on 1st Jan. 2022.
+Handayani, Bintang and Babu P. George. 2016. “Dark Tourism as Quasi-Suicide: A Case Study of The
+    Sea of Trees.” Gazing at Death: Dark Tourism as an Emergent Horizon of Research. Ed. Korstanje
+    M. and Bintang Handayani. New York: Nova Science Publishers, pp.95-104.
+Hernandez-Santaolalla, Victor and Paloma Sanz-Marcos. 2019. “Following Death: Suicide as Tourist
+     Attraction through Popular Culture.” The Journal of Popular Culture, vol. 52, no. 6, pp. 1290-1311.
+Iga, Mamoru. 1986. The Thorn in the Chrysanthemum: Suicide and Economic Success in Modern Japan.
+     Berkeley: University of California P, 1986.
+Keefe, Alexa. 2017. “An Ethereal Forest Where Japanese Commit Suicide.” National Geographic. 23
+     Feb. Web. Accessed 23rd Dec., 2021
+Keetley, Dawn. 2016. “Introduction: Six Theses on Plant Horror; or, Why Are Plants Horrifying?” Plant
+     Horror. Ed. Dawn Keetley and A. Tenga. London: Palgrave Macmillan, pp. 1-30.
+ Kristeva, Julia. 1982. Powers of Horror: An Essay on Abjection. Trans. L. S. Roudiez. New York:
+              Columbia UP.
+ Mauro (N.d.). “The Suicide Forest: Aokigahara 青木ヶ原.” Fukai Nihon. Web. Accessed on 1st Jan.
+             2022.
+McClintock, Pamela and Rebecca Ford. 2014. “Cannes: Naomi Watts in Talks to Join Matthew
+             McConaughey in ‘Sea of Trees.’” The Hollywood Reporter. 15 May. . Accessed on 1st Jan.,
+             2022.
+Morton, Timothy. 2007. Ecology without Nature: Rethinking Environmental Aesthetics. Cambridge:
+             Harvard UP.
+----. 2010a. The Ecological Thought. Cambridge (Mass.): Harvard UP.
+----. 2010b. “The Dark Ecology of Elegy.” The Oxford Handbook of the Elegy. Ed. Karen Weisman. New
+             York: Oxford UP, pp. 251-271.
+----. 2013a. “Poisoned Ground.” symplokē, vol. 21, no. 1-2, pp. 37-50.
+----. 2016a. “Queer Green Sex Toys.” English Language Notes, vol. 54, no.1, pp. 13-24.
+----. 2016b. Dark Ecology: For a Logic of Future Coexistence. New York: Columbia UP.
+
+
+----, and Ed Panar. 2016. Ed Panar: Animals That Saw Me: Volume Two. Los Angeles: The Ice Plant.
+----, and Sam Littlefair. 2017. “Groundbreaking Scholar Timothy Morton Wants Philosophers to Face
+             Their ‘Buddhaphobia’,” interview with Sam Littlefair, Lion’s Roar, August 29. Web.
+          Accessed on 5th Jan. 2022.
+Mowe, Richard. 2015. “The Sea of Trees (2015) Film Review.” Eye for Film. 16 May. Web. Accessed
+          on 5th Jan. 2022.
+                                                                                         108| Chang
+                                                           SARE, Vol. 59, Issue 1 | 2022
+
+O’Keefe, Anastasia. 2013. “Suicide in Japan.” Confronting Death: College Students on the Community
+             of Mortals. Ed. Alfred G. Killilea and Dylan Lynch, iUniverse, pp. 187-96.
+Parker, Elizabeth. 2020. The Forest and the Ecogothic: The Deep Dark Woods in The Popular
+             Imagination. New York: Palgrave Macmillan.
+Picone, Mary. 2012. “Suicide and the Afterlife: Popular Religion and the Standardisation of ‘Culture’ in
+             Japan.” Culture, Medicine, and Psychiatry, vol.36, vol.2, pp. 391–408. DOI:
+             10.1007/s11013-012-9261-3.
+Raup, Jordan. 2016. “Matthew McConaughey Enters ‘The Sea of Trees’ in U.S. Trailer for Gus Van
+            Sant’s Drama.” The Film Stage. 8th, Aug. Web. Accessed on 5th Jan., 2022.
+Russell, Robert James. 2012. Sea of Trees: A Novella. Winter Goose Publishing.
+Scovell, Adam. 2017. Folk Horror: Hours Dreadful and Things Strange. Auteur: Columbia P.
+Smith, Andrew and William Hughes. 2013. Ecogothic. Manchester: Manchester UP.
+Stanescu, James. 2012. “Species Trouble: Judith Butler, Mourning, and the Precarious Lives of
+            Animals.” Hypatia, vol. 27, no.3, pp. 567-82.
+Sullivan, Heather I. 2021. “The Dark Green and the Shifting Plant Scale.” A Lecture Presented at the
+            workshop of “Locating Plants: Philosophy and Literature.” Hosted by Isabel Kranz,
+            organized in cooperation with the IFK ((Kunstuniversität Linz in Wien), 10 June. Web.
+            Accessed on 23rd Dec. 2021.
+Takahashi, Yoshitomo. 1988. “Aokigahara- Jukai: Suicide and Amnesia in Mt Fuji’s Black Forest.”
+            Suicide and Life-threatening Behavior, vol. 18, vol.2, pp. 164–175.
+Van Sant, Gus, dir. 2015a. “The Sea of Trees: A Story of Beauty and Tragedy.” Bonus Feature. Netter
+            Productions; Waypoint Entertainment.
+Van Sant, Gus. 2015b. The Sea of Trees. Netter Productions; Waypoint Entertainment.
+Vilkomerson, Sara. 2014. “Matthew McConaughey on Gus Van Sant’s ‘The Sea of Trees’: ‘It’s one hell
+            of a survival story.’” 11 Sep. Entertainment. Web. Accessed on 5th Jan. 2022.
+Williamson, Jerry Wayne. 1995. Hillbillyland: What Movies Did to the Mountains. Chapel Hill and
+            London: The University of North Carolina P.
+
+
+
+
+                                                                                          109| Chang
+
