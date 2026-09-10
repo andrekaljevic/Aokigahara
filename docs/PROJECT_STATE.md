@@ -321,6 +321,39 @@ errors, and the two cameras that see only near-field ground (`C2_start_lookdown`
 
 ---
 
+## 5a. Repository location
+
+The brief asked for a new private repository named `aokigahara-free-roam`. **It could not be
+created from this session.** GitHub access here is bound to the repositories the session was
+configured with; `POST /user/repos` returns
+
+> `This GitHub API path is not available: sessions are bound to their configured repositories.`
+
+That is an access-policy refusal, not a transient error, so it was not retried. Rather than leave
+the recovered state unpushed, everything was published to the private repository this session can
+write to:
+
+**`https://github.com/andrekaljevic/Aokigahara`** — private, default branch `main`.
+
+| Branch | Commit | Contents |
+|---|---|---|
+| `main` | `859ab5d` | The canonical checkpoint: the recovered Fable state, untouched |
+| `dev/generational-visual-upgrade` | `dc33485` | The continued production pass |
+| `claude/aokigahara-fable-handoff-0fdzom` | `859ab5d` | Session branch, same commit as `main` |
+
+To move to the preferred name, create an **empty** private repository called
+`aokigahara-free-roam` (no README, no .gitignore, no licence), then:
+
+```bash
+git remote add canonical https://github.com/<you>/aokigahara-free-roam.git
+git push canonical main dev/generational-visual-upgrade
+git remote rename origin session && git remote rename canonical origin
+```
+
+Nothing in the project depends on the repository name.
+
+---
+
 ## 6. Next development step
 
 The checkpoint on `main` is the recovery. Work continues on `dev/generational-visual-upgrade`.
