@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aokigahara Netlify deploy helper</title></head>
+<body style="font:16px system-ui;max-width:720px;margin:4rem auto;padding:0 1rem"><h1>Aokigahara deploy helper</h1><p id="status">Preparing deployment…</p>
+<script>
+(async()=>{
+  const status=document.getElementById('status');
+  const proxy=decodeURIComponent(location.hash.slice(1));
+  if(!proxy || !proxy.startsWith('https://netlify-mcp.netlify.app/proxy/')){status.textContent='Missing deployment authorisation.';return;}
+  const b64='UEsDBBQAAAAIACSvMV2OG60kLgAAADYAAAAMABwAbmV0bGlmeS50b21sVVQJAAM0YqxqNWKsanV4CwABBAAAAAAE6QMAAItOKs3MSYnlUlBIzs/NTcxLUbBVUNLTB4vqFWcoASUKSpNyMoszQBJgZrISFwBQSwMEFAAAAAgAJK8xXev+q7akAQAA9gIAAAgAHABidWlsZC5zaFVUCQADNGKsajRirGp1eAsAAQQAAAAABOkDAACVUstu2zAQvOsrpu5DQAGKjttTDATopafe0mMBgyaXEmOKZLmUmqDuv5dKbMRpe+lJ4s5wZ3aHr1/JibPcuyApzNgrHhqmAkFTRHKJrHK+ySNEtuCskaa9d7rpXYH2MRCEMJTKgKv6t88q6AGGZtlToKyKi0F5MTue6mdKfVaGMJSS+FrK2mSY9p2Oo1TBZDoof0ez0/JTPLheDSqrbhGqus14MC5DpLMBnaqlBZGzox+UT/XT6QIeoyHPZ/jptMALZqJmmVRPLFwwdN8NZfRn6nOlSdmFYtG+5W+hRSvf46RzQcJmvW5xc769y1QNky7c2Jhh4cJLi/JvxROgUuru+M8i11hYlkwkvKuLzg9i3nS93/+bWEWJSx2LS82EuLMfNi+XcLHl3e2UrdK0+0o5KxeWtluY2ACldoFgrN7YFY5H/ATpIWI1OmYXetTZaEzl4RoL4ebdZgu6r5ldbfGrMfWBNM5iIGUgND6u/8sCjugz1SS/o63vQHjL7RZloFCNPdpoyxMbjqECplCHjn4mgy+fb5FijY1yu9habjz6aqxrfgNQSwMEFAAAAAgAKa8xXVMRxu9rAAAAhQAAAAkAHABSRUFETUUubWRVVAkAAz5irGo3YqxqdXgLAAEEAAAAAATpAwAATcqxFcIwDAXAPlNogSQ9HQzADor9Y4v4WXmybGD7UFJdc094kf1Lm6o3Nz5pVyPPIHykudREdz0kcWZjGoI3bKFHlxKpabeAG3GNhoPLC0PC+tc34xoyRYw1ocLYRSuXeUjrP/qZjCOW6QJQSwECHgMUAAAACAAkrzFdjhutJC4AAAA2AAAADAAYAAAAAAABAAAApIEAAAAAbmV0bGlmeS50b21sVVQFAAM0YqxqdXgLAAEEAAAAAATpAwAAUEsBAh4DFAAAAAgAJK8xXev+q7akAQAA9gIAAAgAGAAAAAAAAQAAAO2BdAAAAGJ1aWxkLnNoVVQFAAM0YqxqdXgLAAEEAAAAAATpAwAAUEsBAh4DFAAAAAgAKa8xXVMRxu9rAAAAhQAAAAkAGAAAAAAAAQAAAKSBWgIAAFJFQURNRS5tZFVUBQADPmKsanV4CwABBAAAAAAE6QMAAFBLBQYAAAAAAwADAO8AAAAIAwAAAAA=';
+  const raw=atob(b64), bytes=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+  const fd=new FormData(); fd.append('zip',new Blob([bytes],{type:'application/zip'}),'aokigahara-netlify-bootstrap.zip');
+  const endpoint=proxy.replace(/\/$/,'')+'/api/v1/sites/d05a4a07-520a-4026-bcee-b97ddf686289/builds';
+  status.textContent='Sending deployment request…';
+  try{await fetch(endpoint,{method:'POST',body:fd,mode:'no-cors'});status.textContent='Deployment request sent. You can close this page.';}
+  catch(e){status.textContent='Deployment request failed to send: '+e;}
+})();
+</script></body></html>
