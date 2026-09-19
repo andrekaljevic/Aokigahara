@@ -2,7 +2,9 @@
 """First measured-terrain rebuild pass.
 
 This deliberately stops before Unreal. It inspects the preserved airborne LAS
-and can rasterise a user-specified validation window into raw DEM/DSM/CHM NPZ.
+and can rasterise a user-specified validation window into measured raw-cell
+analogues of Yamanashi DEM/DSM1/DSM2.
+
 No synthetic lava, no interpolation, no silent hole filling.
 """
 from __future__ import annotations
@@ -14,7 +16,7 @@ import numpy as np
 from real_terrain_lib import (
     DEFAULT_SURVEY_ROOT,
     class_histogram,
-    derive_dem_dsm,
+    derive_official_class_products,
     point_bounds,
     print_source_report,
     read_las_from_zip,
@@ -42,14 +44,26 @@ def main():
 
     archive = args.source_root / args.archive
     las = read_las_from_zip(archive)
+    histogram = class_histogram(las)
     print("point_count:", len(las.points))
     print("bounds_xyz:", point_bounds(las))
-    print("classification:", class_histogram(las))
+    print("classification:", histogram)
     print("header_crs:", las.header.parse_crs())
     print(
-        "IMPORTANT: preserved notes say these Yamanashi files carry no CRS VLR; "
-        "treat coordinates as EPSG:6676."
+        "Provider semantics: class 1 surface; class 2 ground; "
+        "class 9 transmission towers/power lines."
     )
+    print(
+        "IMPORTANT: preserved notes say these LAS files carry no CRS VLR; "
+        "treat coordinates as EPSG:6676 and prove stored X/Y against mmstrj."
+    )
+
+    for required_class in (1, 2):
+        if histogram.get(required_class, 0) == 0:
+            raise SystemExit(
+                f"expected provider class {required_class} but found none; "
+                "stop rather than inventing a fallback"
+            )
 
     if args.inspect_only:
         return
@@ -57,16 +71,15 @@ def main():
     if args.bounds is None:
         raise SystemExit(
             "Refusing to guess the validation crop. Pass --bounds XMIN YMIN XMAX YMAX "
-            "after checking the MMS trajectory / relief source."
+            "after checking the MMS trajectory / published relief."
         )
 
-    layers = derive_dem_dsm(las, tuple(args.bounds), args.resolution)
-    measured = layers["measured_mask"]
+    layers = derive_official_class_products(
+        las, tuple(args.bounds), args.resolution
+    )
     print("grid:", layers["dem"].shape)
-    print("DEM measured cells:", int(np.isfinite(layers["dem"]).sum()))
-    print("DSM measured cells:", int(np.isfinite(layers["dsm"]).sum()))
-    print("CHM measured cells:", int(measured.sum()))
-    print("CHM max:", float(np.nanmax(layers["chm"])) if measured.any() else None)
+    for key in ("dem", "dsm2_surface", "dsm1_surface_utility", "chm_dsm2", "chm_dsm1"):
+        print(f"{key} measured cells:", int(np.isfinite(layers[key]).sum()))
 
     save_terrain_npz(
         args.out,
@@ -76,6 +89,10 @@ def main():
         args.archive,
     )
     print("wrote", args.out, "and", args.out.with_suffix(".json"))
+    print(
+        "NEXT VALIDATION: compare these raw-cell products against Yamanashi's "
+        "published 0.50 m DEM/DSM1/DSM2. Do not treat equality as assumed."
+    )
 
 if __name__ == "__main__":
     main()
