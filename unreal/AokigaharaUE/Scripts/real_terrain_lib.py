@@ -3,6 +3,20 @@
 No procedural terrain synthesis belongs here. Missing measurements remain NaN
 and are accompanied by counts/masks so downstream steps cannot mistake filled
 or fabricated values for observations.
+
+Yamanashi's current catalogue documents the airborne LAS classes used here:
+    class 1 = surface (buildings/trees/other surface features)
+    class 2 = ground
+    class 9 = transmission towers / power lines
+
+Its published 0.50 m products are:
+    DSM1: classes 1 + 9
+    DSM2: class 1
+    DEM:  ground/class 2
+
+The raw-point rasteriser below follows those class sets, but it is NOT claimed
+to reproduce the provider's gridding algorithm byte-for-byte. Published grids
+remain the validation reference.
 """
 from __future__ import annotations
 
@@ -16,6 +30,10 @@ import zipfile
 import numpy as np
 
 CRS_EPSG = 6676
+OFFICIAL_SURFACE_CLASSES = (1,)
+OFFICIAL_GROUND_CLASSES = (2,)
+OFFICIAL_UTILITY_CLASSES = (9,)
+
 DEFAULT_SURVEY_ROOT = Path(
     os.environ.get("AOKIGAHARA_SURVEY_ROOT", "/Users/Shared/Aokigahara-survey-2026-09-17")
 )
@@ -142,40 +160,71 @@ def rasterize_extreme(x, y, z, bounds, resolution, mode="min"):
     work[count == 0] = np.nan
     return work.reshape(rows, cols).astype(np.float32), count.reshape(rows, cols)
 
-def derive_dem_dsm(las, bounds, resolution=0.5, ground_classes=(2,), noise_classes=(7, 18)):
-    """Create raw measured DEM, DSM and CHM grids from a classified LAS.
+def _class_mask(cls, classes):
+    return np.isin(cls, np.asarray(tuple(classes), dtype=np.uint8))
 
-    DEM = minimum ground-class return per cell.
-    DSM = maximum non-noise return per cell.
-    CHM = max(DSM - DEM, 0) only where both are measured.
-    No interpolation or hole filling is performed.
+def derive_official_class_products(
+    las,
+    bounds,
+    resolution=0.5,
+    ground_classes=OFFICIAL_GROUND_CLASSES,
+    surface_classes=OFFICIAL_SURFACE_CLASSES,
+    utility_classes=OFFICIAL_UTILITY_CLASSES,
+):
+    """Create measured raw-cell analogues of Yamanashi DEM/DSM1/DSM2.
+
+    DEM raw-cell analogue  = minimum class-2 ground return.
+    DSM2 raw-cell analogue = maximum class-1 surface return.
+    DSM1 raw-cell analogue = maximum class-1 or class-9 return.
+
+    This deliberately does NOT interpolate and does not claim to duplicate the
+    provider's published gridding algorithm. Use the published 0.50 m grids as
+    the external validation target.
     """
     x = np.asarray(las.x)
     y = np.asarray(las.y)
     z = np.asarray(las.z)
     cls = np.asarray(las.classification, dtype=np.uint8)
 
-    gmask = np.isin(cls, np.asarray(tuple(ground_classes), dtype=np.uint8))
-    valid_surface = ~np.isin(cls, np.asarray(tuple(noise_classes), dtype=np.uint8))
+    ground = _class_mask(cls, ground_classes)
+    surface = _class_mask(cls, surface_classes)
+    surface_utility = _class_mask(cls, tuple(surface_classes) + tuple(utility_classes))
 
     dem, ground_count = rasterize_extreme(
-        x[gmask], y[gmask], z[gmask], bounds, resolution, "min"
+        x[ground], y[ground], z[ground], bounds, resolution, "min"
     )
-    dsm, surface_count = rasterize_extreme(
-        x[valid_surface], y[valid_surface], z[valid_surface], bounds, resolution, "max"
+    dsm2, surface_count = rasterize_extreme(
+        x[surface], y[surface], z[surface], bounds, resolution, "max"
+    )
+    dsm1, surface_utility_count = rasterize_extreme(
+        x[surface_utility], y[surface_utility], z[surface_utility],
+        bounds, resolution, "max"
     )
 
-    chm = np.full_like(dem, np.nan, dtype=np.float32)
-    measured = np.isfinite(dem) & np.isfinite(dsm)
-    chm[measured] = np.maximum(dsm[measured] - dem[measured], 0.0)
+    def chm(dsm):
+        out = np.full_like(dem, np.nan, dtype=np.float32)
+        measured = np.isfinite(dem) & np.isfinite(dsm)
+        out[measured] = np.maximum(dsm[measured] - dem[measured], 0.0)
+        return out, measured
+
+    chm2, measured2 = chm(dsm2)
+    chm1, measured1 = chm(dsm1)
     return {
         "dem": dem,
-        "dsm": dsm,
-        "chm": chm,
+        "dsm2_surface": dsm2,
+        "dsm1_surface_utility": dsm1,
+        "chm_dsm2": chm2,
+        "chm_dsm1": chm1,
         "ground_count": ground_count,
         "surface_count": surface_count,
-        "measured_mask": measured,
+        "surface_utility_count": surface_utility_count,
+        "measured_mask_dsm2": measured2,
+        "measured_mask_dsm1": measured1,
     }
+
+# Backward-compatible name for the first rebuild commit. New code should call
+# derive_official_class_products so the provider semantics are visible.
+derive_dem_dsm = derive_official_class_products
 
 def save_terrain_npz(path: Path, layers: dict, bounds, resolution: float, source_archive: str):
     path = Path(path)
@@ -197,6 +246,14 @@ def save_terrain_npz(path: Path, layers: dict, bounds, resolution: float, source
         "resolution_m": float(resolution),
         "bounds": list(map(float, bounds)),
         "source_archive": source_archive,
+        "classification": {
+            "surface_class": 1,
+            "ground_class": 2,
+            "utility_class": 9,
+            "dsm1_classes": [1, 9],
+            "dsm2_classes": [1],
+        },
+        "gridding": "raw cell extrema; not asserted identical to provider published grids",
         "interpolation": "none",
         "nodata": "NaN",
     }
