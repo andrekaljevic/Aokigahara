@@ -1,0 +1,33 @@
+name: Measured rebuild CI
+
+on:
+  push:
+    branches:
+      - rebuild/measured-2026-09-19
+  pull_request:
+    paths:
+      - "unreal/AokigaharaUE/Scripts/**"
+      - "unreal/AokigaharaUE/Docs/REBUILD_2026-09-19.md"
+      - ".github/workflows/measured-rebuild-ci.yml"
+
+jobs:
+  measured-pipeline:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: unreal/AokigaharaUE
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install measured-pipeline dependencies
+        run: python -m pip install -r Scripts/requirements-measured.txt
+
+      - name: Verify legacy coordinate transform remains intact
+        run: python Scripts/test_geo.py
+
+      - name: Verify measured rebuild invariants
+        run: python Scripts/test_measured_rebuild.py
