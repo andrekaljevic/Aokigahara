@@ -2,10 +2,11 @@
 from __future__ import annotations
 
 import math
+from types import SimpleNamespace
 import numpy as np
 
 from jprcs8 import en_to_lonlat, lonlat_to_en
-from real_terrain_lib import rasterize_extreme
+from real_terrain_lib import derive_official_class_products, rasterize_extreme
 
 def test_epsg_fixture():
     # EPSG:6676 reference fixture for Fugaku Wind Cave.
@@ -31,7 +32,23 @@ def test_raster_orientation_and_nodata():
     assert math.isnan(float(grid[1, 1]))
     assert count[1, 1] == 0
 
+def test_yamanashi_class_semantics():
+    # One cell: ground 10, surface 20, utility 30, unrelated class 5 at 99.
+    fake = SimpleNamespace(
+        x=np.array([0.2, 0.3, 0.4, 0.45]),
+        y=np.array([0.2, 0.3, 0.4, 0.45]),
+        z=np.array([10.0, 20.0, 30.0, 99.0]),
+        classification=np.array([2, 1, 9, 5], dtype=np.uint8),
+    )
+    layers = derive_official_class_products(fake, (0, 0, 1, 1), 1.0)
+    assert layers["dem"][0, 0] == 10.0
+    assert layers["dsm2_surface"][0, 0] == 20.0
+    assert layers["dsm1_surface_utility"][0, 0] == 30.0
+    assert layers["chm_dsm2"][0, 0] == 10.0
+    assert layers["chm_dsm1"][0, 0] == 20.0
+
 if __name__ == "__main__":
     test_epsg_fixture()
     test_raster_orientation_and_nodata()
+    test_yamanashi_class_semantics()
     print("ALL MEASURED-REBUILD TESTS PASSED")
