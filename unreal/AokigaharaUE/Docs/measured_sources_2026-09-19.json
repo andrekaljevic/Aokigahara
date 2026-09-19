@@ -1,0 +1,50 @@
+{
+  "created": "2026-09-19",
+  "local_root": "/Users/Shared/Aokigahara-survey-2026-09-17",
+  "crs": {
+    "epsg": 6676,
+    "name": "JGD2011 / Japan Plane Rectangular CS VIII",
+    "declared_in_preserved_las": false
+  },
+  "sources": [
+    {
+      "filename": "mms_08LE9307.zip",
+      "role": "MMS vehicle LiDAR",
+      "approx_size": "698 MB",
+      "colour": "genuine per-point camera RGB; 8-bit values in low byte"
+    },
+    {
+      "filename": "08LE9307.zip",
+      "role": "airborne classified LAS",
+      "approx_size": "38 MB",
+      "colour": "orthophoto-like drape; not independent under-canopy colour truth"
+    },
+    {
+      "filename": "mmstrj.zip",
+      "role": "MMS trajectory shapefile",
+      "approx_size": "26 MB"
+    },
+    {
+      "filename": "fr_mesh20m_08le3_2025.7z",
+      "role": "20 m forest register",
+      "approx_size": "8.5 MB"
+    },
+    {
+      "filename": "dem_9325.zip",
+      "role": "DEM format/reference sheet"
+    },
+    {
+      "filename": "ortho_9325.zip",
+      "role": "orthophoto format/reference sheet"
+    },
+    {
+      "filename": "inyou_9325.zip",
+      "role": "0.5 m bare-earth relief format/reference sheet"
+    },
+    {
+      "filename": "survey_report.md",
+      "role": "catalogue/licence/re-download record",
+      "approx_size": "38 KB"
+    }
+  ]
+}
