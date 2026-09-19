@@ -1,3 +1,4 @@
 numpy>=1.26
 laspy>=2.5
 pyproj>=3.6
+pyshp>=2.3
