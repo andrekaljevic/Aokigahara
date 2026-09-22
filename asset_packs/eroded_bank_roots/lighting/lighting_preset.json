@@ -1,0 +1,69 @@
+{
+  "preset": {
+    "label": "Exposed roots over an eroded clay bank under a broadleaf canopy, overcast (photo-derived)",
+    "sun": 2.008,
+    "hemi": 1.507,
+    "hemiSky": "0xb4c7ff",
+    "hemiGround": "0x372f2b",
+    "turb": 1.029,
+    "ray": 0.06054,
+    "mie": 0.0109,
+    "fog": "0x929681",
+    "exposure": 0.9356
+  },
+  "measurements": {
+    "probe_pixels": 425304,
+    "lit_fraction": 0.3,
+    "split_method": "Otsu on log illumination (blur sigma 59 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+    "lit_mean_linear": [
+      0.2607,
+      0.1794,
+      0.1145
+    ],
+    "shade_mean_linear": [
+      0.1033,
+      0.07252,
+      0.04947
+    ],
+    "key_to_fill_luminance_ratio": 2.481,
+    "direct_over_ambient": 1.481,
+    "classified_as": "directional",
+    "direct_light_tint_raw": [
+      1.0,
+      0.6794,
+      0.4135
+    ],
+    "direct_light_tint_albedo_cancelled": [
+      0.5642,
+      0.6661,
+      1.0
+    ],
+    "direct_light_tint_hex": "#c6d5ff",
+    "direct_light_cct_mccamy_K": 10702,
+    "ambient_tint_basis": "visible sky mean",
+    "ground_probe_mean_linear": [
+      0.2664,
+      0.1866,
+      0.1517
+    ],
+    "fog_probe_mean_srgb": [
+      0.4977,
+      0.5141,
+      0.441
+    ],
+    "image_median_luma": 0.4094,
+    "sun_elevation_deg": 45,
+    "sun_elevation_basis": "overcast, no shadows; not observable"
+  },
+  "derivation": {
+    "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+    "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+    "hemiSky": "visible sky mean, luma matched to the existing presets",
+    "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+    "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+    "turb_ray_mie": "fitted to the visible sky with the viewer Sky shader",
+    "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+    "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+  },
+  "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+}

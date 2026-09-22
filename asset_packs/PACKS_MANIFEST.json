@@ -171,6 +171,22 @@
         "ground/leaf_litter_beech"
       ],
       "files": 13
+    },
+    "eroded_bank_roots": {
+      "title": "Exposed roots over an eroded clay bank under a broadleaf canopy, overcast",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/eroded_bank_roots/eroded_bank_roots_manifest.json",
+      "source": "asset_packs/_sources/eroded_bank_roots.jpg",
+      "source_sha256": "407315e34b33f87b61032416b8ab52e26ba918b1d3ea6ed48dd2fa856602ad94",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "ground/clay_bank_bare",
+        "ground/roots_over_soil",
+        "ground/litter_slope",
+        "greenery/broadleaf_canopy_overcast"
+      ],
+      "files": 23
     }
   },
   "generator": "construction_code_v2/gen_asset_packs.py",

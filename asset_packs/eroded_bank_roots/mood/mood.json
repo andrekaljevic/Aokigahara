@@ -1,0 +1,188 @@
+{
+  "palette": [
+    {
+      "hex": "#564f48",
+      "srgb": [
+        0.3368,
+        0.3098,
+        0.2836
+      ],
+      "linear": [
+        0.09281,
+        0.07818,
+        0.06539
+      ],
+      "weight": 0.1942,
+      "role": "neutral"
+    },
+    {
+      "hex": "#908777",
+      "srgb": [
+        0.5642,
+        0.5288,
+        0.4648
+      ],
+      "linear": [
+        0.2784,
+        0.2417,
+        0.1829
+      ],
+      "weight": 0.1767,
+      "role": "neutral"
+    },
+    {
+      "hex": "#403934",
+      "srgb": [
+        0.2512,
+        0.2227,
+        0.2054
+      ],
+      "linear": [
+        0.05135,
+        0.04063,
+        0.03483
+      ],
+      "weight": 0.1577,
+      "role": "neutral"
+    },
+    {
+      "hex": "#b2a896",
+      "srgb": [
+        0.6991,
+        0.6589,
+        0.5876
+      ],
+      "linear": [
+        0.4466,
+        0.3917,
+        0.3043
+      ],
+      "weight": 0.1323,
+      "role": "neutral"
+    },
+    {
+      "hex": "#766454",
+      "srgb": [
+        0.4613,
+        0.3932,
+        0.3295
+      ],
+      "linear": [
+        0.18,
+        0.1281,
+        0.08873
+      ],
+      "weight": 0.1215,
+      "role": "bark / earth / litter"
+    },
+    {
+      "hex": "#6d7065",
+      "srgb": [
+        0.4268,
+        0.4374,
+        0.3975
+      ],
+      "linear": [
+        0.1524,
+        0.1606,
+        0.1311
+      ],
+      "weight": 0.1103,
+      "role": "foliage / moss"
+    },
+    {
+      "hex": "#ddd5c8",
+      "srgb": [
+        0.8648,
+        0.836,
+        0.7841
+      ],
+      "linear": [
+        0.7195,
+        0.6666,
+        0.5773
+      ],
+      "weight": 0.05638,
+      "role": "neutral"
+    },
+    {
+      "hex": "#281d18",
+      "srgb": [
+        0.1551,
+        0.1148,
+        0.09353
+      ],
+      "linear": [
+        0.0208,
+        0.01248,
+        0.009049
+      ],
+      "weight": 0.0509,
+      "role": "bark / earth / litter"
+    }
+  ],
+  "tonal": {
+    "luma_percentiles": {
+      "p0_5": 0.04897,
+      "p2": 0.1214,
+      "p10": 0.2133,
+      "p25": 0.2884,
+      "p50": 0.4079,
+      "p75": 0.5511,
+      "p90": 0.6868,
+      "p98": 0.858,
+      "p99_5": 0.9552
+    },
+    "luma_mean": 0.4301,
+    "luma_std": 0.1845,
+    "mean_saturation": 0.2244,
+    "hue_histogram_12": [
+      0.5007,
+      0.2078,
+      0.1573,
+      0.03975,
+      0.01059,
+      0.008563,
+      0.007687,
+      0.03898,
+      0.014,
+      0.001888,
+      0.001974,
+      0.01079
+    ],
+    "warm_cool_bias": 0.07714,
+    "shadow_tint": [
+      0.02611,
+      -0.005739,
+      -0.02004
+    ],
+    "highlight_tint": [
+      0.02973,
+      -0.001444,
+      -0.07323
+    ]
+  },
+  "grade": {
+    "file": "grade_33.cube",
+    "parameters": {
+      "black": 0.04897,
+      "white": 0.9552,
+      "gamma": 1.068,
+      "saturation": 0.8,
+      "shadow_tint": [
+        0.02611,
+        -0.005739,
+        -0.02004
+      ],
+      "highlight_tint": [
+        0.02973,
+        -0.001444,
+        -0.07323
+      ]
+    },
+    "lut_roundtrip_max_error": 7.201e-05,
+    "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+    "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+  },
+  "analysis_region": "analysis over the whole frame minus exclude_rects"
+}

@@ -1,0 +1,852 @@
+{
+  "pack": "eroded_bank_roots",
+  "title": "Exposed roots over an eroded clay bank under a broadleaf canopy, overcast",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "490f05f21494bfa873d6925b4cfa5cefd80bead7bd9c41661f520148a1a273d8",
+  "tile_size": 4096,
+  "lighting_derived": true,
+  "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+  "source": {
+    "file": "eroded_bank_roots.jpg",
+    "bytes": 3045789,
+    "sha256": "407315e34b33f87b61032416b8ab52e26ba918b1d3ea6ed48dd2fa856602ad94",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "f971e7e0-image.jpg",
+    "redistribution": "owner_supplied",
+    "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara. The sign and the rope barrier are excluded from every region and from the analysis.",
+    "committed_copy": "asset_packs/_sources/eroded_bank_roots.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 5
+  },
+  "sun_estimate": {
+    "elevation_deg": 45,
+    "basis": "overcast, no shadows; not observable"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": {
+    "status": "fitted",
+    "pixel_count": 10672,
+    "roi_fraction": 0.006124,
+    "mean_srgb": [
+      0.2624,
+      0.2898,
+      0.3733
+    ],
+    "mean_hex": "#434a5f",
+    "sampled_pixels": 600,
+    "elevation_bins_deg": {
+      "20..25": {
+        "n": 22,
+        "srgb": [
+          0.2756,
+          0.2804,
+          0.3228
+        ],
+        "hex": "#464852"
+      },
+      "25..30": {
+        "n": 94,
+        "srgb": [
+          0.2682,
+          0.2884,
+          0.357
+        ],
+        "hex": "#444a5b"
+      },
+      "30..35": {
+        "n": 247,
+        "srgb": [
+          0.258,
+          0.2878,
+          0.374
+        ],
+        "hex": "#42495f"
+      },
+      "35..40": {
+        "n": 237,
+        "srgb": [
+          0.2633,
+          0.2933,
+          0.3836
+        ],
+        "hex": "#434b62"
+      }
+    },
+    "elevation_range_deg": [
+      21.24,
+      38.14
+    ],
+    "fit": {
+      "loss": 0.000653934252927202,
+      "turb": 1.028647331463664,
+      "ray": 0.06053633334153146,
+      "mie": 0.010903701170630376,
+      "fit_exposure": 0.6420197688118622,
+      "sun_azimuth_rel_deg": 150,
+      "rms_srgb": 0.02557213821578481
+    },
+    "camera_model": {
+      "focal_equiv_mm": 26,
+      "pitch_deg": 5,
+      "focal_px": 1935.0
+    },
+    "notes": [
+      "The sun azimuth relative to the camera is unknown; it was fitted on a 30 degree grid.",
+      "fit_exposure absorbs the camera exposure and is not the preset exposure.",
+      "The dome image is rendered with the viewer sun azimuth (155 deg) and the pack sun elevation."
+    ],
+    "horizon_hex": "#7c9ab8",
+    "zenith_hex": "#4a586d"
+  },
+  "lighting": {
+    "preset": {
+      "label": "Exposed roots over an eroded clay bank under a broadleaf canopy, overcast (photo-derived)",
+      "sun": 2.008,
+      "hemi": 1.507,
+      "hemiSky": "0xb4c7ff",
+      "hemiGround": "0x372f2b",
+      "turb": 1.029,
+      "ray": 0.06054,
+      "mie": 0.0109,
+      "fog": "0x929681",
+      "exposure": 0.9356
+    },
+    "measurements": {
+      "probe_pixels": 425304,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 59 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.2607,
+        0.1794,
+        0.1145
+      ],
+      "shade_mean_linear": [
+        0.1033,
+        0.07252,
+        0.04947
+      ],
+      "key_to_fill_luminance_ratio": 2.481,
+      "direct_over_ambient": 1.481,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.6794,
+        0.4135
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.5642,
+        0.6661,
+        1.0
+      ],
+      "direct_light_tint_hex": "#c6d5ff",
+      "direct_light_cct_mccamy_K": 10702,
+      "ambient_tint_basis": "visible sky mean",
+      "ground_probe_mean_linear": [
+        0.2664,
+        0.1866,
+        0.1517
+      ],
+      "fog_probe_mean_srgb": [
+        0.4977,
+        0.5141,
+        0.441
+      ],
+      "image_median_luma": 0.4094,
+      "sun_elevation_deg": 45,
+      "sun_elevation_basis": "overcast, no shadows; not observable"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "visible sky mean, luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "fitted to the visible sky with the viewer Sky shader",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#564f48",
+        "srgb": [
+          0.3368,
+          0.3098,
+          0.2836
+        ],
+        "linear": [
+          0.09281,
+          0.07818,
+          0.06539
+        ],
+        "weight": 0.1942,
+        "role": "neutral"
+      },
+      {
+        "hex": "#908777",
+        "srgb": [
+          0.5642,
+          0.5288,
+          0.4648
+        ],
+        "linear": [
+          0.2784,
+          0.2417,
+          0.1829
+        ],
+        "weight": 0.1767,
+        "role": "neutral"
+      },
+      {
+        "hex": "#403934",
+        "srgb": [
+          0.2512,
+          0.2227,
+          0.2054
+        ],
+        "linear": [
+          0.05135,
+          0.04063,
+          0.03483
+        ],
+        "weight": 0.1577,
+        "role": "neutral"
+      },
+      {
+        "hex": "#b2a896",
+        "srgb": [
+          0.6991,
+          0.6589,
+          0.5876
+        ],
+        "linear": [
+          0.4466,
+          0.3917,
+          0.3043
+        ],
+        "weight": 0.1323,
+        "role": "neutral"
+      },
+      {
+        "hex": "#766454",
+        "srgb": [
+          0.4613,
+          0.3932,
+          0.3295
+        ],
+        "linear": [
+          0.18,
+          0.1281,
+          0.08873
+        ],
+        "weight": 0.1215,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#6d7065",
+        "srgb": [
+          0.4268,
+          0.4374,
+          0.3975
+        ],
+        "linear": [
+          0.1524,
+          0.1606,
+          0.1311
+        ],
+        "weight": 0.1103,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#ddd5c8",
+        "srgb": [
+          0.8648,
+          0.836,
+          0.7841
+        ],
+        "linear": [
+          0.7195,
+          0.6666,
+          0.5773
+        ],
+        "weight": 0.05638,
+        "role": "neutral"
+      },
+      {
+        "hex": "#281d18",
+        "srgb": [
+          0.1551,
+          0.1148,
+          0.09353
+        ],
+        "linear": [
+          0.0208,
+          0.01248,
+          0.009049
+        ],
+        "weight": 0.0509,
+        "role": "bark / earth / litter"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.04897,
+        "p2": 0.1214,
+        "p10": 0.2133,
+        "p25": 0.2884,
+        "p50": 0.4079,
+        "p75": 0.5511,
+        "p90": 0.6868,
+        "p98": 0.858,
+        "p99_5": 0.9552
+      },
+      "luma_mean": 0.4301,
+      "luma_std": 0.1845,
+      "mean_saturation": 0.2244,
+      "hue_histogram_12": [
+        0.5007,
+        0.2078,
+        0.1573,
+        0.03975,
+        0.01059,
+        0.008563,
+        0.007687,
+        0.03898,
+        0.014,
+        0.001888,
+        0.001974,
+        0.01079
+      ],
+      "warm_cool_bias": 0.07714,
+      "shadow_tint": [
+        0.02611,
+        -0.005739,
+        -0.02004
+      ],
+      "highlight_tint": [
+        0.02973,
+        -0.001444,
+        -0.07323
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.04897,
+        "white": 0.9552,
+        "gamma": 1.068,
+        "saturation": 0.8,
+        "shadow_tint": [
+          0.02611,
+          -0.005739,
+          -0.02004
+        ],
+        "highlight_tint": [
+          0.02973,
+          -0.001444,
+          -0.07323
+        ]
+      },
+      "lut_roundtrip_max_error": 7.201e-05,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "clay_bank_bare",
+      "category": "ground",
+      "material_class": "trail",
+      "notes": "Bare eroded clay and stones of the cut bank, near-frontal.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.58,
+            0.55
+          ],
+          [
+            0.95,
+            0.55
+          ],
+          [
+            0.95,
+            0.78
+          ],
+          [
+            0.58,
+            0.78
+          ]
+        ],
+        "native_pixels": [
+          714.8,
+          592.5
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          2145,
+          1777
+        ],
+        "delight_sigma_px": 444.2
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 2.5,
+        "tile_width_m": 4.775,
+        "texels_per_metre": 857.8,
+        "source_texels_per_metre": 285.9,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.92 base for class 'trail', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "eroded_bank_roots/ground/clay_bank_bare_diff_4k.jpg",
+          "bytes": 3355801,
+          "sha256": "13c1650c3c424cf1c51c07d95af2841c33438aad3a98fc874a2bc8ab662ce907",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "eroded_bank_roots/ground/clay_bank_bare_nor_gl_4k.jpg",
+          "bytes": 2377055,
+          "sha256": "5392af34a4c4edfd631b8d2c8b4f147e4c4a5f152c57584fd3e0743453cc0fbb",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "eroded_bank_roots/ground/clay_bank_bare_rough_4k.jpg",
+          "bytes": 523259,
+          "sha256": "49e7fc648f05f65a9387aa81f9aa503954f385f31dba4ed04bb264a4e9680954",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "eroded_bank_roots/ground/clay_bank_bare_height_4k.jpg",
+          "bytes": 1175010,
+          "sha256": "ae2797c08dd7554ff141150b4ee17793aa0197b0e6147c2bd29a1a6d94537da6",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 81
+    },
+    {
+      "id": "roots_over_soil",
+      "category": "ground",
+      "material_class": "litter",
+      "notes": "Weathered exposed roots spreading over soil and litter; large features, will repeat across the tile.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.05,
+            0.6
+          ],
+          [
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.85
+          ],
+          [
+            0.05,
+            0.85
+          ]
+        ],
+        "native_pixels": [
+          1063.0,
+          644.0
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 2.961,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          3146,
+          1907
+        ],
+        "delight_sigma_px": 476.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 3.0,
+        "tile_width_m": 3.906,
+        "texels_per_metre": 1049.0,
+        "source_texels_per_metre": 354.2,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.9 base for class 'litter', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "eroded_bank_roots/ground/roots_over_soil_diff_4k.jpg",
+          "bytes": 3777407,
+          "sha256": "3713741c0a382824efd3fe64dd981114ebc61c3de7d51c462305e14555a4f272",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "eroded_bank_roots/ground/roots_over_soil_nor_gl_4k.jpg",
+          "bytes": 3123397,
+          "sha256": "2b0b5b2c750f2e83fd4052c26512fa2ea59686c5be0aba0bdf8d6bd550e60d49",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "eroded_bank_roots/ground/roots_over_soil_rough_4k.jpg",
+          "bytes": 592265,
+          "sha256": "880166d5e839fbe5fd0801cf573e5a296e8e75bc8370f7a24fa98fce6589a248",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "eroded_bank_roots/ground/roots_over_soil_height_4k.jpg",
+          "bytes": 1232757,
+          "sha256": "7a35e9f9f0799cab78c47674b7d09df4358241614c2c2c39b7579bdcbddeff66",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 125
+    },
+    {
+      "id": "litter_slope",
+      "category": "ground",
+      "material_class": "litter",
+      "notes": "Leaf litter and small stones on the bank foot, oblique.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.0,
+            0.85
+          ],
+          [
+            0.7,
+            0.85
+          ],
+          [
+            0.7,
+            0.99
+          ],
+          [
+            0.0,
+            0.99
+          ]
+        ],
+        "native_pixels": [
+          1352.0,
+          360.6
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 2.864,
+        "stretch_y": 1.5,
+        "rectified_pixels": [
+          3873,
+          1549
+        ],
+        "delight_sigma_px": 464.7
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 2.5,
+        "tile_width_m": 2.644,
+        "texels_per_metre": 1549.0,
+        "source_texels_per_metre": 541.0,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.9 base for class 'litter', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "eroded_bank_roots/ground/litter_slope_diff_4k.jpg",
+          "bytes": 3455385,
+          "sha256": "d9ea36bd6b59f0c9dbccb396425abd6abba4a8a9cf9f873472f3b72befe4f412",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "eroded_bank_roots/ground/litter_slope_nor_gl_4k.jpg",
+          "bytes": 3063248,
+          "sha256": "dfe7a15c87fe649f98994039fa015b9556e5e1672bce25aa1d9785f3a720fb7c",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "eroded_bank_roots/ground/litter_slope_rough_4k.jpg",
+          "bytes": 630335,
+          "sha256": "1f558fa92d0bf52614078ce6191651609c2e39bf17e73fd3c46203555e1e4108",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "eroded_bank_roots/ground/litter_slope_height_4k.jpg",
+          "bytes": 1212037,
+          "sha256": "c060af7f781016dd56a36647cef0996851ee00e8c576288fcc4cbc0b7444c276",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 125
+    },
+    {
+      "id": "broadleaf_canopy_overcast",
+      "category": "greenery",
+      "material_class": "leaves",
+      "notes": "Broadleaf canopy with trunks against an overcast sky; sky gaps remain.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.35,
+            0.0
+          ],
+          [
+            0.95,
+            0.0
+          ],
+          [
+            0.95,
+            0.25
+          ],
+          [
+            0.35,
+            0.25
+          ]
+        ],
+        "native_pixels": [
+          1159.0,
+          644.0
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 2.835,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          3287,
+          1826
+        ],
+        "delight_sigma_px": 547.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 6.0,
+        "tile_width_m": 7.478,
+        "texels_per_metre": 547.8,
+        "source_texels_per_metre": 193.2,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.7 base for class 'leaves', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "eroded_bank_roots/greenery/broadleaf_canopy_overcast_diff_4k.jpg",
+          "bytes": 3119333,
+          "sha256": "87e7a3696a05e3e7fa9428d6549f756138dc9979b669e433191c98b7d84de745",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "eroded_bank_roots/greenery/broadleaf_canopy_overcast_nor_gl_4k.jpg",
+          "bytes": 2688830,
+          "sha256": "4b2768ed3ca2ecdb1a5871600ca35a54c38aff6d1b5ab67045a79300e5e099d2",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "eroded_bank_roots/greenery/broadleaf_canopy_overcast_rough_4k.jpg",
+          "bytes": 734547,
+          "sha256": "c1cfe55f104820d70a42e818565b714ffc15c8bf2be8eeeef76b200db4a6c447",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "eroded_bank_roots/greenery/broadleaf_canopy_overcast_height_4k.jpg",
+          "bytes": 1230694,
+          "sha256": "08b4ae5f481c2649d74209748aee270f925291c4bd2bec347dd5711f64c30bae",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 139
+    }
+  ],
+  "files": {
+    "sky_equirect": {
+      "path": "eroded_bank_roots/sky/eroded_bank_roots_sky_equirect_4k.jpg",
+      "bytes": 314007,
+      "sha256": "f5200a45efae1b33ed41c1b0e1a9db7e597ad3f0fcbf661c8c207fcf55024461",
+      "pixels": [
+        4096,
+        2048
+      ],
+      "mapping": "three.js EquirectangularReflectionMapping (u = atan2(z, x)/2pi + 0.5, v = asin(y)/pi + 0.5, top row = zenith)",
+      "content": "upper hemisphere: Sky.js port with fitted parameters through ACES filmic and sRGB; lower hemisphere: ground probe colour, darkened downward",
+      "colorSpace": "sRGB (display-referred, LDR)"
+    },
+    "sky_json": {
+      "path": "eroded_bank_roots/sky/sky.json",
+      "bytes": 1490,
+      "sha256": "e9fc9293cc46a2ea8446532e53859bd12f071652475f7cf8ca2d3ca9f9144d9e"
+    },
+    "lighting_json": {
+      "path": "eroded_bank_roots/lighting/lighting_preset.json",
+      "bytes": 2601,
+      "sha256": "c883844c26a2c2787ad5a52e790b19a50d8d6055e544cbb9424cefa71becba4b"
+    },
+    "preset_snippet": {
+      "path": "eroded_bank_roots/lighting/preset_snippet.js",
+      "bytes": 355,
+      "sha256": "24eafdc04d1e9c4a614c02f57617c33ef2b6020d765239a8de6f8a420c946c5e"
+    },
+    "mood_json": {
+      "path": "eroded_bank_roots/mood/mood.json",
+      "bytes": 3436,
+      "sha256": "a4c1d88e6e7f76a6ff8ba917d7c8f45829e8289fe68edf65036947b8bbfc6dde"
+    },
+    "grade_cube": {
+      "path": "eroded_bank_roots/mood/grade_33.cube",
+      "bytes": 970497,
+      "sha256": "1abcf6ae045c4e04221bcc3d89e4e8189da44df697c84823fe77dcfa73117c79"
+    },
+    "sheet": {
+      "path": "eroded_bank_roots/eroded_bank_roots_sheet_4k.jpg",
+      "bytes": 1964951,
+      "sha256": "89570f149bc4ae41816f8d2b586323a5b63dcb69a25d3f332b4557bcfcf2ae74",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}
