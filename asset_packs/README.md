@@ -19,6 +19,7 @@ the pack's `<pack>_manifest.json`.
 | `aokigahara_moss_print` | Framed print: moss-carpeted lava floor and twisted conifer trunks | pale trunk bark · moss-covered log · moss carpet · forest floor | none visible | full, see rights |
 | `park_conifer_dapple` | Park conifers, dark furrowed bark, dappled afternoon sun, lawn | dark furrowed bark · conifer sprays · lawn · needle litter | not usable | full |
 | `kamikochi_taisho_dusk` | Bare-tree valley floor at dusk (Kamikōchi) | **none: withheld** | not usable | measurements only |
+| `oak_multistem_sunset` | Multi-stemmed oak, smooth sunlit bark, mown grass with fallen leaves, low evening sun | smooth oak bark · sunlit oak canopy with lichen twigs · hazel foliage · mown grass with leaf litter | none visible | full |
 
 None of these photographs was taken at Aokigahara. The framed print shows an Aokigahara-type
 moss-over-lava floor and is the closest reference; the others supply bark, foliage, ground, sky
@@ -40,7 +41,7 @@ and light states of the same general character. Nothing here establishes species
                               preset_snippet.js          one line ready to paste into PRESETS
   mood/                       mood.json                  palette, tonal statistics, grade parameters
                               grade_33.cube              33³ colour grade, display-referred sRGB in/out
-_sources/                     the four owner-supplied photographs, byte-identical to the uploads
+_sources/                     the five owner-supplied photographs, byte-identical to the uploads
 PACKS_MANIFEST.json           index of every pack
 ```
 
@@ -131,8 +132,9 @@ yet; they live outside `viewer/` so the Pages deploy stays the size it is.
 
 ## Rights
 
-`oak_lichen_evening`, `ivy_bound_trunk_canopy` and `park_conifer_dapple` come from photographs
-supplied by the repository owner as their own. `aokigahara_moss_print` is a photograph of a
+`oak_lichen_evening`, `ivy_bound_trunk_canopy`, `park_conifer_dapple` and `oak_multistem_sunset` come
+from photographs supplied by the repository owner as their own (the last was supplied as two
+near-identical frames; the first is used). `aokigahara_moss_print` is a photograph of a
 framed print whose printed image's authorship was not stated; confirm the rights before
 redistributing that pack publicly. `kamikochi_taisho_dusk` is a watermarked iStock preview
 (ID 1191700678, credit PJjaruwan): **no pixel of it is reproduced** anywhere in this repository,

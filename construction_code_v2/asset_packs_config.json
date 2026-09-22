@@ -911,6 +911,189 @@
           "notes": "Needle litter in the shadow band between dappled patches, grazing angle; stretched vertically."
         }
       ]
+    },
+    {
+      "id": "oak_multistem_sunset",
+      "title": "Multi-stemmed oak with smooth sunlit bark over mown grass, low evening sun",
+      "source": {
+        "file": "oak_multistem_sunset.jpg",
+        "upload_name": "809bd120-image.jpg",
+        "redistribution": "owner_supplied",
+        "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara. A second, near-identical frame (upload 05cc6e31-image.jpg) was supplied and not used."
+      },
+      "camera": {
+        "focal_equiv_mm": 52,
+        "pitch_deg": -4
+      },
+      "sun": {
+        "elevation_deg": 10,
+        "basis": "nearly horizontal warm light on the stems, deep shade behind, long shadows"
+      },
+      "sky_roi": null,
+      "probes": {
+        "lit_shadow": [
+          [
+            0.45,
+            0.3
+          ],
+          [
+            0.78,
+            0.3
+          ],
+          [
+            0.78,
+            0.72
+          ],
+          [
+            0.45,
+            0.72
+          ]
+        ],
+        "ground": [
+          [
+            0.02,
+            0.81
+          ],
+          [
+            0.98,
+            0.81
+          ],
+          [
+            0.98,
+            0.995
+          ],
+          [
+            0.02,
+            0.995
+          ]
+        ],
+        "fog": [
+          [
+            0.28,
+            0.55
+          ],
+          [
+            0.48,
+            0.55
+          ],
+          [
+            0.48,
+            0.68
+          ],
+          [
+            0.28,
+            0.68
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "bark_oak_smooth",
+          "category": "bark",
+          "class": "bark",
+          "cylinder": true,
+          "quad": [
+            [
+              0.505,
+              0.3
+            ],
+            [
+              0.565,
+              0.3
+            ],
+            [
+              0.585,
+              0.53
+            ],
+            [
+              0.51,
+              0.53
+            ]
+          ],
+          "physical_width_m": 0.35,
+          "delight_sigma": 0.22,
+          "notes": "Sunlit main stem: smooth orange-brown bark with fine vertical fissures. Left silhouette against the shade, right edge at the gap to the next stem; unwrapped as a cylinder."
+        },
+        {
+          "id": "canopy_oak_lichen",
+          "category": "greenery",
+          "class": "leaves",
+          "quad": [
+            [
+              0.02,
+              0.02
+            ],
+            [
+              0.44,
+              0.02
+            ],
+            [
+              0.44,
+              0.22
+            ],
+            [
+              0.02,
+              0.22
+            ]
+          ],
+          "physical_width_m": 1.6,
+          "delight_sigma": 0.3,
+          "notes": "Sunlit oak canopy with lichen-crusted twigs; shaded gaps remain in the tile."
+        },
+        {
+          "id": "hazel_foliage",
+          "category": "greenery",
+          "class": "leaves",
+          "quad": [
+            [
+              0.86,
+              0.3
+            ],
+            [
+              0.99,
+              0.3
+            ],
+            [
+              0.99,
+              0.7
+            ],
+            [
+              0.78,
+              0.7
+            ]
+          ],
+          "physical_width_m": 1.2,
+          "delight_sigma": 0.3,
+          "notes": "Dense small-leaved understorey foliage beside the stems, part sunlit; trapezoid follows the stem silhouette."
+        },
+        {
+          "id": "mown_grass_leaves",
+          "category": "ground",
+          "class": "dry_grass",
+          "stretch_y": 2.0,
+          "quad": [
+            [
+              0.02,
+              0.81
+            ],
+            [
+              0.98,
+              0.81
+            ],
+            [
+              0.98,
+              0.995
+            ],
+            [
+              0.02,
+              0.995
+            ]
+          ],
+          "physical_width_m": 3.5,
+          "delight_sigma": 0.3,
+          "notes": "Mown dry grass with fallen oak leaves in low sun, moderately oblique; stretched vertically."
+        }
+      ]
     }
   ]
 }
