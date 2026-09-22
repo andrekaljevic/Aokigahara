@@ -316,3 +316,34 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
    and drive the mix from the MoE vegetation classes already in the terrain masks.
 5. Extend the near-field ground system outward, or add a mid-field tier, so the transition at the
    120 m patch edge stops being a material boundary.
+6. Regenerate tree library v2 with the `bark_*_uhd` packs so the trunks carry site-photographed bark.
+7. Add an understorey ground-cover layer that can consume `understorey_uhd`.
+
+---
+
+## 7. Photo-derived material packs (materials_uhd)
+
+Added after the checkpoint. The repository owner supplied fourteen photographs of the forest
+interior (`construction_inputs/uhd_photos/`, see `SOURCE_PHOTOS.json` there): twelve 2000 × 983
+frames, one phone close-up and one upscaled portrait. Licence, photographer, date and native
+capture resolution are not recorded.
+
+`construction_code_v3/extract_uhd_materials.py` cuts one rectangle per material from those
+frames, delights it, makes it toroidally seamless and derives height, normal, roughness and
+occlusion by luminance heuristics (see `construction_code_v3/README.md` for the steps). Output is
+three tiers: 4096-px masters in `asset_packs/materials_uhd_4k/`, 2k in
+`asset_packs/materials_uhd_2k/`, and 1k in `viewer/assets/materials_uhd/`, which the viewer loads
+when `?mats=uhd` is set (the "Ground materials" control). The default remains `materials_v2`;
+with no parameter every texture URL and material name is unchanged.
+
+Per-material source rectangle, scale estimate, native source pixel count, upsample factor, byte
+sizes, SHA-256 and seam metrics are in `viewer/assets/materials_uhd/MATERIALS_UHD_MANIFEST.json`.
+The runtime consumes the primaries for moss, rock, litter and trail; the bark, deadwood, root,
+understorey and alternate moss packs are asset-only.
+
+**Honest limits.** Albedo is photographic; everything else is estimated from a single image. The
+4k tier is interpolated 3–16× above the source region. Physical scale is estimated from trunk
+diameters and leaf sizes. The `mossy_lava_uhd` / `lava_wall_uhd` surfaces come from a dry-stone
+trail retaining wall, so their block arrangement is anthropogenic. `tools/verify_manifest.py`
+now reports `viewer/app.js` and `viewer/index.html` as modified against the pass-2 checkpoint
+because of the pack selector; that is expected.

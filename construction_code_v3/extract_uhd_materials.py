@@ -402,13 +402,16 @@ def main():
     for d in TIERS.values():
         d.mkdir(parents=True, exist_ok=True)
     manifest_path = TIERS['1k'] / 'MATERIALS_UHD_MANIFEST.json'
-    manifest = json.load(open(manifest_path)) if (a.only and manifest_path.exists()) else {'materials': []}
-    entries = {m['id']: m for m in manifest.get('materials', [])}
+    built = {}
     photo_cache = {}
     for m in mats:
         print('building', m['id'], m['slot'], m['photo'], m['rect'], flush=True)
-        entries[m['id']] = process(m, spec, photo_cache, a.scratch)
-        print('   ', json.dumps(entries[m['id']]['metrics']['1k']), flush=True)
+        built[m['id']] = process(m, spec, photo_cache, a.scratch)
+        print('   ', json.dumps(built[m['id']]['metrics']['1k']), flush=True)
+    # merge with entries already in the manifest (partial runs may execute in parallel; read it late)
+    manifest = json.load(open(manifest_path)) if (a.only and manifest_path.exists()) else {'materials': []}
+    entries = {m['id']: m for m in manifest.get('materials', [])}
+    entries.update(built)
     order = [m['id'] for m in spec['materials'] if m['id'] in entries]
     sources = []
     for ph in sorted({m['photo'] for m in spec['materials']}):
