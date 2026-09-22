@@ -25,6 +25,10 @@ the pack's `<pack>_manifest.json`.
 | `artwork_gold_straw` | Close-up of an artwork: gold-coated reed bundles over black | gold reed bundles | none | **reference only, see rights** |
 | `artwork_teal_straw_relief` | Close-up of an artwork: straw bundles in gold over teal paint | straw relief on teal | none | **reference only, see rights** |
 | `terrain_screen_false_colour` | Photograph of a screen showing false-colour terrain relief | **none: withheld** | none | palette and grade only |
+| `park_cedar_avenue` | Park cedars over a gravel path, dappled sun, blue sky through the canopy | dark cedar bark (lower, upper) · cedar canopy with sky · drooping sprays · grass verge · dappled gravel path | fitted if enough clean sky is found | full |
+| `artwork_teal_straw_full` | The whole teal-and-gold straw artwork | straw relief, whole work | none | **reference only, see rights** |
+| `decayed_log_litter` | Decayed red-brown log wood, cypress spray, leaf litter, overcast | decayed log wood · broadleaf litter | none | full; a pin badge is excluded |
+| `eroded_bank_roots` | Exposed roots over an eroded clay bank, broadleaf canopy, overcast | bare clay bank · roots over soil · litter slope · overcast broadleaf canopy | fitted if enough clean sky is found | full; sign and ropes excluded |
 
 None of these photographs was taken at Aokigahara. The framed print shows an Aokigahara-type
 moss-over-lava floor and is the closest reference; the shrine cedar supplies the stringy Japanese
@@ -149,10 +153,10 @@ yet; they live outside `viewer/` so the Pages deploy stays the size it is.
 ## Rights
 
 `oak_lichen_evening`, `ivy_bound_trunk_canopy`, `park_conifer_dapple`, `oak_multistem_sunset`,
-`ivy_rootlet_macro` and `shrine_cedar_shimenawa` come from photographs supplied by the repository
-owner as their own (the multi-stemmed oak was supplied as two near-identical frames; the first is
-used). `artwork_gold_straw` and `artwork_teal_straw_relief` are the owner's photographs of
-artworks by another artist: their tiles reproduce part of those artworks' surfaces, are marked
+`ivy_rootlet_macro`, `shrine_cedar_shimenawa`, `park_cedar_avenue`, `decayed_log_litter` and
+`eroded_bank_roots` come from photographs supplied by the repository owner as their own (the multi-stemmed oak was supplied as two near-identical frames; the first is
+used). `artwork_gold_straw`, `artwork_teal_straw_relief` and `artwork_teal_straw_full` are the owner's
+photographs of artworks by another artist: their tiles reproduce part of those artworks' surfaces, are marked
 **reference only** in their manifests, and must not be redistributed publicly without clearing the
 rights. `terrain_screen_false_colour` is a photograph of a screen showing third-party software:
 no pixel is reproduced and the source is not committed; only its palette, tonal record and grade
@@ -182,3 +186,7 @@ Verify a checkout the same way the Pass-2 handover is verified:
 python3 tools/verify_asset_packs.py          # checksums, sizes, pixel dimensions, seamless wrap
 python3 tools/verify_asset_packs.py --quick  # the same without the SHA-256 pass
 ```
+
+A screenshot of six Poly Haven roof-tile preview spheres was also supplied and deliberately not made
+into a pack: it is a rendering of third-party material previews, not a photograph, and roof tiles
+have no use in this world. The originals are on Poly Haven under CC0 if ever wanted.

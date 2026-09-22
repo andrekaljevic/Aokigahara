@@ -314,8 +314,9 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
 ## 7. Photo-derived 4K asset packs (added 2026-09-22)
 
 `asset_packs/` was added on `claude/4k-asset-packs-photos-sy83u7`, built by
-`construction_code_v2/gen_asset_packs.py` from eleven reference photographs supplied by the
-repository owner (a twelfth frame duplicates the multi-stemmed oak and is not used). It is look-development material, not evidence: none of the photographs was taken
+`construction_code_v2/gen_asset_packs.py` from fifteen reference photographs supplied by the
+repository owner (one further frame duplicates the multi-stemmed oak, and a screenshot of roof-tile
+material previews was set aside; neither is used). It is look-development material, not evidence: none of the photographs was taken
 at Aokigahara, and the runtime does not load any of it.
 
 | Pack | Gives | Status |
@@ -330,6 +331,10 @@ at Aokigahara, and the runtime does not load any of it.
 | `shrine_cedar_shimenawa` | stringy moss-streaked cedar bark, upper cedar bark, cedar canopy, backlit broadleaf, evergreen shrub, leaf litter on soil; overcast preset | full; the sacred rope and streamers are excluded |
 | `artwork_gold_straw`, `artwork_teal_straw_relief` | reed and straw bundle surfaces, gold-and-black and gold-on-teal palettes | reference only: photographs of artworks by another artist |
 | `terrain_screen_false_colour` | violet, blue and salmon false-colour palette and grade | measurements only: photograph of a screen, no pixels reproduced |
+| `park_cedar_avenue` | dark furrowed cedar bark, cedar canopy and drooping sprays, grass verge, dappled gravel path; dappled-sun preset | full |
+| `artwork_teal_straw_full` | the whole teal-and-gold straw relief | reference only: photograph of an artwork by another artist |
+| `decayed_log_litter` | decayed red-brown log heartwood, broadleaf litter; overcast preset | full; a pin badge excluded |
+| `eroded_bank_roots` | bare clay bank, exposed roots over soil, litter slope, overcast broadleaf canopy; overcast preset | full; sign and ropes excluded |
 
 **Measured:** sky colours by elevation, lit/shade ratios and tints, palettes, tonal statistics.
 **Inferred:** camera pitch and focal length, sun elevation, region widths in metres, the mapping

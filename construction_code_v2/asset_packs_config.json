@@ -1701,6 +1701,716 @@
       "sky_roi": null,
       "probes": {},
       "materials": []
+    },
+    {
+      "id": "park_cedar_avenue",
+      "title": "Park cedars over a gravel path, dappled afternoon sun, blue sky through the canopy",
+      "source": {
+        "file": "park_cedar_avenue.jpg",
+        "upload_name": "a7ddf187-image.jpg",
+        "redistribution": "owner_supplied",
+        "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": 10
+      },
+      "sun": {
+        "elevation_deg": 35,
+        "basis": "long dappled shadows across the path, warm side light on the trunk"
+      },
+      "sky_roi": [
+        [
+          0.25,
+          0.0
+        ],
+        [
+          0.75,
+          0.0
+        ],
+        [
+          0.75,
+          0.55
+        ],
+        [
+          0.25,
+          0.55
+        ]
+      ],
+      "probes": {
+        "lit_shadow": [
+          [
+            0.02,
+            0.84
+          ],
+          [
+            0.98,
+            0.84
+          ],
+          [
+            0.98,
+            0.995
+          ],
+          [
+            0.02,
+            0.995
+          ]
+        ],
+        "ground": [
+          [
+            0.02,
+            0.84
+          ],
+          [
+            0.98,
+            0.84
+          ],
+          [
+            0.98,
+            0.995
+          ],
+          [
+            0.02,
+            0.995
+          ]
+        ],
+        "fog": [
+          [
+            0.25,
+            0.55
+          ],
+          [
+            0.45,
+            0.55
+          ],
+          [
+            0.45,
+            0.7
+          ],
+          [
+            0.25,
+            0.7
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "bark_cedar_dark_lower",
+          "category": "bark",
+          "class": "bark",
+          "cylinder": true,
+          "quad": [
+            [
+              0.625,
+              0.68
+            ],
+            [
+              0.75,
+              0.68
+            ],
+            [
+              0.752,
+              0.75
+            ],
+            [
+              0.622,
+              0.75
+            ]
+          ],
+          "physical_width_m": 0.9,
+          "delight_sigma": 0.12,
+          "notes": "Lower trunk of the large cedar, dark furrowed bark in dappled light; both silhouettes visible, unwrapped as a cylinder; small flattening radius against the dapple."
+        },
+        {
+          "id": "bark_cedar_dark_upper",
+          "category": "bark",
+          "class": "bark",
+          "cylinder": true,
+          "quad": [
+            [
+              0.625,
+              0.28
+            ],
+            [
+              0.715,
+              0.28
+            ],
+            [
+              0.72,
+              0.5
+            ],
+            [
+              0.62,
+              0.5
+            ]
+          ],
+          "physical_width_m": 0.8,
+          "delight_sigma": 0.15,
+          "notes": "Upper trunk above the drooping foliage, sunlit side left."
+        },
+        {
+          "id": "cedar_canopy_sky",
+          "category": "greenery",
+          "class": "needles",
+          "quad": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.42,
+              0.0
+            ],
+            [
+              0.42,
+              0.22
+            ],
+            [
+              0.0,
+              0.22
+            ]
+          ],
+          "physical_width_m": 6.0,
+          "delight_sigma": 0.3,
+          "notes": "Cedar canopy against blue sky with branches; sky gaps remain in the tile."
+        },
+        {
+          "id": "cedar_drooping_sprays",
+          "category": "greenery",
+          "class": "needles",
+          "quad": [
+            [
+              0.43,
+              0.54
+            ],
+            [
+              0.63,
+              0.54
+            ],
+            [
+              0.63,
+              0.67
+            ],
+            [
+              0.43,
+              0.67
+            ]
+          ],
+          "physical_width_m": 2.5,
+          "delight_sigma": 0.3,
+          "notes": "Drooping blue-green cedar sprays in sun."
+        },
+        {
+          "id": "grass_verge",
+          "category": "ground",
+          "class": "grass",
+          "stretch_y": 2.5,
+          "quad": [
+            [
+              0.52,
+              0.78
+            ],
+            [
+              0.8,
+              0.78
+            ],
+            [
+              0.8,
+              0.83
+            ],
+            [
+              0.52,
+              0.83
+            ]
+          ],
+          "physical_width_m": 3.0,
+          "delight_sigma": 0.3,
+          "notes": "Grass island at the trunk base at a grazing angle; stretched vertically."
+        },
+        {
+          "id": "gravel_path_dappled",
+          "category": "ground",
+          "class": "trail",
+          "stretch_y": 2.0,
+          "quad": [
+            [
+              0.02,
+              0.88
+            ],
+            [
+              0.98,
+              0.88
+            ],
+            [
+              0.98,
+              0.995
+            ],
+            [
+              0.02,
+              0.995
+            ]
+          ],
+          "physical_width_m": 6.0,
+          "delight_sigma": 0.06,
+          "notes": "Fine gravel path under dappled sun at a grazing angle; very small flattening radius to suppress the dapple."
+        }
+      ]
+    },
+    {
+      "id": "artwork_teal_straw_full",
+      "title": "Straw and reed bundles in gold over teal paint, the whole artwork (reference only)",
+      "source": {
+        "file": "artwork_teal_straw_full.jpg",
+        "upload_name": "9916aa05-image.jpg",
+        "redistribution": "owner_supplied_artwork_photo",
+        "rights_note": "Photograph by the repository owner of an artwork by another artist (the same work as artwork_teal_straw_relief, seen whole). Reference material only; clear the rights before any public redistribution."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": 0
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "gallery lighting, not daylight"
+      },
+      "sky_roi": null,
+      "probes": {
+        "lit_shadow": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.96,
+            0.02
+          ],
+          [
+            0.96,
+            0.9
+          ],
+          [
+            0.02,
+            0.9
+          ]
+        ],
+        "ground": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.96,
+            0.02
+          ],
+          [
+            0.96,
+            0.9
+          ],
+          [
+            0.02,
+            0.9
+          ]
+        ],
+        "fog": [
+          [
+            0.3,
+            0.3
+          ],
+          [
+            0.7,
+            0.3
+          ],
+          [
+            0.7,
+            0.6
+          ],
+          [
+            0.3,
+            0.6
+          ]
+        ]
+      },
+      "exclude_rects": [
+        [
+          0.0,
+          0.9,
+          1.0,
+          1.0
+        ]
+      ],
+      "materials": [
+        {
+          "id": "straw_relief_teal_whole",
+          "category": "ground",
+          "class": "litter",
+          "quad": [
+            [
+              0.02,
+              0.02
+            ],
+            [
+              0.96,
+              0.02
+            ],
+            [
+              0.96,
+              0.9
+            ],
+            [
+              0.02,
+              0.9
+            ]
+          ],
+          "physical_width_m": 2.0,
+          "delight_sigma": 0.25,
+          "notes": "The whole relief: swirling straw bundles and loose stalks in gold and bronze over teal paint."
+        }
+      ]
+    },
+    {
+      "id": "decayed_log_litter",
+      "title": "Decayed red-brown log wood with cypress spray over leaf litter, overcast",
+      "source": {
+        "file": "decayed_log_litter.jpg",
+        "upload_name": "fb0524df-image.jpg",
+        "redistribution": "owner_supplied",
+        "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara. A pin badge lying on the log is excluded from every region and from the analysis."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": -50
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "diffuse overcast, no shadows; not observable"
+      },
+      "sky_roi": null,
+      "exclude_rects": [
+        [
+          0.34,
+          0.49,
+          0.56,
+          0.62
+        ]
+      ],
+      "probes": {
+        "lit_shadow": [
+          [
+            0.1,
+            0.62
+          ],
+          [
+            0.72,
+            0.62
+          ],
+          [
+            0.72,
+            0.8
+          ],
+          [
+            0.1,
+            0.8
+          ]
+        ],
+        "ground": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.75,
+            0.0
+          ],
+          [
+            0.75,
+            0.22
+          ],
+          [
+            0.0,
+            0.22
+          ]
+        ],
+        "fog": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.75,
+            0.0
+          ],
+          [
+            0.75,
+            0.22
+          ],
+          [
+            0.0,
+            0.22
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "wood_decayed_log",
+          "category": "bark",
+          "class": "bark",
+          "mirror": false,
+          "quad": [
+            [
+              0.1,
+              0.62
+            ],
+            [
+              0.72,
+              0.62
+            ],
+            [
+              0.72,
+              0.8
+            ],
+            [
+              0.1,
+              0.8
+            ]
+          ],
+          "physical_width_m": 1.0,
+          "delight_sigma": 0.25,
+          "notes": "Brick-cracked red-brown decayed heartwood of a fallen log, sharp and frontal; diagonal grain, not mirrored."
+        },
+        {
+          "id": "leaf_litter_beech",
+          "category": "ground",
+          "class": "litter",
+          "quad": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.75,
+              0.0
+            ],
+            [
+              0.75,
+              0.22
+            ],
+            [
+              0.0,
+              0.22
+            ]
+          ],
+          "physical_width_m": 1.2,
+          "delight_sigma": 0.3,
+          "notes": "Brown broadleaf litter behind the log, out of focus in the source: soft."
+        }
+      ]
+    },
+    {
+      "id": "eroded_bank_roots",
+      "title": "Exposed roots over an eroded clay bank under a broadleaf canopy, overcast",
+      "source": {
+        "file": "eroded_bank_roots.jpg",
+        "upload_name": "f971e7e0-image.jpg",
+        "redistribution": "owner_supplied",
+        "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara. The sign and the rope barrier are excluded from every region and from the analysis."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": 5
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "overcast, no shadows; not observable"
+      },
+      "sky_roi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.35
+        ],
+        [
+          0.0,
+          0.35
+        ]
+      ],
+      "exclude_rects": [
+        [
+          0.44,
+          0.45,
+          0.56,
+          0.53
+        ]
+      ],
+      "probes": {
+        "lit_shadow": [
+          [
+            0.58,
+            0.55
+          ],
+          [
+            0.95,
+            0.55
+          ],
+          [
+            0.95,
+            0.78
+          ],
+          [
+            0.58,
+            0.78
+          ]
+        ],
+        "ground": [
+          [
+            0.0,
+            0.85
+          ],
+          [
+            0.7,
+            0.85
+          ],
+          [
+            0.7,
+            0.99
+          ],
+          [
+            0.0,
+            0.99
+          ]
+        ],
+        "fog": [
+          [
+            0.0,
+            0.4
+          ],
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.2,
+            0.6
+          ],
+          [
+            0.0,
+            0.6
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "clay_bank_bare",
+          "category": "ground",
+          "class": "trail",
+          "quad": [
+            [
+              0.58,
+              0.55
+            ],
+            [
+              0.95,
+              0.55
+            ],
+            [
+              0.95,
+              0.78
+            ],
+            [
+              0.58,
+              0.78
+            ]
+          ],
+          "physical_width_m": 2.5,
+          "delight_sigma": 0.25,
+          "notes": "Bare eroded clay and stones of the cut bank, near-frontal."
+        },
+        {
+          "id": "roots_over_soil",
+          "category": "ground",
+          "class": "litter",
+          "quad": [
+            [
+              0.05,
+              0.6
+            ],
+            [
+              0.6,
+              0.6
+            ],
+            [
+              0.6,
+              0.85
+            ],
+            [
+              0.05,
+              0.85
+            ]
+          ],
+          "physical_width_m": 3.0,
+          "delight_sigma": 0.25,
+          "notes": "Weathered exposed roots spreading over soil and litter; large features, will repeat across the tile."
+        },
+        {
+          "id": "litter_slope",
+          "category": "ground",
+          "class": "litter",
+          "stretch_y": 1.5,
+          "quad": [
+            [
+              0.0,
+              0.85
+            ],
+            [
+              0.7,
+              0.85
+            ],
+            [
+              0.7,
+              0.99
+            ],
+            [
+              0.0,
+              0.99
+            ]
+          ],
+          "physical_width_m": 2.5,
+          "delight_sigma": 0.3,
+          "notes": "Leaf litter and small stones on the bank foot, oblique."
+        },
+        {
+          "id": "broadleaf_canopy_overcast",
+          "category": "greenery",
+          "class": "leaves",
+          "quad": [
+            [
+              0.35,
+              0.0
+            ],
+            [
+              0.95,
+              0.0
+            ],
+            [
+              0.95,
+              0.25
+            ],
+            [
+              0.35,
+              0.25
+            ]
+          ],
+          "physical_width_m": 6.0,
+          "delight_sigma": 0.3,
+          "notes": "Broadleaf canopy with trunks against an overcast sky; sky gaps remain."
+        }
+      ]
     }
   ]
 }
