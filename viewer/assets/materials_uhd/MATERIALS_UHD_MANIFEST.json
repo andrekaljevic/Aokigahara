@@ -1,0 +1,2516 @@
+{
+ "generator": "construction_code_v3/extract_uhd_materials.py",
+ "stamp": "2026-09-22",
+ "spec": "construction_code_v3/uhd_extraction_spec.json",
+ "status": "PHOTO-DERIVED representatives cut from photographs supplied by the repository owner. Albedo is the delit photograph; height, normal, roughness and ambient occlusion are single-image heuristic estimates; physical scale is estimated from objects in frame; nothing here is photogrammetry or a survey. The 4k masters and 2k tier are interpolated above each material's native_source_px.",
+ "tiers": {
+  "4k": "asset_packs/materials_uhd_4k",
+  "2k": "asset_packs/materials_uhd_2k",
+  "1k": "viewer/assets/materials_uhd"
+ },
+ "tier_total_bytes": {
+  "4k": 111702727,
+  "2k": 44349329,
+  "1k": 17751461
+ },
+ "runtime_slots": {
+  "litter": "litter_uhd",
+  "trail": "trail_uhd",
+  "moss": "moss_uhd",
+  "rock": "mossy_lava_uhd"
+ },
+ "runtime_slot_scale_m": {
+  "moss": 1.0,
+  "rock": 1.5,
+  "litter": 0.8,
+  "trail": 1.0
+ },
+ "not_consumed_by_runtime": [
+  "moss_root_uhd",
+  "moss_hummock_uhd",
+  "lava_wall_uhd",
+  "bark_tsuga_old_uhd",
+  "bark_lichen_uhd",
+  "deadwood_uhd",
+  "root_moss_uhd",
+  "bark_tsuga_uhd",
+  "understorey_uhd"
+ ],
+ "sources": [
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U01_c59f556b.webp",
+   "bytes": 459286,
+   "sha256": "c59f556b16820fb2b5f4f84b8b00506d7ba232b3643abc8e698be266d3bfd88c",
+   "width": 2000,
+   "height": 983,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  },
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U03_914d0cfb.webp",
+   "bytes": 483302,
+   "sha256": "914d0cfbe0bae531d190c4661385a6f1ca6cd9515a688ecd59581270b63671ef",
+   "width": 2000,
+   "height": 983,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  },
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U05_f16d2764.webp",
+   "bytes": 529164,
+   "sha256": "f16d2764509bb443e1a6ebddd5029a7ca47d81ad336382f9263aada0edc4bd18",
+   "width": 2000,
+   "height": 983,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  },
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U07_6572337c.webp",
+   "bytes": 499852,
+   "sha256": "6572337ceaf645cb47725d586da1e14fcecb7e07d032b00cebc2b9f7ad89e63f",
+   "width": 2000,
+   "height": 983,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  },
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U09_4261e995.webp",
+   "bytes": 521068,
+   "sha256": "4261e995a0ba16948402380c707ff4a0b1af1ff1bce3da8143f9e4cecd4d6880",
+   "width": 2000,
+   "height": 983,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  },
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U10_de969dec.webp",
+   "bytes": 496278,
+   "sha256": "de969deced9a1aec59ebcc17fbf8fe02a44ee51eb4ab9434a5ccb3f731164088",
+   "width": 2000,
+   "height": 983,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  },
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U11_01b43a84.webp",
+   "bytes": 476804,
+   "sha256": "01b43a84e5792c224ff31e911707944c1ca4df5e356760c66eb0a9a1a0885e62",
+   "width": 2000,
+   "height": 983,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  },
+  {
+   "file": "construction_inputs/uhd_photos/attachments/U15_5c871a80.jpg",
+   "bytes": 674920,
+   "sha256": "5c871a80d6e514a12b902257e67c8af1e740faef24baa271a664d348cefbdedf",
+   "width": 1623,
+   "height": 2048,
+   "provenance": "photograph supplied by the repository owner (chat attachment or Google Drive); licence, photographer, capture date and native capture resolution not recorded"
+  }
+ ],
+ "materials": [
+  {
+   "id": "moss_uhd",
+   "slot": "moss",
+   "primary_for_slot": true,
+   "photo": "attachments/U05_f16d2764.webp",
+   "rect": [
+    560,
+    360,
+    880,
+    700
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    320,
+    340
+   ],
+   "native_source_px": 320,
+   "tile_px_1k": [
+    1024,
+    1024
+   ],
+   "master_px": [
+    4096,
+    4096
+   ],
+   "upsample_factor": 12.05,
+   "anisotropic_stretch_y_over_x": 0.94,
+   "physical_scale_m": 0.55,
+   "scale_basis": "pale surface root just right of the region ~0.08 m thick = 80 px; hummock ~0.7 m across",
+   "runtime_slot_scale_m": 1.0,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 12,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/moss_uhd_diff_4k.jpg",
+      "bytes": 2014328,
+      "sha256": "e57e2d438f482eae93247e745b63c028797be34e47bc09c826293ac25c3cb38a"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/moss_uhd_nor_gl_4k.jpg",
+      "bytes": 4814987,
+      "sha256": "f3016d2275e25f58d8d91cb48cfc2d609612261bc0d39b473a5ba2e48948912f"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/moss_uhd_rough_4k.jpg",
+      "bytes": 764342,
+      "sha256": "4137467687c639ce8be0a698fb7a6b301ec0bc70b48df39f7ee769a1043f4765"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/moss_uhd_height_4k.jpg",
+      "bytes": 1711390,
+      "sha256": "7fe0a08d10513b910d76a33be0ab90dbb9171195aadebb9253bb6306ddd7cb7e"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/moss_uhd_ao_4k.jpg",
+      "bytes": 1214550,
+      "sha256": "4a142e2dde86f406b47106b673274ac9ecb362648e83e2ff7f310a18362cbc7a"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/moss_uhd_orm_4k.jpg",
+      "bytes": 1731587,
+      "sha256": "f82f996ce83af17656460d3e591dbced05702489604185d5c8734fd359de216f"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/moss_uhd_diff_2k.jpg",
+      "bytes": 751801,
+      "sha256": "0e98caa56dd9033a2aa2973d0be032500bbe0ddbf1e13aa5133cc6309da142f7"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/moss_uhd_nor_gl_2k.jpg",
+      "bytes": 2015110,
+      "sha256": "170f783e3cacd121f689abcc39930cf4aab60901ad26f45ac3e630a454a5bd35"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/moss_uhd_rough_2k.jpg",
+      "bytes": 307898,
+      "sha256": "25e1839c29f34ef5b2f12cfc904b037bfe8afbe53f1fbd0d854151e8887dbfbb"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/moss_uhd_height_2k.jpg",
+      "bytes": 652216,
+      "sha256": "2335cbfefb2e06c9c2ae2321be0801610ef60c8ce49272745ede9b1a66a702bf"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/moss_uhd_ao_2k.jpg",
+      "bytes": 522053,
+      "sha256": "d716207e63bd15b2c4033cbb71f6413b50e01fbb694b4dcbcc111aff14a1aa10"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/moss_uhd_orm_2k.jpg",
+      "bytes": 664159,
+      "sha256": "1564bff96a049e4dc54ebda60fc4723c28635ce727ad173240cb769c533e0055"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/moss_uhd_diff_1k.jpg",
+      "bytes": 286660,
+      "sha256": "c24899fe268d3d3b642509f61bd42f6ad987ec5724671e875e4725ca9cab39fc"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/moss_uhd_nor_gl_1k.jpg",
+      "bytes": 847181,
+      "sha256": "c8fda73bc820ca84b997f5ac73adda7633a22f7960afd3fe650bfd68c1b39c85"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/moss_uhd_rough_1k.jpg",
+      "bytes": 123575,
+      "sha256": "38021d1df61adff045530ac4a464228ab00e30f398496aae9be9d19660b84a2c"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/moss_uhd_height_1k.jpg",
+      "bytes": 258501,
+      "sha256": "875a835e32e4d9e1a3599c343e602277a0296868ff86fef1d6f9a3d9ca8efcec"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/moss_uhd_ao_1k.jpg",
+      "bytes": 214301,
+      "sha256": "f07f248190d471df8fec64b200f237ea513a86aecd69ccdf626b527dfddb37f5"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/moss_uhd_orm_1k.jpg",
+      "bytes": 239063,
+      "sha256": "30940c8496a4e1f837058e67c97478f650960e2a796db6f4ae3b0616711b1fdf"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.11,
+     "mean_linear_luma": 0.1648,
+     "residual_clipped_fraction": 0.00828,
+     "lowfreq_gradient": 0.7738,
+     "seam_nor_gl": 1.403,
+     "seam_height": 1.093,
+     "seam_rough": 1.552,
+     "seam_ao": 1.115,
+     "normal_mean": [
+      -0.0033,
+      -0.0054,
+      0.8826
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.057,
+     "mean_linear_luma": 0.1648,
+     "residual_clipped_fraction": 0.00832,
+     "lowfreq_gradient": 0.612,
+     "seam_nor_gl": 1.091,
+     "seam_height": 1.042,
+     "seam_rough": 1.319,
+     "seam_ao": 1.05,
+     "normal_mean": [
+      -0.003,
+      -0.0048,
+      0.8499
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.027,
+     "mean_linear_luma": 0.1648,
+     "residual_clipped_fraction": 0.00822,
+     "lowfreq_gradient": 0.4766,
+     "seam_nor_gl": 0.969,
+     "seam_height": 1.022,
+     "seam_rough": 1.215,
+     "seam_ao": 0.997,
+     "normal_mean": [
+      -0.003,
+      -0.0048,
+      0.8432
+     ]
+    },
+    "masked_fraction": 0.05569,
+    "counterpart": "viewer/assets/materials_v2/moss_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.1538
+   },
+   "notes": "cushion/feather moss carpet on a lava hummock with twigs and needle debris, shade-lit; the pale root to the right is excluded; ground plane seen obliquely so the tile is stretched ~1.3x vertically",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 12.0x above the native source resolution (320 px on the short side)"
+  },
+  {
+   "id": "moss_root_uhd",
+   "slot": "moss",
+   "primary_for_slot": false,
+   "photo": "attachments/U15_5c871a80.jpg",
+   "rect": [
+    1260,
+    1200,
+    1623,
+    1540
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    363,
+    340
+   ],
+   "native_source_px": 340,
+   "tile_px_1k": [
+    1024,
+    1024
+   ],
+   "master_px": [
+    4096,
+    4096
+   ],
+   "upsample_factor": 11.28,
+   "anisotropic_stretch_y_over_x": 1.07,
+   "physical_scale_m": 0.38,
+   "scale_basis": "trunk beside it ~0.45 m = 430 px",
+   "runtime_slot_scale_m": 1.0,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 12,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/moss_root_uhd_diff_4k.jpg",
+      "bytes": 1516761,
+      "sha256": "2315546fbc51354d6ce9684b89054299b592296a6ca75fa92e3750746666f7f2"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/moss_root_uhd_nor_gl_4k.jpg",
+      "bytes": 3963106,
+      "sha256": "96d54e9d83073d51c81fef045d48bcb11ce91560d95f9589ea327a7bc48ac51e"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/moss_root_uhd_rough_4k.jpg",
+      "bytes": 641289,
+      "sha256": "a6ecd2668d9b714bc6c0d44f5ef131a6e955fcf9646bfc90f30345a8aef15471"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/moss_root_uhd_height_4k.jpg",
+      "bytes": 1469007,
+      "sha256": "1f4928946eb8a48aa2079f9cc4b836ce65ae878f2f3ff1ebb099062976f7d440"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/moss_root_uhd_ao_4k.jpg",
+      "bytes": 970688,
+      "sha256": "12def03e6b2adb33230795da32792289aaa4e71134b4d788dc934b69e0193371"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/moss_root_uhd_orm_4k.jpg",
+      "bytes": 1489900,
+      "sha256": "bb572625b9436186c3c7d8bf2c267d13ecbbc6fe2a0680f881f0d88d16bc4a7f"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/moss_root_uhd_diff_2k.jpg",
+      "bytes": 537089,
+      "sha256": "063cfb880baa5acf09764bf64b868a1c01f5b59293acefc0702e3d9f0f19ade2"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/moss_root_uhd_nor_gl_2k.jpg",
+      "bytes": 1655700,
+      "sha256": "c03f054c57420dc43f6402e17ae022c63e7afec01acdfb7de03e02025bad8983"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/moss_root_uhd_rough_2k.jpg",
+      "bytes": 250877,
+      "sha256": "0f818fe0875c63d2680827742a9b31b641ee8d2a451e9ac479d8e4a66a5078e3"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/moss_root_uhd_height_2k.jpg",
+      "bytes": 555619,
+      "sha256": "950f49172722292c4370e8db897202b9d62b7203186e6c8870ce9058561a7e21"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/moss_root_uhd_ao_2k.jpg",
+      "bytes": 402411,
+      "sha256": "7ea1b1fac137e6a15c8720cc116d343e22a6ec8919e568b38d8e7b144011cf3e"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/moss_root_uhd_orm_2k.jpg",
+      "bytes": 563236,
+      "sha256": "bf2be5cc59536f687e92940d8974182191603d9bf58c8109c751e1cc5f5ade17"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/moss_root_uhd_diff_1k.jpg",
+      "bytes": 201738,
+      "sha256": "71550020eab5d878ae8cd176f18accc26193f24e590d73e97d5a2637dd269312"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/moss_root_uhd_nor_gl_1k.jpg",
+      "bytes": 686977,
+      "sha256": "60b99554066ace11d12bb8f6d171c5e87ddcc3a6f9758730f6bb92b997dd81cf"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/moss_root_uhd_rough_1k.jpg",
+      "bytes": 101647,
+      "sha256": "57b6870fe585df04bd7b854ce8faca05d411351844891bbf3a1aa09cb3f63844"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/moss_root_uhd_height_1k.jpg",
+      "bytes": 217824,
+      "sha256": "92e927d976fe5c10df1712e6eaa2718493c91afdd67fadfe2da97684120aad86"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/moss_root_uhd_ao_1k.jpg",
+      "bytes": 174155,
+      "sha256": "b1e9ed0c22705d83b2e7293ad2fbf8f9addb16237b445ab287edb0b88a160457"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/moss_root_uhd_orm_1k.jpg",
+      "bytes": 213960,
+      "sha256": "f3258d6b96139d3585f4b5b151327c4251b7577e006654a281335afca08fd7e4"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.145,
+     "mean_linear_luma": 0.1741,
+     "residual_clipped_fraction": 0.00073,
+     "lowfreq_gradient": 0.6152,
+     "seam_nor_gl": 1.618,
+     "seam_height": 0.98,
+     "seam_rough": 1.612,
+     "seam_ao": 1.16,
+     "normal_mean": [
+      -0.005,
+      -0.0053,
+      0.9369
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.062,
+     "mean_linear_luma": 0.1741,
+     "residual_clipped_fraction": 0.00073,
+     "lowfreq_gradient": 0.4964,
+     "seam_nor_gl": 1.221,
+     "seam_height": 0.919,
+     "seam_rough": 1.424,
+     "seam_ao": 1.073,
+     "normal_mean": [
+      -0.0047,
+      -0.0049,
+      0.8983
+     ]
+    },
+    "1k": {
+     "seam_diff": 0.987,
+     "mean_linear_luma": 0.1741,
+     "residual_clipped_fraction": 0.00074,
+     "lowfreq_gradient": 0.3925,
+     "seam_nor_gl": 1.065,
+     "seam_height": 0.903,
+     "seam_rough": 1.224,
+     "seam_ao": 1.008,
+     "normal_mean": [
+      -0.0047,
+      -0.0049,
+      0.8891
+     ]
+    },
+    "masked_fraction": 0.07696,
+    "counterpart": "viewer/assets/materials_v2/moss_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.1538
+   },
+   "notes": "continuous moss carpet draped over buttress roots at a trunk base (phone close-up, softer source)",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 11.3x above the native source resolution (340 px on the short side)"
+  },
+  {
+   "id": "moss_hummock_uhd",
+   "slot": "moss",
+   "primary_for_slot": false,
+   "photo": "attachments/U07_6572337c.webp",
+   "rect": [
+    1480,
+    340,
+    1740,
+    620
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    260,
+    280
+   ],
+   "native_source_px": 260,
+   "tile_px_1k": [
+    1024,
+    1024
+   ],
+   "master_px": [
+    4096,
+    4096
+   ],
+   "upsample_factor": 14.63,
+   "anisotropic_stretch_y_over_x": 0.93,
+   "physical_scale_m": 0.55,
+   "scale_basis": "trunk in the same frame ~0.37 m = 200 px at similar depth",
+   "runtime_slot_scale_m": 1.0,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 12,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/moss_hummock_uhd_diff_4k.jpg",
+      "bytes": 1608328,
+      "sha256": "aa68d173910c32f8f882ae09ca2ff8716c0ec978b9868be6abc4dbb40def910b"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/moss_hummock_uhd_nor_gl_4k.jpg",
+      "bytes": 3963887,
+      "sha256": "d29b3c6be62fbd55ca2469807009fe418e590c7b43758af39dbd6dbfe84fae88"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/moss_hummock_uhd_rough_4k.jpg",
+      "bytes": 733965,
+      "sha256": "8ef9fe2aa8c139a2a955a8ce4591237437eac979d64bade3cb5b362c5f67e3fe"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/moss_hummock_uhd_height_4k.jpg",
+      "bytes": 1546825,
+      "sha256": "94d5568d9146b652dcb456f9a5c3ba49a2ba250528bbf3d0e2e194fae4a984f5"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/moss_hummock_uhd_ao_4k.jpg",
+      "bytes": 1056429,
+      "sha256": "a002f06abf6de96a91012306307d795c993851966a8c1e51487e8a8969dea562"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/moss_hummock_uhd_orm_4k.jpg",
+      "bytes": 1601243,
+      "sha256": "8b77aa0ed2c6d060a2e875b9936a6391daba3410bf3c5cde8dc1d602a4a32d22"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/moss_hummock_uhd_diff_2k.jpg",
+      "bytes": 579295,
+      "sha256": "c21492f391c9feb53ca339b3bf270f8e31fb2eaa955dcc0b9ead759551bdfd49"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/moss_hummock_uhd_nor_gl_2k.jpg",
+      "bytes": 1658000,
+      "sha256": "3087cc6f731cbbc618971a04310667fb21a0336d43ad11ddbfaeca828ef4c4aa"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/moss_hummock_uhd_rough_2k.jpg",
+      "bytes": 289481,
+      "sha256": "d1b4947eedbbe0a7c42ee36a384a954cb1afc4eb0d228fda6317516085cc9e54"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/moss_hummock_uhd_height_2k.jpg",
+      "bytes": 585948,
+      "sha256": "b42ba87dfedae8d131f3394e8f3e74cd71a447d5c7ae47fd53178eb3c1416cb7"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/moss_hummock_uhd_ao_2k.jpg",
+      "bytes": 444646,
+      "sha256": "9d4c7c6628d663673ef7499eaa7e5b50768f7bbe58a1f81853275224ece7ff3a"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/moss_hummock_uhd_orm_2k.jpg",
+      "bytes": 615574,
+      "sha256": "56fd06b59faea55a89e458419919148b1ceed036542b1238627bf4ac2bd7f555"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/moss_hummock_uhd_diff_1k.jpg",
+      "bytes": 221242,
+      "sha256": "1667ecb650e7114ce6af20e7d606880caeac55ca5eaf85d0f1c00642b84a49f3"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/moss_hummock_uhd_nor_gl_1k.jpg",
+      "bytes": 687470,
+      "sha256": "a3ffe864a0b96b5da9c3729a72272fdd19f1d7d47a2d6a1799c37dbc6dbb1602"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/moss_hummock_uhd_rough_1k.jpg",
+      "bytes": 116155,
+      "sha256": "ee47c0fa42c4b92df05f3231956ca62f73cbca28bf81b3a6337dacfbfe98db04"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/moss_hummock_uhd_height_1k.jpg",
+      "bytes": 228732,
+      "sha256": "7b259fa7009caa632c7ec967d684daa4263fb50be2e678e02110f92bb7ba1b92"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/moss_hummock_uhd_ao_1k.jpg",
+      "bytes": 191581,
+      "sha256": "fd932a627e8d9da1d66e3baf60de1ff183c75d5d3952fe7c0528c80ea71a48ec"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/moss_hummock_uhd_orm_1k.jpg",
+      "bytes": 230359,
+      "sha256": "67ffdfdfeb3d64e4f2978bd5b32e79b3e6ec36dd4de9afdd6a99de95962459c1"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.222,
+     "mean_linear_luma": 0.1558,
+     "residual_clipped_fraction": 0.00129,
+     "lowfreq_gradient": 0.5199,
+     "seam_nor_gl": 1.365,
+     "seam_height": 1.161,
+     "seam_rough": 1.58,
+     "seam_ao": 1.089,
+     "normal_mean": [
+      -0.0052,
+      -0.0043,
+      0.9406
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.081,
+     "mean_linear_luma": 0.1558,
+     "residual_clipped_fraction": 0.0013,
+     "lowfreq_gradient": 0.4216,
+     "seam_nor_gl": 1.055,
+     "seam_height": 1.082,
+     "seam_rough": 1.358,
+     "seam_ao": 1.02,
+     "normal_mean": [
+      -0.0049,
+      -0.004,
+      0.8959
+     ]
+    },
+    "1k": {
+     "seam_diff": 0.992,
+     "mean_linear_luma": 0.1558,
+     "residual_clipped_fraction": 0.00129,
+     "lowfreq_gradient": 0.3349,
+     "seam_nor_gl": 0.94,
+     "seam_height": 1.062,
+     "seam_rough": 1.167,
+     "seam_ao": 0.98,
+     "normal_mean": [
+      -0.0049,
+      -0.004,
+      0.8851
+     ]
+    },
+    "masked_fraction": 0.00212,
+    "counterpart": "viewer/assets/materials_v2/moss_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.1538
+   },
+   "notes": "rounded moss-covered hummock in even shade, the cleanest moss surface in the set; small source region (260 px) so the 4k tier is heavily interpolated",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 14.6x above the native source resolution (260 px on the short side)"
+  },
+  {
+   "id": "mossy_lava_uhd",
+   "slot": "rock",
+   "primary_for_slot": true,
+   "photo": "attachments/U10_de969dec.webp",
+   "rect": [
+    980,
+    760,
+    1290,
+    983
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    310,
+    223
+   ],
+   "native_source_px": 223,
+   "tile_px_1k": [
+    1024,
+    1024
+   ],
+   "master_px": [
+    4096,
+    4096
+   ],
+   "upsample_factor": 13.21,
+   "anisotropic_stretch_y_over_x": 1.39,
+   "physical_scale_m": 0.55,
+   "scale_basis": "individual wall blocks ~0.3-0.4 m = 160-210 px",
+   "runtime_slot_scale_m": 1.5,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 22,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/mossy_lava_uhd_diff_4k.jpg",
+      "bytes": 1580641,
+      "sha256": "8fc97e28cfc885409208067bf2bdf56f6ffeeb7305c131047041b1c2ef7a26ed"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/mossy_lava_uhd_nor_gl_4k.jpg",
+      "bytes": 5071701,
+      "sha256": "9181514c7685af102a37b3029ac2dc5a2b838c7cbbfe74330d2f160da63cdc63"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/mossy_lava_uhd_rough_4k.jpg",
+      "bytes": 744508,
+      "sha256": "d486c784eb13792d69c82d80e11bde8576aaa16c275fdb6de5d88aabe60ad577"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/mossy_lava_uhd_height_4k.jpg",
+      "bytes": 1655804,
+      "sha256": "080a93039ba4f828462646c3233fb5764618fe441ed3bd17d94d29e5ccc68bc7"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/mossy_lava_uhd_ao_4k.jpg",
+      "bytes": 1153843,
+      "sha256": "11109274cac0a734387047bde7307f9ddec2145b666dda7184a9dee5e368cc0a"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/mossy_lava_uhd_orm_4k.jpg",
+      "bytes": 1757688,
+      "sha256": "e823da20324152b31bdbc96d49a8e91045391a7f0e43561c92f5aa75d108175f"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/mossy_lava_uhd_diff_2k.jpg",
+      "bytes": 576751,
+      "sha256": "9dad0d8bb148fea0fe746d766fdcb9575f3923ce46e4143813c89003611e9611"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/mossy_lava_uhd_nor_gl_2k.jpg",
+      "bytes": 2143140,
+      "sha256": "8f31eeebc4a751175a2f340d253bcda036cc30f5634c36b2da9e226e3e626ee3"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/mossy_lava_uhd_rough_2k.jpg",
+      "bytes": 288045,
+      "sha256": "42432e13861b707ea5da37e36860df8b8ececc44fc22fb5f2ea98b3c879a4f74"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/mossy_lava_uhd_height_2k.jpg",
+      "bytes": 624161,
+      "sha256": "f98eca9fe1a2ac6558919cf5d35c4210fe13f73c55b69908e68ad026ce6b8406"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/mossy_lava_uhd_ao_2k.jpg",
+      "bytes": 485249,
+      "sha256": "67db8434d35936ccfadd1b5247943d7b0186c70e8d8113e0f92ae7d4f0ad9b6e"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/mossy_lava_uhd_orm_2k.jpg",
+      "bytes": 658618,
+      "sha256": "edee191850a1e17502c135fb60b2fb07b98acc7e0f7925430a2adb49ee7f5e00"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/mossy_lava_uhd_diff_1k.jpg",
+      "bytes": 220949,
+      "sha256": "5dc5ab326490fc7410c6e09122d48cf9c6f79c2ad68f24e663bbb0437a68a1fc"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/mossy_lava_uhd_nor_gl_1k.jpg",
+      "bytes": 911366,
+      "sha256": "780b4fa63b9b09d94fe9a5d5685a271afb4d2a83c417fbcffcecd6431ed5960b"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/mossy_lava_uhd_rough_1k.jpg",
+      "bytes": 114472,
+      "sha256": "4b1ac5250fcfd26e4953bd63b50c76d8c10199a2a12110561a17e1eb6f3aa067"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/mossy_lava_uhd_height_1k.jpg",
+      "bytes": 240402,
+      "sha256": "5059c08846738dfa2cf72dc13cad1f9aed593b134ff348b2b91ba7704c073aef"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/mossy_lava_uhd_ao_1k.jpg",
+      "bytes": 205051,
+      "sha256": "08ac6467bce2c474ffb26ef634dd69e79ca7f720049365d723b9e07833bab9c6"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/mossy_lava_uhd_orm_1k.jpg",
+      "bytes": 241658,
+      "sha256": "d7fb640f25025baca1a32161272ae0fc66990bfc62b2e928405ec94f371bd255"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.528,
+     "mean_linear_luma": 0.0556,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.7233,
+     "seam_nor_gl": 1.981,
+     "seam_height": 1.364,
+     "seam_rough": 1.724,
+     "seam_ao": 1.426,
+     "normal_mean": [
+      -0.0043,
+      -0.0063,
+      0.7507
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.392,
+     "mean_linear_luma": 0.0556,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.6178,
+     "seam_nor_gl": 1.424,
+     "seam_height": 1.318,
+     "seam_rough": 1.575,
+     "seam_ao": 1.365,
+     "normal_mean": [
+      -0.0032,
+      -0.0056,
+      0.7258
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.32,
+     "mean_linear_luma": 0.0556,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.485,
+     "seam_nor_gl": 1.25,
+     "seam_height": 1.303,
+     "seam_rough": 1.424,
+     "seam_ao": 1.325,
+     "normal_mean": [
+      -0.0032,
+      -0.0056,
+      0.7254
+     ]
+    },
+    "masked_fraction": 0.04317,
+    "counterpart": "viewer/assets/materials_v2/basalt_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.0591
+   },
+   "notes": "mossy lava blocks of the dry-stone trail retaining wall in U10 seen face-on (square crop for the runtime rock slot); the block ARRANGEMENT is anthropogenic, the surfaces are natural Jogan lava with moss",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 13.2x above the native source resolution (223 px on the short side); the region was rectified by an anisotropic stretch (foreshortened ground plane), so along-view detail is interpolated"
+  },
+  {
+   "id": "lava_wall_uhd",
+   "slot": "rock",
+   "primary_for_slot": false,
+   "photo": "attachments/U10_de969dec.webp",
+   "rect": [
+    900,
+    760,
+    1380,
+    983
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    480,
+    223
+   ],
+   "native_source_px": 223,
+   "tile_px_1k": [
+    1024,
+    512
+   ],
+   "master_px": [
+    4096,
+    2048
+   ],
+   "upsample_factor": 8.53,
+   "anisotropic_stretch_y_over_x": 1.08,
+   "physical_scale_m": 0.9,
+   "scale_basis": "individual wall blocks ~0.3-0.4 m = 160-210 px",
+   "runtime_slot_scale_m": 1.5,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 22,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/lava_wall_uhd_diff_4k.jpg",
+      "bytes": 1013811,
+      "sha256": "65ed788ee2f6293e839e3b051d8043a6c598c8e72ee236bf546a71c80c0f6755"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/lava_wall_uhd_nor_gl_4k.jpg",
+      "bytes": 3718980,
+      "sha256": "84700de88ea7127402e38b4ccb420e37a72f444e7cacf8a63335078d1ac132e7"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/lava_wall_uhd_rough_4k.jpg",
+      "bytes": 471390,
+      "sha256": "c6ee1b014d04b3c88ca1a242c0df5be79a8ee899d32f8b9582764264a4bd8f8d"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/lava_wall_uhd_height_4k.jpg",
+      "bytes": 1074589,
+      "sha256": "53b2e8e3c12ea90e5bf169282a5e6a6d33f3885caec6a33542e3e3df02139d53"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/lava_wall_uhd_ao_4k.jpg",
+      "bytes": 792362,
+      "sha256": "e6b84ca521b5019f61aac0cfee81a62671991f334a1829f8b8c6e61c559434f1"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/lava_wall_uhd_orm_4k.jpg",
+      "bytes": 1118379,
+      "sha256": "1fe0c0892c219d2a904026a1fda85f004265b9dd17f4a57c328d43861538c7d2"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/lava_wall_uhd_diff_2k.jpg",
+      "bytes": 385671,
+      "sha256": "cd089c95d44ab2c78d0f50fed0006ef09fa1c268b44a6ed1bb3b682fa460cc3f"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/lava_wall_uhd_nor_gl_2k.jpg",
+      "bytes": 1596158,
+      "sha256": "e4181643608bdd85c079a3128ec308a33d518894964fa40c30f4bbb80abd5eb8"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/lava_wall_uhd_rough_2k.jpg",
+      "bytes": 189375,
+      "sha256": "b440f0812991f1285b44d0bf663ccc90cac2fb2c48197b45f06f1b7079e40cc7"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/lava_wall_uhd_height_2k.jpg",
+      "bytes": 410848,
+      "sha256": "e5973dd107c8a3e7559f0364327b6ea828410c97cf2aaa835759d1a59357f9d9"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/lava_wall_uhd_ao_2k.jpg",
+      "bytes": 343152,
+      "sha256": "79ae3001d1e0dd0f848f0370cf343e0a5b5c25a8c41468a9a6694dc6f8e7141a"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/lava_wall_uhd_orm_2k.jpg",
+      "bytes": 424207,
+      "sha256": "b32f7629310502f60d7219088782235c44a9fc4a0f5fcb8daf59680b7874646e"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/lava_wall_uhd_diff_1k.jpg",
+      "bytes": 148450,
+      "sha256": "9a78bfe7509cd540ccf622782278a22ad97a7fa4de1ed07ef4ad3e46adec45bc"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/lava_wall_uhd_nor_gl_1k.jpg",
+      "bytes": 670833,
+      "sha256": "956b37f198798321235fce3bd09cfbe0020b16c1471f898ba3bbcf066685069e"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/lava_wall_uhd_rough_1k.jpg",
+      "bytes": 73418,
+      "sha256": "5a37db2cfadc3c9666ed8f4aba7c32bae002a0d6957d89cb8cf3e724bc7e8d64"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/lava_wall_uhd_height_1k.jpg",
+      "bytes": 163467,
+      "sha256": "aee1b6d885d8404930f3d6f80a4f045ec2fbbad49aa7da9e832bba94b629ce13"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/lava_wall_uhd_ao_1k.jpg",
+      "bytes": 134580,
+      "sha256": "4d9a92c48601ce4bf0fc8adeb8d79aef7011e48a0b73cac49c0dfe20a175aa4b"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/lava_wall_uhd_orm_1k.jpg",
+      "bytes": 144877,
+      "sha256": "d4b12102f87528b96632c1e3afb7d5e6baef2192525cc2a09728f7b02fffc709"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.394,
+     "mean_linear_luma": 0.059,
+     "residual_clipped_fraction": 0.00031,
+     "lowfreq_gradient": 0.654,
+     "seam_nor_gl": 1.878,
+     "seam_height": 1.173,
+     "seam_rough": 1.619,
+     "seam_ao": 1.314,
+     "normal_mean": [
+      -0.007,
+      -0.0076,
+      0.6264
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.278,
+     "mean_linear_luma": 0.059,
+     "residual_clipped_fraction": 0.00032,
+     "lowfreq_gradient": 0.5339,
+     "seam_nor_gl": 1.323,
+     "seam_height": 1.156,
+     "seam_rough": 1.38,
+     "seam_ao": 1.25,
+     "normal_mean": [
+      -0.0058,
+      -0.0065,
+      0.6232
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.199,
+     "mean_linear_luma": 0.059,
+     "residual_clipped_fraction": 0.00031,
+     "lowfreq_gradient": 0.3954,
+     "seam_nor_gl": 1.172,
+     "seam_height": 1.133,
+     "seam_rough": 1.3,
+     "seam_ao": 1.23,
+     "normal_mean": [
+      -0.0059,
+      -0.0067,
+      0.6316
+     ]
+    },
+    "masked_fraction": 0.03976,
+    "counterpart": "viewer/assets/materials_v2/basalt_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.0591
+   },
+   "notes": "dry-stone trail retaining wall of mossy lava blocks seen face-on; block arrangement is anthropogenic; 2:1 tile, no stretch",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 8.5x above the native source resolution (223 px on the short side)"
+  },
+  {
+   "id": "litter_uhd",
+   "slot": "litter",
+   "primary_for_slot": true,
+   "photo": "attachments/U07_6572337c.webp",
+   "rect": [
+    150,
+    100,
+    470,
+    440
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    320,
+    340
+   ],
+   "native_source_px": 320,
+   "tile_px_1k": [
+    1024,
+    1024
+   ],
+   "master_px": [
+    4096,
+    4096
+   ],
+   "upsample_factor": 12.05,
+   "anisotropic_stretch_y_over_x": 0.94,
+   "physical_scale_m": 0.45,
+   "scale_basis": "fallen broadleaf leaves ~6 cm = 40 px",
+   "runtime_slot_scale_m": 0.8,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 10,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/litter_uhd_diff_4k.jpg",
+      "bytes": 1553244,
+      "sha256": "1f6a09cfdaee400cd51b9bb9fd43970c9157c8acfe228a3f1082be7312c225e6"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/litter_uhd_nor_gl_4k.jpg",
+      "bytes": 4223192,
+      "sha256": "f7ab4d65ceeaffe3e4bbaf8d2f33c157162827a096cf684883e257cb4eaf281f"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/litter_uhd_rough_4k.jpg",
+      "bytes": 755301,
+      "sha256": "8680018f48efee1256a26813f3adfc7c44692fa8a82360aa0763e57a800eeead"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/litter_uhd_height_4k.jpg",
+      "bytes": 1667084,
+      "sha256": "c8785c740d8fdfe3f5a7dfc416245c31b8ad523b2a6d7a0c1114c6168292e389"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/litter_uhd_ao_4k.jpg",
+      "bytes": 1169720,
+      "sha256": "b0538f09414204192cc792903b172215de057459d74455eea30b3b004fe58e86"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/litter_uhd_orm_4k.jpg",
+      "bytes": 1703104,
+      "sha256": "80beeea4fbae27e47da3d78b0ce90559d8d0292b5832009f9f61fc042c285974"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/litter_uhd_diff_2k.jpg",
+      "bytes": 553599,
+      "sha256": "9e083143465471cfcff2493e0c9b7d1fa52267c51d3695aefbe8066aa4a42386"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/litter_uhd_nor_gl_2k.jpg",
+      "bytes": 1768348,
+      "sha256": "f0084b2c01db34c0c44b732787e9cd588bdbb089b2bb01b75e7e152d675ac9db"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/litter_uhd_rough_2k.jpg",
+      "bytes": 299881,
+      "sha256": "4970bca66c2302e53c5a7f52a49ef38c84d915f2db80a5568a62d4bc1b4c0225"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/litter_uhd_height_2k.jpg",
+      "bytes": 632547,
+      "sha256": "2fb8e22791da65a32e96d2c1dbdc361d68824688edd2dced85dbddf3d9040d73"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/litter_uhd_ao_2k.jpg",
+      "bytes": 500618,
+      "sha256": "c484b964f34118e013daedbc19249a49bf129625ea3eaff60ec49cc1bafe2042"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/litter_uhd_orm_2k.jpg",
+      "bytes": 654620,
+      "sha256": "2bca4e9dcf13764e7cb800c86522c6213c17706224df006ef3d4479f9121ceaf"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/litter_uhd_diff_1k.jpg",
+      "bytes": 210706,
+      "sha256": "8a940b88f08639314f879d7f823ab98edd8297fa26f0f2d410ac03284939b422"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/litter_uhd_nor_gl_1k.jpg",
+      "bytes": 740140,
+      "sha256": "503fe9e3e1c0e4c4515a385b2374a8a694f98ff5cf123b29f9d4e43418e33b5b"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/litter_uhd_rough_1k.jpg",
+      "bytes": 120153,
+      "sha256": "3da46fe8ff04b2fd64dd911f0060d1b100f06d6312930a34bd225eece4dab80d"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/litter_uhd_height_1k.jpg",
+      "bytes": 249566,
+      "sha256": "6796d2be257fd7e299d953459f009699b9b8f236b043f4f28bf2c4e3e6918a9f"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/litter_uhd_ao_1k.jpg",
+      "bytes": 209355,
+      "sha256": "1bb60aa38927f65d76a8ce3950d674912022a1e61bd0e65c28876b000a4cfbbb"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/litter_uhd_orm_1k.jpg",
+      "bytes": 236104,
+      "sha256": "bc622059c7349b44f9e6ffc5626ce89a9fb4a64f0d7ded253c134de25897dd5d"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.249,
+     "mean_linear_luma": 0.0725,
+     "residual_clipped_fraction": 5e-05,
+     "lowfreq_gradient": 0.626,
+     "seam_nor_gl": 1.647,
+     "seam_height": 1.145,
+     "seam_rough": 1.559,
+     "seam_ao": 1.193,
+     "normal_mean": [
+      -0.0039,
+      -0.0045,
+      0.9354
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.148,
+     "mean_linear_luma": 0.0725,
+     "residual_clipped_fraction": 5e-05,
+     "lowfreq_gradient": 0.4702,
+     "seam_nor_gl": 1.242,
+     "seam_height": 1.104,
+     "seam_rough": 1.368,
+     "seam_ao": 1.149,
+     "normal_mean": [
+      -0.0037,
+      -0.0041,
+      0.8954
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.091,
+     "mean_linear_luma": 0.0725,
+     "residual_clipped_fraction": 5e-05,
+     "lowfreq_gradient": 0.322,
+     "seam_nor_gl": 1.074,
+     "seam_height": 1.066,
+     "seam_rough": 1.185,
+     "seam_ao": 1.112,
+     "normal_mean": [
+      -0.0037,
+      -0.0041,
+      0.8848
+     ]
+    },
+    "masked_fraction": 0.00158,
+    "counterpart": "viewer/assets/materials_v2/litter_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.0762
+   },
+   "notes": "fallen broadleaf leaves, conifer needles and thin twigs on dark humus, even shade",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 12.0x above the native source resolution (320 px on the short side)"
+  },
+  {
+   "id": "trail_uhd",
+   "slot": "trail",
+   "primary_for_slot": true,
+   "photo": "attachments/U03_914d0cfb.webp",
+   "rect": [
+    40,
+    840,
+    470,
+    983
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    430,
+    143
+   ],
+   "native_source_px": 143,
+   "tile_px_1k": [
+    1024,
+    1024
+   ],
+   "master_px": [
+    4096,
+    4096
+   ],
+   "upsample_factor": 9.53,
+   "anisotropic_stretch_y_over_x": 3.01,
+   "physical_scale_m": 0.62,
+   "scale_basis": "trail width ~1.5 m across the frame bottom; flattened leaves ~6 cm",
+   "runtime_slot_scale_m": 1.0,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 8,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/trail_uhd_diff_4k.jpg",
+      "bytes": 1472122,
+      "sha256": "5aa9f79793f3d8e843a4d2cb61a14659900e1a303aa3ea2619bb76b01813b56c"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/trail_uhd_nor_gl_4k.jpg",
+      "bytes": 3785987,
+      "sha256": "821f2043dc088b5e5ec4095c2ffcecbaf0dd26f9ad9d3ceb3506674c4db266ca"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/trail_uhd_rough_4k.jpg",
+      "bytes": 806120,
+      "sha256": "df0296b260679f7b318992b2561309b175ef25e768d67bb0a46a31f17f900931"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/trail_uhd_height_4k.jpg",
+      "bytes": 1725717,
+      "sha256": "758954cf7f5b3cb5a719f0d3dd6ba75045abb630cc4205b8e3514c3ab4d4c2ca"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/trail_uhd_ao_4k.jpg",
+      "bytes": 1196550,
+      "sha256": "bf488ed9ae7293f3ff1f7361f70008c05614711be82d4d9acd1eafdd505a8c1d"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/trail_uhd_orm_4k.jpg",
+      "bytes": 1841829,
+      "sha256": "ce39e7cff2cec7bb5b8fdcb9a02b351a418b5cbf57dbcf9a5f34e6df4d4cf339"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/trail_uhd_diff_2k.jpg",
+      "bytes": 512256,
+      "sha256": "44818b5e7f224d5a100b1c44bb26290d9046fd16f8291872f69854d1b8248521"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/trail_uhd_nor_gl_2k.jpg",
+      "bytes": 1496716,
+      "sha256": "90176e6fe7941142fa70bce5966092d0d31d21e9f1ee049f907bea8b4a503205"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/trail_uhd_rough_2k.jpg",
+      "bytes": 301358,
+      "sha256": "85e0892ea36ae95d652e22abcbc6b7c283d8685fe1e0de247597afaa162a912a"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/trail_uhd_height_2k.jpg",
+      "bytes": 633678,
+      "sha256": "de6614cbdd3a407c3b765072b0c41c04213b5237d069bd5250679677d992b09f"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/trail_uhd_ao_2k.jpg",
+      "bytes": 488248,
+      "sha256": "e8d0725f8ec68f318853df6019b7673c215e17cf85ebbdf1af0739b033bca683"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/trail_uhd_orm_2k.jpg",
+      "bytes": 668780,
+      "sha256": "1d8340ef690564ea91dd6b5d973d66f0a1909436576f666042e1ce36f89df552"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/trail_uhd_diff_1k.jpg",
+      "bytes": 188044,
+      "sha256": "43fd87e501f10c3c04ec672ee8e7f58546fffaa1de8a8e69ea8b8f8949bf0815"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/trail_uhd_nor_gl_1k.jpg",
+      "bytes": 606968,
+      "sha256": "6469f7bbadb474b58f23396f7087d2c70d5b36488ef9e8d911da06aaa63fe9b8"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/trail_uhd_rough_1k.jpg",
+      "bytes": 114217,
+      "sha256": "0aeb59d39c94c884ca3e288122c392e592d048bfa7f2146a97eb12c9b3b85d87"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/trail_uhd_height_1k.jpg",
+      "bytes": 237804,
+      "sha256": "f14612127833384ff50f39ad0e677b2871a86969808b9178a885931a7bbe4300"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/trail_uhd_ao_1k.jpg",
+      "bytes": 198067,
+      "sha256": "767cb03c6fa3e2d27b5e9734b97c083c834fc546ea586ce9aa9975bf6d692d2f"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/trail_uhd_orm_1k.jpg",
+      "bytes": 235086,
+      "sha256": "e290b09e9b1966e9faf2c608fb085b2d03f0a2daf5566492c5c5044781772c31"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.344,
+     "mean_linear_luma": 0.0911,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.4736,
+     "seam_nor_gl": 1.6,
+     "seam_height": 1.107,
+     "seam_rough": 1.531,
+     "seam_ao": 1.306,
+     "normal_mean": [
+      -0.0035,
+      -0.0034,
+      0.948
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.177,
+     "mean_linear_luma": 0.0911,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.3538,
+     "seam_nor_gl": 1.192,
+     "seam_height": 1.064,
+     "seam_rough": 1.378,
+     "seam_ao": 1.228,
+     "normal_mean": [
+      -0.0029,
+      -0.0034,
+      0.9079
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.123,
+     "mean_linear_luma": 0.0911,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.2381,
+     "seam_nor_gl": 1.06,
+     "seam_height": 1.027,
+     "seam_rough": 1.248,
+     "seam_ao": 1.177,
+     "normal_mean": [
+      -0.0029,
+      -0.0033,
+      0.8973
+     ]
+    },
+    "masked_fraction": 0.00382,
+    "counterpart": "viewer/assets/materials_v2/trail_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.087
+   },
+   "notes": "compacted trail surface: dark humus with flattened leaf fragments and small stones; ground plane seen obliquely so the tile is stretched ~3x vertically (approximate rectification)",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 9.5x above the native source resolution (143 px on the short side); the region was rectified by an anisotropic stretch (foreshortened ground plane), so along-view detail is interpolated"
+  },
+  {
+   "id": "bark_tsuga_uhd",
+   "slot": "bark",
+   "primary_for_slot": false,
+   "photo": "attachments/U11_01b43a84.webp",
+   "rect": [
+    1565,
+    60,
+    1730,
+    390
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    165,
+    330
+   ],
+   "native_source_px": 165,
+   "tile_px_1k": [
+    512,
+    1024
+   ],
+   "master_px": [
+    2048,
+    4096
+   ],
+   "upsample_factor": 12.41,
+   "anisotropic_stretch_y_over_x": 1.0,
+   "physical_scale_m": 0.43,
+   "scale_basis": "trunk diameter estimate 0.43 m = 165 px",
+   "runtime_slot_scale_m": null,
+   "height_mode": "dark_is_low",
+   "normal_strength_1k": 14,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_uhd_diff_4k.jpg",
+      "bytes": 678874,
+      "sha256": "23c136be800e61258cdc2b89750a696d90dfe0bd37bca1c788830ec4d51079f1"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_uhd_nor_gl_4k.jpg",
+      "bytes": 2254543,
+      "sha256": "2d4d9556221e6c8c5d92fc90a9817b7bf1896fbe850fa4f3a532b1f584108877"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_uhd_rough_4k.jpg",
+      "bytes": 352812,
+      "sha256": "8852f64f437135696d7739bd4ae6bd5f6eb1148dcbb07af071ad508be9a6a3ec"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_uhd_height_4k.jpg",
+      "bytes": 762000,
+      "sha256": "6d84f898f8115a5bae7884d8896cac82f1959fd1690e1738669f49a78f17e8b1"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_uhd_ao_4k.jpg",
+      "bytes": 531708,
+      "sha256": "a7b2bc2da7fc1ee1b531378d18931bacec1d1f4d27d004f974efbcf85b03b3a7"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_uhd_orm_4k.jpg",
+      "bytes": 792405,
+      "sha256": "278a8361e4f848eba6b38624bc39bfe6954156b9e24d278f4761c004fc035f99"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_uhd_diff_2k.jpg",
+      "bytes": 242813,
+      "sha256": "83aa021cc32d4ff3582edb8cdb5a70d0acfe0fbf74a1287d101313279ef9e271"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_uhd_nor_gl_2k.jpg",
+      "bytes": 948340,
+      "sha256": "d092d985ef129312878069cef5532bf21b9d55f84473d500ace67642bee6bd65"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_uhd_rough_2k.jpg",
+      "bytes": 138683,
+      "sha256": "c71174226017d76eef280a44a097178bf9994d5c8c62419e0756e6fa21e644d5"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_uhd_height_2k.jpg",
+      "bytes": 292723,
+      "sha256": "70588d24f43ce5edb21988da36f7d7010f34f53c0bda9b4d84e33e621bc25bb1"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_uhd_ao_2k.jpg",
+      "bytes": 225928,
+      "sha256": "2ae7cb1ba7aea9d165a4f9d6db3c30ee5875288b3fe306d0392621dd21448656"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_uhd_orm_2k.jpg",
+      "bytes": 298877,
+      "sha256": "15f471f49cf9b136cc5d2aa423f7bcaf04d2a4759b19f62228e1f8bb2bcdafc2"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_uhd_diff_1k.jpg",
+      "bytes": 93046,
+      "sha256": "c4ea4bf58e8cd05531e79f66d060afb3281bd62ddd32f7042e090839f9bc98b2"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_uhd_nor_gl_1k.jpg",
+      "bytes": 399843,
+      "sha256": "10d8f3bf01efcb9d69d2e92655898456a30993c85cfc78a75f172ca77a51e8da"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_uhd_rough_1k.jpg",
+      "bytes": 55816,
+      "sha256": "c5356b36b898c12dc3c566e968b3cd81950a87eb007be569fce15dba12d6fe18"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_uhd_height_1k.jpg",
+      "bytes": 116635,
+      "sha256": "0bbfaed029319e1b1b51d66eb839662d276c93d2f9bd32c0cc3caf6a7877a463"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_uhd_ao_1k.jpg",
+      "bytes": 95490,
+      "sha256": "1cba86c3f9f431a1f0b5d611d485cd96ba08c343eef0f098e5ec0caf3871395f"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_uhd_orm_1k.jpg",
+      "bytes": 108116,
+      "sha256": "e4787090c2ea19ae213988f532a41e7b4412c916298d654b539637e6db2f24f4"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.454,
+     "mean_linear_luma": 0.0333,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.8669,
+     "seam_nor_gl": 1.616,
+     "seam_height": 1.153,
+     "seam_rough": 1.759,
+     "seam_ao": 1.272,
+     "normal_mean": [
+      -0.0053,
+      -0.0015,
+      0.8854
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.295,
+     "mean_linear_luma": 0.0333,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.6998,
+     "seam_nor_gl": 1.212,
+     "seam_height": 1.099,
+     "seam_rough": 1.52,
+     "seam_ao": 1.162,
+     "normal_mean": [
+      -0.0048,
+      -0.0011,
+      0.8677
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.136,
+     "mean_linear_luma": 0.0333,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.524,
+     "seam_nor_gl": 1.063,
+     "seam_height": 1.066,
+     "seam_rough": 1.348,
+     "seam_ao": 1.12,
+     "normal_mean": [
+      -0.0049,
+      -0.001,
+      0.8653
+     ]
+    },
+    "masked_fraction": 0.00977,
+    "counterpart": "viewer/assets/materials/japanese_cedar_bark_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.0331
+   },
+   "notes": "plated grey-brown hemlock-like (Tsuga) bark, evenly lit strip; 1:2 section of a full-height trunk",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 12.4x above the native source resolution (165 px on the short side)"
+  },
+  {
+   "id": "bark_tsuga_old_uhd",
+   "slot": "bark",
+   "primary_for_slot": false,
+   "photo": "attachments/U10_de969dec.webp",
+   "rect": [
+    665,
+    60,
+    860,
+    450
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    195,
+    390
+   ],
+   "native_source_px": 195,
+   "tile_px_1k": [
+    512,
+    1024
+   ],
+   "master_px": [
+    2048,
+    4096
+   ],
+   "upsample_factor": 10.5,
+   "anisotropic_stretch_y_over_x": 1.0,
+   "physical_scale_m": 0.65,
+   "scale_basis": "big trunk diameter estimate 0.65 m = 195 px",
+   "runtime_slot_scale_m": null,
+   "height_mode": "dark_is_low",
+   "normal_strength_1k": 14,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_old_uhd_diff_4k.jpg",
+      "bytes": 744043,
+      "sha256": "a60feae5bfa300fe2a356791be3b9d0047795942808be6ffb7e33c8abce33493"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_old_uhd_nor_gl_4k.jpg",
+      "bytes": 2821070,
+      "sha256": "0099e4fd5a715e9ebffc35f7a23914cc5cf44fdca2c5b389ca97ebcb4e5bf483"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_old_uhd_rough_4k.jpg",
+      "bytes": 431884,
+      "sha256": "07719e6a12ef1d23807f31083d72ec40172ee97fc925589ff5f25976a156e810"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_old_uhd_height_4k.jpg",
+      "bytes": 946614,
+      "sha256": "34859b633376002d9acf2856cdf6bf40b9a8508b5c443620f9af58878817bb70"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_old_uhd_ao_4k.jpg",
+      "bytes": 676689,
+      "sha256": "7733a6311cfa83dce8b4be95bf8b4127998c6206efd5c7ae52ba28ae4593d19d"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/bark_tsuga_old_uhd_orm_4k.jpg",
+      "bytes": 988168,
+      "sha256": "8334d6b9e0ea5b937212415ab29ff3fac3b11c26a15da4cd6c23296f8be1461f"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_old_uhd_diff_2k.jpg",
+      "bytes": 267079,
+      "sha256": "cd3e6881b75230a790bf21ed24ce423e7b0b42b2eac034d57fd877beac3ad253"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_old_uhd_nor_gl_2k.jpg",
+      "bytes": 1171342,
+      "sha256": "00d464b4fa365b8ef8c3ccf5b31a24d3fc225a10e7145370c74bd0d032520346"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_old_uhd_rough_2k.jpg",
+      "bytes": 168970,
+      "sha256": "1160ee7e12b58004a2321fa432aa97429f3d1bfee71fe66645e4ba77c1307953"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_old_uhd_height_2k.jpg",
+      "bytes": 360893,
+      "sha256": "3ce3cc14faaa10acdaafc50ce77f0b3ba26ad300d53ae9ed73bbecba2e15d7ff"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_old_uhd_ao_2k.jpg",
+      "bytes": 291845,
+      "sha256": "f3db4347447cd6c837962e5e3fbe648012ccb21825e7db824a691fa1c65aeff5"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/bark_tsuga_old_uhd_orm_2k.jpg",
+      "bytes": 374515,
+      "sha256": "e343e57b469dfab30e081c023c03e623241a2050730d72347b5f16ce9cbcb5eb"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_old_uhd_diff_1k.jpg",
+      "bytes": 102044,
+      "sha256": "e7ebfbc0763454bb1b7cec8b40d957bef30f17cbd8cd52b560cf5440e82740c2"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_old_uhd_nor_gl_1k.jpg",
+      "bytes": 498923,
+      "sha256": "2b4a0510f802d24f435ba2ab5c80530bf1409ca897fb7fae2f8b31599e3ede2e"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_old_uhd_rough_1k.jpg",
+      "bytes": 66650,
+      "sha256": "36c12a63f33ec895d99c87b4c96e105c6111e0186e1dac1c9e6faeb649bae14b"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_old_uhd_height_1k.jpg",
+      "bytes": 141804,
+      "sha256": "70edec5054552fbcefdcbfac44c377e2fcb848d1b0d9b6fdbafd4d6dcb61db08"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_old_uhd_ao_1k.jpg",
+      "bytes": 118344,
+      "sha256": "7fb0557ab8079ecc70a2b9e0991021a685252795ab8b3eed905fcf267593c463"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/bark_tsuga_old_uhd_orm_1k.jpg",
+      "bytes": 130867,
+      "sha256": "463d76f2dee0d9ce9bebc43b05daf660e37a386899d56894ba62deb743e7ab38"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.289,
+     "mean_linear_luma": 0.0307,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.5492,
+     "seam_nor_gl": 1.628,
+     "seam_height": 1.039,
+     "seam_rough": 1.525,
+     "seam_ao": 1.09,
+     "normal_mean": [
+      -0.0018,
+      -0.003,
+      0.8107
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.15,
+     "mean_linear_luma": 0.0307,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.418,
+     "seam_nor_gl": 1.207,
+     "seam_height": 0.987,
+     "seam_rough": 1.316,
+     "seam_ao": 1.023,
+     "normal_mean": [
+      -0.001,
+      -0.0024,
+      0.7947
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.073,
+     "mean_linear_luma": 0.0307,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.3034,
+     "seam_nor_gl": 1.051,
+     "seam_height": 0.983,
+     "seam_rough": 1.202,
+     "seam_ao": 1.0,
+     "normal_mean": [
+      -0.0011,
+      -0.0025,
+      0.795
+     ]
+    },
+    "masked_fraction": 0.00196,
+    "counterpart": "viewer/assets/materials/japanese_cedar_bark_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.0331
+   },
+   "notes": "deeply fissured old hemlock-like bark of the large trunk left of centre in U10",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 10.5x above the native source resolution (195 px on the short side)"
+  },
+  {
+   "id": "bark_lichen_uhd",
+   "slot": "bark",
+   "primary_for_slot": false,
+   "photo": "attachments/U07_6572337c.webp",
+   "rect": [
+    525,
+    8,
+    725,
+    700
+   ],
+   "rotation_deg": 4,
+   "core": [
+    170,
+    340
+   ],
+   "source_crop_px": [
+    170,
+    340
+   ],
+   "native_source_px": 170,
+   "tile_px_1k": [
+    512,
+    1024
+   ],
+   "master_px": [
+    2048,
+    4096
+   ],
+   "upsample_factor": 12.05,
+   "anisotropic_stretch_y_over_x": 1.0,
+   "physical_scale_m": 0.31,
+   "scale_basis": "trunk diameter estimate 0.37 m = 200 px",
+   "runtime_slot_scale_m": null,
+   "height_mode": "dark_is_low",
+   "normal_strength_1k": 14,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/bark_lichen_uhd_diff_4k.jpg",
+      "bytes": 516601,
+      "sha256": "533c6815a3ba9293cc111c2ffa3f92ad2bd3adbf113009a345d68cc9cf72ff1a"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/bark_lichen_uhd_nor_gl_4k.jpg",
+      "bytes": 2628663,
+      "sha256": "473b72daf87639f80bab06fc4e4f370273ba16a3d8672f27c0f3b1ada843eb9b"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/bark_lichen_uhd_rough_4k.jpg",
+      "bytes": 412273,
+      "sha256": "db10b491dc918678e6707cc823002a129523d40eb98f9b30597cabd5ff7a1ffd"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/bark_lichen_uhd_height_4k.jpg",
+      "bytes": 956057,
+      "sha256": "53ab503ced5c9391f9b8556f9a6acc7e5fdcbd0b824474ad322c48f18b5f1fb6"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/bark_lichen_uhd_ao_4k.jpg",
+      "bytes": 655744,
+      "sha256": "cf24c25cc748ab3b21f73f6f3bcd7ff4eabfa1d1db4955ab5de1511406cf17d5"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/bark_lichen_uhd_orm_4k.jpg",
+      "bytes": 997707,
+      "sha256": "41ee8986a15e3a76b4027c7181ad7881fccbb3687047a7faba1c39c8993c0ec1"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/bark_lichen_uhd_diff_2k.jpg",
+      "bytes": 178343,
+      "sha256": "27ab1f60fdb4363fa93be2d348a3712e5b51775e7ca4d8895a7cab3e65460ac9"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/bark_lichen_uhd_nor_gl_2k.jpg",
+      "bytes": 1099145,
+      "sha256": "f9b15b741c79fb14844007038399d262129cbb2e240b368554b5be9523736e7b"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/bark_lichen_uhd_rough_2k.jpg",
+      "bytes": 162433,
+      "sha256": "578927fb36a31b5a1349fa36e2b8774536b00aacd901f568cbf3f3cd1db36ca0"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/bark_lichen_uhd_height_2k.jpg",
+      "bytes": 363199,
+      "sha256": "3400ff3f62115c8b38ee2472a7bd72eb6d02345793ea78f9df8f62f037a57746"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/bark_lichen_uhd_ao_2k.jpg",
+      "bytes": 282813,
+      "sha256": "d1aaad41f2b80809c20a7d1637785fa5f408ef2e14d6bd852e922208ab0f2387"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/bark_lichen_uhd_orm_2k.jpg",
+      "bytes": 386530,
+      "sha256": "24c010a2d28c49cb2fcf6d0b311c9b5edec82166419173107e99914bf58a7ee8"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/bark_lichen_uhd_diff_1k.jpg",
+      "bytes": 66230,
+      "sha256": "561673638051afc0fb76716709fac3c80709ef1d1190110cd8478a96e1beabf1"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/bark_lichen_uhd_nor_gl_1k.jpg",
+      "bytes": 467064,
+      "sha256": "babf42b8473b52c1f3dea626388de026f5809c446a207dad5a94b7a20631c5a9"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/bark_lichen_uhd_rough_1k.jpg",
+      "bytes": 65150,
+      "sha256": "d7e68ced777b0b85f733ffc7aeb279620355b63d65e461c0653f5579f6eac0f7"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/bark_lichen_uhd_height_1k.jpg",
+      "bytes": 140563,
+      "sha256": "fc3ccd512435117e6ffa843aa4ba4abaf00a8b16108e4df758a0b13c5d3d1073"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/bark_lichen_uhd_ao_1k.jpg",
+      "bytes": 120237,
+      "sha256": "e5818d6ead904220154356cc3b6773eaef5c4917e1766a0d7278bc32898a0d6b"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/bark_lichen_uhd_orm_1k.jpg",
+      "bytes": 144775,
+      "sha256": "18051c93a5226b47a67d2601c9a7b2ff38ac1728814447a4d1fd607c80bd9624"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.812,
+     "mean_linear_luma": 0.033,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.3771,
+     "seam_nor_gl": 1.432,
+     "seam_height": 1.064,
+     "seam_rough": 1.563,
+     "seam_ao": 1.083,
+     "normal_mean": [
+      -0.0062,
+      -0.0038,
+      0.7889
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.413,
+     "mean_linear_luma": 0.033,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.3132,
+     "seam_nor_gl": 1.084,
+     "seam_height": 1.012,
+     "seam_rough": 1.323,
+     "seam_ao": 1.029,
+     "normal_mean": [
+      -0.0054,
+      -0.0032,
+      0.777
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.212,
+     "mean_linear_luma": 0.033,
+     "residual_clipped_fraction": 0.0,
+     "lowfreq_gradient": 0.2343,
+     "seam_nor_gl": 0.954,
+     "seam_height": 0.982,
+     "seam_rough": 1.179,
+     "seam_ao": 1.012,
+     "normal_mean": [
+      -0.0054,
+      -0.0032,
+      0.7777
+     ]
+    },
+    "masked_fraction": 0.0,
+    "counterpart": "viewer/assets/materials/japanese_cedar_bark_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.0331
+   },
+   "notes": "lichen-plated grey-brown bark with pale foliose lichen and thin dark fissures; trunk leans 4 deg so the region is rotated before cropping",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 12.0x above the native source resolution (170 px on the short side)"
+  },
+  {
+   "id": "deadwood_uhd",
+   "slot": "deadwood",
+   "primary_for_slot": false,
+   "photo": "attachments/U09_4261e995.webp",
+   "rect": [
+    760,
+    815,
+    1290,
+    955
+   ],
+   "rotation_deg": 87.5,
+   "core": [
+    125,
+    500
+   ],
+   "source_crop_px": [
+    125,
+    500
+   ],
+   "native_source_px": 125,
+   "tile_px_1k": [
+    256,
+    1024
+   ],
+   "master_px": [
+    1024,
+    4096
+   ],
+   "upsample_factor": 8.19,
+   "anisotropic_stretch_y_over_x": 1.0,
+   "physical_scale_m": 0.29,
+   "scale_basis": "log diameter estimate 0.32 m = 140 px",
+   "runtime_slot_scale_m": null,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 12,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/deadwood_uhd_diff_4k.jpg",
+      "bytes": 497562,
+      "sha256": "508a1aff73693facc22cea16949ed57579f76b262e7c146979b621ebb86dcbbc"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/deadwood_uhd_nor_gl_4k.jpg",
+      "bytes": 1121660,
+      "sha256": "7f060a93fdadd03b9ccbbff34df625f127cddb6f93db8efc5ff9ef897ff57c5d"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/deadwood_uhd_rough_4k.jpg",
+      "bytes": 184876,
+      "sha256": "a0b0d215bc43e732c6b850fb22a1d251c91e932e6674de6e9da97622842e9aa1"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/deadwood_uhd_height_4k.jpg",
+      "bytes": 362635,
+      "sha256": "2db7cbb0ab10cbd51e78851712c12733c70493572c70e31d1444571a4ebf480a"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/deadwood_uhd_ao_4k.jpg",
+      "bytes": 259442,
+      "sha256": "37c34c4f67e5fa67c1960e8bd29bcfd459cb408148b29b984a89bda0adc29309"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/deadwood_uhd_orm_4k.jpg",
+      "bytes": 377852,
+      "sha256": "5d3ec239f5a57e60ed82b88864270076c844cac57784c6c8f11bb6c176b1e6fe"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/deadwood_uhd_diff_2k.jpg",
+      "bytes": 188047,
+      "sha256": "7a542f1d3b62ce1d34639a740354f84043bf7901150224eb36c6347c01946b66"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/deadwood_uhd_nor_gl_2k.jpg",
+      "bytes": 469285,
+      "sha256": "858d53deaefdf50c6d3c2452ec4a209799556a1926ef1eef22c661413ea0d78a"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/deadwood_uhd_rough_2k.jpg",
+      "bytes": 72339,
+      "sha256": "16871c85a1bfb9ba339e0200c5b2f1337f4d82e6e895f93a9311e16c02809d81"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/deadwood_uhd_height_2k.jpg",
+      "bytes": 140929,
+      "sha256": "256e85a276ce9adbb0af7bb16ff8c5a57654eec112f70843dcf05e9836bdc19b"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/deadwood_uhd_ao_2k.jpg",
+      "bytes": 110491,
+      "sha256": "0ee8dc03ffaeedbb9ec335130010e4de78a406e08ff14f2ea099856e8cbd6083"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/deadwood_uhd_orm_2k.jpg",
+      "bytes": 139458,
+      "sha256": "95d5ce7b5cff954a27720799fa6028cf2005ad01ce40d91eb5b34e8bf6b74b87"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/deadwood_uhd_diff_1k.jpg",
+      "bytes": 72319,
+      "sha256": "dd23003fbccba947b94dffe632d448cad46991aab00069ba0d1a1977911e4080"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/deadwood_uhd_nor_gl_1k.jpg",
+      "bytes": 194070,
+      "sha256": "1166d90e5b337bec6152f2a14bb91912bfa7bcec77649fe145eac4bed0f473a2"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/deadwood_uhd_rough_1k.jpg",
+      "bytes": 28061,
+      "sha256": "e0a2c2c3d680e99099dea4d444fa7e17aa429c07d401bc803019e27b457b3a40"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/deadwood_uhd_height_1k.jpg",
+      "bytes": 56418,
+      "sha256": "012cc052c022729a7e80c04bfea0b5f4d9a368c4937195b32556411269b23f32"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/deadwood_uhd_ao_1k.jpg",
+      "bytes": 44360,
+      "sha256": "418f79b4737299547cb3e8b252bff5599373a162d81936baace9f5f3adb29f44"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/deadwood_uhd_orm_1k.jpg",
+      "bytes": 47610,
+      "sha256": "4058829e92182fcab98f7ee281217aed5c88e5bba56cdfcd916617af2dbb9240"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.216,
+     "mean_linear_luma": 0.0608,
+     "residual_clipped_fraction": 0.00012,
+     "lowfreq_gradient": 1.1781,
+     "seam_nor_gl": 1.493,
+     "seam_height": 1.313,
+     "seam_rough": 1.542,
+     "seam_ao": 1.107,
+     "normal_mean": [
+      -0.0022,
+      -0.0038,
+      0.9054
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.13,
+     "mean_linear_luma": 0.0609,
+     "residual_clipped_fraction": 0.00012,
+     "lowfreq_gradient": 0.9828,
+     "seam_nor_gl": 1.123,
+     "seam_height": 1.226,
+     "seam_rough": 1.367,
+     "seam_ao": 1.021,
+     "normal_mean": [
+      -0.0018,
+      -0.0036,
+      0.8981
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.061,
+     "mean_linear_luma": 0.0609,
+     "residual_clipped_fraction": 0.00012,
+     "lowfreq_gradient": 0.7386,
+     "seam_nor_gl": 1.012,
+     "seam_height": 1.19,
+     "seam_rough": 1.182,
+     "seam_ao": 0.952,
+     "normal_mean": [
+      -0.0018,
+      -0.0035,
+      0.8976
+     ]
+    },
+    "masked_fraction": 0.01256,
+    "counterpart": "viewer/assets/materials_v2/litter_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.0686
+   },
+   "notes": "bark-less fallen log with longitudinal fibre fissures and a moss ridge, rotated so the grain runs along the tile's long axis",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 8.2x above the native source resolution (125 px on the short side)"
+  },
+  {
+   "id": "root_moss_uhd",
+   "slot": "root",
+   "primary_for_slot": false,
+   "photo": "attachments/U15_5c871a80.jpg",
+   "rect": [
+    450,
+    960,
+    1000,
+    1200
+   ],
+   "rotation_deg": 90,
+   "core": [
+    220,
+    440
+   ],
+   "source_crop_px": [
+    220,
+    440
+   ],
+   "native_source_px": 220,
+   "tile_px_1k": [
+    512,
+    1024
+   ],
+   "master_px": [
+    2048,
+    4096
+   ],
+   "upsample_factor": 9.31,
+   "anisotropic_stretch_y_over_x": 1.0,
+   "physical_scale_m": 0.25,
+   "scale_basis": "root thickness estimate 0.27 m = 240 px",
+   "runtime_slot_scale_m": null,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 12,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/root_moss_uhd_diff_4k.jpg",
+      "bytes": 848371,
+      "sha256": "b9afa558c6b96223b03dfe83a2cadbe66f898fb672ec5aee1fc3b108831a27f4"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/root_moss_uhd_nor_gl_4k.jpg",
+      "bytes": 2216236,
+      "sha256": "42e6ba8da390b2ffa73957ebcb2362a69755aa5aa2176fa547d277ba29572b7f"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/root_moss_uhd_rough_4k.jpg",
+      "bytes": 333478,
+      "sha256": "144cbd1576f1f52d8abb9032d7fb2e66ec32a341f764150fadf1d45949e4f05d"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/root_moss_uhd_height_4k.jpg",
+      "bytes": 760565,
+      "sha256": "4784385d92f6bc46e41a1bfa653ecad69af2685ed2b66c2b371ebfa6b0b5bd9d"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/root_moss_uhd_ao_4k.jpg",
+      "bytes": 516428,
+      "sha256": "54a9073f7192450fbe5cc0205059bdbcaf0013ee05c5313e011d1e1d78de88e8"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/root_moss_uhd_orm_4k.jpg",
+      "bytes": 788194,
+      "sha256": "2e65ea59e4c25071072dc1994057563acd59d07337e4ddae8e790276336bbdab"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/root_moss_uhd_diff_2k.jpg",
+      "bytes": 308792,
+      "sha256": "cc5ce6db0a57cfaf0de225ea356cffcb138416ef19f11248a231a39ccb1faebd"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/root_moss_uhd_nor_gl_2k.jpg",
+      "bytes": 916862,
+      "sha256": "934580ca4881825d9ccedfcc4f5127217a5c9e423d1c3f333204254fb0ad0e7b"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/root_moss_uhd_rough_2k.jpg",
+      "bytes": 129218,
+      "sha256": "c85fb2654fd9a939c1b31b139fe7c0f3667109f622b96ec37b3c786fb2c486b1"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/root_moss_uhd_height_2k.jpg",
+      "bytes": 293325,
+      "sha256": "2d0f748f6bec0dba93aaaa07a9c09c938ab658f50ea6ffc81f277bdd04c0cae5"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/root_moss_uhd_ao_2k.jpg",
+      "bytes": 216026,
+      "sha256": "25cf866dc851b17611c1b6a9dc642508c83615c587f69fc8265d42bdd72ba4b3"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/root_moss_uhd_orm_2k.jpg",
+      "bytes": 293642,
+      "sha256": "de33ff99802ce1735160e7c755dc4fc9e78b3a3baddb90b8a4e3b071ae9b53d9"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/root_moss_uhd_diff_1k.jpg",
+      "bytes": 117946,
+      "sha256": "411b845a5e1af70494b11c70621749f1ce1503b98df1920cc684593fa0a565a6"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/root_moss_uhd_nor_gl_1k.jpg",
+      "bytes": 374496,
+      "sha256": "b84e175fe769eb81de2d085dfb456c8ebad3e4d0bf77e46380f1fa48d93503ab"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/root_moss_uhd_rough_1k.jpg",
+      "bytes": 51990,
+      "sha256": "40aadc99a11a48706508642f3bae6d437af5ed1802ae4068970ca64b3a5dfdb9"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/root_moss_uhd_height_1k.jpg",
+      "bytes": 114992,
+      "sha256": "5d63f565ee183e9ce252f7c308c28355bee7c8f4fcc17a1bf522157e5b9c38b5"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/root_moss_uhd_ao_1k.jpg",
+      "bytes": 91113,
+      "sha256": "dacc20226cc5f1cf7eea4c2a356e009c06fd682b6152c1dcab2a0f6d8b59ae21"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/root_moss_uhd_orm_1k.jpg",
+      "bytes": 109714,
+      "sha256": "55ff425c1992fb8ed06f0da14ef545ac57ecfbeb5fcd773cd23df17da1f87456"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.31,
+     "mean_linear_luma": 0.1533,
+     "residual_clipped_fraction": 0.00069,
+     "lowfreq_gradient": 0.7705,
+     "seam_nor_gl": 1.607,
+     "seam_height": 1.236,
+     "seam_rough": 1.772,
+     "seam_ao": 1.34,
+     "normal_mean": [
+      0.001,
+      -0.0036,
+      0.8928
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.247,
+     "mean_linear_luma": 0.1534,
+     "residual_clipped_fraction": 0.00069,
+     "lowfreq_gradient": 0.6248,
+     "seam_nor_gl": 1.195,
+     "seam_height": 1.191,
+     "seam_rough": 1.608,
+     "seam_ao": 1.246,
+     "normal_mean": [
+      0.0014,
+      -0.0033,
+      0.8778
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.135,
+     "mean_linear_luma": 0.1534,
+     "residual_clipped_fraction": 0.00069,
+     "lowfreq_gradient": 0.4644,
+     "seam_nor_gl": 1.073,
+     "seam_height": 1.114,
+     "seam_rough": 1.401,
+     "seam_ao": 1.153,
+     "normal_mean": [
+      0.0014,
+      -0.0033,
+      0.8765
+     ]
+    },
+    "masked_fraction": 0.03709,
+    "counterpart": "viewer/assets/materials_v2/moss_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.1538
+   },
+   "notes": "arching mossy surface root: moss cushion on the upper face, bare fissured root bark on the flank (phone close-up)",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 9.3x above the native source resolution (220 px on the short side)"
+  },
+  {
+   "id": "understorey_uhd",
+   "slot": "understorey",
+   "primary_for_slot": false,
+   "photo": "attachments/U01_c59f556b.webp",
+   "rect": [
+    660,
+    720,
+    1000,
+    983
+   ],
+   "rotation_deg": 0,
+   "core": null,
+   "source_crop_px": [
+    340,
+    263
+   ],
+   "native_source_px": 263,
+   "tile_px_1k": [
+    1024,
+    1024
+   ],
+   "master_px": [
+    4096,
+    4096
+   ],
+   "upsample_factor": 12.05,
+   "anisotropic_stretch_y_over_x": 1.29,
+   "physical_scale_m": 0.55,
+   "scale_basis": "glossy shrub leaves ~5 cm = 30 px",
+   "runtime_slot_scale_m": null,
+   "height_mode": "bright_is_high",
+   "normal_strength_1k": 12,
+   "maps": {
+    "4k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_4k/understorey_uhd_diff_4k.jpg",
+      "bytes": 1847095,
+      "sha256": "6d6d57f252bdb029baca59315a5d49b2d9f319f4c68f2137b5efe5fb55eefd36"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_4k/understorey_uhd_nor_gl_4k.jpg",
+      "bytes": 4011886,
+      "sha256": "8b806d9a34865c74fa230063cb1a177f33a61eb53dc5fd9a091bf446c78c2cfa"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_4k/understorey_uhd_rough_4k.jpg",
+      "bytes": 644430,
+      "sha256": "c85f9600e2b64db6f636dbc4924658179d5e2501128cb10e6f4abe10fc9163f8"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_4k/understorey_uhd_height_4k.jpg",
+      "bytes": 1432085,
+      "sha256": "d385386e075bf256a301c2e22d80905b20012ee6a6d35d2f08d4ec3487361d6b"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_4k/understorey_uhd_ao_4k.jpg",
+      "bytes": 1000740,
+      "sha256": "d521187316ed18e04fe9ea3cc32fd547e48dd67ed1128c9b88fe6cd60945c432"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_4k/understorey_uhd_orm_4k.jpg",
+      "bytes": 1485059,
+      "sha256": "a2f832d22bd1072dcd4d9672237ecf3ead81627bc4d8e1a50e080aca3fb95987"
+     }
+    },
+    "2k": {
+     "diff": {
+      "file": "asset_packs/materials_uhd_2k/understorey_uhd_diff_2k.jpg",
+      "bytes": 688570,
+      "sha256": "3389e713b7715ee861e6660de88d0acc9dc689365d9f5d5a9e284a136737b001"
+     },
+     "nor_gl": {
+      "file": "asset_packs/materials_uhd_2k/understorey_uhd_nor_gl_2k.jpg",
+      "bytes": 1671064,
+      "sha256": "1a671371d98d32d2983aef83d483f962402cd06f1335f980bd679418966c553f"
+     },
+     "rough": {
+      "file": "asset_packs/materials_uhd_2k/understorey_uhd_rough_2k.jpg",
+      "bytes": 252998,
+      "sha256": "8117508fd6bcb22b06adf5df81bf0b3134982aa092f263623cf55f0468ad0ca2"
+     },
+     "height": {
+      "file": "asset_packs/materials_uhd_2k/understorey_uhd_height_2k.jpg",
+      "bytes": 546213,
+      "sha256": "6567c22d0222b6f764e84caf15c6d5820a5ab2ba78a1f11ce3ebf52944fa9cb0"
+     },
+     "ao": {
+      "file": "asset_packs/materials_uhd_2k/understorey_uhd_ao_2k.jpg",
+      "bytes": 417259,
+      "sha256": "91f3501ccecc217abc4739e5fd6f902abf46c88807022231a7d3095539539dd0"
+     },
+     "orm": {
+      "file": "asset_packs/materials_uhd_2k/understorey_uhd_orm_2k.jpg",
+      "bytes": 553203,
+      "sha256": "41136840c5f777c458e9953a87e52b6070b818859b9e3e1a73beaf0ff5368926"
+     }
+    },
+    "1k": {
+     "diff": {
+      "file": "viewer/assets/materials_uhd/understorey_uhd_diff_1k.jpg",
+      "bytes": 264797,
+      "sha256": "551bf69a2d577a153db35f4e4c1cedc4215103316889a9a0ac7613b55393b9fc"
+     },
+     "nor_gl": {
+      "file": "viewer/assets/materials_uhd/understorey_uhd_nor_gl_1k.jpg",
+      "bytes": 699924,
+      "sha256": "4aad0d8b3adb6d2c039a1965bf8842e12386b9582878522c4f9174cc78d740ea"
+     },
+     "rough": {
+      "file": "viewer/assets/materials_uhd/understorey_uhd_rough_1k.jpg",
+      "bytes": 101090,
+      "sha256": "d64a5d10771f039d0fb6ca3d21080718ef67e13ef59ecc6deb756e7e69fc4bdf"
+     },
+     "height": {
+      "file": "viewer/assets/materials_uhd/understorey_uhd_height_1k.jpg",
+      "bytes": 217744,
+      "sha256": "2cacae6f55e37b485c585fa68aed9b1b88940c2c18b553846923754a39582966"
+     },
+     "ao": {
+      "file": "viewer/assets/materials_uhd/understorey_uhd_ao_1k.jpg",
+      "bytes": 175430,
+      "sha256": "06d67d1d4d3b2fff930b13718d9b2dab245efa467772ac365eaebc191966f001"
+     },
+     "orm": {
+      "file": "viewer/assets/materials_uhd/understorey_uhd_orm_1k.jpg",
+      "bytes": 200936,
+      "sha256": "a22137b726ca86b1d856321c73b53b0f42abc745b0cd5e2f716e1458cf61c6d0"
+     }
+    }
+   },
+   "metrics": {
+    "4k": {
+     "seam_diff": 1.42,
+     "mean_linear_luma": 0.1637,
+     "residual_clipped_fraction": 0.02218,
+     "lowfreq_gradient": 0.9369,
+     "seam_nor_gl": 1.761,
+     "seam_height": 1.461,
+     "seam_rough": 1.982,
+     "seam_ao": 1.567,
+     "normal_mean": [
+      -0.0038,
+      -0.0032,
+      0.9208
+     ]
+    },
+    "2k": {
+     "seam_diff": 1.324,
+     "mean_linear_luma": 0.1637,
+     "residual_clipped_fraction": 0.02226,
+     "lowfreq_gradient": 0.7372,
+     "seam_nor_gl": 1.341,
+     "seam_height": 1.429,
+     "seam_rough": 1.747,
+     "seam_ao": 1.467,
+     "normal_mean": [
+      -0.0032,
+      -0.0028,
+      0.8961
+     ]
+    },
+    "1k": {
+     "seam_diff": 1.281,
+     "mean_linear_luma": 0.1636,
+     "residual_clipped_fraction": 0.02216,
+     "lowfreq_gradient": 0.553,
+     "seam_nor_gl": 1.165,
+     "seam_height": 1.389,
+     "seam_rough": 1.546,
+     "seam_ao": 1.416,
+     "normal_mean": [
+      -0.0032,
+      -0.0028,
+      0.8886
+     ]
+    },
+    "masked_fraction": 0.13994,
+    "counterpart": "viewer/assets/materials_v2/moss_diff_1k.jpg",
+    "counterpart_mean_linear_luma_x_mult": 0.1538
+   },
+   "notes": "low evergreen small-leaved shrub carpet; specular leaf highlights are masked and inpainted; not consumed by the runtime (no ground-cover layer yet)",
+   "status": "photo-derived single-image heuristic maps: albedo from the photograph after delighting; height, normal, roughness and ao ESTIMATED from luminance; not photogrammetry; physical scale estimated; the 4k and 2k tiers are interpolated 12.0x above the native source resolution (263 px on the short side)"
+  }
+ ],
+ "map_conventions": {
+  "diff": "sRGB base colour",
+  "nor_gl": "OpenGL tangent-space normal (+Y up), same convention as materials_v2",
+  "rough": "grey roughness",
+  "height": "grey height 0..1 (bright = high)",
+  "ao": "grey ambient occlusion",
+  "orm": "packed R = ao, G = roughness, B = metallic (0)"
+ }
+}
