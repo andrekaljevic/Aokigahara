@@ -308,3 +308,31 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
    and drive the mix from the MoE vegetation classes already in the terrain masks.
 5. Extend the near-field ground system outward, or add a mid-field tier, so the transition at the
    120 m patch edge stops being a material boundary.
+
+---
+
+## 7. Photo-derived 4K asset packs (added 2026-09-22)
+
+`asset_packs/` was added on `claude/4k-asset-packs-photos-sy83u7`, built by
+`construction_code_v2/gen_asset_packs.py` from five reference photographs supplied by the
+repository owner. It is look-development material, not evidence: none of the photographs was taken
+at Aokigahara, and the runtime does not load any of it.
+
+| Pack | Gives | Status |
+|---|---|---|
+| `oak_lichen_evening` | lichen-crusted oak bark, hedgerow foliage, dry pasture; fitted clear-evening sky; low-sun preset | full |
+| `ivy_bound_trunk_canopy` | ivy-rootlet bark, backlit canopy, dense understorey, gravel path; fitted canopy-gap sky; soft-light preset | full |
+| `aokigahara_moss_print` | pale trunk bark, moss-covered log, moss carpet, forest floor from a framed print of an Aokigahara-type floor; warm low-sun preset | full; rights of the printed image unconfirmed |
+| `park_conifer_dapple` | dark furrowed conifer bark, conifer sprays, lawn, needle litter; dappled-sun preset | full; no usable sky |
+| `kamikochi_taisho_dusk` | palette, tonal record, dusk preset | measurements only: watermarked stock preview, no pixels reproduced |
+
+**Measured:** sky colours by elevation, lit/shade ratios and tints, palettes, tonal statistics.
+**Inferred:** camera pitch and focal length, sun elevation, region widths in metres, the mapping
+from measured ratios to preset numbers (calibrated to the three existing presets).
+**Invented:** normal, roughness and height maps (luminance heuristics), the synthesised area of
+every tile beyond its source region, the 3 % micro-grain on enlarged sources.
+
+The texture sets use the `materials_v2` map layout and normal convention, so they can be swapped
+into the ground or bark materials without shader changes, at the cost of about 10 MB per set and
+of the Pages payload if they are moved under `viewer/`. Each pack's manifest records the source
+checksum, colour handling (Display P3 → sRGB), every region, every parameter and the honest limits.
