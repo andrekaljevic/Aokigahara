@@ -7,7 +7,8 @@
     "sun.elevation_deg is a visual estimate from shadow length and light colour; it is an interpretation, not a measurement.",
     "physical_width_m is an estimate of the real-world width of the region; it fixes the physical scale recorded for each tile.",
     "Source regions are enlarged towards each material class's intended tile scale (CLASS_PARAMS.tile_m in the generator), never more than 3x.",
-    "materials[].mirror=false disables the horizontally mirrored candidate pool for textures whose structure has a consistent direction."
+    "materials[].mirror=false disables the horizontally mirrored candidate pool for textures whose structure has a consistent direction.",
+    "packs[].lighting=false skips the lighting analysis (for a photograph of a screen); source.redistribution 'owner_supplied_artwork_photo' marks textures that reproduce part of an artwork by another artist as reference only."
   ],
   "packs": [
     {
@@ -1094,6 +1095,612 @@
           "notes": "Mown dry grass with fallen oak leaves in low sun, moderately oblique; stretched vertically."
         }
       ]
+    },
+    {
+      "id": "ivy_rootlet_macro",
+      "title": "Dead ivy rootlets netted over plated bark, close and frontal, diffuse light",
+      "source": {
+        "file": "ivy_rootlet_macro.jpg",
+        "upload_name": "17df1f62-image.jpg",
+        "redistribution": "owner_supplied",
+        "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": 0
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "diffuse shade, no direct light; the elevation is not observable and does not enter the preset"
+      },
+      "sky_roi": null,
+      "probes": {
+        "lit_shadow": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "ground": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "fog": [
+          [
+            0.02,
+            0.4
+          ],
+          [
+            0.5,
+            0.4
+          ],
+          [
+            0.5,
+            0.7
+          ],
+          [
+            0.02,
+            0.7
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "bark_ivy_rootlet_macro",
+          "category": "bark",
+          "class": "bark",
+          "quad": [
+            [
+              0.02,
+              0.02
+            ],
+            [
+              0.98,
+              0.02
+            ],
+            [
+              0.98,
+              0.98
+            ],
+            [
+              0.02,
+              0.98
+            ]
+          ],
+          "physical_width_m": 0.4,
+          "delight_sigma": 0.25,
+          "notes": "Near-orthographic close-up: dead ivy rootlet net with hair roots over grey plated bark and one dried leaf. The best-resolved bark source in the batch; native texel density exceeds the intended tile scale, so no enlargement."
+        }
+      ]
+    },
+    {
+      "id": "shrine_cedar_shimenawa",
+      "title": "Large shrine cedar with stringy moss-streaked bark under an overcast sky",
+      "source": {
+        "file": "shrine_cedar_shimenawa.jpg",
+        "upload_name": "b8ee01f5-image.jpg",
+        "redistribution": "owner_supplied",
+        "rights_note": "Supplied by the repository owner as a personal photograph of a shrine tree. The sacred rope and paper streamers are excluded from every region. Not captured at Aokigahara."
+      },
+      "camera": {
+        "focal_equiv_mm": 16,
+        "pitch_deg": 40
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "overcast sky, no shadows; the elevation is not observable and does not enter the preset"
+      },
+      "sky_roi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.5
+        ],
+        [
+          0.0,
+          0.5
+        ]
+      ],
+      "probes": {
+        "lit_shadow": [
+          [
+            0.37,
+            0.66
+          ],
+          [
+            0.66,
+            0.66
+          ],
+          [
+            0.75,
+            0.93
+          ],
+          [
+            0.27,
+            0.93
+          ]
+        ],
+        "ground": [
+          [
+            0.02,
+            0.905
+          ],
+          [
+            0.2,
+            0.905
+          ],
+          [
+            0.2,
+            0.995
+          ],
+          [
+            0.02,
+            0.995
+          ]
+        ],
+        "fog": [
+          [
+            0.74,
+            0.58
+          ],
+          [
+            0.99,
+            0.58
+          ],
+          [
+            0.99,
+            0.88
+          ],
+          [
+            0.8,
+            0.88
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "bark_cedar_stringy_moss",
+          "category": "bark",
+          "class": "bark",
+          "cylinder": true,
+          "quad": [
+            [
+              0.37,
+              0.66
+            ],
+            [
+              0.66,
+              0.66
+            ],
+            [
+              0.75,
+              0.93
+            ],
+            [
+              0.27,
+              0.93
+            ]
+          ],
+          "physical_width_m": 1.5,
+          "delight_sigma": 0.22,
+          "notes": "Lower trunk below the rope: long stringy fibrous bark with a green moss band and a strip of exposed pinkish inner bark; buttress flare at the bottom. Both silhouettes visible; unwrapped as a cylinder."
+        },
+        {
+          "id": "bark_cedar_upper",
+          "category": "bark",
+          "class": "bark",
+          "cylinder": true,
+          "quad": [
+            [
+              0.465,
+              0.26
+            ],
+            [
+              0.585,
+              0.26
+            ],
+            [
+              0.6,
+              0.37
+            ],
+            [
+              0.45,
+              0.37
+            ]
+          ],
+          "physical_width_m": 1.1,
+          "delight_sigma": 0.22,
+          "notes": "Upper trunk between the branch whorls: clean stringy bark in shade, seen from below. Source strip about 230 px wide."
+        },
+        {
+          "id": "cedar_canopy",
+          "category": "greenery",
+          "class": "needles",
+          "quad": [
+            [
+              0.2,
+              0.0
+            ],
+            [
+              0.44,
+              0.0
+            ],
+            [
+              0.44,
+              0.3
+            ],
+            [
+              0.2,
+              0.3
+            ]
+          ],
+          "physical_width_m": 5.0,
+          "delight_sigma": 0.3,
+          "notes": "Cedar canopy from below with branches and overcast-sky gaps; the gaps remain in the tile."
+        },
+        {
+          "id": "broadleaf_backlit",
+          "category": "greenery",
+          "class": "leaves",
+          "quad": [
+            [
+              0.6,
+              0.24
+            ],
+            [
+              0.8,
+              0.24
+            ],
+            [
+              0.8,
+              0.42
+            ],
+            [
+              0.6,
+              0.42
+            ]
+          ],
+          "physical_width_m": 3.0,
+          "delight_sigma": 0.3,
+          "notes": "Lime-green backlit broadleaf crown of a neighbouring tree, seen through cedar branches."
+        },
+        {
+          "id": "evergreen_shrub",
+          "category": "greenery",
+          "class": "leaves",
+          "quad": [
+            [
+              0.74,
+              0.58
+            ],
+            [
+              0.99,
+              0.58
+            ],
+            [
+              0.99,
+              0.88
+            ],
+            [
+              0.8,
+              0.88
+            ]
+          ],
+          "physical_width_m": 3.0,
+          "delight_sigma": 0.3,
+          "notes": "Dense dark evergreen shrub mass beside the trunk, slightly out of focus; trapezoid follows the trunk flare."
+        },
+        {
+          "id": "leaf_litter_soil",
+          "category": "ground",
+          "class": "litter",
+          "stretch_y": 2.5,
+          "quad": [
+            [
+              0.02,
+              0.905
+            ],
+            [
+              0.2,
+              0.905
+            ],
+            [
+              0.2,
+              0.995
+            ],
+            [
+              0.02,
+              0.995
+            ]
+          ],
+          "physical_width_m": 1.2,
+          "delight_sigma": 0.3,
+          "notes": "Fallen leaves and camellia petals on bare soil in the bottom-left corner at a grazing angle; a small region (about 350 x 230 px), stretched vertically."
+        }
+      ]
+    },
+    {
+      "id": "artwork_gold_straw",
+      "title": "Reed and twig bundles coated gold over black, close-up of an artwork (reference only)",
+      "source": {
+        "file": "artwork_gold_straw.jpg",
+        "upload_name": "fa540ca3-image.jpg",
+        "redistribution": "owner_supplied_artwork_photo",
+        "rights_note": "Photograph by the repository owner of an artwork by another artist. The texture reproduces part of that artwork's surface: reference material for look development only; clear the rights before any public redistribution."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": 0
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "gallery lighting, not daylight; the preset describes the photograph's light, not a sky"
+      },
+      "sky_roi": null,
+      "probes": {
+        "lit_shadow": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "ground": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "fog": [
+          [
+            0.4,
+            0.05
+          ],
+          [
+            0.75,
+            0.05
+          ],
+          [
+            0.75,
+            0.3
+          ],
+          [
+            0.4,
+            0.3
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "reed_bundle_gold",
+          "category": "ground",
+          "class": "dry_grass",
+          "quad": [
+            [
+              0.02,
+              0.02
+            ],
+            [
+              0.98,
+              0.02
+            ],
+            [
+              0.98,
+              0.98
+            ],
+            [
+              0.02,
+              0.98
+            ]
+          ],
+          "physical_width_m": 0.5,
+          "delight_sigma": 0.25,
+          "notes": "Vertical bundles of dried reeds and twigs, coated gold and yellow over a black glossy ground. Strongly oriented; the mirrored candidate pool keeps the vertical run."
+        }
+      ]
+    },
+    {
+      "id": "artwork_teal_straw_relief",
+      "title": "Straw bundles in gold over teal paint, close-up of an artwork (reference only)",
+      "source": {
+        "file": "artwork_teal_straw_relief.jpg",
+        "upload_name": "3a171ed9-image.jpg",
+        "redistribution": "owner_supplied_artwork_photo",
+        "rights_note": "Photograph by the repository owner of an artwork by another artist. The texture reproduces part of that artwork's surface: reference material for look development only; clear the rights before any public redistribution."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": 0
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "gallery lighting, not daylight; the preset describes the photograph's light, not a sky"
+      },
+      "sky_roi": null,
+      "probes": {
+        "lit_shadow": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "ground": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "fog": [
+          [
+            0.35,
+            0.55
+          ],
+          [
+            0.75,
+            0.55
+          ],
+          [
+            0.75,
+            0.85
+          ],
+          [
+            0.35,
+            0.85
+          ]
+        ]
+      },
+      "materials": [
+        {
+          "id": "straw_relief_teal",
+          "category": "ground",
+          "class": "litter",
+          "quad": [
+            [
+              0.02,
+              0.02
+            ],
+            [
+              0.98,
+              0.02
+            ],
+            [
+              0.98,
+              0.98
+            ],
+            [
+              0.02,
+              0.98
+            ]
+          ],
+          "physical_width_m": 0.6,
+          "delight_sigma": 0.25,
+          "notes": "Bundled straw and loose stalks in gold and bronze over a flat teal-grey painted surface with a few bare patches."
+        }
+      ]
+    },
+    {
+      "id": "terrain_screen_false_colour",
+      "title": "False-colour terrain relief in violet, blue and salmon, photographed from a screen (measurements only)",
+      "source": {
+        "file": "terrain_screen_false_colour.jpg",
+        "upload_name": "f82dc4d2-image.jpg",
+        "redistribution": "withheld",
+        "withheld_reason": "the photograph shows a screen displaying third-party software, with moire and a screen bezel; only its palette and tonal record are of use and only those are kept.",
+        "rights_note": "Photograph of a screen. No pixel-derived texture is generated or committed and the source file is not committed; only palette, tonal statistics and a grade are recorded."
+      },
+      "camera": {
+        "focal_equiv_mm": 26,
+        "pitch_deg": 0
+      },
+      "sun": {
+        "elevation_deg": 45,
+        "basis": "not applicable: a rendered image on a screen"
+      },
+      "lighting": false,
+      "lighting_note": "a photograph of a rendered image on a screen carries no daylight to measure",
+      "exclude_rects": [
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.09
+        ],
+        [
+          0.55,
+          0.3,
+          0.66,
+          0.4
+        ],
+        [
+          0.82,
+          0.92,
+          1.0,
+          1.0
+        ]
+      ],
+      "sky_roi": null,
+      "probes": {},
+      "materials": []
     }
   ]
 }

@@ -20,10 +20,17 @@ the pack's `<pack>_manifest.json`.
 | `park_conifer_dapple` | Park conifers, dark furrowed bark, dappled afternoon sun, lawn | dark furrowed bark · conifer sprays · lawn · needle litter | not usable | full |
 | `kamikochi_taisho_dusk` | Bare-tree valley floor at dusk (Kamikōchi) | **none: withheld** | not usable | measurements only |
 | `oak_multistem_sunset` | Multi-stemmed oak, smooth sunlit bark, mown grass with fallen leaves, low evening sun | smooth oak bark · sunlit oak canopy with lichen twigs · hazel foliage · mown grass with leaf litter | none visible | full |
+| `ivy_rootlet_macro` | Dead ivy rootlets over plated bark, close and frontal, diffuse light | ivy-rootlet bark macro | none visible | full |
+| `shrine_cedar_shimenawa` | Large shrine cedar, stringy moss-streaked bark, overcast sky | stringy cedar bark with moss · upper cedar bark · cedar canopy · backlit broadleaf · evergreen shrub · leaf litter on soil | fitted if enough clean sky is found | full; rope and streamers excluded |
+| `artwork_gold_straw` | Close-up of an artwork: gold-coated reed bundles over black | gold reed bundles | none | **reference only, see rights** |
+| `artwork_teal_straw_relief` | Close-up of an artwork: straw bundles in gold over teal paint | straw relief on teal | none | **reference only, see rights** |
+| `terrain_screen_false_colour` | Photograph of a screen showing false-colour terrain relief | **none: withheld** | none | palette and grade only |
 
 None of these photographs was taken at Aokigahara. The framed print shows an Aokigahara-type
-moss-over-lava floor and is the closest reference; the others supply bark, foliage, ground, sky
-and light states of the same general character. Nothing here establishes species, site or season.
+moss-over-lava floor and is the closest reference; the shrine cedar supplies the stringy Japanese
+conifer bark the runtime's hinoki-like variants stand in for; the others supply bark, foliage,
+ground, sky and light states of the same general character. Nothing here establishes species,
+site or season.
 
 ## What is in a pack
 
@@ -41,7 +48,7 @@ and light states of the same general character. Nothing here establishes species
                               preset_snippet.js          one line ready to paste into PRESETS
   mood/                       mood.json                  palette, tonal statistics, grade parameters
                               grade_33.cube              33³ colour grade, display-referred sRGB in/out
-_sources/                     the five owner-supplied photographs, byte-identical to the uploads
+_sources/                     the owner-supplied photographs, byte-identical to the uploads
 PACKS_MANIFEST.json           index of every pack
 ```
 
@@ -129,8 +136,11 @@ yet; they live outside `viewer/` so the Pages deploy stays the size it is.
 - Tiles from small regions repeat their distinctive features several times across 4K. The reuse
   penalty spreads them; it cannot invent new ones.
 - The weakest sets are named here so nobody has to discover them: `park_conifer_dapple/bark/bark_dark_furrowed`
-  (shaded, underexposed, out of focus; dapple spots partly survive the flattening) and the two narrow
-  trunk strips from the framed print and the multi-stemmed oak (about 105 to 125 source pixels wide).
+  (shaded, underexposed, out of focus; dapple spots partly survive the flattening), the two narrow
+  trunk strips from the framed print and the multi-stemmed oak (about 105 to 125 source pixels wide),
+  and the shrine cedar's small litter corner and out-of-focus shrub mass.
+- The strongest bark source is `ivy_rootlet_macro`: near-orthographic, sharp, diffusely lit, with
+  more native texels per metre than the 4K tile needs.
 - Sky fits rest on a handful of pixels and a guessed sun azimuth and elevation; the RMS of each
   fit is in `sky.json`.
 - Preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.
@@ -138,9 +148,15 @@ yet; they live outside `viewer/` so the Pages deploy stays the size it is.
 
 ## Rights
 
-`oak_lichen_evening`, `ivy_bound_trunk_canopy`, `park_conifer_dapple` and `oak_multistem_sunset` come
-from photographs supplied by the repository owner as their own (the last was supplied as two
-near-identical frames; the first is used). `aokigahara_moss_print` is a photograph of a
+`oak_lichen_evening`, `ivy_bound_trunk_canopy`, `park_conifer_dapple`, `oak_multistem_sunset`,
+`ivy_rootlet_macro` and `shrine_cedar_shimenawa` come from photographs supplied by the repository
+owner as their own (the multi-stemmed oak was supplied as two near-identical frames; the first is
+used). `artwork_gold_straw` and `artwork_teal_straw_relief` are the owner's photographs of
+artworks by another artist: their tiles reproduce part of those artworks' surfaces, are marked
+**reference only** in their manifests, and must not be redistributed publicly without clearing the
+rights. `terrain_screen_false_colour` is a photograph of a screen showing third-party software:
+no pixel is reproduced and the source is not committed; only its palette, tonal record and grade
+are kept. `aokigahara_moss_print` is a photograph of a
 framed print whose printed image's authorship was not stated; confirm the rights before
 redistributing that pack publicly. `kamikochi_taisho_dusk` is a watermarked iStock preview
 (ID 1191700678, credit PJjaruwan): **no pixel of it is reproduced** anywhere in this repository,

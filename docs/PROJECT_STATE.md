@@ -314,8 +314,8 @@ The checkpoint on `main` is the recovery. Work continues on `dev/generational-vi
 ## 7. Photo-derived 4K asset packs (added 2026-09-22)
 
 `asset_packs/` was added on `claude/4k-asset-packs-photos-sy83u7`, built by
-`construction_code_v2/gen_asset_packs.py` from six reference photographs supplied by the
-repository owner (a seventh frame duplicates the sixth and is not used). It is look-development material, not evidence: none of the photographs was taken
+`construction_code_v2/gen_asset_packs.py` from eleven reference photographs supplied by the
+repository owner (a twelfth frame duplicates the multi-stemmed oak and is not used). It is look-development material, not evidence: none of the photographs was taken
 at Aokigahara, and the runtime does not load any of it.
 
 | Pack | Gives | Status |
@@ -326,6 +326,10 @@ at Aokigahara, and the runtime does not load any of it.
 | `park_conifer_dapple` | dark furrowed conifer bark, conifer sprays, lawn, needle litter; dappled-sun preset | full; no usable sky |
 | `kamikochi_taisho_dusk` | palette, tonal record, dusk preset | measurements only: watermarked stock preview, no pixels reproduced |
 | `oak_multistem_sunset` | smooth sunlit oak bark, sunlit oak canopy with lichen twigs, hazel foliage, mown grass with leaf litter; low-sun preset | full; no sky visible |
+| `ivy_rootlet_macro` | ivy-rootlet bark macro, the sharpest bark source; diffuse-shade preset | full; no sky visible |
+| `shrine_cedar_shimenawa` | stringy moss-streaked cedar bark, upper cedar bark, cedar canopy, backlit broadleaf, evergreen shrub, leaf litter on soil; overcast preset | full; the sacred rope and streamers are excluded |
+| `artwork_gold_straw`, `artwork_teal_straw_relief` | reed and straw bundle surfaces, gold-and-black and gold-on-teal palettes | reference only: photographs of artworks by another artist |
+| `terrain_screen_false_colour` | violet, blue and salmon false-colour palette and grade | measurements only: photograph of a screen, no pixels reproduced |
 
 **Measured:** sky colours by elevation, lit/shade ratios and tints, palettes, tonal statistics.
 **Inferred:** camera pitch and focal length, sun elevation, region widths in metres, the mapping

@@ -835,16 +835,19 @@ def draw_sheet(pack, out_path, thumb, regions_drawn, palette, stats, lighting, s
         d.text((px0 + 165, y + 50), p['role'], fill=(170, 175, 170), font=font(24))
     # stats + lighting text
     tx0, ty0 = 1340, 160
-    lp = lighting['preset']
-    m = lighting['measurements']
-    lines = ['lighting preset (viewer/app.js PRESETS shape)',
-             f"sun {lp['sun']}   hemi {lp['hemi']}   exposure {lp['exposure']}",
-             f"hemiSky {lp['hemiSky']}   hemiGround {lp['hemiGround']}   fog {lp['fog']}",
-             f"turbidity {lp['turb']}   rayleigh {lp['ray']}   mie {lp['mie']}",
-             f"key:fill {m['key_to_fill_luminance_ratio']}   direct/ambient {m['direct_over_ambient']}   {m['classified_as']}",
-             f"direct-light tint {m['direct_light_tint_hex']}   CCT ~{m['direct_light_cct_mccamy_K']} K (McCamy)",
-             f"sun elevation {m['sun_elevation_deg']} deg (estimate: {m['sun_elevation_basis']})", '',
-             'tonal statistics (sRGB luma)',
+    if lighting:
+        lp = lighting['preset']
+        m = lighting['measurements']
+        lines = ['lighting preset (viewer/app.js PRESETS shape)',
+                 f"sun {lp['sun']}   hemi {lp['hemi']}   exposure {lp['exposure']}",
+                 f"hemiSky {lp['hemiSky']}   hemiGround {lp['hemiGround']}   fog {lp['fog']}",
+                 f"turbidity {lp['turb']}   rayleigh {lp['ray']}   mie {lp['mie']}",
+                 f"key:fill {m['key_to_fill_luminance_ratio']}   direct/ambient {m['direct_over_ambient']}   {m['classified_as']}",
+                 f"direct-light tint {m['direct_light_tint_hex']}   CCT ~{m['direct_light_cct_mccamy_K']} K (McCamy)",
+                 f"sun elevation {m['sun_elevation_deg']} deg (estimate: {m['sun_elevation_basis']})", '']
+    else:
+        lines = ['lighting: not derived from this photograph', f"{pack.get('lighting_note', '')}", '']
+    lines += ['tonal statistics (sRGB luma)',
              f"median {stats['luma_percentiles']['p50']}   p2 {stats['luma_percentiles']['p2']}   p98 {stats['luma_percentiles']['p98']}   std {stats['luma_std']}",
              f"mean saturation {stats['mean_saturation']}   warm-cool bias {stats['warm_cool_bias']}",
              f"shadow tint {stats['shadow_tint']}", f"highlight tint {stats['highlight_tint']}", '']
@@ -973,7 +976,8 @@ def build_pack(pack, size, args, cfg_sha):
                         mean_srgb=[r3(v) for v in px.mean(0)], mean_hex=to_hex(px.mean(0), '#'), pixel_count=int(len(px)))
     if sky_info and sky_info.get('status') == 'fitted':
         f = sky_info['fit']
-        ground = with_luma(lin_to_srgb(srgb_to_lin(probe_pixels(img, pack['probes']['ground'], excl_full)).mean(0)), 0.30)
+        gprobe = pack.get('probes', {}).get('ground', [[0, 0.7], [1, 0.7], [1, 1], [0, 1]])
+        ground = with_luma(lin_to_srgb(srgb_to_lin(probe_pixels(img, gprobe, excl_full)).mean(0)), 0.30)
         horizon_dir = sun_dir_viewer(0.0)
         hz = sky_display(np.array([[math.cos(math.radians(65)), 0.02, math.sin(math.radians(65))]]), sun_dir_viewer(pack['sun']['elevation_deg']), f['turb'], f['ray'], f['mie'], f['fit_exposure'])[0]
         zen = sky_display(np.array([[0.0, 1.0, 0.0]]), sun_dir_viewer(pack['sun']['elevation_deg']), f['turb'], f['ray'], f['mie'], f['fit_exposure'])[0]
@@ -994,22 +998,26 @@ def build_pack(pack, size, args, cfg_sha):
         files['sky_json'] = file_record(p, OUT_ROOT)
     print(f"[{pack['id']}] sky: {sky_info['status'] if sky_info else 'none'}  ({time.time()-t0:.0f}s)")
 
-    # ---- lighting
-    preset, meas, deriv = lighting_analysis(img, pack, sky_info, excl_full)
-    ldir = out / 'lighting'
-    ldir.mkdir(exist_ok=True)
-    lighting = dict(preset=preset, measurements=meas, derivation=deriv,
-                    usage='Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry.')
-    p = ldir / 'lighting_preset.json'
-    p.write_text(json.dumps(lighting, indent=2))
-    files['lighting_json'] = file_record(p, OUT_ROOT)
-    js = (f"// photo-derived daylight preset from {GENERATOR}; paste into PRESETS in viewer/app.js\n"
-          f"{pack['id']}:{{label:{json.dumps(preset['label'])},sun:{preset['sun']},hemi:{preset['hemi']},hemiSky:{preset['hemiSky']},"
-          f"hemiGround:{preset['hemiGround']},turb:{preset['turb']},ray:{preset['ray']},mie:{preset['mie']},fog:{preset['fog']},exposure:{preset['exposure']}}},\n")
-    p = ldir / 'preset_snippet.js'
-    p.write_text(js)
-    files['preset_snippet'] = file_record(p, OUT_ROOT)
-    print(f"[{pack['id']}] lighting: sun {preset['sun']} hemi {preset['hemi']} key:fill {meas['key_to_fill_luminance_ratio']}")
+    # ---- lighting (a pack may switch it off: "lighting": false, e.g. a photograph of a screen)
+    lighting = None
+    if pack.get('lighting', True):
+        preset, meas, deriv = lighting_analysis(img, pack, sky_info, excl_full)
+        ldir = out / 'lighting'
+        ldir.mkdir(exist_ok=True)
+        lighting = dict(preset=preset, measurements=meas, derivation=deriv,
+                        usage='Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry.')
+        p = ldir / 'lighting_preset.json'
+        p.write_text(json.dumps(lighting, indent=2))
+        files['lighting_json'] = file_record(p, OUT_ROOT)
+        js = (f"// photo-derived daylight preset from {GENERATOR}; paste into PRESETS in viewer/app.js\n"
+              f"{pack['id']}:{{label:{json.dumps(preset['label'])},sun:{preset['sun']},hemi:{preset['hemi']},hemiSky:{preset['hemiSky']},"
+              f"hemiGround:{preset['hemiGround']},turb:{preset['turb']},ray:{preset['ray']},mie:{preset['mie']},fog:{preset['fog']},exposure:{preset['exposure']}}},\n")
+        p = ldir / 'preset_snippet.js'
+        p.write_text(js)
+        files['preset_snippet'] = file_record(p, OUT_ROOT)
+        print(f"[{pack['id']}] lighting: sun {preset['sun']} hemi {preset['hemi']} key:fill {meas['key_to_fill_luminance_ratio']}")
+    else:
+        print(f"[{pack['id']}] lighting: switched off in the config ({pack.get('lighting_note', 'no reason given')})")
 
     # ---- mood
     palette, stats = mood_analysis(ana, ana_mask, rng)
@@ -1092,7 +1100,8 @@ def build_pack(pack, size, args, cfg_sha):
         print(f"[{pack['id']}] {mat['category']}/{mat['id']}: region {rw}x{rh} (native {native[0]:.0f}x{native[1]:.0f}, up {up:.2f}) patch {patch}/{ov} -> {size}  ({time.time()-tm:.0f}s)")
         del maps, tile, flat, region
     for name in ('lit_shadow', 'ground', 'fog'):
-        regions_drawn.append((f'probe:{name}', pack['probes'][name], (90, 200, 255)))
+        if name in pack.get('probes', {}):
+            regions_drawn.append((f'probe:{name}', pack['probes'][name], (90, 200, 255)))
     if pack.get('sky_roi'):
         regions_drawn.append(('sky roi', pack['sky_roi'], (200, 120, 255)))
 
@@ -1103,11 +1112,14 @@ def build_pack(pack, size, args, cfg_sha):
     files['sheet'] = file_record(sheet_path, OUT_ROOT, [4096, 2900])
     manifest = dict(
         pack=pack['id'], title=pack['title'], generator=GENERATOR, generated='2026-09-22', config_sha256=cfg_sha, tile_size=size,
-        status=('MEASUREMENTS ONLY. Pixel-derived textures withheld: the source is a watermarked licensed stock preview.' if withheld else
+        lighting_derived=bool(pack.get('lighting', True)),
+        status=('MEASUREMENTS ONLY. Pixel-derived textures withheld: ' + pack['source'].get('withheld_reason', 'the source cannot be redistributed.') if withheld else
+                'REFERENCE ONLY. Textures reproduce part of the surface of an artwork by another artist, photographed by the repository owner; clear the rights before any public redistribution.' if 'artwork' in pack['source']['redistribution'] else
                 'PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.'),
         source=dict(src_rec, committed_copy=None if withheld else f"asset_packs/_sources/{pack['source']['file']}", exif_gps='none present'),
         camera_estimate=pack['camera'], sun_estimate=pack['sun'], analysis=ana_note,
-        sky=sky_info, lighting=lighting, mood=dict(palette=palette, tonal={k: v for k, v in stats.items() if not k.startswith('_')}, grade=mood['grade']),
+        sky=sky_info, lighting=lighting if lighting else dict(note=pack.get('lighting_note', 'not derived')),
+        mood=dict(palette=palette, tonal={k: v for k, v in stats.items() if not k.startswith('_')}, grade=mood['grade']),
         materials=material_records, files=files,
         not_claimed=['No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.',
                      'Albedo keeps the photograph\'s illuminant and white balance; only large-scale shading was flattened.',
@@ -1156,6 +1168,8 @@ def preview(cfg, args):
         ovi = Image.fromarray(ov)
         dd = ImageDraw.Draw(ovi)
         for name in ('lit_shadow', 'ground', 'fog'):
+            if name not in pack.get('probes', {}):
+                continue
             pts = [(p[0] * th.width, p[1] * th.height) for p in pack['probes'][name]]
             dd.line(pts + [pts[0]], fill=(90, 200, 255), width=2); dd.text(pts[0], name, fill=(90, 200, 255), font=font(20))
         if pack.get('analysis_quad'):
