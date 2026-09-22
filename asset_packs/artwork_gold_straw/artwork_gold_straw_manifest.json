@@ -1,0 +1,437 @@
+{
+  "pack": "artwork_gold_straw",
+  "title": "Reed and twig bundles coated gold over black, close-up of an artwork (reference only)",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "b6efaf91633343f02f0f8dd1d897859c3826e3c01fcac83e9f38baf5d55b7ebe",
+  "tile_size": 4096,
+  "lighting_derived": true,
+  "status": "REFERENCE ONLY. Textures reproduce part of the surface of an artwork by another artist, photographed by the repository owner; clear the rights before any public redistribution.",
+  "source": {
+    "file": "artwork_gold_straw.jpg",
+    "bytes": 2036525,
+    "sha256": "79e6c0c8b2e7c364e70ddcaeb84822b6ea82fc107f28a425531ed21a6973ab55",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "fa540ca3-image.jpg",
+    "redistribution": "owner_supplied_artwork_photo",
+    "rights_note": "Photograph by the repository owner of an artwork by another artist. The texture reproduces part of that artwork's surface: reference material for look development only; clear the rights before any public redistribution.",
+    "committed_copy": "asset_packs/_sources/artwork_gold_straw.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 0
+  },
+  "sun_estimate": {
+    "elevation_deg": 45,
+    "basis": "gallery lighting, not daylight; the preset describes the photograph's light, not a sky"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": null,
+  "lighting": {
+    "preset": {
+      "label": "Reed and twig bundles coated gold over black, close-up of an artwork (reference only) (photo-derived)",
+      "sun": 1.434,
+      "hemi": 1.601,
+      "hemiSky": "0xc6c6d2",
+      "hemiGround": "0x363023",
+      "turb": 15.81,
+      "ray": 0.53,
+      "mie": 0.03734,
+      "fog": "0xae9160",
+      "exposure": 0.85
+    },
+    "measurements": {
+      "probe_pixels": 4591744,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 186 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.3061,
+        0.2363,
+        0.1171
+      ],
+      "shade_mean_linear": [
+        0.1531,
+        0.1181,
+        0.06257
+      ],
+      "key_to_fill_luminance_ratio": 1.995,
+      "direct_over_ambient": 0.9952,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.7722,
+        0.3565
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.9087,
+        1.0,
+        0.9905
+      ],
+      "direct_light_tint_hex": "#f4fffe",
+      "direct_light_cct_mccamy_K": 6819,
+      "ambient_tint_basis": "assumed blue-sky shade tint (0.80, 0.88, 1.00) because no sky is visible",
+      "ground_probe_mean_linear": [
+        0.2237,
+        0.1728,
+        0.08845
+      ],
+      "fog_probe_mean_srgb": [
+        0.3627,
+        0.3036,
+        0.2001
+      ],
+      "image_median_luma": 0.1923,
+      "sun_elevation_deg": 45,
+      "sun_elevation_basis": "gallery lighting, not daylight; the preset describes the photograph's light, not a sky"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "shade/direct tint of the probe surface (albedo cancels), luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#0a0604",
+        "srgb": [
+          0.0396,
+          0.02396,
+          0.01378
+        ],
+        "linear": [
+          0.003065,
+          0.001855,
+          0.001066
+        ],
+        "weight": 0.3476,
+        "role": "deep shadow"
+      },
+      {
+        "hex": "#2a2013",
+        "srgb": [
+          0.1662,
+          0.1264,
+          0.07512
+        ],
+        "linear": [
+          0.02352,
+          0.01462,
+          0.006586
+        ],
+        "weight": 0.1605,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#53422a",
+        "srgb": [
+          0.3242,
+          0.2599,
+          0.1642
+        ],
+        "linear": [
+          0.0858,
+          0.05493,
+          0.02304
+        ],
+        "weight": 0.1083,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#7d6846",
+        "srgb": [
+          0.4908,
+          0.4093,
+          0.273
+        ],
+        "linear": [
+          0.2056,
+          0.1395,
+          0.06059
+        ],
+        "weight": 0.08854,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#ecdfb9",
+        "srgb": [
+          0.9267,
+          0.8738,
+          0.7256
+        ],
+        "linear": [
+          0.8414,
+          0.7365,
+          0.4852
+        ],
+        "weight": 0.08542,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#ab925f",
+        "srgb": [
+          0.6724,
+          0.5717,
+          0.3709
+        ],
+        "linear": [
+          0.4097,
+          0.2865,
+          0.1134
+        ],
+        "weight": 0.082,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#e5c870",
+        "srgb": [
+          0.8981,
+          0.7845,
+          0.4379
+        ],
+        "linear": [
+          0.7836,
+          0.5779,
+          0.161
+        ],
+        "weight": 0.06921,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#c6b592",
+        "srgb": [
+          0.7766,
+          0.7095,
+          0.5707
+        ],
+        "linear": [
+          0.5649,
+          0.4617,
+          0.2855
+        ],
+        "weight": 0.05844,
+        "role": "bark / earth / litter"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.0008337,
+        "p2": 0.003335,
+        "p10": 0.009248,
+        "p25": 0.03835,
+        "p50": 0.1909,
+        "p75": 0.5846,
+        "p90": 0.8102,
+        "p98": 0.9112,
+        "p99_5": 0.959
+      },
+      "luma_mean": 0.314,
+      "luma_std": 0.3064,
+      "mean_saturation": 0.5125,
+      "hue_histogram_12": [
+        0.1176,
+        0.8699,
+        0.005747,
+        0.0002579,
+        0.0001512,
+        0.0001353,
+        0.0001785,
+        0.0004958,
+        0.001214,
+        0.0004422,
+        0.000384,
+        0.003525
+      ],
+      "warm_cool_bias": 0.1459,
+      "shadow_tint": [
+        0.008379,
+        -0.001969,
+        -0.005172
+      ],
+      "highlight_tint": [
+        0.07682,
+        -0.0007537,
+        -0.2188
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.0008337,
+        "white": 0.959,
+        "gamma": 1.6,
+        "saturation": 1.25,
+        "shadow_tint": [
+          0.008379,
+          -0.001969,
+          -0.005172
+        ],
+        "highlight_tint": [
+          0.07682,
+          -0.0007537,
+          -0.2188
+        ]
+      },
+      "lut_roundtrip_max_error": 0.009793,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "reed_bundle_gold",
+      "category": "ground",
+      "material_class": "dry_grass",
+      "notes": "Vertical bundles of dried reeds and twigs, coated gold and yellow over a black glossy ground. Strongly oriented; the mirrored candidate pool keeps the vertical run.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "native_pixels": [
+          1855.0,
+          2473.0
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 1.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1855,
+          2473
+        ],
+        "delight_sigma_px": 463.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.5,
+        "tile_width_m": 1.104,
+        "texels_per_metre": 3709.0,
+        "source_texels_per_metre": 3709.0,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": null,
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.85 base for class 'dry_grass', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "artwork_gold_straw/ground/reed_bundle_gold_diff_4k.jpg",
+          "bytes": 4969641,
+          "sha256": "d751d111006a052babe8c633de937f5c7aa3db68b8c2811fe70f1a94990a9251",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "artwork_gold_straw/ground/reed_bundle_gold_nor_gl_4k.jpg",
+          "bytes": 2277726,
+          "sha256": "28deeed1278ca22d62bb5de5903a439adff5c536388aa05303f9603d3b249542",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "artwork_gold_straw/ground/reed_bundle_gold_rough_4k.jpg",
+          "bytes": 534658,
+          "sha256": "7e332f95b2ef7a7484c877276348542f193220254387b80445cc415b2e2040d3",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "artwork_gold_straw/ground/reed_bundle_gold_height_4k.jpg",
+          "bytes": 1245494,
+          "sha256": "23be2d9d81690331c47998c14973b618e10037d58356c3f0c1a3983c92594d1e",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 100
+    }
+  ],
+  "files": {
+    "lighting_json": {
+      "path": "artwork_gold_straw/lighting/lighting_preset.json",
+      "bytes": 2806,
+      "sha256": "088167c60aa70ffb9586d4719b78258a8649041423aa974632280c19c0e672e3"
+    },
+    "preset_snippet": {
+      "path": "artwork_gold_straw/lighting/preset_snippet.js",
+      "bytes": 364,
+      "sha256": "704a6c3a5b1f3b737f27b428d53e7bd7d6946d384e01dccb1a9a0b2e050a2f31"
+    },
+    "mood_json": {
+      "path": "artwork_gold_straw/mood/mood.json",
+      "bytes": 3534,
+      "sha256": "a367a9985468617ded743acd0b56c2525ccf2b9263e165904810912f2eb2db59"
+    },
+    "grade_cube": {
+      "path": "artwork_gold_straw/mood/grade_33.cube",
+      "bytes": 970498,
+      "sha256": "dce7cc5f32f3271c95060820829c2bfa3c09d896182135c9a12d7a1a59e5c9aa"
+    },
+    "sheet": {
+      "path": "artwork_gold_straw/artwork_gold_straw_sheet_4k.jpg",
+      "bytes": 1233310,
+      "sha256": "8fa285ea74b48335f7a27324d9878008c32d4cbf5e3cfad4702e93bbf59e0301",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

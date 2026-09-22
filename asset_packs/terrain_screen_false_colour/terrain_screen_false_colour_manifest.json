@@ -1,0 +1,257 @@
+{
+  "pack": "terrain_screen_false_colour",
+  "title": "False-colour terrain relief in violet, blue and salmon, photographed from a screen (measurements only)",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "b6efaf91633343f02f0f8dd1d897859c3826e3c01fcac83e9f38baf5d55b7ebe",
+  "tile_size": 4096,
+  "lighting_derived": false,
+  "status": "MEASUREMENTS ONLY. Pixel-derived textures withheld: the photograph shows a screen displaying third-party software, with moire and a screen bezel; only its palette and tonal record are of use and only those are kept.",
+  "source": {
+    "file": "terrain_screen_false_colour.jpg",
+    "bytes": 1989951,
+    "sha256": "61c656484579e204a3c96cf434def7f9403afc5ee8a0e8f6a8297dcd7aba22d9",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "f82dc4d2-image.jpg",
+    "redistribution": "withheld",
+    "withheld_reason": "the photograph shows a screen displaying third-party software, with moire and a screen bezel; only its palette and tonal record are of use and only those are kept.",
+    "rights_note": "Photograph of a screen. No pixel-derived texture is generated or committed and the source file is not committed; only palette, tonal statistics and a grade are recorded.",
+    "committed_copy": null,
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 0
+  },
+  "sun_estimate": {
+    "elevation_deg": 45,
+    "basis": "not applicable: a rendered image on a screen"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": null,
+  "lighting": {
+    "note": "a photograph of a rendered image on a screen carries no daylight to measure"
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#422b5b",
+        "srgb": [
+          0.2607,
+          0.1693,
+          0.3588
+        ],
+        "linear": [
+          0.05526,
+          0.02433,
+          0.1058
+        ],
+        "weight": 0.1835,
+        "role": "neutral"
+      },
+      {
+        "hex": "#514d86",
+        "srgb": [
+          0.3165,
+          0.3023,
+          0.5242
+        ],
+        "linear": [
+          0.08166,
+          0.07438,
+          0.2371
+        ],
+        "weight": 0.1556,
+        "role": "neutral"
+      },
+      {
+        "hex": "#7073ac",
+        "srgb": [
+          0.4388,
+          0.4523,
+          0.6748
+        ],
+        "linear": [
+          0.1617,
+          0.1725,
+          0.413
+        ],
+        "weight": 0.1421,
+        "role": "sky"
+      },
+      {
+        "hex": "#b5849a",
+        "srgb": [
+          0.7106,
+          0.519,
+          0.6021
+        ],
+        "linear": [
+          0.4633,
+          0.232,
+          0.3211
+        ],
+        "weight": 0.1324,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#875672",
+        "srgb": [
+          0.5287,
+          0.3381,
+          0.4464
+        ],
+        "linear": [
+          0.2416,
+          0.09352,
+          0.1678
+        ],
+        "weight": 0.1266,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#dcb6cb",
+        "srgb": [
+          0.8621,
+          0.7152,
+          0.7948
+        ],
+        "linear": [
+          0.7146,
+          0.4699,
+          0.595
+        ],
+        "weight": 0.1085,
+        "role": "neutral"
+      },
+      {
+        "hex": "#9c9bce",
+        "srgb": [
+          0.6103,
+          0.609,
+          0.8081
+        ],
+        "linear": [
+          0.3307,
+          0.3292,
+          0.6177
+        ],
+        "weight": 0.09666,
+        "role": "sky"
+      },
+      {
+        "hex": "#1f0b2a",
+        "srgb": [
+          0.1213,
+          0.04243,
+          0.1649
+        ],
+        "linear": [
+          0.01365,
+          0.003289,
+          0.02321
+        ],
+        "weight": 0.05471,
+        "role": "deep shadow"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.003922,
+        "p2": 0.05816,
+        "p10": 0.1678,
+        "p25": 0.2697,
+        "p50": 0.4156,
+        "p75": 0.57,
+        "p90": 0.6911,
+        "p98": 0.8092,
+        "p99_5": 0.8656
+      },
+      "luma_mean": 0.4222,
+      "luma_std": 0.1965,
+      "mean_saturation": 0.3935,
+      "hue_histogram_12": [
+        0.01941,
+        7.16e-06,
+        4.997e-06,
+        4.475e-07,
+        4.177e-06,
+        1.939e-06,
+        0.0003249,
+        0.2673,
+        0.298,
+        0.1156,
+        0.1086,
+        0.1908
+      ],
+      "warm_cool_bias": -0.07321,
+      "shadow_tint": [
+        0.05304,
+        -0.03064,
+        0.1473
+      ],
+      "highlight_tint": [
+        0.08321,
+        -0.03233,
+        0.07519
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.003922,
+        "white": 0.8656,
+        "gamma": 0.8515,
+        "saturation": 0.9838,
+        "shadow_tint": [
+          0.05304,
+          -0.03064,
+          0.1473
+        ],
+        "highlight_tint": [
+          0.08321,
+          -0.03233,
+          0.07519
+        ]
+      },
+      "lut_roundtrip_max_error": 0.007547,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [],
+  "files": {
+    "mood_json": {
+      "path": "terrain_screen_false_colour/mood/mood.json",
+      "bytes": 3425,
+      "sha256": "5f5e629d80b26d64dab5e3c111a6a4e86040c0bf9ccc4d4c803358eaef64780c"
+    },
+    "grade_cube": {
+      "path": "terrain_screen_false_colour/mood/grade_33.cube",
+      "bytes": 970507,
+      "sha256": "c12a963c5b719a714cd2cb99919c39206106b9b32cefae940e69b529c8649cd4"
+    },
+    "sheet": {
+      "path": "terrain_screen_false_colour/terrain_screen_false_colour_sheet_4k.jpg",
+      "bytes": 634854,
+      "sha256": "ae4bb8cd75768725d67760e66305ad57f124deba7b2cab7f4369144911c1a0cf",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

@@ -1,0 +1,437 @@
+{
+  "pack": "artwork_teal_straw_relief",
+  "title": "Straw bundles in gold over teal paint, close-up of an artwork (reference only)",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "b6efaf91633343f02f0f8dd1d897859c3826e3c01fcac83e9f38baf5d55b7ebe",
+  "tile_size": 4096,
+  "lighting_derived": true,
+  "status": "REFERENCE ONLY. Textures reproduce part of the surface of an artwork by another artist, photographed by the repository owner; clear the rights before any public redistribution.",
+  "source": {
+    "file": "artwork_teal_straw_relief.jpg",
+    "bytes": 3242509,
+    "sha256": "eef1dd1a9c319498a1cec742690a7b7fb49deb5c7803b066cc39c7e9672db3fe",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "3a171ed9-image.jpg",
+    "redistribution": "owner_supplied_artwork_photo",
+    "rights_note": "Photograph by the repository owner of an artwork by another artist. The texture reproduces part of that artwork's surface: reference material for look development only; clear the rights before any public redistribution.",
+    "committed_copy": "asset_packs/_sources/artwork_teal_straw_relief.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 0
+  },
+  "sun_estimate": {
+    "elevation_deg": 45,
+    "basis": "gallery lighting, not daylight; the preset describes the photograph's light, not a sky"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": null,
+  "lighting": {
+    "preset": {
+      "label": "Straw bundles in gold over teal paint, close-up of an artwork (reference only) (photo-derived)",
+      "sun": 1.282,
+      "hemi": 1.628,
+      "hemiSky": "0xffb89e",
+      "hemiGround": "0x313129",
+      "turb": 16.59,
+      "ray": 0.4778,
+      "mie": 0.04304,
+      "fog": "0x929779",
+      "exposure": 0.8549
+    },
+    "measurements": {
+      "probe_pixels": 4591744,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 186 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.1893,
+        0.2199,
+        0.1666
+      ],
+      "shade_mean_linear": [
+        0.1306,
+        0.1104,
+        0.06976
+      ],
+      "key_to_fill_luminance_ratio": 1.875,
+      "direct_over_ambient": 0.8749,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        0.5362,
+        1.0,
+        0.8842
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.2592,
+        0.6288,
+        1.0
+      ],
+      "direct_light_tint_hex": "#8bd0ff",
+      "direct_light_cct_mccamy_K": 17020,
+      "ambient_tint_basis": "assumed blue-sky shade tint (0.80, 0.88, 1.00) because no sky is visible",
+      "ground_probe_mean_linear": [
+        0.1535,
+        0.1542,
+        0.1075
+      ],
+      "fog_probe_mean_srgb": [
+        0.3188,
+        0.3294,
+        0.2635
+      ],
+      "image_median_luma": 0.2748,
+      "sun_elevation_deg": 45,
+      "sun_elevation_basis": "gallery lighting, not daylight; the preset describes the photograph's light, not a sky"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "shade/direct tint of the probe surface (albedo cancels), luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#0c0804",
+        "srgb": [
+          0.04618,
+          0.0316,
+          0.01407
+        ],
+        "linear": [
+          0.003601,
+          0.002445,
+          0.001089
+        ],
+        "weight": 0.2505,
+        "role": "deep shadow"
+      },
+      {
+        "hex": "#272417",
+        "srgb": [
+          0.1548,
+          0.1402,
+          0.08938
+        ],
+        "linear": [
+          0.02074,
+          0.01743,
+          0.008452
+        ],
+        "weight": 0.1579,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#444131",
+        "srgb": [
+          0.2685,
+          0.2566,
+          0.1911
+        ],
+        "linear": [
+          0.05859,
+          0.05355,
+          0.03041
+        ],
+        "weight": 0.1346,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#61604d",
+        "srgb": [
+          0.3786,
+          0.3769,
+          0.3022
+        ],
+        "linear": [
+          0.1184,
+          0.1173,
+          0.07433
+        ],
+        "weight": 0.1251,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#7b7f6b",
+        "srgb": [
+          0.4839,
+          0.4981,
+          0.4179
+        ],
+        "linear": [
+          0.1994,
+          0.2123,
+          0.1457
+        ],
+        "weight": 0.1179,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#949e8b",
+        "srgb": [
+          0.5788,
+          0.6196,
+          0.5438
+        ],
+        "linear": [
+          0.2943,
+          0.3419,
+          0.2568
+        ],
+        "weight": 0.1031,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#bdbc9f",
+        "srgb": [
+          0.7405,
+          0.7363,
+          0.6217
+        ],
+        "linear": [
+          0.5079,
+          0.5015,
+          0.3445
+        ],
+        "weight": 0.0724,
+        "role": "neutral"
+      },
+      {
+        "hex": "#ede5c0",
+        "srgb": [
+          0.931,
+          0.8972,
+          0.7533
+        ],
+        "linear": [
+          0.8501,
+          0.782,
+          0.5277
+        ],
+        "weight": 0.03843,
+        "role": "neutral"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.0008337,
+        "p2": 0.003335,
+        "p10": 0.01865,
+        "p25": 0.08734,
+        "p50": 0.2743,
+        "p75": 0.5112,
+        "p90": 0.6828,
+        "p98": 0.8845,
+        "p99_5": 0.9693
+      },
+      "luma_mean": 0.3182,
+      "luma_std": 0.2537,
+      "mean_saturation": 0.4014,
+      "hue_histogram_12": [
+        0.1134,
+        0.5728,
+        0.1094,
+        0.04173,
+        0.06664,
+        0.09328,
+        0.0001821,
+        5.649e-05,
+        0.0001863,
+        0.0001802,
+        0.0001621,
+        0.001985
+      ],
+      "warm_cool_bias": 0.06515,
+      "shadow_tint": [
+        0.01332,
+        -0.002462,
+        -0.01485
+      ],
+      "highlight_tint": [
+        0.0007292,
+        0.009563,
+        -0.09687
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.0008337,
+        "white": 0.9693,
+        "gamma": 1.458,
+        "saturation": 1.003,
+        "shadow_tint": [
+          0.01332,
+          -0.002462,
+          -0.01485
+        ],
+        "highlight_tint": [
+          0.0007292,
+          0.009563,
+          -0.09687
+        ]
+      },
+      "lut_roundtrip_max_error": 0.007547,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "straw_relief_teal",
+      "category": "ground",
+      "material_class": "litter",
+      "notes": "Bundled straw and loose stalks in gold and bronze over a flat teal-grey painted surface with a few bare patches.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.98,
+            0.02
+          ],
+          [
+            0.98,
+            0.98
+          ],
+          [
+            0.02,
+            0.98
+          ]
+        ],
+        "native_pixels": [
+          1855.0,
+          2473.0
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 1.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1855,
+          2473
+        ],
+        "delight_sigma_px": 463.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.6,
+        "tile_width_m": 1.325,
+        "texels_per_metre": 3091.0,
+        "source_texels_per_metre": 3091.0,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": null,
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.9 base for class 'litter', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "artwork_teal_straw_relief/ground/straw_relief_teal_diff_4k.jpg",
+          "bytes": 7631157,
+          "sha256": "74baf58a75d35fa1a5135b2b78c475dfa55d957a3194b96cf2bbf5a8e4c807ec",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "artwork_teal_straw_relief/ground/straw_relief_teal_nor_gl_4k.jpg",
+          "bytes": 3586001,
+          "sha256": "cbc652fe6d10a057354d451521aa77aee4e84f39d772ec4808c49057bda2accd",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "artwork_teal_straw_relief/ground/straw_relief_teal_rough_4k.jpg",
+          "bytes": 629849,
+          "sha256": "554dacb6ef18bfa20a080ff648c0b2e06688c823aa8c442cf1043531c2ade006",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "artwork_teal_straw_relief/ground/straw_relief_teal_height_4k.jpg",
+          "bytes": 1394510,
+          "sha256": "fc4d3b0339f048ccd2d7cb5208e03809c383d1e8dd31549bec74f0d47652bde4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 106
+    }
+  ],
+  "files": {
+    "lighting_json": {
+      "path": "artwork_teal_straw_relief/lighting/lighting_preset.json",
+      "bytes": 2803,
+      "sha256": "ddfb49969fc66d2124f6db08322b830b837b0fd1d5fd8ae6122a7bc69f5f21ae"
+    },
+    "preset_snippet": {
+      "path": "artwork_teal_straw_relief/lighting/preset_snippet.js",
+      "bytes": 368,
+      "sha256": "a47c02e60a4627216a2bed69ae970c0d5962c6963acccfa83a41ce5d9765781f"
+    },
+    "mood_json": {
+      "path": "artwork_teal_straw_relief/mood/mood.json",
+      "bytes": 3489,
+      "sha256": "176efdfeaf5c7683e6622b6b6e9924e0e4d179fe26077233e6780a3d3eaf62bd"
+    },
+    "grade_cube": {
+      "path": "artwork_teal_straw_relief/mood/grade_33.cube",
+      "bytes": 970505,
+      "sha256": "94d0e1e491e647f54016755785ffba5df49323b18a5d2ca81d431a1e24caec80"
+    },
+    "sheet": {
+      "path": "artwork_teal_straw_relief/artwork_teal_straw_relief_sheet_4k.jpg",
+      "bytes": 1420032,
+      "sha256": "99e9b79e7a7bfcf64e89a3c26a307184c7584ce784d772aa02c2d1fb4578dcb0",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

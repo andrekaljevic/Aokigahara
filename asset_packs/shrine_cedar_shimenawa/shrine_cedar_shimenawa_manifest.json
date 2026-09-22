@@ -1,0 +1,1057 @@
+{
+  "pack": "shrine_cedar_shimenawa",
+  "title": "Large shrine cedar with stringy moss-streaked bark under an overcast sky",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "b6efaf91633343f02f0f8dd1d897859c3826e3c01fcac83e9f38baf5d55b7ebe",
+  "tile_size": 4096,
+  "lighting_derived": true,
+  "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+  "source": {
+    "file": "shrine_cedar_shimenawa.jpg",
+    "bytes": 3180128,
+    "sha256": "a8a6b9dba09e8c4868ad01b71032e1c1ef57d692378cbef899b8dbf3e19e9737",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "b8ee01f5-image.jpg",
+    "redistribution": "owner_supplied",
+    "rights_note": "Supplied by the repository owner as a personal photograph of a shrine tree. The sacred rope and paper streamers are excluded from every region. Not captured at Aokigahara.",
+    "committed_copy": "asset_packs/_sources/shrine_cedar_shimenawa.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 16,
+    "pitch_deg": 40
+  },
+  "sun_estimate": {
+    "elevation_deg": 45,
+    "basis": "overcast sky, no shadows; the elevation is not observable and does not enter the preset"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": {
+    "status": "fitted",
+    "pixel_count": 19349,
+    "roi_fraction": 0.00777,
+    "mean_srgb": [
+      0.9746,
+      0.9842,
+      0.9852
+    ],
+    "mean_hex": "#f9fbfb",
+    "sampled_pixels": 600,
+    "elevation_bins_deg": {
+      "45..50": {
+        "n": 187,
+        "srgb": [
+          0.957,
+          0.9684,
+          0.9697
+        ],
+        "hex": "#f4f7f7"
+      },
+      "50..55": {
+        "n": 407,
+        "srgb": [
+          0.9842,
+          0.993,
+          0.9939
+        ],
+        "hex": "#fbfdfd"
+      },
+      "60..65": {
+        "n": 5,
+        "srgb": [
+          0.8463,
+          0.8604,
+          0.8596
+        ],
+        "hex": "#d8dbdb"
+      }
+    },
+    "elevation_range_deg": [
+      45.94,
+      63.33
+    ],
+    "fit": {
+      "loss": 0.008600906687422765,
+      "turb": 19.99992388130474,
+      "ray": 1.4797601918522891,
+      "mie": 0.09989058548219712,
+      "fit_exposure": 0.9963039422882671,
+      "sun_azimuth_rel_deg": 0,
+      "rms_srgb": 0.09274107335707715
+    },
+    "camera_model": {
+      "focal_equiv_mm": 16,
+      "pitch_deg": 40,
+      "focal_px": 1191.0
+    },
+    "notes": [
+      "The sun azimuth relative to the camera is unknown; it was fitted on a 30 degree grid.",
+      "fit_exposure absorbs the camera exposure and is not the preset exposure.",
+      "The dome image is rendered with the viewer sun azimuth (155 deg) and the pack sun elevation."
+    ],
+    "horizon_hex": "#cdcfd2",
+    "zenith_hex": "#e9edf0"
+  },
+  "lighting": {
+    "preset": {
+      "label": "Large shrine cedar with stringy moss-streaked bark under an overcast sky (photo-derived)",
+      "sun": 1.057,
+      "hemi": 1.669,
+      "hemiSky": "0xc5c7c8",
+      "hemiGround": "0x372f28",
+      "turb": 20.0,
+      "ray": 1.48,
+      "mie": 0.09989,
+      "fog": "0x8c9790",
+      "exposure": 0.8884
+    },
+    "measurements": {
+      "probe_pixels": 518868,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 70 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.3201,
+        0.2354,
+        0.1245
+      ],
+      "shade_mean_linear": [
+        0.1865,
+        0.1388,
+        0.07119
+      ],
+      "key_to_fill_luminance_ratio": 1.704,
+      "direct_over_ambient": 0.7037,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.7234,
+        0.3994
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.9324,
+        0.9272,
+        1.0
+      ],
+      "direct_light_tint_hex": "#f7f7ff",
+      "direct_light_cct_mccamy_K": 6835,
+      "ambient_tint_basis": "visible sky mean",
+      "ground_probe_mean_linear": [
+        0.2255,
+        0.1647,
+        0.1171
+      ],
+      "fog_probe_mean_srgb": [
+        0.1751,
+        0.1884,
+        0.1807
+      ],
+      "image_median_luma": 0.3306,
+      "sun_elevation_deg": 45,
+      "sun_elevation_basis": "overcast sky, no shadows; the elevation is not observable and does not enter the preset"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "visible sky mean, luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "fitted to the visible sky with the viewer Sky shader",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#4b4b41",
+        "srgb": [
+          0.2939,
+          0.2955,
+          0.2553
+        ],
+        "linear": [
+          0.07024,
+          0.07103,
+          0.05304
+        ],
+        "weight": 0.2104,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#32322e",
+        "srgb": [
+          0.1943,
+          0.1977,
+          0.1819
+        ],
+        "linear": [
+          0.03134,
+          0.03239,
+          0.02774
+        ],
+        "weight": 0.1814,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#676452",
+        "srgb": [
+          0.4033,
+          0.3905,
+          0.3198
+        ],
+        "linear": [
+          0.1352,
+          0.1263,
+          0.08342
+        ],
+        "weight": 0.1757,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#858067",
+        "srgb": [
+          0.5201,
+          0.5002,
+          0.4027
+        ],
+        "linear": [
+          0.2331,
+          0.2143,
+          0.1348
+        ],
+        "weight": 0.1293,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#151719",
+        "srgb": [
+          0.08091,
+          0.0907,
+          0.09659
+        ],
+        "linear": [
+          0.007312,
+          0.00864,
+          0.009502
+        ],
+        "weight": 0.1286,
+        "role": "deep shadow"
+      },
+      {
+        "hex": "#a5a083",
+        "srgb": [
+          0.6464,
+          0.6262,
+          0.5147
+        ],
+        "linear": [
+          0.3755,
+          0.35,
+          0.2279
+        ],
+        "weight": 0.08722,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#c8c2b1",
+        "srgb": [
+          0.7846,
+          0.759,
+          0.6942
+        ],
+        "linear": [
+          0.578,
+          0.5366,
+          0.4398
+        ],
+        "weight": 0.05045,
+        "role": "neutral"
+      },
+      {
+        "hex": "#efeff3",
+        "srgb": [
+          0.9356,
+          0.9385,
+          0.951
+        ],
+        "linear": [
+          0.8596,
+          0.8657,
+          0.8921
+        ],
+        "weight": 0.03677,
+        "role": "highlight / sky white"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.008409,
+        "p2": 0.04663,
+        "p10": 0.1216,
+        "p25": 0.2135,
+        "p50": 0.3304,
+        "p75": 0.4849,
+        "p90": 0.6714,
+        "p98": 0.9434,
+        "p99_5": 0.9958
+      },
+      "luma_mean": 0.3681,
+      "luma_std": 0.2137,
+      "mean_saturation": 0.2504,
+      "hue_histogram_12": [
+        0.1541,
+        0.3955,
+        0.1957,
+        0.05302,
+        0.03191,
+        0.03155,
+        0.04656,
+        0.04036,
+        0.02469,
+        0.004346,
+        0.004333,
+        0.01797
+      ],
+      "warm_cool_bias": 0.05366,
+      "shadow_tint": [
+        -0.004886,
+        0.0008956,
+        0.005517
+      ],
+      "highlight_tint": [
+        0.01629,
+        0.003528,
+        -0.0829
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.008409,
+        "white": 0.9958,
+        "gamma": 1.292,
+        "saturation": 0.8,
+        "shadow_tint": [
+          -0.004886,
+          0.0008956,
+          0.005517
+        ],
+        "highlight_tint": [
+          0.01629,
+          0.003528,
+          -0.0829
+        ]
+      },
+      "lut_roundtrip_max_error": 0.004939,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "bark_cedar_stringy_moss",
+      "category": "bark",
+      "material_class": "bark",
+      "notes": "Lower trunk below the rope: long stringy fibrous bark with a green moss band and a strip of exposed pinkish inner bark; buttress flare at the bottom. Both silhouettes visible; unwrapped as a cylinder.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.37,
+            0.66
+          ],
+          [
+            0.66,
+            0.66
+          ],
+          [
+            0.75,
+            0.93
+          ],
+          [
+            0.27,
+            0.93
+          ]
+        ],
+        "native_pixels": [
+          927.4,
+          721.9
+        ],
+        "cylinder_unwrap": true,
+        "upscale": 2.566,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          3240,
+          1852
+        ],
+        "delight_sigma_px": 407.4
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 1.5,
+        "tile_width_m": 2.582,
+        "texels_per_metre": 1586.0,
+        "source_texels_per_metre": 618.2,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.88 base for class 'bark', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_stringy_moss_diff_4k.jpg",
+          "bytes": 3738946,
+          "sha256": "00c72528ab5bc7ce92c380cd8fe0764da9240194fbde3604ecdb1b91119a9513",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_stringy_moss_nor_gl_4k.jpg",
+          "bytes": 3372438,
+          "sha256": "c2aa49ea3fe76a6eb5a9ad2bc2f318869a0941439e77b1d812b3c498c451701e",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_stringy_moss_rough_4k.jpg",
+          "bytes": 749043,
+          "sha256": "ddf9a38f7405e04f2b7fffc4ef02d024737dfcb2a8f88e9e95b057c88673bde3",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_stringy_moss_height_4k.jpg",
+          "bytes": 1219141,
+          "sha256": "04680a2cf129c483b5245e7c56649700e532dcdeba1e0342b25886acda21ad54",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 139
+    },
+    {
+      "id": "bark_cedar_upper",
+      "category": "bark",
+      "material_class": "bark",
+      "notes": "Upper trunk between the branch whorls: clean stringy bark in shade, seen from below. Source strip about 230 px wide.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.465,
+            0.26
+          ],
+          [
+            0.585,
+            0.26
+          ],
+          [
+            0.6,
+            0.37
+          ],
+          [
+            0.45,
+            0.37
+          ]
+        ],
+        "native_pixels": [
+          289.8,
+          284.8
+        ],
+        "cylinder_unwrap": true,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1184,
+          855
+        ],
+        "delight_sigma_px": 188.1
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 1.1,
+        "tile_width_m": 5.182,
+        "texels_per_metre": 790.4,
+        "source_texels_per_metre": 263.5,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.88 base for class 'bark', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_upper_diff_4k.jpg",
+          "bytes": 3047172,
+          "sha256": "57aa1f130ab210cdbfac13fb05f402db25ce293d6e460751d281588d96af0930",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_upper_nor_gl_4k.jpg",
+          "bytes": 3393893,
+          "sha256": "c59f1beac2335726b57734dae674d9ab4705b843162096ed2672c5a178a34216",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_upper_rough_4k.jpg",
+          "bytes": 731062,
+          "sha256": "647ea7a5c7f4a8b8b30eecc277cd263f43182bd91bdde96bd8e851a54458f577",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "shrine_cedar_shimenawa/bark/bark_cedar_upper_height_4k.jpg",
+          "bytes": 1252917,
+          "sha256": "91a6ee69a738e6e4ebf397024405d07293f7d4b0826d75e656ac327d154f7d4e",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 64
+    },
+    {
+      "id": "cedar_canopy",
+      "category": "greenery",
+      "material_class": "needles",
+      "notes": "Cedar canopy from below with branches and overcast-sky gaps; the gaps remain in the tile.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.2,
+            0.0
+          ],
+          [
+            0.44,
+            0.0
+          ],
+          [
+            0.44,
+            0.3
+          ],
+          [
+            0.2,
+            0.3
+          ]
+        ],
+        "native_pixels": [
+          463.7,
+          772.8
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1391,
+          2318
+        ],
+        "delight_sigma_px": 417.3
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 5.0,
+        "tile_width_m": 14.72,
+        "texels_per_metre": 278.2,
+        "source_texels_per_metre": 92.74,
+        "intended_tile_m": 2.5,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.76 base for class 'needles', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "shrine_cedar_shimenawa/greenery/cedar_canopy_diff_4k.jpg",
+          "bytes": 3480122,
+          "sha256": "62aa7102b78285bc3fc03de5553abc50e4c62dac015e83c0043dc457650dac08",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "shrine_cedar_shimenawa/greenery/cedar_canopy_nor_gl_4k.jpg",
+          "bytes": 2783956,
+          "sha256": "24994d4858478222962a4031b8b0683ddcad55f87846cc30238c17235dc8f6de",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "shrine_cedar_shimenawa/greenery/cedar_canopy_rough_4k.jpg",
+          "bytes": 742522,
+          "sha256": "8422a4bba7669fc0407c61b67557a2799b2487baa7c2f80e09f666883b20a6bd",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "shrine_cedar_shimenawa/greenery/cedar_canopy_height_4k.jpg",
+          "bytes": 1194395,
+          "sha256": "4e0f9374e8ac24323dc8808f39f11bac719a853e8554b86beef9157224ba5599",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 78
+    },
+    {
+      "id": "broadleaf_backlit",
+      "category": "greenery",
+      "material_class": "leaves",
+      "notes": "Lime-green backlit broadleaf crown of a neighbouring tree, seen through cedar branches.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.6,
+            0.24
+          ],
+          [
+            0.8,
+            0.24
+          ],
+          [
+            0.8,
+            0.42
+          ],
+          [
+            0.6,
+            0.42
+          ]
+        ],
+        "native_pixels": [
+          386.4,
+          463.7
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1159,
+          1391
+        ],
+        "delight_sigma_px": 347.7
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 3.0,
+        "tile_width_m": 10.6,
+        "texels_per_metre": 386.4,
+        "source_texels_per_metre": 128.8,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.7 base for class 'leaves', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "shrine_cedar_shimenawa/greenery/broadleaf_backlit_diff_4k.jpg",
+          "bytes": 4814038,
+          "sha256": "ba1b3eac4c85729c58364f4a25a0103ea0fccdef41689c173be5b795e7ae161f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "shrine_cedar_shimenawa/greenery/broadleaf_backlit_nor_gl_4k.jpg",
+          "bytes": 3302318,
+          "sha256": "68eee126a245d3109b052f51cc85c8515b864bb05a6bf464d539dae0cdebcca7",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "shrine_cedar_shimenawa/greenery/broadleaf_backlit_rough_4k.jpg",
+          "bytes": 927661,
+          "sha256": "413e72847d0fe8d9b974740cb1de6cc804287cbbab6ecc1a279fb340094b2535",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "shrine_cedar_shimenawa/greenery/broadleaf_backlit_height_4k.jpg",
+          "bytes": 1414849,
+          "sha256": "81e2eebd17f9ea0f2c81149320f6c847b07d8c251372888543d58bb55564dca2",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 44
+    },
+    {
+      "id": "evergreen_shrub",
+      "category": "greenery",
+      "material_class": "leaves",
+      "notes": "Dense dark evergreen shrub mass beside the trunk, slightly out of focus; trapezoid follows the trunk flare.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.74,
+            0.58
+          ],
+          [
+            0.99,
+            0.58
+          ],
+          [
+            0.99,
+            0.88
+          ],
+          [
+            0.8,
+            0.88
+          ]
+        ],
+        "native_pixels": [
+          483.0,
+          781.4
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1449,
+          2344
+        ],
+        "delight_sigma_px": 434.7
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 3.0,
+        "tile_width_m": 8.48,
+        "texels_per_metre": 483.0,
+        "source_texels_per_metre": 161.0,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.7 base for class 'leaves', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "shrine_cedar_shimenawa/greenery/evergreen_shrub_diff_4k.jpg",
+          "bytes": 3136268,
+          "sha256": "8d6bd587934c27ac2f37af5c3ba660e03676ea2ba17efaa9754d599a3ae01c0c",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "shrine_cedar_shimenawa/greenery/evergreen_shrub_nor_gl_4k.jpg",
+          "bytes": 2325187,
+          "sha256": "609b5fef2ba40bf0e194dd414275be3134b75710ef57c095e00fd213aca163f6",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "shrine_cedar_shimenawa/greenery/evergreen_shrub_rough_4k.jpg",
+          "bytes": 720465,
+          "sha256": "f193ca1026414f00f51bb26df98f1eaed8fde0477b130e9afc4b9522358e74aa",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "shrine_cedar_shimenawa/greenery/evergreen_shrub_height_4k.jpg",
+          "bytes": 1018451,
+          "sha256": "51fe1939d568a44c489a293b324e1ee0f52fb219143441a7fb40e49fae6a019a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 73
+    },
+    {
+      "id": "leaf_litter_soil",
+      "category": "ground",
+      "material_class": "litter",
+      "notes": "Fallen leaves and camellia petals on bare soil in the bottom-left corner at a grazing angle; a small region (about 350 x 230 px), stretched vertically.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.02,
+            0.905
+          ],
+          [
+            0.2,
+            0.905
+          ],
+          [
+            0.2,
+            0.995
+          ],
+          [
+            0.02,
+            0.995
+          ]
+        ],
+        "native_pixels": [
+          347.8,
+          231.8
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 2.5,
+        "rectified_pixels": [
+          1043,
+          1739
+        ],
+        "delight_sigma_px": 312.9
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 1.2,
+        "tile_width_m": 4.711,
+        "texels_per_metre": 869.4,
+        "source_texels_per_metre": 289.8,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.9 base for class 'litter', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "shrine_cedar_shimenawa/ground/leaf_litter_soil_diff_4k.jpg",
+          "bytes": 3100644,
+          "sha256": "0c050aceb403b03a549540407df02d413c936ff4227ed825c80405a0a05f0f6d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "shrine_cedar_shimenawa/ground/leaf_litter_soil_nor_gl_4k.jpg",
+          "bytes": 2918414,
+          "sha256": "efe79d93f05efb2bdb1a31dde755b6010b226dc54b7127ddfb6ae723614bc2fc",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "shrine_cedar_shimenawa/ground/leaf_litter_soil_rough_4k.jpg",
+          "bytes": 612457,
+          "sha256": "cb08ddc614fe0352ac69309c663ef43111a66e9e1440ab25f2a2cca7e94f2c70",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "shrine_cedar_shimenawa/ground/leaf_litter_soil_height_4k.jpg",
+          "bytes": 1238227,
+          "sha256": "f652a420ae1b33151589877609675135d5a88980ab35e7347eb983855e9f96ba",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 85
+    }
+  ],
+  "files": {
+    "sky_equirect": {
+      "path": "shrine_cedar_shimenawa/sky/shrine_cedar_shimenawa_sky_equirect_4k.jpg",
+      "bytes": 286723,
+      "sha256": "24e3f4830c652d8d3faeb49dbaf0295fab730f04a9150b21a5fe44eae9533266",
+      "pixels": [
+        4096,
+        2048
+      ],
+      "mapping": "three.js EquirectangularReflectionMapping (u = atan2(z, x)/2pi + 0.5, v = asin(y)/pi + 0.5, top row = zenith)",
+      "content": "upper hemisphere: Sky.js port with fitted parameters through ACES filmic and sRGB; lower hemisphere: ground probe colour, darkened downward",
+      "colorSpace": "sRGB (display-referred, LDR)"
+    },
+    "sky_json": {
+      "path": "shrine_cedar_shimenawa/sky/sky.json",
+      "bytes": 1353,
+      "sha256": "9f9e2040d5f400460467115b79964e36eb45db64744836f3426d6f6a40de05bf"
+    },
+    "lighting_json": {
+      "path": "shrine_cedar_shimenawa/lighting/lighting_preset.json",
+      "bytes": 2648,
+      "sha256": "67088867b32616eb7499880d4772f509c26cb311f5ce1c0de791dbd0065887ad"
+    },
+    "preset_snippet": {
+      "path": "shrine_cedar_shimenawa/lighting/preset_snippet.js",
+      "bytes": 356,
+      "sha256": "3be32a7f5615f63c1b9f42e914815ee0eb7809bc592a354cc1894071016cb39c"
+    },
+    "mood_json": {
+      "path": "shrine_cedar_shimenawa/mood/mood.json",
+      "bytes": 3481,
+      "sha256": "8b0d5b031e647aa69b7d284d3aa1a8156d7bccad7d4bf0b6af0abd281d113134"
+    },
+    "grade_cube": {
+      "path": "shrine_cedar_shimenawa/mood/grade_33.cube",
+      "bytes": 970502,
+      "sha256": "215f0058e4959d0f06c0a6767104364c7ae2f6f2db0bc91201d7120279dfd084"
+    },
+    "sheet": {
+      "path": "shrine_cedar_shimenawa/shrine_cedar_shimenawa_sheet_4k.jpg",
+      "bytes": 2462899,
+      "sha256": "b962a4e012e93f76841aa3ed6f1f0d0f105312538f7d782770978fb4821c9cc5",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

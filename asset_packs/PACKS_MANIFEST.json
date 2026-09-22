@@ -89,11 +89,79 @@
         "ground/mown_grass_leaves"
       ],
       "files": 21
+    },
+    "ivy_rootlet_macro": {
+      "title": "Dead ivy rootlets netted over plated bark, close and frontal, diffuse light",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/ivy_rootlet_macro/ivy_rootlet_macro_manifest.json",
+      "source": "asset_packs/_sources/ivy_rootlet_macro.jpg",
+      "source_sha256": "91d71e1e3db7c2d44ad5769c1d049f74dec2d240ec705e2c11723528f01b66eb",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "bark/bark_ivy_rootlet_macro"
+      ],
+      "files": 9
+    },
+    "artwork_gold_straw": {
+      "title": "Reed and twig bundles coated gold over black, close-up of an artwork (reference only)",
+      "status": "REFERENCE ONLY. Textures reproduce part of the surface of an artwork by another artist, photographed by the repository owner; clear the rights before any public redistribution.",
+      "manifest": "asset_packs/artwork_gold_straw/artwork_gold_straw_manifest.json",
+      "source": "asset_packs/_sources/artwork_gold_straw.jpg",
+      "source_sha256": "79e6c0c8b2e7c364e70ddcaeb84822b6ea82fc107f28a425531ed21a6973ab55",
+      "redistribution": "owner_supplied_artwork_photo",
+      "tile_size": 4096,
+      "materials": [
+        "ground/reed_bundle_gold"
+      ],
+      "files": 9
+    },
+    "artwork_teal_straw_relief": {
+      "title": "Straw bundles in gold over teal paint, close-up of an artwork (reference only)",
+      "status": "REFERENCE ONLY. Textures reproduce part of the surface of an artwork by another artist, photographed by the repository owner; clear the rights before any public redistribution.",
+      "manifest": "asset_packs/artwork_teal_straw_relief/artwork_teal_straw_relief_manifest.json",
+      "source": "asset_packs/_sources/artwork_teal_straw_relief.jpg",
+      "source_sha256": "eef1dd1a9c319498a1cec742690a7b7fb49deb5c7803b066cc39c7e9672db3fe",
+      "redistribution": "owner_supplied_artwork_photo",
+      "tile_size": 4096,
+      "materials": [
+        "ground/straw_relief_teal"
+      ],
+      "files": 9
+    },
+    "terrain_screen_false_colour": {
+      "title": "False-colour terrain relief in violet, blue and salmon, photographed from a screen (measurements only)",
+      "status": "MEASUREMENTS ONLY. Pixel-derived textures withheld: the photograph shows a screen displaying third-party software, with moire and a screen bezel; only its palette and tonal record are of use and only those are kept.",
+      "manifest": "asset_packs/terrain_screen_false_colour/terrain_screen_false_colour_manifest.json",
+      "source": null,
+      "source_sha256": "61c656484579e204a3c96cf434def7f9403afc5ee8a0e8f6a8297dcd7aba22d9",
+      "redistribution": "withheld",
+      "tile_size": 4096,
+      "materials": [],
+      "files": 3
+    },
+    "shrine_cedar_shimenawa": {
+      "title": "Large shrine cedar with stringy moss-streaked bark under an overcast sky",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/shrine_cedar_shimenawa/shrine_cedar_shimenawa_manifest.json",
+      "source": "asset_packs/_sources/shrine_cedar_shimenawa.jpg",
+      "source_sha256": "a8a6b9dba09e8c4868ad01b71032e1c1ef57d692378cbef899b8dbf3e19e9737",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "bark/bark_cedar_stringy_moss",
+        "bark/bark_cedar_upper",
+        "greenery/cedar_canopy",
+        "greenery/broadleaf_backlit",
+        "greenery/evergreen_shrub",
+        "ground/leaf_litter_soil"
+      ],
+      "files": 31
     }
   },
   "generator": "construction_code_v2/gen_asset_packs.py",
   "config": "construction_code_v2/asset_packs_config.json",
-  "config_sha256": "0ecda5f10b52564194909a325fdbf4a02fba20013a6ccf6873038766064b8cd3",
+  "config_sha256": "b6efaf91633343f02f0f8dd1d897859c3826e3c01fcac83e9f38baf5d55b7ebe",
   "generated": "2026-09-22",
   "schemaVersion": 1
 }

@@ -1,0 +1,69 @@
+{
+  "preset": {
+    "label": "Straw bundles in gold over teal paint, close-up of an artwork (reference only) (photo-derived)",
+    "sun": 1.282,
+    "hemi": 1.628,
+    "hemiSky": "0xffb89e",
+    "hemiGround": "0x313129",
+    "turb": 16.59,
+    "ray": 0.4778,
+    "mie": 0.04304,
+    "fog": "0x929779",
+    "exposure": 0.8549
+  },
+  "measurements": {
+    "probe_pixels": 4591744,
+    "lit_fraction": 0.3,
+    "split_method": "Otsu on log illumination (blur sigma 186 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+    "lit_mean_linear": [
+      0.1893,
+      0.2199,
+      0.1666
+    ],
+    "shade_mean_linear": [
+      0.1306,
+      0.1104,
+      0.06976
+    ],
+    "key_to_fill_luminance_ratio": 1.875,
+    "direct_over_ambient": 0.8749,
+    "classified_as": "directional",
+    "direct_light_tint_raw": [
+      0.5362,
+      1.0,
+      0.8842
+    ],
+    "direct_light_tint_albedo_cancelled": [
+      0.2592,
+      0.6288,
+      1.0
+    ],
+    "direct_light_tint_hex": "#8bd0ff",
+    "direct_light_cct_mccamy_K": 17020,
+    "ambient_tint_basis": "assumed blue-sky shade tint (0.80, 0.88, 1.00) because no sky is visible",
+    "ground_probe_mean_linear": [
+      0.1535,
+      0.1542,
+      0.1075
+    ],
+    "fog_probe_mean_srgb": [
+      0.3188,
+      0.3294,
+      0.2635
+    ],
+    "image_median_luma": 0.2748,
+    "sun_elevation_deg": 45,
+    "sun_elevation_basis": "gallery lighting, not daylight; the preset describes the photograph's light, not a sky"
+  },
+  "derivation": {
+    "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+    "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+    "hemiSky": "shade/direct tint of the probe surface (albedo cancels), luma matched to the existing presets",
+    "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+    "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+    "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+    "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+    "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+  },
+  "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+}

@@ -1,0 +1,66 @@
+{
+  "status": "fitted",
+  "pixel_count": 19349,
+  "roi_fraction": 0.00777,
+  "mean_srgb": [
+    0.9746,
+    0.9842,
+    0.9852
+  ],
+  "mean_hex": "#f9fbfb",
+  "sampled_pixels": 600,
+  "elevation_bins_deg": {
+    "45..50": {
+      "n": 187,
+      "srgb": [
+        0.957,
+        0.9684,
+        0.9697
+      ],
+      "hex": "#f4f7f7"
+    },
+    "50..55": {
+      "n": 407,
+      "srgb": [
+        0.9842,
+        0.993,
+        0.9939
+      ],
+      "hex": "#fbfdfd"
+    },
+    "60..65": {
+      "n": 5,
+      "srgb": [
+        0.8463,
+        0.8604,
+        0.8596
+      ],
+      "hex": "#d8dbdb"
+    }
+  },
+  "elevation_range_deg": [
+    45.94,
+    63.33
+  ],
+  "fit": {
+    "loss": 0.008600906687422765,
+    "turb": 19.99992388130474,
+    "ray": 1.4797601918522891,
+    "mie": 0.09989058548219712,
+    "fit_exposure": 0.9963039422882671,
+    "sun_azimuth_rel_deg": 0,
+    "rms_srgb": 0.09274107335707715
+  },
+  "camera_model": {
+    "focal_equiv_mm": 16,
+    "pitch_deg": 40,
+    "focal_px": 1191.0
+  },
+  "notes": [
+    "The sun azimuth relative to the camera is unknown; it was fitted on a 30 degree grid.",
+    "fit_exposure absorbs the camera exposure and is not the preset exposure.",
+    "The dome image is rendered with the viewer sun azimuth (155 deg) and the pack sun elevation."
+  ],
+  "horizon_hex": "#cdcfd2",
+  "zenith_hex": "#e9edf0"
+}
