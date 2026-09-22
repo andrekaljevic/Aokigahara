@@ -1,0 +1,547 @@
+{
+  "pack": "decayed_log_litter",
+  "title": "Decayed red-brown log wood with cypress spray over leaf litter, overcast",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "490f05f21494bfa873d6925b4cfa5cefd80bead7bd9c41661f520148a1a273d8",
+  "tile_size": 4096,
+  "lighting_derived": true,
+  "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+  "source": {
+    "file": "decayed_log_litter.jpg",
+    "bytes": 653708,
+    "sha256": "fcedd6c8dd7d3242283f828266a81f4a26f75336205b5e13c89e2898891fa9e4",
+    "pixels": [
+      1536,
+      2048
+    ],
+    "embedded_profile": null,
+    "colour_handling": "no embedded ICC profile: pixel values taken as sRGB",
+    "upload_name": "fb0524df-image.jpg",
+    "redistribution": "owner_supplied",
+    "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara. A pin badge lying on the log is excluded from every region and from the analysis.",
+    "committed_copy": "asset_packs/_sources/decayed_log_litter.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": -50
+  },
+  "sun_estimate": {
+    "elevation_deg": 45,
+    "basis": "diffuse overcast, no shadows; not observable"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": null,
+  "lighting": {
+    "preset": {
+      "label": "Decayed red-brown log wood with cypress spray over leaf litter, overcast (photo-derived)",
+      "sun": 1.374,
+      "hemi": 1.612,
+      "hemiSky": "0xc1c8cf",
+      "hemiGround": "0x362f2f",
+      "turb": 16.13,
+      "ray": 0.5091,
+      "mie": 0.03953,
+      "fog": "0xa88f8d",
+      "exposure": 0.9388
+    },
+    "measurements": {
+      "probe_pixels": 352271,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 37 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.3723,
+        0.2327,
+        0.2168
+      ],
+      "shade_mean_linear": [
+        0.1856,
+        0.1207,
+        0.1165
+      ],
+      "key_to_fill_luminance_ratio": 1.947,
+      "direct_over_ambient": 0.947,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.6,
+        0.5368
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.9356,
+        0.9496,
+        1.0
+      ],
+      "direct_light_tint_hex": "#f8f9ff",
+      "direct_light_cct_mccamy_K": 6799,
+      "ambient_tint_basis": "assumed blue-sky shade tint (0.80, 0.88, 1.00) because no sky is visible",
+      "ground_probe_mean_linear": [
+        0.2607,
+        0.191,
+        0.1882
+      ],
+      "fog_probe_mean_srgb": [
+        0.5167,
+        0.4389,
+        0.4332
+      ],
+      "image_median_luma": 0.4146,
+      "sun_elevation_deg": 45,
+      "sun_elevation_basis": "diffuse overcast, no shadows; not observable"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "shade/direct tint of the probe surface (albedo cancels), luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#856c6a",
+        "srgb": [
+          0.5209,
+          0.4235,
+          0.4153
+        ],
+        "linear": [
+          0.2339,
+          0.1499,
+          0.1439
+        ],
+        "weight": 0.181,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#9f8581",
+        "srgb": [
+          0.6232,
+          0.5234,
+          0.5054
+        ],
+        "linear": [
+          0.3463,
+          0.2363,
+          0.2191
+        ],
+        "weight": 0.1663,
+        "role": "neutral"
+      },
+      {
+        "hex": "#443a3a",
+        "srgb": [
+          0.2662,
+          0.226,
+          0.2278
+        ],
+        "linear": [
+          0.05759,
+          0.04178,
+          0.04245
+        ],
+        "weight": 0.1578,
+        "role": "neutral"
+      },
+      {
+        "hex": "#674f4b",
+        "srgb": [
+          0.4049,
+          0.3111,
+          0.2959
+        ],
+        "linear": [
+          0.1363,
+          0.07887,
+          0.07125
+        ],
+        "weight": 0.1382,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#bba49b",
+        "srgb": [
+          0.7319,
+          0.6419,
+          0.609
+        ],
+        "linear": [
+          0.4948,
+          0.3697,
+          0.3291
+        ],
+        "weight": 0.1218,
+        "role": "neutral"
+      },
+      {
+        "hex": "#28201f",
+        "srgb": [
+          0.1554,
+          0.1246,
+          0.1199
+        ],
+        "linear": [
+          0.02087,
+          0.01427,
+          0.01339
+        ],
+        "weight": 0.1062,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#5b5e66",
+        "srgb": [
+          0.3572,
+          0.3691,
+          0.3998
+        ],
+        "linear": [
+          0.1048,
+          0.1122,
+          0.1327
+        ],
+        "weight": 0.07987,
+        "role": "sky"
+      },
+      {
+        "hex": "#d8cbc2",
+        "srgb": [
+          0.8483,
+          0.7945,
+          0.7614
+        ],
+        "linear": [
+          0.6889,
+          0.5946,
+          0.5404
+        ],
+        "weight": 0.04877,
+        "role": "neutral"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.04733,
+        "p2": 0.09125,
+        "p10": 0.1775,
+        "p25": 0.2745,
+        "p50": 0.4089,
+        "p75": 0.5442,
+        "p90": 0.6658,
+        "p98": 0.804,
+        "p99_5": 0.8934
+      },
+      "luma_mean": 0.4161,
+      "luma_std": 0.1836,
+      "mean_saturation": 0.2342,
+      "hue_histogram_12": [
+        0.5725,
+        0.07619,
+        0.01904,
+        0.01293,
+        0.004328,
+        0.005437,
+        0.02354,
+        0.04308,
+        0.009285,
+        0.008555,
+        0.02807,
+        0.197
+      ],
+      "warm_cool_bias": 0.07944,
+      "shadow_tint": [
+        0.03058,
+        -0.008307,
+        -0.007765
+      ],
+      "highlight_tint": [
+        0.06561,
+        -0.01457,
+        -0.04887
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.04733,
+        "white": 0.8934,
+        "gamma": 0.98,
+        "saturation": 0.8,
+        "shadow_tint": [
+          0.03058,
+          -0.008307,
+          -0.007765
+        ],
+        "highlight_tint": [
+          0.06561,
+          -0.01457,
+          -0.04887
+        ]
+      },
+      "lut_roundtrip_max_error": 2.676e-05,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "wood_decayed_log",
+      "category": "bark",
+      "material_class": "bark",
+      "notes": "Brick-cracked red-brown decayed heartwood of a fallen log, sharp and frontal; diagonal grain, not mirrored.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.1,
+            0.62
+          ],
+          [
+            0.72,
+            0.62
+          ],
+          [
+            0.72,
+            0.8
+          ],
+          [
+            0.1,
+            0.8
+          ]
+        ],
+        "native_pixels": [
+          952.3,
+          368.6
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 2.151,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          2048,
+          793
+        ],
+        "delight_sigma_px": 198.2
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); no mirroring (oriented structure)",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": false,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 1.0,
+        "tile_width_m": 2.0,
+        "texels_per_metre": 2048.0,
+        "source_texels_per_metre": 952.3,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.88 base for class 'bark', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "decayed_log_litter/bark/wood_decayed_log_diff_4k.jpg",
+          "bytes": 3014390,
+          "sha256": "210bebdeb766762f2e751cc19516560bc89ee14eeceb81305f9e80e14ebb0e31",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "decayed_log_litter/bark/wood_decayed_log_nor_gl_4k.jpg",
+          "bytes": 2824250,
+          "sha256": "5ede513e2576df41aa987ca88f206141b1793b076d01e3e9580c9e0ffdc0fcbc",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "decayed_log_litter/bark/wood_decayed_log_rough_4k.jpg",
+          "bytes": 591967,
+          "sha256": "4e689e5f188c1dc6821dc43730f201b792459be73e7de02acdccbf1d790d9dbc",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "decayed_log_litter/bark/wood_decayed_log_height_4k.jpg",
+          "bytes": 1045978,
+          "sha256": "9a147cc13fc56ecf6fa419c8b3ca4ee782a6895cf2e82d605b2cfcdaef25bd89",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 56
+    },
+    {
+      "id": "leaf_litter_beech",
+      "category": "ground",
+      "material_class": "litter",
+      "notes": "Brown broadleaf litter behind the log, out of focus in the source: soft.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.75,
+            0.0
+          ],
+          [
+            0.75,
+            0.22
+          ],
+          [
+            0.0,
+            0.22
+          ]
+        ],
+        "native_pixels": [
+          1152.0,
+          450.6
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 2.133,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          2458,
+          961
+        ],
+        "delight_sigma_px": 288.3
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 1.2,
+        "tile_width_m": 2.0,
+        "texels_per_metre": 2048.0,
+        "source_texels_per_metre": 960.0,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.9 base for class 'litter', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "decayed_log_litter/ground/leaf_litter_beech_diff_4k.jpg",
+          "bytes": 2331754,
+          "sha256": "28ab0155ee9850b3beafb36e528035f9949c836fa2873c4f8feebc4dbf99804d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "decayed_log_litter/ground/leaf_litter_beech_nor_gl_4k.jpg",
+          "bytes": 1915844,
+          "sha256": "9038b44536a5d5f1316d84c648ec718bf1bed05826e07ec439437afe4e10c8c3",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "decayed_log_litter/ground/leaf_litter_beech_rough_4k.jpg",
+          "bytes": 447534,
+          "sha256": "46853507537d70fee6d7eb94ee0f197ed0ab46ac5a3047d82b90c6cd09cdaa58",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "decayed_log_litter/ground/leaf_litter_beech_height_4k.jpg",
+          "bytes": 1026229,
+          "sha256": "08224102d941155004e3a42a120af4d3592591689fb5b306f5531cfebe637952",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 104
+    }
+  ],
+  "files": {
+    "lighting_json": {
+      "path": "decayed_log_litter/lighting/lighting_preset.json",
+      "bytes": 2746,
+      "sha256": "14bf49c3351a3f731ae9052bde35a54a5eed9d0fdb72ab43be975a3f4464c8d8"
+    },
+    "preset_snippet": {
+      "path": "decayed_log_litter/lighting/preset_snippet.js",
+      "bytes": 355,
+      "sha256": "1465c8de4c1365df0c4f6c3c211dcf117e678014eabe5311fab7b2f86e927d98"
+    },
+    "mood_json": {
+      "path": "decayed_log_litter/mood/mood.json",
+      "bytes": 3439,
+      "sha256": "a8d816df10366481fab62628dae0f2b08f47f096072a8ac53d5fb20dfe6cb16d"
+    },
+    "grade_cube": {
+      "path": "decayed_log_litter/mood/grade_33.cube",
+      "bytes": 970498,
+      "sha256": "9a6b6ce3137b95e5cb1192e676b84643644d6b5fb65248dba282771a4e60995b"
+    },
+    "sheet": {
+      "path": "decayed_log_litter/decayed_log_litter_sheet_4k.jpg",
+      "bytes": 1188670,
+      "sha256": "b621ba5d8d0fc9bb880f3d3952dc84ea0ede2dac0ec1d856315285ce025ad958",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

@@ -157,11 +157,25 @@
         "ground/leaf_litter_soil"
       ],
       "files": 31
+    },
+    "decayed_log_litter": {
+      "title": "Decayed red-brown log wood with cypress spray over leaf litter, overcast",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/decayed_log_litter/decayed_log_litter_manifest.json",
+      "source": "asset_packs/_sources/decayed_log_litter.jpg",
+      "source_sha256": "fcedd6c8dd7d3242283f828266a81f4a26f75336205b5e13c89e2898891fa9e4",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "bark/wood_decayed_log",
+        "ground/leaf_litter_beech"
+      ],
+      "files": 13
     }
   },
   "generator": "construction_code_v2/gen_asset_packs.py",
   "config": "construction_code_v2/asset_packs_config.json",
-  "config_sha256": "b6efaf91633343f02f0f8dd1d897859c3826e3c01fcac83e9f38baf5d55b7ebe",
+  "config_sha256": "490f05f21494bfa873d6925b4cfa5cefd80bead7bd9c41661f520148a1a273d8",
   "generated": "2026-09-22",
   "schemaVersion": 1
 }
