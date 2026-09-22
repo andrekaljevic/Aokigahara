@@ -1011,8 +1011,8 @@
             ]
           ],
           "physical_width_m": 0.35,
-          "delight_sigma": 0.22,
-          "notes": "Sunlit main stem between the crossing twigs and the branch join: smooth orange-brown bark with fine vertical fissures, no overlapping leaves. Both silhouettes visible; unwrapped as a cylinder. Source strip about 125 px wide."
+          "delight_sigma": 0.1,
+          "notes": "Sunlit main stem between the crossing twigs and the branch join: smooth orange-brown bark with fine vertical fissures, no overlapping leaves. Both silhouettes visible; unwrapped as a cylinder. Source strip about 125 px wide. Small flattening radius so the twig shadows crossing the stem do not become dark smudges."
         },
         {
           "id": "canopy_oak_lichen",

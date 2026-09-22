@@ -1,0 +1,760 @@
+{
+  "pack": "oak_multistem_sunset",
+  "title": "Multi-stemmed oak with smooth sunlit bark over mown grass, low evening sun",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "0ecda5f10b52564194909a325fdbf4a02fba20013a6ccf6873038766064b8cd3",
+  "tile_size": 4096,
+  "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+  "source": {
+    "file": "oak_multistem_sunset.jpg",
+    "bytes": 2416689,
+    "sha256": "04804c25ce4885780651ccc0eacd2535556cd6cc9165c8f78dd4ce06aea86117",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "809bd120-image.jpg",
+    "redistribution": "owner_supplied",
+    "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara. A second, near-identical frame (upload 05cc6e31-image.jpg) was supplied and not used.",
+    "committed_copy": "asset_packs/_sources/oak_multistem_sunset.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 52,
+    "pitch_deg": -4
+  },
+  "sun_estimate": {
+    "elevation_deg": 10,
+    "basis": "nearly horizontal warm light on the stems, deep shade behind, long shadows"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": null,
+  "lighting": {
+    "preset": {
+      "label": "Multi-stemmed oak with smooth sunlit bark over mown grass, low evening sun (photo-derived)",
+      "sun": 3.6,
+      "hemi": 1.235,
+      "hemiSky": "0xc3c3f8",
+      "hemiGround": "0x442d18",
+      "turb": 2.8,
+      "ray": 1.4,
+      "mie": 0.0035,
+      "fog": "0xb49152",
+      "exposure": 0.9268
+    },
+    "measurements": {
+      "probe_pixels": 690954,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 64 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.4659,
+        0.183,
+        0.04638
+      ],
+      "shade_mean_linear": [
+        0.09954,
+        0.03909,
+        0.01479
+      ],
+      "key_to_fill_luminance_ratio": 4.648,
+      "direct_over_ambient": 3.648,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.3928,
+        0.08622
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.9089,
+        1.0,
+        0.6593
+      ],
+      "direct_light_tint_hex": "#f4ffd4",
+      "direct_light_cct_mccamy_K": 5550,
+      "ambient_tint_basis": "assumed blue-sky shade tint (0.80, 0.88, 1.00) because no sky is visible",
+      "ground_probe_mean_linear": [
+        0.6283,
+        0.2585,
+        0.06674
+      ],
+      "fog_probe_mean_srgb": [
+        0.4775,
+        0.3838,
+        0.2173
+      ],
+      "image_median_luma": 0.3946,
+      "sun_elevation_deg": 10,
+      "sun_elevation_basis": "nearly horizontal warm light on the stems, deep shade behind, long shadows"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "shade/direct tint of the probe surface (albedo cancels), luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#1e150a",
+        "srgb": [
+          0.1187,
+          0.08203,
+          0.03893
+        ],
+        "linear": [
+          0.01317,
+          0.007457,
+          0.003013
+        ],
+        "weight": 0.1996,
+        "role": "deep shadow"
+      },
+      {
+        "hex": "#45361b",
+        "srgb": [
+          0.2713,
+          0.2112,
+          0.1041
+        ],
+        "linear": [
+          0.05982,
+          0.03671,
+          0.01067
+        ],
+        "weight": 0.1773,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#72572c",
+        "srgb": [
+          0.4457,
+          0.3401,
+          0.1712
+        ],
+        "linear": [
+          0.1672,
+          0.09471,
+          0.02483
+        ],
+        "weight": 0.1382,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#d88e4a",
+        "srgb": [
+          0.8489,
+          0.5585,
+          0.2884
+        ],
+        "linear": [
+          0.69,
+          0.2722,
+          0.06764
+        ],
+        "weight": 0.1298,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#af6c2a",
+        "srgb": [
+          0.6876,
+          0.4231,
+          0.1666
+        ],
+        "linear": [
+          0.4306,
+          0.1496,
+          0.02363
+        ],
+        "weight": 0.1294,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#f3c274",
+        "srgb": [
+          0.9528,
+          0.7615,
+          0.4534
+        ],
+        "linear": [
+          0.896,
+          0.5406,
+          0.1734
+        ],
+        "weight": 0.08156,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#9e9530",
+        "srgb": [
+          0.6185,
+          0.5834,
+          0.1891
+        ],
+        "linear": [
+          0.3406,
+          0.2995,
+          0.0298
+        ],
+        "weight": 0.07281,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#beb550",
+        "srgb": [
+          0.7445,
+          0.7082,
+          0.313
+        ],
+        "linear": [
+          0.514,
+          0.4598,
+          0.07986
+        ],
+        "weight": 0.07128,
+        "role": "bark / earth / litter"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.01512,
+        "p2": 0.03221,
+        "p10": 0.08765,
+        "p25": 0.1863,
+        "p50": 0.3938,
+        "p75": 0.5868,
+        "p90": 0.7036,
+        "p98": 0.8258,
+        "p99_5": 0.8882
+      },
+      "luma_mean": 0.3948,
+      "luma_std": 0.231,
+      "mean_saturation": 0.641,
+      "hue_histogram_12": [
+        0.4058,
+        0.5182,
+        0.07249,
+        0.00229,
+        0.0004687,
+        0.0001323,
+        7.614e-05,
+        1.981e-05,
+        1.714e-05,
+        6.922e-06,
+        8.497e-06,
+        0.0004358
+      ],
+      "warm_cool_bias": 0.3261,
+      "shadow_tint": [
+        0.03543,
+        -0.005697,
+        -0.04788
+      ],
+      "highlight_tint": [
+        0.146,
+        -0.007397,
+        -0.3567
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.01512,
+        "white": 0.8882,
+        "gamma": 0.9629,
+        "saturation": 1.25,
+        "shadow_tint": [
+          0.03543,
+          -0.005697,
+          -0.04788
+        ],
+        "highlight_tint": [
+          0.146,
+          -0.007397,
+          -0.3567
+        ]
+      },
+      "lut_roundtrip_max_error": 0.009185,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "bark_oak_smooth",
+      "category": "bark",
+      "material_class": "bark",
+      "notes": "Sunlit main stem between the crossing twigs and the branch join: smooth orange-brown bark with fine vertical fissures, no overlapping leaves. Both silhouettes visible; unwrapped as a cylinder. Source strip about 125 px wide. Small flattening radius so the twig shadows crossing the stem do not become dark smudges.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.517,
+            0.447
+          ],
+          [
+            0.582,
+            0.447
+          ],
+          [
+            0.605,
+            0.548
+          ],
+          [
+            0.537,
+            0.548
+          ]
+        ],
+        "native_pixels": [
+          131.4,
+          263.9
+        ],
+        "cylinder_unwrap": true,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          537,
+          792
+        ],
+        "delight_sigma_px": 53.7
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.35,
+        "tile_width_m": 3.637,
+        "texels_per_metre": 1126.0,
+        "source_texels_per_metre": 375.4,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.88 base for class 'bark', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "oak_multistem_sunset/bark/bark_oak_smooth_diff_4k.jpg",
+          "bytes": 2632411,
+          "sha256": "4cc47254fe18baba48863e22afd0ee9dc7402aadffc357547b83d1bd7b623a24",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "oak_multistem_sunset/bark/bark_oak_smooth_nor_gl_4k.jpg",
+          "bytes": 3399828,
+          "sha256": "9d6a6f952e202089cd0e2c74e90942cd93ecfc234898687ea3e735a13fa0ff72",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "oak_multistem_sunset/bark/bark_oak_smooth_rough_4k.jpg",
+          "bytes": 666968,
+          "sha256": "5be8fc7d028abc61eb1d4d9110d4b178c7638da154d1215cc142b8398d640570",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "oak_multistem_sunset/bark/bark_oak_smooth_height_4k.jpg",
+          "bytes": 1227562,
+          "sha256": "f701ff2046dec4da9c454b4e87555445205428f5e1e844dfea49906fc01b0378",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 34
+    },
+    {
+      "id": "canopy_oak_lichen",
+      "category": "greenery",
+      "material_class": "leaves",
+      "notes": "Sunlit oak canopy with lichen-crusted twigs; shaded gaps remain in the tile.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.02,
+            0.02
+          ],
+          [
+            0.44,
+            0.02
+          ],
+          [
+            0.44,
+            0.22
+          ],
+          [
+            0.02,
+            0.22
+          ]
+        ],
+        "native_pixels": [
+          811.4,
+          515.2
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 2.692,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          2185,
+          1387
+        ],
+        "delight_sigma_px": 416.1
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 1.6,
+        "tile_width_m": 3.0,
+        "texels_per_metre": 1365.0,
+        "source_texels_per_metre": 507.2,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.7 base for class 'leaves', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "oak_multistem_sunset/greenery/canopy_oak_lichen_diff_4k.jpg",
+          "bytes": 3601924,
+          "sha256": "eb9085ea42295484fd5cded22d0b559ce52d086db26da4f7f95a53b2af196699",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "oak_multistem_sunset/greenery/canopy_oak_lichen_nor_gl_4k.jpg",
+          "bytes": 2499183,
+          "sha256": "33afffa4ed2ba260335d6cf58cc847cc6b0b0367f9a41ffa345eac3420377c5b",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "oak_multistem_sunset/greenery/canopy_oak_lichen_rough_4k.jpg",
+          "bytes": 624597,
+          "sha256": "36c24abe3790b2f715ab144d5df4f15f0e15d7419ed8f03949c2659d577ec376",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "oak_multistem_sunset/greenery/canopy_oak_lichen_height_4k.jpg",
+          "bytes": 1151025,
+          "sha256": "660f2256605a7a067a76d57e40e23054df55f6c69940f0dc989e5dc38f355568",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 64
+    },
+    {
+      "id": "hazel_foliage",
+      "category": "greenery",
+      "material_class": "leaves",
+      "notes": "Dense small-leaved understorey foliage in the column right of the stems, part sunlit; a narrow strip (about 210 px) chosen to exclude the bark.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.885,
+            0.28
+          ],
+          [
+            0.995,
+            0.28
+          ],
+          [
+            0.995,
+            0.72
+          ],
+          [
+            0.885,
+            0.72
+          ]
+        ],
+        "native_pixels": [
+          212.5,
+          1133.0
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          638,
+          3400
+        ],
+        "delight_sigma_px": 191.4
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.6,
+        "tile_width_m": 3.855,
+        "texels_per_metre": 1063.0,
+        "source_texels_per_metre": 354.2,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.7 base for class 'leaves', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "oak_multistem_sunset/greenery/hazel_foliage_diff_4k.jpg",
+          "bytes": 2984318,
+          "sha256": "7addc87028f7de7f5d28bbdfb54d9699ce27a223490f98e480f06efbce48843d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "oak_multistem_sunset/greenery/hazel_foliage_nor_gl_4k.jpg",
+          "bytes": 2243137,
+          "sha256": "dd4800c5bdcd12688708587c6f64fb3f6df9af529a40120d72e5e781e9977cc3",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "oak_multistem_sunset/greenery/hazel_foliage_rough_4k.jpg",
+          "bytes": 662861,
+          "sha256": "1e1e3f5907409dcc69908a26b56ee6d51a33c8496d966a7f8b1723414f348533",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "oak_multistem_sunset/greenery/hazel_foliage_height_4k.jpg",
+          "bytes": 1051560,
+          "sha256": "b94ed16c68d9b8dd4e4a71219b63deb002202002ff6276cd4ad5220cad758586",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 96
+    },
+    {
+      "id": "mown_grass_leaves",
+      "category": "ground",
+      "material_class": "dry_grass",
+      "notes": "Mown dry grass with fallen oak leaves in low sun, moderately oblique; stretched vertically.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.02,
+            0.81
+          ],
+          [
+            0.98,
+            0.81
+          ],
+          [
+            0.98,
+            0.995
+          ],
+          [
+            0.02,
+            0.995
+          ]
+        ],
+        "native_pixels": [
+          1855.0,
+          476.6
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 1.842,
+        "stretch_y": 2.0,
+        "rectified_pixels": [
+          3417,
+          1756
+        ],
+        "delight_sigma_px": 526.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 3.5,
+        "tile_width_m": 4.196,
+        "texels_per_metre": 976.3,
+        "source_texels_per_metre": 529.9,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.85 base for class 'dry_grass', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "oak_multistem_sunset/ground/mown_grass_leaves_diff_4k.jpg",
+          "bytes": 4082221,
+          "sha256": "d7fc00b22df5ebd709e07509af825d6ee4e111bbcbc258894ace106ece9705cf",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "oak_multistem_sunset/ground/mown_grass_leaves_nor_gl_4k.jpg",
+          "bytes": 2750112,
+          "sha256": "17986f4060c2f926e2489dc1d5492cf69a161cd5bf3af51ff3a3e6e00c1053f5",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "oak_multistem_sunset/ground/mown_grass_leaves_rough_4k.jpg",
+          "bytes": 674902,
+          "sha256": "8ad08647c7a9ae4f41e3fa69df15a98180e3409c91016e095523f6fbd114258d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "oak_multistem_sunset/ground/mown_grass_leaves_height_4k.jpg",
+          "bytes": 1314007,
+          "sha256": "b334f416a05ad1919533bf0dcd8a660123a0466a87be3185f2bdc9a59e2e5db5",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 131
+    }
+  ],
+  "files": {
+    "lighting_json": {
+      "path": "oak_multistem_sunset/lighting/lighting_preset.json",
+      "bytes": 2779,
+      "sha256": "cf14aec85073e28536acbcb597683b7a425b5369c5382d0cd2020bd3d52f4a10"
+    },
+    "preset_snippet": {
+      "path": "oak_multistem_sunset/lighting/preset_snippet.js",
+      "bytes": 351,
+      "sha256": "f4b1005c26ad7c9fb55a7d7af87fcf0824190ab2452d63ceae06560551374ce1"
+    },
+    "mood_json": {
+      "path": "oak_multistem_sunset/mood/mood.json",
+      "bytes": 3517,
+      "sha256": "5439d59e22225e886e24bc0388ce31641f9e3edde1f5c11e4af13752d4310343"
+    },
+    "grade_cube": {
+      "path": "oak_multistem_sunset/mood/grade_33.cube",
+      "bytes": 970500,
+      "sha256": "ad3b1bb3bad9e86fec149f9b0306a869fb4ec112456739964ee7dc9f77769c58"
+    },
+    "sheet": {
+      "path": "oak_multistem_sunset/oak_multistem_sunset_sheet_4k.jpg",
+      "bytes": 1803624,
+      "sha256": "c0dc6a41c111ef2127b9e94a1d26af40706e14d9886af094c62aba84624aafe6",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

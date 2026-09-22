@@ -1,0 +1,99 @@
+{
+  "packs": {
+    "oak_lichen_evening": {
+      "title": "Lichen-crusted oak in low evening sun over dry pasture, clear sky",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/oak_lichen_evening/oak_lichen_evening_manifest.json",
+      "source": "asset_packs/_sources/oak_lichen_evening.jpg",
+      "source_sha256": "a41f37cd4138baf12ca279c18ea6416c415c9b97ebca471914f1445d23e7f960",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "bark/bark_oak_lichen",
+        "greenery/hedgerow_scrub",
+        "ground/pasture_dry_grass"
+      ],
+      "files": 19
+    },
+    "ivy_bound_trunk_canopy": {
+      "title": "Ivy-rootlet-bound trunk under a bright summer canopy",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/ivy_bound_trunk_canopy/ivy_bound_trunk_canopy_manifest.json",
+      "source": "asset_packs/_sources/ivy_bound_trunk_canopy.jpg",
+      "source_sha256": "3fbcf24ce506c0f1e4b321b5b59ddda92b8087cc096d125adc26500097bc3b4f",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "bark/bark_ivy_rootlets",
+        "greenery/canopy_backlit",
+        "greenery/understorey_dense",
+        "ground/path_gravel"
+      ],
+      "files": 23
+    },
+    "kamikochi_taisho_dusk": {
+      "title": "Bare-tree valley floor at dusk near Taisho pond, Kamikochi (analysis only)",
+      "status": "MEASUREMENTS ONLY. Pixel-derived textures withheld: the source is a watermarked licensed stock preview.",
+      "manifest": "asset_packs/kamikochi_taisho_dusk/kamikochi_taisho_dusk_manifest.json",
+      "source": null,
+      "source_sha256": "7e6e43d866c292bb75c78914d452d2a0878734cb1d7d505487bac83fae3eaedb",
+      "redistribution": "withheld",
+      "tile_size": 4096,
+      "materials": [],
+      "files": 6
+    },
+    "aokigahara_moss_print": {
+      "title": "Moss-carpeted lava floor and twisted conifer trunks (framed print)",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/aokigahara_moss_print/aokigahara_moss_print_manifest.json",
+      "source": "asset_packs/_sources/aokigahara_moss_print.jpg",
+      "source_sha256": "25f4eb54333ba7378e752dc1127becccb855d711712ae893f9df2e40e13ab8ac",
+      "redistribution": "owner_supplied_print",
+      "tile_size": 4096,
+      "materials": [
+        "bark/bark_pale_trunk",
+        "bark/bark_moss_log",
+        "greenery/moss_carpet",
+        "ground/forest_floor"
+      ],
+      "files": 22
+    },
+    "park_conifer_dapple": {
+      "title": "Park conifers with dark furrowed bark in dappled afternoon sun over lawn",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/park_conifer_dapple/park_conifer_dapple_manifest.json",
+      "source": "asset_packs/_sources/park_conifer_dapple.jpg",
+      "source_sha256": "642160bbacf7790e8d15672705d91d3afb2ff3add201b956ca9b5a69cc03938a",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "bark/bark_dark_furrowed",
+        "greenery/conifer_sprays",
+        "ground/lawn_grass",
+        "ground/needle_litter"
+      ],
+      "files": 22
+    },
+    "oak_multistem_sunset": {
+      "title": "Multi-stemmed oak with smooth sunlit bark over mown grass, low evening sun",
+      "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+      "manifest": "asset_packs/oak_multistem_sunset/oak_multistem_sunset_manifest.json",
+      "source": "asset_packs/_sources/oak_multistem_sunset.jpg",
+      "source_sha256": "04804c25ce4885780651ccc0eacd2535556cd6cc9165c8f78dd4ce06aea86117",
+      "redistribution": "owner_supplied",
+      "tile_size": 4096,
+      "materials": [
+        "bark/bark_oak_smooth",
+        "greenery/canopy_oak_lichen",
+        "greenery/hazel_foliage",
+        "ground/mown_grass_leaves"
+      ],
+      "files": 21
+    }
+  },
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "config": "construction_code_v2/asset_packs_config.json",
+  "config_sha256": "0ecda5f10b52564194909a325fdbf4a02fba20013a6ccf6873038766064b8cd3",
+  "generated": "2026-09-22",
+  "schemaVersion": 1
+}

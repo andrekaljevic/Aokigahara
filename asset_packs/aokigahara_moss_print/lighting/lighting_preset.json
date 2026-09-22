@@ -1,0 +1,69 @@
+{
+  "preset": {
+    "label": "Moss-carpeted lava floor and twisted conifer trunks (framed print) (photo-derived)",
+    "sun": 3.409,
+    "hemi": 1.313,
+    "hemiSky": "0xdac4ab",
+    "hemiGround": "0x3f2f16",
+    "turb": 3.541,
+    "ray": 1.35,
+    "mie": 0.004005,
+    "fog": "0xaf906f",
+    "exposure": 0.9459
+  },
+  "measurements": {
+    "probe_pixels": 417312,
+    "lit_fraction": 0.3,
+    "split_method": "Otsu on log illumination (blur sigma 37 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+    "lit_mean_linear": [
+      0.4907,
+      0.2619,
+      0.118
+    ],
+    "shade_mean_linear": [
+      0.1311,
+      0.066,
+      0.02999
+    ],
+    "key_to_fill_luminance_ratio": 3.886,
+    "direct_over_ambient": 2.886,
+    "classified_as": "directional",
+    "direct_light_tint_raw": [
+      1.0,
+      0.5446,
+      0.2447
+    ],
+    "direct_light_tint_albedo_cancelled": [
+      1.0,
+      0.8498,
+      0.6182
+    ],
+    "direct_light_tint_hex": "#ffedce",
+    "direct_light_cct_mccamy_K": 5039,
+    "ambient_tint_basis": "visible sky mean",
+    "ground_probe_mean_linear": [
+      0.1835,
+      0.09644,
+      0.02257
+    ],
+    "fog_probe_mean_srgb": [
+      0.4743,
+      0.3905,
+      0.301
+    ],
+    "image_median_luma": 0.4265,
+    "sun_elevation_deg": 24,
+    "sun_elevation_basis": "low warm side light on the trunks, long low-angle rays across the floor"
+  },
+  "derivation": {
+    "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+    "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+    "hemiSky": "visible sky mean, luma matched to the existing presets",
+    "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+    "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+    "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+    "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+    "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+  },
+  "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+}

@@ -1,0 +1,774 @@
+{
+  "pack": "aokigahara_moss_print",
+  "title": "Moss-carpeted lava floor and twisted conifer trunks (framed print)",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "3b3c9f5fea168ab148b1ca6365aea0118ebd847cb46d9ad91376e4eee6249489",
+  "tile_size": 4096,
+  "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+  "source": {
+    "file": "aokigahara_moss_print.jpg",
+    "bytes": 2130878,
+    "sha256": "25f4eb54333ba7378e752dc1127becccb855d711712ae893f9df2e40e13ab8ac",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "55b62464-image.jpg",
+    "redistribution": "owner_supplied_print",
+    "rights_note": "Photograph of a framed print supplied by the repository owner. Authorship of the printed photograph was not stated; confirm rights before public redistribution. Colour is limited by the print, the room light and reflections on the glazing.",
+    "committed_copy": "asset_packs/_sources/aokigahara_moss_print.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 0
+  },
+  "sun_estimate": {
+    "elevation_deg": 24,
+    "basis": "low warm side light on the trunks, long low-angle rays across the floor"
+  },
+  "analysis": "analysis restricted to the rectified print interior (analysis_quad)",
+  "sky": {
+    "status": "no sky visible; sky_proxy = brightest 20% of the canopy-gap region, used only for hemiSky tint",
+    "mean_srgb": [
+      0.8504,
+      0.7639,
+      0.6656
+    ],
+    "mean_hex": "#d9c3aa",
+    "pixel_count": 125917
+  },
+  "lighting": {
+    "preset": {
+      "label": "Moss-carpeted lava floor and twisted conifer trunks (framed print) (photo-derived)",
+      "sun": 3.409,
+      "hemi": 1.313,
+      "hemiSky": "0xdac4ab",
+      "hemiGround": "0x3f2f16",
+      "turb": 3.541,
+      "ray": 1.35,
+      "mie": 0.004005,
+      "fog": "0xaf906f",
+      "exposure": 0.9459
+    },
+    "measurements": {
+      "probe_pixels": 417312,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 37 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.4907,
+        0.2619,
+        0.118
+      ],
+      "shade_mean_linear": [
+        0.1311,
+        0.066,
+        0.02999
+      ],
+      "key_to_fill_luminance_ratio": 3.886,
+      "direct_over_ambient": 2.886,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.5446,
+        0.2447
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        1.0,
+        0.8498,
+        0.6182
+      ],
+      "direct_light_tint_hex": "#ffedce",
+      "direct_light_cct_mccamy_K": 5039,
+      "ambient_tint_basis": "visible sky mean",
+      "ground_probe_mean_linear": [
+        0.1835,
+        0.09644,
+        0.02257
+      ],
+      "fog_probe_mean_srgb": [
+        0.4743,
+        0.3905,
+        0.301
+      ],
+      "image_median_luma": 0.4265,
+      "sun_elevation_deg": 24,
+      "sun_elevation_basis": "low warm side light on the trunks, long low-angle rays across the floor"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "visible sky mean, luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#412e1b",
+        "srgb": [
+          0.2537,
+          0.1811,
+          0.1055
+        ],
+        "linear": [
+          0.05239,
+          0.02752,
+          0.01089
+        ],
+        "weight": 0.2423,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#20160d",
+        "srgb": [
+          0.1271,
+          0.08459,
+          0.0521
+        ],
+        "linear": [
+          0.01475,
+          0.007795,
+          0.004128
+        ],
+        "weight": 0.2268,
+        "role": "deep shadow"
+      },
+      {
+        "hex": "#60482a",
+        "srgb": [
+          0.3773,
+          0.2811,
+          0.1658
+        ],
+        "linear": [
+          0.1175,
+          0.06423,
+          0.02343
+        ],
+        "weight": 0.2019,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#7c6548",
+        "srgb": [
+          0.4868,
+          0.3946,
+          0.2814
+        ],
+        "linear": [
+          0.202,
+          0.1291,
+          0.06439
+        ],
+        "weight": 0.1182,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#a58e73",
+        "srgb": [
+          0.647,
+          0.5577,
+          0.4496
+        ],
+        "linear": [
+          0.3762,
+          0.2714,
+          0.1703
+        ],
+        "weight": 0.06464,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#ab6e27",
+        "srgb": [
+          0.6694,
+          0.4302,
+          0.1546
+        ],
+        "linear": [
+          0.4056,
+          0.1551,
+          0.02067
+        ],
+        "weight": 0.05288,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#d9c6b0",
+        "srgb": [
+          0.8524,
+          0.7772,
+          0.6906
+        ],
+        "linear": [
+          0.6965,
+          0.566,
+          0.4347
+        ],
+        "weight": 0.04918,
+        "role": "neutral"
+      },
+      {
+        "hex": "#df9d54",
+        "srgb": [
+          0.8756,
+          0.6164,
+          0.3286
+        ],
+        "linear": [
+          0.74,
+          0.338,
+          0.08822
+        ],
+        "weight": 0.04423,
+        "role": "bark / earth / litter"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.02964,
+        "p2": 0.0449,
+        "p10": 0.08753,
+        "p25": 0.15,
+        "p50": 0.2561,
+        "p75": 0.4098,
+        "p90": 0.6061,
+        "p98": 0.797,
+        "p99_5": 0.8887
+      },
+      "luma_mean": 0.3026,
+      "luma_std": 0.1972,
+      "mean_saturation": 0.5223,
+      "hue_histogram_12": [
+        0.4644,
+        0.5309,
+        0.002134,
+        2.451e-07,
+        0.0,
+        0.0,
+        0.0,
+        4.361e-07,
+        2.011e-05,
+        5.486e-05,
+        0.0002537,
+        0.00215
+      ],
+      "warm_cool_bias": 0.1919,
+      "shadow_tint": [
+        0.03565,
+        -0.00692,
+        -0.03643
+      ],
+      "highlight_tint": [
+        0.1249,
+        -0.01804,
+        -0.1891
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.02964,
+        "white": 0.8887,
+        "gamma": 1.537,
+        "saturation": 1.25,
+        "shadow_tint": [
+          0.03565,
+          -0.00692,
+          -0.03643
+        ],
+        "highlight_tint": [
+          0.1249,
+          -0.01804,
+          -0.1891
+        ]
+      },
+      "lut_roundtrip_max_error": 0.009032,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "bark_pale_trunk",
+      "category": "bark",
+      "material_class": "bark",
+      "notes": "Pale, smooth-barked leaning trunk. Source strip is only about 130 px wide: low detail, upscaled before synthesis.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.565,
+            0.09
+          ],
+          [
+            0.62,
+            0.09
+          ],
+          [
+            0.6,
+            0.42
+          ],
+          [
+            0.545,
+            0.42
+          ]
+        ],
+        "native_pixels": [
+          106.3,
+          851.0
+        ],
+        "cylinder_unwrap": true,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          434,
+          2553
+        ],
+        "delight_sigma_px": 95.48
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.28,
+        "tile_width_m": 3.598,
+        "texels_per_metre": 1138.0,
+        "source_texels_per_metre": 379.5,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.88 base for class 'bark', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "aokigahara_moss_print/bark/bark_pale_trunk_diff_4k.jpg",
+          "bytes": 3487615,
+          "sha256": "10dcfa5a881ae3734e24e3ce91567697534d3fc142087b7489354adb973ecd23",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "aokigahara_moss_print/bark/bark_pale_trunk_nor_gl_4k.jpg",
+          "bytes": 3208007,
+          "sha256": "190fe46537db5c3ff4f72148c387210a4c32a18cb5fd25a7737fe744ae40f18c",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "aokigahara_moss_print/bark/bark_pale_trunk_rough_4k.jpg",
+          "bytes": 648561,
+          "sha256": "364b8bb5b04f0fe54f7a5d90ed6e2854d4a15255cc3f5c0fcff0ee33e8757da8",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "aokigahara_moss_print/bark/bark_pale_trunk_height_4k.jpg",
+          "bytes": 1206627,
+          "sha256": "409ece2cd440bf5a40a647bfa9c45910fe774f8fe8268eef099b06b383f6a323",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 55
+    },
+    {
+      "id": "bark_moss_log",
+      "category": "bark",
+      "material_class": "mosslog",
+      "notes": "Moss-covered fallen log surface. Not mirrored during synthesis: the structure runs diagonally.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.44,
+            0.72
+          ],
+          [
+            0.72,
+            0.72
+          ],
+          [
+            0.72,
+            0.88
+          ],
+          [
+            0.44,
+            0.88
+          ]
+        ],
+        "native_pixels": [
+          541.0,
+          412.2
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1623,
+          1236
+        ],
+        "delight_sigma_px": 309.0
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); no mirroring (oriented structure)",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": false,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.9,
+        "tile_width_m": 2.272,
+        "texels_per_metre": 1803.0,
+        "source_texels_per_metre": 601.1,
+        "intended_tile_m": 1.5,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.93 base for class 'mosslog', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "aokigahara_moss_print/bark/bark_moss_log_diff_4k.jpg",
+          "bytes": 2418609,
+          "sha256": "5898709856a59d313436dd83364c8a0062cc19085251d1f861ecff6b17c8512d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "aokigahara_moss_print/bark/bark_moss_log_nor_gl_4k.jpg",
+          "bytes": 2918899,
+          "sha256": "a42768206cf702b4c10f5c974f2a073bdc7bcfde98f6182057c25dda9ce67c00",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "aokigahara_moss_print/bark/bark_moss_log_rough_4k.jpg",
+          "bytes": 548990,
+          "sha256": "3eeb1f349a31820501a33996469888754640d5e863ee6786d3f25b4a56f8bf04",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "aokigahara_moss_print/bark/bark_moss_log_height_4k.jpg",
+          "bytes": 1173565,
+          "sha256": "24438b82b6d6fe25ee379e9703ed9a9a8d3e07d504d741b549f720f9766b17b9",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 37
+    },
+    {
+      "id": "moss_carpet",
+      "category": "greenery",
+      "material_class": "moss",
+      "notes": "Moss cushions over lava with surface roots, oblique view.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.16,
+            0.62
+          ],
+          [
+            0.44,
+            0.62
+          ],
+          [
+            0.44,
+            0.86
+          ],
+          [
+            0.16,
+            0.86
+          ]
+        ],
+        "native_pixels": [
+          541.0,
+          618.2
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1623,
+          1855
+        ],
+        "delight_sigma_px": 405.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 1.6,
+        "tile_width_m": 4.038,
+        "texels_per_metre": 1014.0,
+        "source_texels_per_metre": 338.1,
+        "intended_tile_m": 1.5,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.93 base for class 'moss', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "aokigahara_moss_print/greenery/moss_carpet_diff_4k.jpg",
+          "bytes": 2742811,
+          "sha256": "ff44fa02d9c6ecc3f868f558f0190876e7b7459b2b009c4f9ffd0a72b8566833",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "aokigahara_moss_print/greenery/moss_carpet_nor_gl_4k.jpg",
+          "bytes": 2763457,
+          "sha256": "9d8a0a5ea4bec37214c020846ca2935259c354ef5dcd2d368163082a9e8df05c",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "aokigahara_moss_print/greenery/moss_carpet_rough_4k.jpg",
+          "bytes": 524048,
+          "sha256": "ed4f656f95c553bcffc22371ae37ac9d0241abddf7e533a83de0ae1c3ce4f5c4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "aokigahara_moss_print/greenery/moss_carpet_height_4k.jpg",
+          "bytes": 1119860,
+          "sha256": "9f286a3a389a10af5e62cf56aeff3951556566c8151998e9ec2bbc076afbb58d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 61
+    },
+    {
+      "id": "forest_floor",
+      "category": "ground",
+      "material_class": "litter",
+      "notes": "Sunlit moss, litter and fallen branches; oblique view stretched vertically. Not mirrored during synthesis: the structure runs diagonally.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.3,
+            0.5
+          ],
+          [
+            0.62,
+            0.5
+          ],
+          [
+            0.62,
+            0.7
+          ],
+          [
+            0.3,
+            0.7
+          ]
+        ],
+        "native_pixels": [
+          618.2,
+          515.2
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.5,
+        "rectified_pixels": [
+          1855,
+          2318
+        ],
+        "delight_sigma_px": 463.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); no mirroring (oriented structure)",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": false,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 2.5,
+        "tile_width_m": 5.521,
+        "texels_per_metre": 741.9,
+        "source_texels_per_metre": 247.3,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.9 base for class 'litter', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "aokigahara_moss_print/ground/forest_floor_diff_4k.jpg",
+          "bytes": 3296281,
+          "sha256": "272d712f87c6f5c491b64d5b1545f1c97665d3118626f3d8aea91ba0b6dcc595",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "aokigahara_moss_print/ground/forest_floor_nor_gl_4k.jpg",
+          "bytes": 3071278,
+          "sha256": "389c70bae7996755753949aa135669a995a845dd84fe1f50bbdfdc406ac3ce61",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "aokigahara_moss_print/ground/forest_floor_rough_4k.jpg",
+          "bytes": 577583,
+          "sha256": "3c0e9f2b4950bc98014bddee3e62aef1d51d99ca9fba19720445747ec6beb5c1",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "aokigahara_moss_print/ground/forest_floor_height_4k.jpg",
+          "bytes": 1259593,
+          "sha256": "4bf5a8eb5f19aa716d31011dcf67ff2657093b80c742b9b83f206ba3e01ceda4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 75
+    }
+  ],
+  "files": {
+    "sky_json": {
+      "path": "aokigahara_moss_print/sky/sky.json",
+      "bytes": 219,
+      "sha256": "04f51354e05db761541afa25694c90b4b1c12531015369f3f5f7a12cbae6d8e7"
+    },
+    "lighting_json": {
+      "path": "aokigahara_moss_print/lighting/lighting_preset.json",
+      "bytes": 2675,
+      "sha256": "08eaf147b5e501ca2acb5909e593cc28c9d41f23e30e202b535907c886257fea"
+    },
+    "preset_snippet": {
+      "path": "aokigahara_moss_print/lighting/preset_snippet.js",
+      "bytes": 351,
+      "sha256": "5a8df1526b18756411d1c8ee415a4a97f1bc6a844eb9af013ae482911ac2c19f"
+    },
+    "mood_json": {
+      "path": "aokigahara_moss_print/mood/mood.json",
+      "bytes": 3498,
+      "sha256": "bc6a2730fb34a5bb4ce92ff78ee9880916f61a26fd69131865e3837cb9f3f868"
+    },
+    "grade_cube": {
+      "path": "aokigahara_moss_print/mood/grade_33.cube",
+      "bytes": 970501,
+      "sha256": "0f82321f6aa8bf5f504a598444b14c270468133ba4b32e4971629f9bf0ac56d4"
+    },
+    "sheet": {
+      "path": "aokigahara_moss_print/aokigahara_moss_print_sheet_4k.jpg",
+      "bytes": 1723170,
+      "sha256": "e5044f7affb7c29392abe48ba249d46a3afdcb27c5df5d64bd8cfdf8f7421959",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

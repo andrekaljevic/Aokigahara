@@ -8,7 +8,8 @@ Checks, for every pack listed in asset_packs/PACKS_MANIFEST.json:
   - every albedo tile wraps seamlessly: the mean absolute difference across the wrap edges
     (last column against first column, last row against first row) is compared with the mean
     absolute difference between adjacent interior columns and rows; a ratio far above 1 means a
-    visible seam;
+    visible seam. Ratios only count when the excess is also at least ABSOLUTE_FLOOR grey levels:
+    on a very smooth tile a normal seam is a large ratio but an invisible difference;
   - no straight edge survives at the end of the quilting overlap bands: the mean difference at the
     column and row boundaries where each patch's overlap ends (step and overlap are read from the
     manifest) is compared with the tile's median boundary difference. A ratio well above 1 there is
@@ -25,8 +26,9 @@ from PIL import Image
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PACKS = os.path.join(REPO, 'asset_packs')
-SEAM_RATIO_LIMIT = 1.6
-BAND_END_RATIO_LIMIT = 1.4
+SEAM_RATIO_LIMIT = 1.6          # wrap edge relative to the mean interior boundary difference
+BAND_END_RATIO_LIMIT = 1.4      # overlap band ends relative to the median boundary difference
+ABSOLUTE_FLOOR = 1.5            # grey levels of 255: an excess below this is invisible, whatever the ratio
 
 def sha256(path):
     h = hashlib.sha256()
@@ -36,19 +38,23 @@ def sha256(path):
     return h.hexdigest()
 
 def seam_ratio(path, step=None, overlap=None):
-    """Returns (wrap ratio, band-end ratio). The band-end ratio is None when the quilting step and
+    """Returns (wrap ratio, wrap excess, band-end ratio, band-end excess); excesses are in grey
+    levels above the interior level. The band-end values are None when the quilting step and
     overlap are unknown."""
     a = np.asarray(Image.open(path).convert('L'), dtype=np.float32)
     col = np.abs(a[:, 1:] - a[:, :-1]).mean(0)
     row = np.abs(a[1:, :] - a[:-1, :]).mean(1)
     wrap = 0.5 * (np.abs(a[:, -1] - a[:, 0]).mean() + np.abs(a[-1, :] - a[0, :]).mean())
     interior = 0.5 * (col.mean() + row.mean())
-    band_end = None
+    band_end = band_excess = None
     if step and overlap and a.shape[0] % step == 0:
         n = a.shape[0] // step
         idx = [k * step + overlap - 1 for k in range(1, n)]
-        band_end = 0.5 * (col[idx].mean() / max(np.median(col), 1e-6) + row[idx].mean() / max(np.median(row), 1e-6))
-    return float(wrap / max(interior, 1e-6)), (None if band_end is None else float(band_end))
+        medc, medr = max(float(np.median(col)), 1e-6), max(float(np.median(row)), 1e-6)
+        band_end = 0.5 * (col[idx].mean() / medc + row[idx].mean() / medr)
+        band_excess = 0.5 * ((col[idx].mean() - medc) + (row[idx].mean() - medr))
+    return (float(wrap / max(interior, 1e-6)), float(wrap - interior),
+            (None if band_end is None else float(band_end)), (None if band_excess is None else float(band_excess)))
 
 def main():
     ap = argparse.ArgumentParser()
@@ -106,12 +112,12 @@ def main():
             diff = mat['files'].get('diff')
             if diff:
                 syn = mat.get('synthesis', {})
-                r, b = seam_ratio(os.path.join(PACKS, diff['path']), syn.get('step'), syn.get('overlap'))
+                r, re, b, be = seam_ratio(os.path.join(PACKS, diff['path']), syn.get('step'), syn.get('overlap'))
                 seams.append((f'{pack_id}/{mat["id"]}', r, b))
-                if r > SEAM_RATIO_LIMIT:
-                    fail(f'{pack_id}/{mat["id"]}: wrap seam ratio {r:.2f} exceeds {SEAM_RATIO_LIMIT}')
-                if b is not None and b > BAND_END_RATIO_LIMIT:
-                    fail(f'{pack_id}/{mat["id"]}: overlap band-end ratio {b:.2f} exceeds {BAND_END_RATIO_LIMIT}')
+                if r > SEAM_RATIO_LIMIT and re >= ABSOLUTE_FLOOR:
+                    fail(f'{pack_id}/{mat["id"]}: wrap seam ratio {r:.2f} exceeds {SEAM_RATIO_LIMIT} ({re:.1f} grey levels)')
+                if b is not None and b > BAND_END_RATIO_LIMIT and be >= ABSOLUTE_FLOOR:
+                    fail(f'{pack_id}/{mat["id"]}: overlap band-end ratio {b:.2f} exceeds {BAND_END_RATIO_LIMIT} ({be:.1f} grey levels)')
         print(f'{pack_id:26} {len(m["materials"])} texture sets, {len(records)} files, '
               f'{"withheld" if withheld else "textures"}')
     if seams:

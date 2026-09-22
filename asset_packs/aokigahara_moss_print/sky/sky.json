@@ -1,0 +1,10 @@
+{
+  "status": "no sky visible; sky_proxy = brightest 20% of the canopy-gap region, used only for hemiSky tint",
+  "mean_srgb": [
+    0.8504,
+    0.7639,
+    0.6656
+  ],
+  "mean_hex": "#d9c3aa",
+  "pixel_count": 125917
+}

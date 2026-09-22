@@ -1,0 +1,339 @@
+{
+  "pack": "kamikochi_taisho_dusk",
+  "title": "Bare-tree valley floor at dusk near Taisho pond, Kamikochi (analysis only)",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "3b3c9f5fea168ab148b1ca6365aea0118ebd847cb46d9ad91376e4eee6249489",
+  "tile_size": 4096,
+  "status": "MEASUREMENTS ONLY. Pixel-derived textures withheld: the source is a watermarked licensed stock preview.",
+  "source": {
+    "file": "kamikochi_taisho_dusk.jpg",
+    "bytes": 235685,
+    "sha256": "7e6e43d866c292bb75c78914d452d2a0878734cb1d7d505487bac83fae3eaedb",
+    "pixels": [
+      1024,
+      682
+    ],
+    "embedded_profile": null,
+    "colour_handling": "no embedded ICC profile: pixel values taken as sRGB",
+    "upload_name": "f4f3bf1d-image.jpg",
+    "redistribution": "withheld",
+    "rights_note": "Watermarked iStock preview (ID 1191700678, credit PJjaruwan). No pixel-derived texture is generated or committed. Only measurements (lighting, sky parameters, palette, tonal statistics) are recorded. Supply a licensed original and run with --include-withheld to build textures locally.",
+    "committed_copy": null,
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 24,
+    "pitch_deg": 2
+  },
+  "sun_estimate": {
+    "elevation_deg": 5,
+    "basis": "sunset light on the far slope only, valley floor in shade"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": {
+    "status": "no usable sky pixels (found 121, 0.05% of the sky ROI)",
+    "pixel_count": 121
+  },
+  "lighting": {
+    "preset": {
+      "label": "Bare-tree valley floor at dusk near Taisho pond, Kamikochi (analysis only) (photo-derived)",
+      "sun": 3.6,
+      "hemi": 1.225,
+      "hemiSky": "0xc2c9c2",
+      "hemiGround": "0x34302d",
+      "turb": 2.8,
+      "ray": 1.4,
+      "mie": 0.0035,
+      "fog": "0xa79173",
+      "exposure": 0.85
+    },
+    "measurements": {
+      "probe_pixels": 160788,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 36 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.3661,
+        0.326,
+        0.2766
+      ],
+      "shade_mean_linear": [
+        0.07392,
+        0.06967,
+        0.05586
+      ],
+      "key_to_fill_luminance_ratio": 4.757,
+      "direct_over_ambient": 3.757,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.8773,
+        0.7555
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.8002,
+        0.8193,
+        1.0
+      ],
+      "direct_light_tint_hex": "#e7eaff",
+      "direct_light_cct_mccamy_K": 7708,
+      "ambient_tint_basis": "assumed blue-sky shade tint (0.80, 0.88, 1.00) because no sky is visible",
+      "ground_probe_mean_linear": [
+        0.06287,
+        0.0543,
+        0.04832
+      ],
+      "fog_probe_mean_srgb": [
+        0.4273,
+        0.3713,
+        0.2945
+      ],
+      "image_median_luma": 0.2502,
+      "sun_elevation_deg": 5,
+      "sun_elevation_basis": "sunset light on the far slope only, valley floor in shade"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "shade/direct tint of the probe surface (albedo cancels), luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#34302a",
+        "srgb": [
+          0.2041,
+          0.187,
+          0.1661
+        ],
+        "linear": [
+          0.0344,
+          0.02921,
+          0.02351
+        ],
+        "weight": 0.2691,
+        "role": "neutral"
+      },
+      {
+        "hex": "#47433f",
+        "srgb": [
+          0.277,
+          0.2628,
+          0.2485
+        ],
+        "linear": [
+          0.06238,
+          0.05614,
+          0.05029
+        ],
+        "weight": 0.2395,
+        "role": "neutral"
+      },
+      {
+        "hex": "#1e1a16",
+        "srgb": [
+          0.1179,
+          0.1003,
+          0.08684
+        ],
+        "linear": [
+          0.01303,
+          0.01008,
+          0.0081
+        ],
+        "weight": 0.1644,
+        "role": "deep shadow"
+      },
+      {
+        "hex": "#5e5957",
+        "srgb": [
+          0.3681,
+          0.3494,
+          0.3416
+        ],
+        "linear": [
+          0.1116,
+          0.1001,
+          0.09557
+        ],
+        "weight": 0.1379,
+        "role": "neutral"
+      },
+      {
+        "hex": "#887d73",
+        "srgb": [
+          0.5323,
+          0.4913,
+          0.4522
+        ],
+        "linear": [
+          0.2452,
+          0.2061,
+          0.1724
+        ],
+        "weight": 0.06765,
+        "role": "neutral"
+      },
+      {
+        "hex": "#eaece7",
+        "srgb": [
+          0.9195,
+          0.927,
+          0.9045
+        ],
+        "linear": [
+          0.8266,
+          0.842,
+          0.7964
+        ],
+        "weight": 0.04078,
+        "role": "highlight / sky white"
+      },
+      {
+        "hex": "#a7a7a7",
+        "srgb": [
+          0.6546,
+          0.6535,
+          0.6552
+        ],
+        "linear": [
+          0.3861,
+          0.3846,
+          0.3868
+        ],
+        "weight": 0.04034,
+        "role": "sky"
+      },
+      {
+        "hex": "#e4c58f",
+        "srgb": [
+          0.8927,
+          0.7711,
+          0.559
+        ],
+        "linear": [
+          0.773,
+          0.5559,
+          0.2728
+        ],
+        "weight": 0.04028,
+        "role": "bark / earth / litter"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.03724,
+        "p2": 0.06047,
+        "p10": 0.1179,
+        "p25": 0.1749,
+        "p50": 0.2468,
+        "p75": 0.3542,
+        "p90": 0.6483,
+        "p98": 0.939,
+        "p99_5": 0.9917
+      },
+      "luma_mean": 0.3091,
+      "luma_std": 0.211,
+      "mean_saturation": 0.2302,
+      "hue_histogram_12": [
+        0.2627,
+        0.408,
+        0.07013,
+        0.03099,
+        0.004658,
+        0.004255,
+        0.05392,
+        0.07156,
+        0.03448,
+        0.009083,
+        0.01396,
+        0.03622
+      ],
+      "warm_cool_bias": 0.04526,
+      "shadow_tint": [
+        0.01669,
+        -0.00362,
+        -0.0133
+      ],
+      "highlight_tint": [
+        0.03466,
+        -0.003632,
+        -0.06609
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.03724,
+        "white": 0.9917,
+        "gamma": 1.6,
+        "saturation": 0.8,
+        "shadow_tint": [
+          0.01669,
+          -0.00362,
+          -0.0133
+        ],
+        "highlight_tint": [
+          0.03466,
+          -0.003632,
+          -0.06609
+        ]
+      },
+      "lut_roundtrip_max_error": 0.006431,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [],
+  "files": {
+    "sky_json": {
+      "path": "kamikochi_taisho_dusk/sky/sky.json",
+      "bytes": 94,
+      "sha256": "84f90b3424d207216e4f27f6e465d39a19e886e82688a9608ac521086e800b7e"
+    },
+    "lighting_json": {
+      "path": "kamikochi_taisho_dusk/lighting/lighting_preset.json",
+      "bytes": 2758,
+      "sha256": "abd1938c29a60c977f478aa8f58ca75a8e32e705db70b7fb0a85b1e7d367aa33"
+    },
+    "preset_snippet": {
+      "path": "kamikochi_taisho_dusk/lighting/preset_snippet.js",
+      "bytes": 350,
+      "sha256": "dbcf461c3c39cd1cc48909178e0114469e91678da8e6a647a80fe26d0a780761"
+    },
+    "mood_json": {
+      "path": "kamikochi_taisho_dusk/mood/mood.json",
+      "bytes": 3421,
+      "sha256": "7087a46ac98db65408036cfa1d7712eee0beb142160d69ae782d5c7e6feb272a"
+    },
+    "grade_cube": {
+      "path": "kamikochi_taisho_dusk/mood/grade_33.cube",
+      "bytes": 970501,
+      "sha256": "a04fab0eed256a52a26d133c73ec1ed4e861683c25ac303186b06fb0eb3b735e"
+    },
+    "sheet": {
+      "path": "kamikochi_taisho_dusk/kamikochi_taisho_dusk_sheet_4k.jpg",
+      "bytes": 647632,
+      "sha256": "38e6f8a6e312794848ba62b01a9e0ac2175eed8135a572c69c77c9277a68a062",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

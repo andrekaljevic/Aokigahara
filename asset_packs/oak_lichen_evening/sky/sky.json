@@ -1,0 +1,93 @@
+{
+  "status": "fitted",
+  "pixel_count": 188698,
+  "roi_fraction": 0.09027,
+  "mean_srgb": [
+    0.7339,
+    0.86,
+    0.9574
+  ],
+  "mean_hex": "#bbdbf4",
+  "sampled_pixels": 600,
+  "elevation_bins_deg": {
+    "10..15": {
+      "n": 37,
+      "srgb": [
+        0.771,
+        0.8585,
+        0.931
+      ],
+      "hex": "#c5dbed"
+    },
+    "15..20": {
+      "n": 136,
+      "srgb": [
+        0.7719,
+        0.8614,
+        0.9383
+      ],
+      "hex": "#c5dcef"
+    },
+    "20..25": {
+      "n": 92,
+      "srgb": [
+        0.7597,
+        0.8668,
+        0.9533
+      ],
+      "hex": "#c2ddf3"
+    },
+    "25..30": {
+      "n": 121,
+      "srgb": [
+        0.7314,
+        0.8656,
+        0.9628
+      ],
+      "hex": "#bbddf6"
+    },
+    "30..35": {
+      "n": 154,
+      "srgb": [
+        0.698,
+        0.8569,
+        0.9713
+      ],
+      "hex": "#b2dbf8"
+    },
+    "35..40": {
+      "n": 60,
+      "srgb": [
+        0.6825,
+        0.8439,
+        0.9764
+      ],
+      "hex": "#aed7f9"
+    }
+  },
+  "elevation_range_deg": [
+    13.96,
+    39.46
+  ],
+  "fit": {
+    "loss": 0.0019842949128651218,
+    "turb": 13.490346221835226,
+    "ray": 0.6682841271767601,
+    "mie": 0.0026385650369993565,
+    "fit_exposure": 2.0655133813462427,
+    "sun_azimuth_rel_deg": 150,
+    "rms_srgb": 0.044545425274264944
+  },
+  "camera_model": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 6,
+    "focal_px": 1935.0
+  },
+  "notes": [
+    "The sun azimuth relative to the camera is unknown; it was fitted on a 30 degree grid.",
+    "fit_exposure absorbs the camera exposure and is not the preset exposure.",
+    "The dome image is rendered with the viewer sun azimuth (155 deg) and the pack sun elevation."
+  ],
+  "horizon_hex": "#ebeff1",
+  "zenith_hex": "#bbcfe1"
+}

@@ -1,0 +1,869 @@
+{
+  "pack": "ivy_bound_trunk_canopy",
+  "title": "Ivy-rootlet-bound trunk under a bright summer canopy",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "3b3c9f5fea168ab148b1ca6365aea0118ebd847cb46d9ad91376e4eee6249489",
+  "tile_size": 4096,
+  "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+  "source": {
+    "file": "ivy_bound_trunk_canopy.jpg",
+    "bytes": 3159313,
+    "sha256": "3fbcf24ce506c0f1e4b321b5b59ddda92b8087cc096d125adc26500097bc3b4f",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "e7ca7109-image.jpg",
+    "redistribution": "owner_supplied",
+    "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara.",
+    "committed_copy": "asset_packs/_sources/ivy_bound_trunk_canopy.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 55
+  },
+  "sun_estimate": {
+    "elevation_deg": 58,
+    "basis": "backlit canopy, no hard shadow on the trunk, near-midday summer light"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": {
+    "status": "fitted",
+    "pixel_count": 15451,
+    "roi_fraction": 0.004137,
+    "mean_srgb": [
+      0.6987,
+      0.8553,
+      0.9966
+    ],
+    "mean_hex": "#b2dafe",
+    "sampled_pixels": 600,
+    "elevation_bins_deg": {
+      "40..45": {
+        "n": 17,
+        "srgb": [
+          0.5742,
+          0.8171,
+          0.9984
+        ],
+        "hex": "#92d0ff"
+      },
+      "50..55": {
+        "n": 105,
+        "srgb": [
+          0.6957,
+          0.8818,
+          0.9922
+        ],
+        "hex": "#b1e1fd"
+      },
+      "55..60": {
+        "n": 330,
+        "srgb": [
+          0.687,
+          0.8593,
+          0.9971
+        ],
+        "hex": "#afdbfe"
+      },
+      "65..70": {
+        "n": 20,
+        "srgb": [
+          0.8145,
+          0.8961,
+          0.999
+        ],
+        "hex": "#d0e5ff"
+      },
+      "70..75": {
+        "n": 111,
+        "srgb": [
+          0.7236,
+          0.8173,
+          0.9983
+        ],
+        "hex": "#b9d0ff"
+      },
+      "75..80": {
+        "n": 12,
+        "srgb": [
+          0.7513,
+          0.8373,
+          0.999
+        ],
+        "hex": "#c0d6ff"
+      }
+    },
+    "elevation_range_deg": [
+      40.47,
+      85.77
+    ],
+    "fit": {
+      "loss": 0.006293236227719499,
+      "turb": 1.445230177479841,
+      "ray": 0.547973737008953,
+      "mie": 0.01179940705901149,
+      "fit_exposure": 1.3955103629378218,
+      "sun_azimuth_rel_deg": 180,
+      "rms_srgb": 0.0793299201292898
+    },
+    "camera_model": {
+      "focal_equiv_mm": 26,
+      "pitch_deg": 55,
+      "focal_px": 1935.0
+    },
+    "notes": [
+      "The sun azimuth relative to the camera is unknown; it was fitted on a 30 degree grid.",
+      "fit_exposure absorbs the camera exposure and is not the preset exposure.",
+      "The dome image is rendered with the viewer sun azimuth (155 deg) and the pack sun elevation."
+    ],
+    "horizon_hex": "#eff4f6",
+    "zenith_hex": "#d3e0eb"
+  },
+  "lighting": {
+    "preset": {
+      "label": "Ivy-rootlet-bound trunk under a bright summer canopy (photo-derived)",
+      "sun": 1.109,
+      "hemi": 1.66,
+      "hemiSky": "0xa7ccee",
+      "hemiGround": "0x353025",
+      "turb": 1.445,
+      "ray": 0.548,
+      "mie": 0.0118,
+      "fog": "0x869c6e",
+      "exposure": 0.8722
+    },
+    "measurements": {
+      "probe_pixels": 810000,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 87 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.238,
+        0.1753,
+        0.1379
+      ],
+      "shade_mean_linear": [
+        0.1376,
+        0.1007,
+        0.07474
+      ],
+      "key_to_fill_luminance_ratio": 1.743,
+      "direct_over_ambient": 0.7426,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.7435,
+        0.63
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        0.3876,
+        0.6194,
+        1.0
+      ],
+      "direct_light_tint_hex": "#a7ceff",
+      "direct_light_cct_mccamy_K": 14419,
+      "ambient_tint_basis": "visible sky mean",
+      "ground_probe_mean_linear": [
+        0.3478,
+        0.2868,
+        0.1657
+      ],
+      "fog_probe_mean_srgb": [
+        0.2474,
+        0.2864,
+        0.2027
+      ],
+      "image_median_luma": 0.3036,
+      "sun_elevation_deg": 58,
+      "sun_elevation_basis": "backlit canopy, no hard shadow on the trunk, near-midday summer light"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "visible sky mean, luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "fitted to the visible sky with the viewer Sky shader",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#404427",
+        "srgb": [
+          0.2529,
+          0.2675,
+          0.1515
+        ],
+        "linear": [
+          0.05203,
+          0.05817,
+          0.01995
+        ],
+        "weight": 0.2027,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#2a2d17",
+        "srgb": [
+          0.1634,
+          0.1763,
+          0.09121
+        ],
+        "linear": [
+          0.02284,
+          0.02619,
+          0.008712
+        ],
+        "weight": 0.1836,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#595b3d",
+        "srgb": [
+          0.3506,
+          0.3555,
+          0.2374
+        ],
+        "linear": [
+          0.1009,
+          0.1038,
+          0.04599
+        ],
+        "weight": 0.159,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#787657",
+        "srgb": [
+          0.4707,
+          0.4634,
+          0.3428
+        ],
+        "linear": [
+          0.1879,
+          0.1817,
+          0.09626
+        ],
+        "weight": 0.1241,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#101307",
+        "srgb": [
+          0.0634,
+          0.07337,
+          0.02836
+        ],
+        "linear": [
+          0.005251,
+          0.006375,
+          0.002195
+        ],
+        "weight": 0.1085,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#9b987a",
+        "srgb": [
+          0.6082,
+          0.5943,
+          0.4775
+        ],
+        "linear": [
+          0.3282,
+          0.3119,
+          0.1938
+        ],
+        "weight": 0.09858,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#c7c1a0",
+        "srgb": [
+          0.7799,
+          0.7577,
+          0.6289
+        ],
+        "linear": [
+          0.5703,
+          0.5346,
+          0.3534
+        ],
+        "weight": 0.07229,
+        "role": "neutral"
+      },
+      {
+        "hex": "#dae5ea",
+        "srgb": [
+          0.8532,
+          0.8989,
+          0.9176
+        ],
+        "linear": [
+          0.6979,
+          0.7853,
+          0.8227
+        ],
+        "weight": 0.05137,
+        "role": "highlight / sky white"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.008414,
+        "p2": 0.02805,
+        "p10": 0.1115,
+        "p25": 0.1914,
+        "p50": 0.3042,
+        "p75": 0.4913,
+        "p90": 0.7207,
+        "p98": 0.9195,
+        "p99_5": 0.9852
+      },
+      "luma_mean": 0.3607,
+      "luma_std": 0.2287,
+      "mean_saturation": 0.4081,
+      "hue_histogram_12": [
+        0.1831,
+        0.1066,
+        0.5817,
+        0.04488,
+        0.009778,
+        0.004509,
+        0.02933,
+        0.03723,
+        0.001885,
+        0.0001247,
+        9.01e-05,
+        0.0008395
+      ],
+      "warm_cool_bias": 0.09206,
+      "shadow_tint": [
+        -0.001551,
+        0.005165,
+        -0.04659
+      ],
+      "highlight_tint": [
+        0.005326,
+        0.008226,
+        -0.09717
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.008414,
+        "white": 0.9852,
+        "gamma": 1.377,
+        "saturation": 1.02,
+        "shadow_tint": [
+          -0.001551,
+          0.005165,
+          -0.04659
+        ],
+        "highlight_tint": [
+          0.005326,
+          0.008226,
+          -0.09717
+        ]
+      },
+      "lut_roundtrip_max_error": 0.007639,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "bark_ivy_rootlets",
+      "category": "bark",
+      "material_class": "bark",
+      "notes": "Trunk netted with dead ivy rootlets, seen from below; trapezoid rectified then unwrapped as a cylinder.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.39,
+            0.5
+          ],
+          [
+            0.635,
+            0.5
+          ],
+          [
+            0.84,
+            0.985
+          ],
+          [
+            0.415,
+            0.985
+          ]
+        ],
+        "native_pixels": [
+          821.1,
+          1311.0
+        ],
+        "cylinder_unwrap": true,
+        "upscale": 1.871,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          2091,
+          2452
+        ],
+        "delight_sigma_px": 460.0
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.75,
+        "tile_width_m": 2.0,
+        "texels_per_metre": 2048.0,
+        "source_texels_per_metre": 1095.0,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.88 base for class 'bark', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "ivy_bound_trunk_canopy/bark/bark_ivy_rootlets_diff_4k.jpg",
+          "bytes": 4338813,
+          "sha256": "e7a14db8965802a29a5dc7c42a7c4ef8ddfa1aed18fa0875d190f2a2e71d81d5",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "ivy_bound_trunk_canopy/bark/bark_ivy_rootlets_nor_gl_4k.jpg",
+          "bytes": 3494779,
+          "sha256": "1225f01607fc620896492f8518a16a0122aca33789dd9256825deed58c6f4882",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "ivy_bound_trunk_canopy/bark/bark_ivy_rootlets_rough_4k.jpg",
+          "bytes": 717254,
+          "sha256": "df2d7465bc221bad20a44c2def642b032dba370d862279619cc9bf89fa9e25c9",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "ivy_bound_trunk_canopy/bark/bark_ivy_rootlets_height_4k.jpg",
+          "bytes": 1312616,
+          "sha256": "4a7693539211017f50ff2a563104275928cf361bc497c1635e3dab9ede104055",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 102
+    },
+    {
+      "id": "canopy_backlit",
+      "category": "greenery",
+      "material_class": "leaves",
+      "notes": "Backlit broadleaf canopy with sky gaps.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.62,
+            0.02
+          ],
+          [
+            0.99,
+            0.02
+          ],
+          [
+            0.99,
+            0.3
+          ],
+          [
+            0.62,
+            0.3
+          ]
+        ],
+        "native_pixels": [
+          714.8,
+          721.3
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          2145,
+          2164
+        ],
+        "delight_sigma_px": 643.5
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 3.5,
+        "tile_width_m": 6.685,
+        "texels_per_metre": 612.7,
+        "source_texels_per_metre": 204.2,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.7 base for class 'leaves', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "ivy_bound_trunk_canopy/greenery/canopy_backlit_diff_4k.jpg",
+          "bytes": 3636413,
+          "sha256": "77519083d480bf7745318035fc210618638df2b2b0ed184dd45851f8efeb598c",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "ivy_bound_trunk_canopy/greenery/canopy_backlit_nor_gl_4k.jpg",
+          "bytes": 2730582,
+          "sha256": "b5f9b5a70635d0452528ace1882467af92c60781d8f6a034f003273c99a73f59",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "ivy_bound_trunk_canopy/greenery/canopy_backlit_rough_4k.jpg",
+          "bytes": 790179,
+          "sha256": "2680ef7267538143a0428a38b0be6aafa8ee0119c2432263772094bbe0fb480d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "ivy_bound_trunk_canopy/greenery/canopy_backlit_height_4k.jpg",
+          "bytes": 1224492,
+          "sha256": "48ea0efc8d37047ad23c37f94f265ab956fb96d59dfd6f04254f68f5100e08cc",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 104
+    },
+    {
+      "id": "understorey_dense",
+      "category": "greenery",
+      "material_class": "leaves",
+      "notes": "Dense shaded broadleaf mass right of the trunk; trapezoid follows the trunk silhouette.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.74,
+            0.64
+          ],
+          [
+            0.98,
+            0.64
+          ],
+          [
+            0.98,
+            0.84
+          ],
+          [
+            0.81,
+            0.84
+          ]
+        ],
+        "native_pixels": [
+          463.7,
+          532.7
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          1391,
+          1598
+        ],
+        "delight_sigma_px": 417.3
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 2.5,
+        "tile_width_m": 7.361,
+        "texels_per_metre": 556.4,
+        "source_texels_per_metre": 185.5,
+        "intended_tile_m": 3.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.7 base for class 'leaves', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "ivy_bound_trunk_canopy/greenery/understorey_dense_diff_4k.jpg",
+          "bytes": 2509844,
+          "sha256": "115212f43ac649b783d8cfa2ed789fe6eab15147d794c22834ad69a94af95d43",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "ivy_bound_trunk_canopy/greenery/understorey_dense_nor_gl_4k.jpg",
+          "bytes": 2067619,
+          "sha256": "8adc843df019a6a5e005646676c497ba2d5937163cf371cb7d95298d8da38f00",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "ivy_bound_trunk_canopy/greenery/understorey_dense_rough_4k.jpg",
+          "bytes": 704100,
+          "sha256": "311085e30df450e79734427432815c0432b1b0c421839c51ac670d26fc2e465a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "ivy_bound_trunk_canopy/greenery/understorey_dense_height_4k.jpg",
+          "bytes": 925848,
+          "sha256": "7464080994777567b1071a9f32b887ab5a4aef74a97160fe03214058d3318526",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 51
+    },
+    {
+      "id": "path_gravel",
+      "category": "ground",
+      "material_class": "trail",
+      "notes": "Compacted gravel path under dappled shade at a grazing angle; stretched vertically; very small flattening radius to suppress the dapple while keeping the grain.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.04,
+            0.905
+          ],
+          [
+            0.3,
+            0.905
+          ],
+          [
+            0.3,
+            0.995
+          ],
+          [
+            0.04,
+            0.995
+          ]
+        ],
+        "native_pixels": [
+          502.3,
+          231.8
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 2.0,
+        "rectified_pixels": [
+          1507,
+          1391
+        ],
+        "delight_sigma_px": 55.64
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 2.2,
+        "tile_width_m": 5.98,
+        "texels_per_metre": 685.0,
+        "source_texels_per_metre": 228.3,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.92 base for class 'trail', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "ivy_bound_trunk_canopy/ground/path_gravel_diff_4k.jpg",
+          "bytes": 2437622,
+          "sha256": "abcae0923ad187d54d2f6156f45c836d41b4942b8ae6fb057b0be7dde90436dd",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "ivy_bound_trunk_canopy/ground/path_gravel_nor_gl_4k.jpg",
+          "bytes": 2024151,
+          "sha256": "7850e284165b1a22c9dc69a430785839333690c97e7e2d70dd042debbbd79b1e",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "ivy_bound_trunk_canopy/ground/path_gravel_rough_4k.jpg",
+          "bytes": 443367,
+          "sha256": "0c6b4c099aae46d8c1ebda8e5493cd49099775b6368dfcb8a667d58554d57fc9",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "ivy_bound_trunk_canopy/ground/path_gravel_height_4k.jpg",
+          "bytes": 1154901,
+          "sha256": "60e858385cbf97e7e7119ff6083878824a03b25c95d4302d3fa40f77a6795475",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 37
+    }
+  ],
+  "files": {
+    "sky_equirect": {
+      "path": "ivy_bound_trunk_canopy/sky/ivy_bound_trunk_canopy_sky_equirect_4k.jpg",
+      "bytes": 291994,
+      "sha256": "d8d6aee3e0f55ff515447f9aa7ba6e26aea5aa2848fca0d70ff62697dbf86f9a",
+      "pixels": [
+        4096,
+        2048
+      ],
+      "mapping": "three.js EquirectangularReflectionMapping (u = atan2(z, x)/2pi + 0.5, v = asin(y)/pi + 0.5, top row = zenith)",
+      "content": "upper hemisphere: Sky.js port with fitted parameters through ACES filmic and sRGB; lower hemisphere: ground probe colour, darkened downward",
+      "colorSpace": "sRGB (display-referred, LDR)"
+    },
+    "sky_json": {
+      "path": "ivy_bound_trunk_canopy/sky/sky.json",
+      "bytes": 1754,
+      "sha256": "4848f67156706394f728ffcf488257f63c3755f95b5656eef9c99ca4bd1f5016"
+    },
+    "lighting_json": {
+      "path": "ivy_bound_trunk_canopy/lighting/lighting_preset.json",
+      "bytes": 2608,
+      "sha256": "208d9d14175e9cd8d6e5758410294fc36d7a8961905f792818ffdf856a4427f2"
+    },
+    "preset_snippet": {
+      "path": "ivy_bound_trunk_canopy/lighting/preset_snippet.js",
+      "bytes": 336,
+      "sha256": "4797f84f950b5fa695911176c3a330a84d765a155d0b50ee1d667653767c4d0f"
+    },
+    "mood_json": {
+      "path": "ivy_bound_trunk_canopy/mood/mood.json",
+      "bytes": 3494,
+      "sha256": "dfd226fbd8190e7b1bd64ca1a8235f5f7978febb310db3c98aeaff45a86ef5c3"
+    },
+    "grade_cube": {
+      "path": "ivy_bound_trunk_canopy/mood/grade_33.cube",
+      "bytes": 970502,
+      "sha256": "ab37e577cb1365523dc41a70e990353fed5f0fcbebb995df1cde79b3f1f62c36"
+    },
+    "sheet": {
+      "path": "ivy_bound_trunk_canopy/ivy_bound_trunk_canopy_sheet_4k.jpg",
+      "bytes": 1979402,
+      "sha256": "086dbe1eacf431f726749c16465ea4c7ab821270fb0ccf21485b6c5ad6e105f4",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}

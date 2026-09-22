@@ -1,0 +1,768 @@
+{
+  "pack": "park_conifer_dapple",
+  "title": "Park conifers with dark furrowed bark in dappled afternoon sun over lawn",
+  "generator": "construction_code_v2/gen_asset_packs.py",
+  "generated": "2026-09-22",
+  "config_sha256": "3b3c9f5fea168ab148b1ca6365aea0118ebd847cb46d9ad91376e4eee6249489",
+  "tile_size": 4096,
+  "status": "PHOTO-DERIVED REPRESENTATIVES. Textures are synthesised from regions of one photograph; the photograph was not taken at Aokigahara unless stated.",
+  "source": {
+    "file": "park_conifer_dapple.jpg",
+    "bytes": 1664245,
+    "sha256": "642160bbacf7790e8d15672705d91d3afb2ff3add201b956ca9b5a69cc03938a",
+    "pixels": [
+      1932,
+      2576
+    ],
+    "embedded_profile": "Display P3",
+    "colour_handling": "embedded profile \"Display P3\" converted to sRGB with LittleCMS (relative colorimetric)",
+    "upload_name": "63fc0662-image.jpg",
+    "redistribution": "owner_supplied",
+    "rights_note": "Supplied by the repository owner as a personal photograph. Not captured at Aokigahara.",
+    "committed_copy": "asset_packs/_sources/park_conifer_dapple.jpg",
+    "exif_gps": "none present"
+  },
+  "camera_estimate": {
+    "focal_equiv_mm": 26,
+    "pitch_deg": 0
+  },
+  "sun_estimate": {
+    "elevation_deg": 42,
+    "basis": "moderate shadow length, strong dappled patches"
+  },
+  "analysis": "analysis over the whole frame minus exclude_rects",
+  "sky": {
+    "status": "no usable sky pixels (found 1311, 0.14% of the sky ROI)",
+    "pixel_count": 1311
+  },
+  "lighting": {
+    "preset": {
+      "label": "Park conifers with dark furrowed bark in dappled afternoon sun over lawn (photo-derived)",
+      "sun": 3.12,
+      "hemi": 1.349,
+      "hemiSky": "0xaac8ff",
+      "hemiGround": "0x382f2a",
+      "turb": 5.595,
+      "ray": 1.213,
+      "mie": 0.005819,
+      "fog": "0x9c947d",
+      "exposure": 0.9058
+    },
+    "measurements": {
+      "probe_pixels": 863040,
+      "lit_fraction": 0.3,
+      "split_method": "Otsu on log illumination (blur sigma 46 px); Otsu split was one-sided, used the upper/lower 30 % of the blurred luminance",
+      "lit_mean_linear": [
+        0.4999,
+        0.3073,
+        0.2111
+      ],
+      "shade_mean_linear": [
+        0.1126,
+        0.0907,
+        0.0943
+      ],
+      "key_to_fill_luminance_ratio": 3.569,
+      "direct_over_ambient": 2.569,
+      "classified_as": "directional",
+      "direct_light_tint_raw": [
+        1.0,
+        0.5591,
+        0.3016
+      ],
+      "direct_light_tint_albedo_cancelled": [
+        1.0,
+        0.7633,
+        0.4501
+      ],
+      "direct_light_tint_hex": "#ffe2b3",
+      "direct_light_cct_mccamy_K": 4424,
+      "ambient_tint_basis": "assumed blue-sky shade tint (0.80, 0.88, 1.00) because no sky is visible",
+      "ground_probe_mean_linear": [
+        0.2799,
+        0.1929,
+        0.1505
+      ],
+      "fog_probe_mean_srgb": [
+        0.4947,
+        0.4708,
+        0.3966
+      ],
+      "image_median_luma": 0.3596,
+      "sun_elevation_deg": 42,
+      "sun_elevation_basis": "moderate shadow length, strong dappled patches"
+    },
+    "derivation": {
+      "lit_shade_split": "lit and shaded pixels are separated by large-scale illumination (blurred luminance), so texture contrast such as bright rootlets over dark crevices does not count as sunlight",
+      "sun_and_hemi": "hemi = clip(1.9 - 0.3*log2(1 + direct/ambient), 0.9, 1.9); sun = clip(ratio*hemi*0.9, 0.4, 3.6). Calibrated so the three existing presets (overcast 0.55/1.9, soft 2.0/1.35, clear 3.3/0.9) are reproduced from their implied ratios.",
+      "hemiSky": "shade/direct tint of the probe surface (albedo cancels), luma matched to the existing presets",
+      "hemiGround": "ground probe mean, luma matched to the existing presets (0.19)",
+      "fog": "far-background probe mean, luma matched to the existing presets (0.58)",
+      "turb_ray_mie": "interpolated between the overcast and clear presets from the measured key:fill ratio (no sky visible)",
+      "exposure": "clip(0.9 + (median luma - 0.35)*0.6, 0.85, 1.05): brighter photographs get a slightly higher exposure",
+      "sun_colour": "the viewer keeps sun.color fixed (setHSL(.09,.28,.9)); the measured direct-light tint is reported for reference only"
+    },
+    "usage": "Add the preset object to PRESETS in viewer/app.js (see preset_snippet.js). Values are calibrated to the existing presets, not absolute radiometry."
+  },
+  "mood": {
+    "palette": [
+      {
+        "hex": "#5e6352",
+        "srgb": [
+          0.3667,
+          0.3867,
+          0.322
+        ],
+        "linear": [
+          0.1107,
+          0.1238,
+          0.08462
+        ],
+        "weight": 0.1752,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#2d322c",
+        "srgb": [
+          0.1761,
+          0.1974,
+          0.1731
+        ],
+        "linear": [
+          0.02615,
+          0.0323,
+          0.02533
+        ],
+        "weight": 0.1716,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#464a3f",
+        "srgb": [
+          0.2726,
+          0.29,
+          0.2457
+        ],
+        "linear": [
+          0.0604,
+          0.06839,
+          0.04917
+        ],
+        "weight": 0.1635,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#737d65",
+        "srgb": [
+          0.4499,
+          0.4894,
+          0.3966
+        ],
+        "linear": [
+          0.1705,
+          0.2043,
+          0.1305
+        ],
+        "weight": 0.1595,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#13161b",
+        "srgb": [
+          0.07483,
+          0.08518,
+          0.1046
+        ],
+        "linear": [
+          0.006551,
+          0.007875,
+          0.01076
+        ],
+        "weight": 0.1097,
+        "role": "deep shadow"
+      },
+      {
+        "hex": "#91957a",
+        "srgb": [
+          0.5685,
+          0.5831,
+          0.4789
+        ],
+        "linear": [
+          0.283,
+          0.2991,
+          0.195
+        ],
+        "weight": 0.1046,
+        "role": "foliage / moss"
+      },
+      {
+        "hex": "#bfad8e",
+        "srgb": [
+          0.7508,
+          0.6795,
+          0.5568
+        ],
+        "linear": [
+          0.5237,
+          0.4194,
+          0.2704
+        ],
+        "weight": 0.0677,
+        "role": "bark / earth / litter"
+      },
+      {
+        "hex": "#ebd3af",
+        "srgb": [
+          0.9217,
+          0.8289,
+          0.6877
+        ],
+        "linear": [
+          0.8309,
+          0.654,
+          0.4307
+        ],
+        "weight": 0.04822,
+        "role": "bark / earth / litter"
+      }
+    ],
+    "tonal": {
+      "luma_percentiles": {
+        "p0_5": 0.02472,
+        "p2": 0.04486,
+        "p10": 0.13,
+        "p25": 0.2213,
+        "p50": 0.3601,
+        "p75": 0.5048,
+        "p90": 0.6542,
+        "p98": 0.8496,
+        "p99_5": 0.9118
+      },
+      "luma_mean": 0.377,
+      "luma_std": 0.2007,
+      "mean_saturation": 0.2414,
+      "hue_histogram_12": [
+        0.2074,
+        0.2186,
+        0.1829,
+        0.1701,
+        0.12,
+        0.02107,
+        0.01458,
+        0.0188,
+        0.01501,
+        0.004287,
+        0.006358,
+        0.02086
+      ],
+      "warm_cool_bias": 0.05178,
+      "shadow_tint": [
+        -0.008947,
+        0.001838,
+        0.008143
+      ],
+      "highlight_tint": [
+        0.03144,
+        0.003076,
+        -0.123
+      ]
+    },
+    "grade": {
+      "file": "grade_33.cube",
+      "parameters": {
+        "black": 0.02472,
+        "white": 0.9118,
+        "gamma": 1.121,
+        "saturation": 0.8,
+        "shadow_tint": [
+          -0.008947,
+          0.001838,
+          0.008143
+        ],
+        "highlight_tint": [
+          0.03144,
+          0.003076,
+          -0.123
+        ]
+      },
+      "lut_roundtrip_max_error": 0.0001075,
+      "derivation": "black/white from the 0.5/99.5 luma percentiles (limited to 0.12/0.85), gamma so that input 0.42 maps to the photo median, split-toning with the measured shadow/highlight tints, saturation relative to 0.40 mean HSV saturation",
+      "usage": "three.js LUTCubeLoader + LUTPass on the tone-mapped frame, or any .cube-aware grading tool"
+    }
+  },
+  "materials": [
+    {
+      "id": "bark_dark_furrowed",
+      "category": "bark",
+      "material_class": "bark",
+      "notes": "Shaded, underexposed part of a large conifer trunk between the crossing sprays and the dappled base. Low detail: about 210 px wide, enlarged before synthesis. Small flattening radius so the dapple spots do not become texture.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.845,
+            0.38
+          ],
+          [
+            0.955,
+            0.38
+          ],
+          [
+            0.955,
+            0.56
+          ],
+          [
+            0.845,
+            0.56
+          ]
+        ],
+        "native_pixels": [
+          212.5,
+          463.7
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          638,
+          1391
+        ],
+        "delight_sigma_px": 44.66
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 192,
+        "overlap": 64,
+        "step": 128,
+        "patches": 1024,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 0.45,
+        "tile_width_m": 2.891,
+        "texels_per_metre": 1417.0,
+        "source_texels_per_metre": 472.3,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.88 base for class 'bark', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "park_conifer_dapple/bark/bark_dark_furrowed_diff_4k.jpg",
+          "bytes": 1568739,
+          "sha256": "b06c33837b9849577674485968e8d622372dae705d926952f1f0c5d5da225197",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "park_conifer_dapple/bark/bark_dark_furrowed_nor_gl_4k.jpg",
+          "bytes": 2437155,
+          "sha256": "5d959ca331011bd4b4af73cd1cf13b9083614789a2d597d086107005d05378bc",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "park_conifer_dapple/bark/bark_dark_furrowed_rough_4k.jpg",
+          "bytes": 579071,
+          "sha256": "b73f4baf1c1060230ed68faf69998f6532482aaebfb20db74f522c228a028138",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "park_conifer_dapple/bark/bark_dark_furrowed_height_4k.jpg",
+          "bytes": 1024063,
+          "sha256": "24e702b2e9f281c1f767a407d8612c9b09e75608eea8214314e895db9539a55a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 44
+    },
+    {
+      "id": "conifer_sprays",
+      "category": "greenery",
+      "material_class": "needles",
+      "notes": "Sunlit conifer sprays, mixed lit and shaded.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.4,
+            0.22
+          ],
+          [
+            0.84,
+            0.22
+          ],
+          [
+            0.84,
+            0.44
+          ],
+          [
+            0.4,
+            0.44
+          ]
+        ],
+        "native_pixels": [
+          850.1,
+          566.7
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 1.0,
+        "rectified_pixels": [
+          2550,
+          1700
+        ],
+        "delight_sigma_px": 510.0
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 3.0,
+        "tile_width_m": 4.818,
+        "texels_per_metre": 850.1,
+        "source_texels_per_metre": 283.4,
+        "intended_tile_m": 2.5,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.76 base for class 'needles', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "park_conifer_dapple/greenery/conifer_sprays_diff_4k.jpg",
+          "bytes": 2140041,
+          "sha256": "b7e81b735438108445bdab26e88b9bb33b93218c101f7937e88f529cadc48770",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "park_conifer_dapple/greenery/conifer_sprays_nor_gl_4k.jpg",
+          "bytes": 2015228,
+          "sha256": "eacb310c05607a5fd134a2ea77d2770d61d0a4d643151a7a7c3dc7f18be1c01c",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "park_conifer_dapple/greenery/conifer_sprays_rough_4k.jpg",
+          "bytes": 543572,
+          "sha256": "031b0038063b60f71a8aca55e63aa54881fa35c2512ef20dafa5fb684c1e1f8f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "park_conifer_dapple/greenery/conifer_sprays_height_4k.jpg",
+          "bytes": 1002048,
+          "sha256": "268124543cc6cbc5e2f14232bdc68d656ce8814fe29fd4c24cd4fc99cb8908f7",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 91
+    },
+    {
+      "id": "lawn_grass",
+      "category": "ground",
+      "material_class": "grass",
+      "notes": "Shaded lawn at a grazing angle; stretched vertically.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.0,
+            0.85
+          ],
+          [
+            1.0,
+            0.85
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "native_pixels": [
+          1932.0,
+          386.4
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 1.793,
+        "stretch_y": 2.5,
+        "rectified_pixels": [
+          3464,
+          1732
+        ],
+        "delight_sigma_px": 519.6
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 4.0,
+        "tile_width_m": 4.73,
+        "texels_per_metre": 866.0,
+        "source_texels_per_metre": 483.0,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.82 base for class 'grass', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "park_conifer_dapple/ground/lawn_grass_diff_4k.jpg",
+          "bytes": 3078559,
+          "sha256": "adaea0fc7f3b2709084d1277eabacdc1790f93a47a1ec003776633cb5a1794b1",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "park_conifer_dapple/ground/lawn_grass_nor_gl_4k.jpg",
+          "bytes": 3190053,
+          "sha256": "6ffff7f2d790e1a6dfddc61d10f434c932a3023eb79878b162a823e9e06a8179",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "park_conifer_dapple/ground/lawn_grass_rough_4k.jpg",
+          "bytes": 811301,
+          "sha256": "ffba815aacb3c8146e6c0ff8f27b6a752c9479d5eb34eb3e5696b7264f6428f4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "park_conifer_dapple/ground/lawn_grass_height_4k.jpg",
+          "bytes": 1382477,
+          "sha256": "0334cf88abd3bfa71fae6fc3623226d8e7620a656df15704d17ebe79d132d6ec",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 136
+    },
+    {
+      "id": "needle_litter",
+      "category": "ground",
+      "material_class": "litter",
+      "notes": "Needle litter in the shadow band between dappled patches, grazing angle; stretched vertically.",
+      "region": {
+        "quad_normalised": [
+          [
+            0.02,
+            0.73
+          ],
+          [
+            0.55,
+            0.73
+          ],
+          [
+            0.55,
+            0.8
+          ],
+          [
+            0.02,
+            0.8
+          ]
+        ],
+        "native_pixels": [
+          1024.0,
+          180.3
+        ],
+        "cylinder_unwrap": false,
+        "upscale": 3.0,
+        "stretch_y": 2.5,
+        "rectified_pixels": [
+          3072,
+          1352
+        ],
+        "delight_sigma_px": 202.8
+      },
+      "synthesis": {
+        "method": "Efros-Freeman image quilting on a torus (seamless in x and y); candidates drawn from the source and its horizontal mirror",
+        "patch": 384,
+        "overlap": 128,
+        "step": 256,
+        "patches": 256,
+        "candidate_tolerance": 0.15,
+        "min_candidates": 30,
+        "reuse_penalty": 0.6,
+        "mirror": true,
+        "seed": 20260922
+      },
+      "physical_scale": {
+        "assumed_region_width_m": 5.0,
+        "tile_width_m": 6.667,
+        "texels_per_metre": 614.4,
+        "source_texels_per_metre": 204.8,
+        "intended_tile_m": 2.0,
+        "note": "region width is an estimate; the tile scale follows from it. Detail above source_texels_per_metre is interpolation, not observation."
+      },
+      "synthetic_micro_grain": {
+        "amount": 0.03,
+        "reason": "the source was enlarged before synthesis; a 3 % periodic grain masks interpolation blur and is not observed detail"
+      },
+      "maps": {
+        "diff": "sRGB albedo, illumination flattened (large-scale shading and colour drift divided out); the photograph's illuminant is NOT neutralised",
+        "nor_gl": "OpenGL tangent-space normal derived from the luminance height proxy (not a scanned surface)",
+        "rough": "heuristic: 0.9 base for class 'litter', modulated by fine luminance",
+        "height": "luminance band mix (fine/mid/coarse), percentile-normalised; dark = low. Ambient occlusion, if wanted, is 1 - k*max(0, blur(height) - height) at two radii"
+      },
+      "files": {
+        "diff": {
+          "path": "park_conifer_dapple/ground/needle_litter_diff_4k.jpg",
+          "bytes": 1808419,
+          "sha256": "2ebcca26743cc29b1c17c6f27f168d6789d9a7c853533e5e4abe7644c139354a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "nor_gl": {
+          "path": "park_conifer_dapple/ground/needle_litter_nor_gl_4k.jpg",
+          "bytes": 2538275,
+          "sha256": "302c1a5f187aa8a6b673aefe74005363d2eddd0a03813e8fe0259f551397908f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "rough": {
+          "path": "park_conifer_dapple/ground/needle_litter_rough_4k.jpg",
+          "bytes": 541302,
+          "sha256": "5fdf3e7e3680969364dc680fbe1552bf6eb07b5f897814f5e1dfbcccbb22ecb5",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        "height": {
+          "path": "park_conifer_dapple/ground/needle_litter_height_4k.jpg",
+          "bytes": 1145548,
+          "sha256": "cb181627f55c639c7bb2b124627b1dd69386238e9a090e9402bb726a6a5be41a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      },
+      "seconds": 65
+    }
+  ],
+  "files": {
+    "sky_json": {
+      "path": "park_conifer_dapple/sky/sky.json",
+      "bytes": 96,
+      "sha256": "f6eec2b3546b0bb925b60caa547a98c3211b1fbd58aa4e9482649ad16c8e2ed8"
+    },
+    "lighting_json": {
+      "path": "park_conifer_dapple/lighting/lighting_preset.json",
+      "bytes": 2751,
+      "sha256": "ef20b979bfd3e0025ecbd6fa246c9ccf8f2662f6d6d356e39dce6bec4ef0649f"
+    },
+    "preset_snippet": {
+      "path": "park_conifer_dapple/lighting/preset_snippet.js",
+      "bytes": 355,
+      "sha256": "6833279367eb08e144d04bf911ebd4ac31d64a4127f0eb66c53f437536f060f6"
+    },
+    "mood_json": {
+      "path": "park_conifer_dapple/mood/mood.json",
+      "bytes": 3456,
+      "sha256": "04902ae11e6ecd12d8292960c7176c85f79146f14c2c9160e8edd694f3f9673c"
+    },
+    "grade_cube": {
+      "path": "park_conifer_dapple/mood/grade_33.cube",
+      "bytes": 970499,
+      "sha256": "5e678909362e97b80de6b99fffe2a80ece442138f64c1a34bff93d09eb1a18c1"
+    },
+    "sheet": {
+      "path": "park_conifer_dapple/park_conifer_dapple_sheet_4k.jpg",
+      "bytes": 1484252,
+      "sha256": "ab85889f52f8f88899b137db654b8137013f431ba70e44d26d7003b6210acf5c",
+      "pixels": [
+        4096,
+        2900
+      ]
+    }
+  },
+  "not_claimed": [
+    "No map is a scanned or photogrammetric surface: normal, roughness, height and AO are heuristics from image luminance.",
+    "Albedo keeps the photograph's illuminant and white balance; only large-scale shading was flattened.",
+    "Sky parameters are a fit to a handful of sky pixels with an unknown sun azimuth; sun elevation is a visual estimate.",
+    "Lighting preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.",
+    "Physical scales rest on an estimated region width.",
+    "Species, site and season are not established by any of this."
+  ]
+}
