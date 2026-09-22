@@ -203,10 +203,18 @@ def delight(srgb, sigma_frac, strength=1.0):
     return lin_to_srgb(np.clip(lin * ratio, 0, 1)), float(sigma)
 
 # ----------------------------------------------------------------------------- image quilting (torus-seamless)
-def _cut_vertical(err):
-    """Minimum-cost top-to-bottom seam through err (h, w): returns the seam column per row."""
+def _cut_vertical(err, lo=None, hi=None):
+    """Minimum-cost top-to-bottom seam through err (h, w): returns the seam column per row.
+    lo / hi (length h) bound the seam per row, inclusive; both derive from a neighbouring seam, so a
+    feasible path always exists."""
     h, w = err.shape
     cost = err.astype(np.float64).copy()
+    if lo is not None or hi is not None:
+        idx = np.arange(w)[None, :]
+        if hi is not None:
+            cost[idx > np.asarray(hi)[:, None]] = 1e12
+        if lo is not None:
+            cost[idx < np.asarray(lo)[:, None]] = 1e12
     back = np.zeros((h, w), np.int8)
     idx = np.arange(w)
     for r in range(1, h):
@@ -280,6 +288,13 @@ def quilt(src, size, patch, overlap, rng, tol=0.15, min_candidates=30, mirror=Tr
     vh, vw = H - patch + 1, W - patch + 1
     penalty = [np.zeros((vh, vw), np.float32) for _ in pool]
     rad = patch // 2
+    # Corner consistency. A patch pastes its top-right corner below its own top seam; the next patch
+    # along the row must not keep the old canvas on both sides of that fresh corner, or a straight
+    # vertical edge survives at the end of the overlap band. So in the corner columns a top cut may
+    # not run below the left neighbour's top cut, and a bottom cut (torus wrap row) may not run
+    # above the left neighbour's bottom cut; the last column applies the same to the first patch of
+    # its row, whose content it wraps onto.
+    top_seam, bot_seam = {}, {}
     for i in range(n):
         for j in range(n):
             y0, x0 = i * step, j * step
@@ -325,9 +340,23 @@ def quilt(src, size, patch, overlap, rng, tol=0.15, min_candidates=30, mirror=Tr
             if last_c:
                 use[:, -ov:] &= cols < _cut_vertical(d[:, -ov:])[:, None]
             if i > 0:
-                use[:ov, :] &= (cols > _cut_vertical(d[:ov, :].T)[:, None]).T
+                hi = np.full(patch, ov - 1)
+                if j > 0:
+                    hi[:ov] = np.minimum(hi[:ov], top_seam[(i, j - 1)][step:patch])
+                if last_c:
+                    hi[step:] = np.minimum(hi[step:], top_seam[(i, 0)][:ov])
+                st = _cut_vertical(d[:ov, :].T, hi=hi)
+                top_seam[(i, j)] = st
+                use[:ov, :] &= (cols > st[:, None]).T
             if last_r:
-                use[-ov:, :] &= (cols < _cut_vertical(d[-ov:, :].T)[:, None]).T
+                lo = np.zeros(patch, int)
+                if j > 0:
+                    lo[:ov] = np.maximum(lo[:ov], bot_seam[(i, j - 1)][step:patch])
+                if last_c:
+                    lo[step:] = np.maximum(lo[step:], bot_seam[(i, 0)][:ov])
+                sb = _cut_vertical(d[-ov:, :].T, lo=lo)
+                bot_seam[(i, j)] = sb
+                use[-ov:, :] &= (cols < sb[:, None]).T
             canvas[y0:y0 + patch, x0:x0 + patch] = np.where(use[..., None], P, T.astype(np.float32))
             if last_c:
                 canvas[y0:y0 + patch, 0:ov] = canvas[y0:y0 + patch, size:size + ov]

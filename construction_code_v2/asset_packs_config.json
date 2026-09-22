@@ -379,8 +379,8 @@
             ]
           ],
           "physical_width_m": 2.2,
-          "delight_sigma": 0.08,
-          "notes": "Compacted gravel path under dappled shade at a grazing angle; stretched vertically; small flattening radius to suppress the dapple."
+          "delight_sigma": 0.04,
+          "notes": "Compacted gravel path under dappled shade at a grazing angle; stretched vertically; very small flattening radius to suppress the dapple while keeping the grain."
         }
       ]
     },
@@ -827,8 +827,8 @@
             ]
           ],
           "physical_width_m": 0.45,
-          "delight_sigma": 0.22,
-          "notes": "Shaded, underexposed part of a large conifer trunk between the crossing sprays and the dappled base. Low detail: about 210 px wide, upscaled before synthesis."
+          "delight_sigma": 0.07,
+          "notes": "Shaded, underexposed part of a large conifer trunk between the crossing sprays and the dappled base. Low detail: about 210 px wide, enlarged before synthesis. Small flattening radius so the dapple spots do not become texture."
         },
         {
           "id": "conifer_sprays",
@@ -994,25 +994,25 @@
           "cylinder": true,
           "quad": [
             [
-              0.505,
-              0.3
+              0.517,
+              0.447
             ],
             [
-              0.565,
-              0.3
+              0.582,
+              0.447
             ],
             [
-              0.585,
-              0.53
+              0.605,
+              0.548
             ],
             [
-              0.51,
-              0.53
+              0.537,
+              0.548
             ]
           ],
           "physical_width_m": 0.35,
           "delight_sigma": 0.22,
-          "notes": "Sunlit main stem: smooth orange-brown bark with fine vertical fissures. Left silhouette against the shade, right edge at the gap to the next stem; unwrapped as a cylinder."
+          "notes": "Sunlit main stem between the crossing twigs and the branch join: smooth orange-brown bark with fine vertical fissures, no overlapping leaves. Both silhouettes visible; unwrapped as a cylinder. Source strip about 125 px wide."
         },
         {
           "id": "canopy_oak_lichen",
@@ -1046,25 +1046,25 @@
           "class": "leaves",
           "quad": [
             [
-              0.86,
-              0.3
+              0.885,
+              0.28
             ],
             [
-              0.99,
-              0.3
+              0.995,
+              0.28
             ],
             [
-              0.99,
-              0.7
+              0.995,
+              0.72
             ],
             [
-              0.78,
-              0.7
+              0.885,
+              0.72
             ]
           ],
-          "physical_width_m": 1.2,
+          "physical_width_m": 0.6,
           "delight_sigma": 0.3,
-          "notes": "Dense small-leaved understorey foliage beside the stems, part sunlit; trapezoid follows the stem silhouette."
+          "notes": "Dense small-leaved understorey foliage in the column right of the stems, part sunlit; a narrow strip (about 210 px) chosen to exclude the bark."
         },
         {
           "id": "mown_grass_leaves",

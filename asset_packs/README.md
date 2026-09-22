@@ -69,7 +69,10 @@ The map layout (`diff`, `nor_gl`, `rough`, `height`) is the one the runtime alre
 5. **Synthesis.** Efros–Freeman image quilting on a torus: exhaustive overlap search over every
    window of the source (and its mirror where the texture has no fixed direction), minimum-cost
    seams, and a reuse penalty so a small source does not repeat one feature on a lattice. The
-   result tiles seamlessly in both axes.
+   result tiles seamlessly in both axes. The horizontal cuts are constrained at patch corners so
+   that no patch keeps old content on both sides of its neighbour's freshly pasted corner; without
+   that rule a straight edge survives at the end of every overlap band, which
+   `tools/verify_asset_packs.py` now checks for.
 6. **Derived maps.** Height is a mix of three luminance bands (finest at 6 px on the 4K tile, so
    JPEG noise does not become relief); normals follow the project's `height_to_normal`
    convention with periodic differences; roughness is a per-class base modulated by fine
@@ -125,6 +128,9 @@ yet; they live outside `viewer/` so the Pages deploy stays the size it is.
   flagged as low detail.
 - Tiles from small regions repeat their distinctive features several times across 4K. The reuse
   penalty spreads them; it cannot invent new ones.
+- The weakest sets are named here so nobody has to discover them: `park_conifer_dapple/bark/bark_dark_furrowed`
+  (shaded, underexposed, out of focus; dapple spots partly survive the flattening) and the two narrow
+  trunk strips from the framed print and the multi-stemmed oak (about 105 to 125 source pixels wide).
 - Sky fits rest on a handful of pixels and a guessed sun azimuth and elevation; the RMS of each
   fit is in `sky.json`.
 - Preset numbers are calibrated to the viewer's existing presets, not to measured radiometry.
