@@ -48,6 +48,10 @@ not work: ES modules and the binary terrain grids need HTTP.
 Walk with WASD or the arrow keys, look with the mouse, hold Shift to move faster, press F to
 toggle fly mode, Escape to release the pointer. On touch devices use the two pads.
 
+Append `?mats=uhd` to the viewer URL, or use the **Ground materials** control in the panel, to
+load the photo-derived ground packs in place of the procedural set (see "Photo-derived material
+packs" below). The default stays procedural.
+
 **Verify the recovered state:**
 
 ```bash
@@ -107,9 +111,11 @@ data/              Wide-forest placements, and the recovered GIS / elevation / r
 docs/              PROJECT_STATE.md, the research dossier and its 18 extracted artifacts, methodology
 renders/           Before/after evidence from each production pass, and this session's audit renders
 harness/           The original session's render harness, preserved unmodified
+asset_packs/       4k and 2k tiers of the photo-derived material packs (not published to Pages)
 construction_code/    Pass-1 asset build scripts
 construction_code_v2/ Pass-2 tree-library and texture generators
-construction_inputs/  Pass-1 procedural tree arrays
+construction_code_v3/ Photo-to-PBR extraction pipeline for the materials_uhd packs
+construction_inputs/  Pass-1 procedural tree arrays; uhd_photos/ holds the owner-supplied photographs
 source_manifests/  Per-asset provenance, checksums and licence records
 tools/             Manifest verification, portable audit renderer, research generation scripts
 ```
@@ -198,7 +204,11 @@ protection boundaries and the practical build extent are related but are **not o
 - Bark, foliage, fern and log sources are Poly Haven CC0 representatives, not captured at
   Aokigahara. The "hinoki" and "tsuga" variants are species-suggestive only, and establish no
   botanical identity.
-- Ground materials are procedurally synthesised, not photogrammetry of the site.
+- The default ground materials are procedurally synthesised, not photogrammetry of the site. An
+  optional photo-derived pack (`viewer/assets/materials_uhd/`, `asset_packs/`) is cut from
+  photographs supplied by the repository owner; its albedo is photographic, but its height, normal,
+  roughness and occlusion maps are single-image heuristics and its physical scale is estimated.
+  The 4k tier is interpolated above the 2000-px source frames.
 - Terrain is 8 m output sampling of the GSI DEM5A web grid, not a native 1 m survey; lava fissures
   and overhangs below that sampling are absent.
 - Cave destinations are surface approach references only. No cave interior is modelled.
@@ -217,6 +227,11 @@ edition. Vegetation: Ministry of the Environment, Japan. Paths and mapped featur
 © OpenStreetMap contributors, ODbL 1.0. Representative models, textures and the twig atlas:
 Poly Haven, CC0, with creators preserved in `source_manifests/`. Three.js and three-mesh-bvh retain
 their MIT licences.
+
+The `materials_uhd` packs derive from photographs supplied by the repository owner
+(`construction_inputs/uhd_photos/`); their licence is not recorded in this repository, so treat
+those packs as owner-licensed rather than CC0. The bark, deadwood, root and understorey packs are
+not yet consumed by the runtime.
 
 Retain `viewer/assets/provenance.json` and the source manifests with any derivative work.
 No AI-generated image or model was used as factual evidence.

@@ -1,0 +1,27 @@
+{
+ "title": "Source photographs for the photo-derived material packs (materials_uhd)",
+ "provenance": "All files in this directory were supplied by the repository owner: thirteen as chat attachments (stored byte-exact at the size they arrived) and one via Google Drive. Licence, photographer, capture date, camera and native capture resolution are NOT recorded in this repository. They are used only as texture sources; no geolocation is claimed for any individual frame beyond the owner's statement that they were taken in Aokigahara.",
+ "resolution_note": "The twelve WebP frames arrived at 2000 x 983 px and carry genuine detail at that size. U15 is a phone close-up (HDR-like tone mapping, oversaturated shadows). The true4K file is visibly an upscale of a lower-resolution capture with hard clipped sun dapples and is used only as a fallback source.",
+ "files": [
+  {"file": "attachments/U01_c59f556b.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "forest interior: mossy lava blocks, surface roots, low evergreen shrub carpet, plated bark trunk at right"},
+  {"file": "attachments/U02_579bb015.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "forest interior: leaning trunks, moss-covered root mound, fallen log"},
+  {"file": "attachments/U03_914d0cfb.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "forest interior with a compacted trail in the foreground, lichen-plated and cypress-like trunks"},
+  {"file": "attachments/U04_54ca304d.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "wide interior: pale fallen trunks, mossy hummocks, litter"},
+  {"file": "attachments/U05_f16d2764.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "mossy lava hummock with surface roots, plated bark trunk, litter"},
+  {"file": "attachments/U07_6572337c.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "lichen-plated trunk base, sun-lit moss hummock, needle and leaf litter"},
+  {"file": "attachments/U08_6816f8d9.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "forest interior: moss over hummocks and a boulder, foreground litter"},
+  {"file": "attachments/U09_4261e995.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "fallen bark-less log, dense low shrub layer, pale trunk"},
+  {"file": "attachments/U10_de969dec.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "large fissured trunk, compacted trail, dry-stone retaining wall of mossy lava blocks"},
+  {"file": "attachments/U11_01b43a84.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "forest interior with a full-height plated hemlock-like trunk at right"},
+  {"file": "attachments/U12_2f7fd91f.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "forest interior: lichen-mottled trunks, litter, sun-lit moss"},
+  {"file": "attachments/U13_bab75a72.webp", "width": 2000, "height": 983, "format": "WEBP", "content": "forest interior: moss-covered fallen log, plated trunk with mossy buttress"},
+  {"file": "attachments/U15_5c871a80.jpg", "width": 1623, "height": 2048, "format": "JPEG", "content": "phone close-up: two mossy plated trunks, arching mossy surface root, moss-plated lava blocks, needle litter"},
+  {"file": "Aokigahara_true4K_portrait_2160x3840.jpg", "width": 2160, "height": 3840, "format": "JPEG", "content": "backlit interior (upscaled): trunks, mossy ground, shrub carpet, clipped sun dapples"}
+ ],
+ "excluded": [
+  "a 740 x 520 three-image collage (each panel ~245 px wide: too small to cut tiles from; kept out of the repository)",
+  "a 696 x 1012 screenshot-like portrait frame of a curved trunk over mossy lava (too small and of uncertain origin; kept out of the repository)",
+  "three house-interior photographs, two kitchen/garden renders and one 1024-px watermarked stock image found alongside the Drive file (not site photographs and/or not redistributable; never copied)"
+ ],
+ "checksums_note": "SHA-256 of every file used is recorded per source in viewer/assets/materials_uhd/MATERIALS_UHD_MANIFEST.json and source_manifests/materials_uhd/manifest.json."
+}

@@ -1,0 +1,304 @@
+{
+ "title": "Extraction spec for photo-derived Aokigahara material packs",
+ "notes": "rect = [x0,y0,x1,y1] in photo pixels; rotation_deg positive = counter-clockwise as displayed; core = [w,h] taken from the centre of the rotated rect; tile_px is the 1k size (master = x4). physical_scale_m is the ESTIMATED width of the source crop. Photos are relative to construction_inputs/uhd_photos/. chroma = linear-chroma multiplier applied after delighting (phone HDR frame U15 is oversaturated).",
+ "materials": [
+  {
+   "id": "moss_uhd",
+   "slot": "moss",
+   "primary_for_slot": true,
+   "photo": "attachments/U05_f16d2764.webp",
+   "rect": [
+    560,
+    360,
+    880,
+    700
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    1024
+   ],
+   "physical_scale_m": 0.55,
+   "scale_basis": "pale surface root just right of the region ~0.08 m thick = 80 px; hummock ~0.7 m across",
+   "height_mode": "bright_is_high",
+   "notes": "cushion/feather moss carpet on a lava hummock with twigs and needle debris, shade-lit; the pale root to the right is excluded; ground plane seen obliquely so the tile is stretched ~1.3x vertically",
+   "chroma": 0.9
+  },
+  {
+   "id": "moss_root_uhd",
+   "slot": "moss",
+   "primary_for_slot": false,
+   "photo": "attachments/U15_5c871a80.jpg",
+   "rect": [
+    1260,
+    1200,
+    1623,
+    1540
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    1024
+   ],
+   "physical_scale_m": 0.38,
+   "scale_basis": "trunk beside it ~0.45 m = 430 px",
+   "height_mode": "bright_is_high",
+   "notes": "continuous moss carpet draped over buttress roots at a trunk base (phone close-up, softer source)",
+   "chroma": 0.6
+  },
+  {
+   "id": "moss_hummock_uhd",
+   "slot": "moss",
+   "primary_for_slot": false,
+   "photo": "attachments/U07_6572337c.webp",
+   "rect": [
+    1480,
+    340,
+    1740,
+    620
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    1024
+   ],
+   "physical_scale_m": 0.55,
+   "scale_basis": "trunk in the same frame ~0.37 m = 200 px at similar depth",
+   "chroma": 0.9,
+   "height_mode": "bright_is_high",
+   "notes": "rounded moss-covered hummock in even shade, the cleanest moss surface in the set; small source region (260 px) so the 4k tier is heavily interpolated"
+  },
+  {
+   "id": "mossy_lava_uhd",
+   "slot": "rock",
+   "primary_for_slot": true,
+   "photo": "attachments/U10_de969dec.webp",
+   "rect": [
+    980,
+    760,
+    1290,
+    983
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    1024
+   ],
+   "physical_scale_m": 0.55,
+   "scale_basis": "individual wall blocks ~0.3-0.4 m = 160-210 px",
+   "height_mode": "bright_is_high",
+   "notes": "mossy lava blocks of the dry-stone trail retaining wall in U10 seen face-on (square crop for the runtime rock slot); the block ARRANGEMENT is anthropogenic, the surfaces are natural Jogan lava with moss",
+   "chroma": 0.9
+  },
+  {
+   "id": "lava_wall_uhd",
+   "slot": "rock",
+   "primary_for_slot": false,
+   "photo": "attachments/U10_de969dec.webp",
+   "rect": [
+    900,
+    760,
+    1380,
+    983
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    512
+   ],
+   "physical_scale_m": 0.9,
+   "scale_basis": "individual wall blocks ~0.3-0.4 m = 160-210 px",
+   "height_mode": "bright_is_high",
+   "notes": "dry-stone trail retaining wall of mossy lava blocks seen face-on; block arrangement is anthropogenic; 2:1 tile, no stretch",
+   "chroma": 0.9
+  },
+  {
+   "id": "litter_uhd",
+   "slot": "litter",
+   "primary_for_slot": true,
+   "photo": "attachments/U07_6572337c.webp",
+   "rect": [
+    150,
+    100,
+    470,
+    440
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    1024
+   ],
+   "physical_scale_m": 0.45,
+   "scale_basis": "fallen broadleaf leaves ~6 cm = 40 px",
+   "height_mode": "bright_is_high",
+   "notes": "fallen broadleaf leaves, conifer needles and thin twigs on dark humus, even shade",
+   "chroma": 0.9
+  },
+  {
+   "id": "trail_uhd",
+   "slot": "trail",
+   "primary_for_slot": true,
+   "photo": "attachments/U03_914d0cfb.webp",
+   "rect": [
+    40,
+    840,
+    470,
+    983
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    1024
+   ],
+   "physical_scale_m": 0.62,
+   "scale_basis": "trail width ~1.5 m across the frame bottom; flattened leaves ~6 cm",
+   "height_mode": "bright_is_high",
+   "notes": "compacted trail surface: dark humus with flattened leaf fragments and small stones; ground plane seen obliquely so the tile is stretched ~3x vertically (approximate rectification)",
+   "chroma": 0.9
+  },
+  {
+   "id": "bark_tsuga_uhd",
+   "slot": "bark",
+   "primary_for_slot": false,
+   "photo": "attachments/U11_01b43a84.webp",
+   "rect": [
+    1565,
+    60,
+    1730,
+    390
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    512,
+    1024
+   ],
+   "physical_scale_m": 0.43,
+   "scale_basis": "trunk diameter estimate 0.43 m = 165 px",
+   "height_mode": "dark_is_low",
+   "notes": "plated grey-brown hemlock-like (Tsuga) bark, evenly lit strip; 1:2 section of a full-height trunk",
+   "chroma": 0.9
+  },
+  {
+   "id": "bark_tsuga_old_uhd",
+   "slot": "bark",
+   "primary_for_slot": false,
+   "photo": "attachments/U10_de969dec.webp",
+   "rect": [
+    665,
+    60,
+    860,
+    450
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    512,
+    1024
+   ],
+   "physical_scale_m": 0.65,
+   "scale_basis": "big trunk diameter estimate 0.65 m = 195 px",
+   "height_mode": "dark_is_low",
+   "notes": "deeply fissured old hemlock-like bark of the large trunk left of centre in U10",
+   "chroma": 0.9
+  },
+  {
+   "id": "bark_lichen_uhd",
+   "slot": "bark",
+   "primary_for_slot": false,
+   "photo": "attachments/U07_6572337c.webp",
+   "rect": [
+    525,
+    8,
+    725,
+    700
+   ],
+   "rotation_deg": 4,
+   "core": [
+    170,
+    340
+   ],
+   "tile_px": [
+    512,
+    1024
+   ],
+   "physical_scale_m": 0.31,
+   "scale_basis": "trunk diameter estimate 0.37 m = 200 px",
+   "height_mode": "dark_is_low",
+   "notes": "lichen-plated grey-brown bark with pale foliose lichen and thin dark fissures; trunk leans 4 deg so the region is rotated before cropping",
+   "chroma": 0.9
+  },
+  {
+   "id": "deadwood_uhd",
+   "slot": "deadwood",
+   "primary_for_slot": false,
+   "photo": "attachments/U09_4261e995.webp",
+   "rect": [
+    760,
+    815,
+    1290,
+    955
+   ],
+   "rotation_deg": 87.5,
+   "core": [
+    125,
+    500
+   ],
+   "tile_px": [
+    256,
+    1024
+   ],
+   "physical_scale_m": 0.29,
+   "scale_basis": "log diameter estimate 0.32 m = 140 px",
+   "height_mode": "bright_is_high",
+   "notes": "bark-less fallen log with longitudinal fibre fissures and a moss ridge, rotated so the grain runs along the tile's long axis",
+   "chroma": 0.9
+  },
+  {
+   "id": "root_moss_uhd",
+   "slot": "root",
+   "primary_for_slot": false,
+   "photo": "attachments/U15_5c871a80.jpg",
+   "rect": [
+    450,
+    960,
+    1000,
+    1200
+   ],
+   "rotation_deg": 90,
+   "core": [
+    220,
+    440
+   ],
+   "tile_px": [
+    512,
+    1024
+   ],
+   "physical_scale_m": 0.25,
+   "scale_basis": "root thickness estimate 0.27 m = 240 px",
+   "height_mode": "bright_is_high",
+   "notes": "arching mossy surface root: moss cushion on the upper face, bare fissured root bark on the flank (phone close-up)",
+   "chroma": 0.5
+  },
+  {
+   "id": "understorey_uhd",
+   "slot": "understorey",
+   "primary_for_slot": false,
+   "photo": "attachments/U01_c59f556b.webp",
+   "rect": [
+    660,
+    720,
+    1000,
+    983
+   ],
+   "rotation_deg": 0,
+   "tile_px": [
+    1024,
+    1024
+   ],
+   "physical_scale_m": 0.55,
+   "scale_basis": "glossy shrub leaves ~5 cm = 30 px",
+   "height_mode": "bright_is_high",
+   "notes": "low evergreen small-leaved shrub carpet; specular leaf highlights are masked and inpainted; not consumed by the runtime (no ground-cover layer yet)",
+   "chroma": 0.9
+  }
+ ]
+}
