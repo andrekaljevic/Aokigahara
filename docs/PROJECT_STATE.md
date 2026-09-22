@@ -264,6 +264,14 @@ Applied after the checkpoint, continuing the interrupted pass rather than redesi
 - Corridor, instanced-forest and assembled-world GLBs are absent (§3.1); the viewer's corridor
   download button will fail until they are rebuilt.
 - Three Pass-1 procedural-tree input arrays are lost (§1.3).
+- The `materials_v2` procedural ground tiles are not seamless. `tools/verify_material_pack.py`
+  scores the wrap-around discontinuity of each map against its interior gradient (1.0 = as smooth
+  as the interior): `litter_diff` 0.8, but `basalt_diff` 2.0, `trail_diff` 4.8, `moss_diff` 4.9
+  and `moss_height` 4.0, and a 2 × 2 tiling shows the hard edge. Cause: `tile_noise()` in
+  `construction_code_v2/gen_textures.py` upsamples a 3 × 3 tiled noise grid with
+  `ndimage.zoom`, whose default `(in−1)/(out−1)` sample mapping does not preserve the tile
+  period, so the cropped centre tile is not periodic. The runtime's anti-tiling rotation and
+  world-space blend hide it partly; it is not fixed here.
 
 **Honest limits of the reconstruction itself**
 
