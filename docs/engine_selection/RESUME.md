@@ -14,8 +14,8 @@ against the UE5.8 lighting baseline with `tools/lighting_stats.py`. The full rep
 - **Godot 4.7.2 (Forward+ on software Vulkan).** The SDFGI render meets four of the five baseline
   targets. It misses only the warm-highlight target.
 - **three.js r186 WebGPU.** It rendered, and a baked canopy sky-visibility map gave the plain
-  render a dappled look. But its screen-space GI pass broke the shadows. The best plain render
-  meets one of the five targets: it has too many sunflecks and over-blue shade.
+  render a dappled look. But its screen-space GI pass broke the shadows. The plain renders meet
+  one or two of the five targets. The best-looking one has too many sunflecks and over-blue shade.
 
 (Earlier status: paused at the owner's request about 25 minutes into the research phase.)
 
