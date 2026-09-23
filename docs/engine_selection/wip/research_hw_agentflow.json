@@ -1,0 +1,141 @@
+{
+  "topic": "M2 MacBook Air rendering ceiling, and AI-agent workflow efficiency",
+  "summary": "The owner's Mac is model MC7X4B/A (per the repo's MACHINE_AUDIT). Retailers list that SKU as the 16 GB / 256 GB M2 Air, so it probably has the 8-core GPU. That GPU gives roughly 2.9 TFLOPS FP32 and 100 GB/s of memory bandwidth shared with the CPU. A 256 GB SSD would also explain why the disk filled up. The chip is Apple GPU family 8: Metal 3 and 4, mesh shading, and MetalFX spatial, temporal and frame interpolation. It has no hardware ray tracing (that starts with M3) and no MetalFX denoised upscaling. Ray-traced GI in the style of Lumen is therefore the most expensive way to get the lighting on this machine. Cheaper layers can produce the same look:\n- sun shadow maps with PCSS for dappled light;\n- sky-visibility and sun-transmittance maps precomputed from the LiDAR canopy height model;\n- SSAO/SSIL;\n- froxel volumetric fog;\n- auto-exposure.\n\nRealistic target: 30 fps locked, measured after 10 minutes warm, at about 1280x800 internal with MetalFX temporal upscaling.\n\nAlpha-tested foliage is the main cost, because it weakens Apple's hidden-surface removal. I estimate 2–4 M triangles in the main view plus shadow passes (not measured).\n\nThe UE5.8 attempt burnt usage because:\n- its world lived only in binary files on the Mac; git holds 12 script/JSON files and no .uproject or .uasset;\n- the agents could not see the viewport, so they relied on the owner's phone photos.\n\nIn the cloud container, agents can already render headless with WebGPU/WebGL through SwiftShader, with fixed cameras and lighting metrics. Two more routes should work: Blender via the bpy package on PyPI, and Godot via Xvfb plus lavapipe (unverified). Usage savers:\n- plan mode;\n- /clear between tasks;\n- Sonnet for routine work;\n- metrics before images (1280x800 ≈ 1.3k tokens);\n- CLI over MCP;\n- avoid multi-agent runs, which cost about 15× the tokens of a chat.\n\nKeep raw data on an external SSD and publish derived packs as GitHub release assets. LFS is unreachable from the cloud container.",
+  "findings": [
+    {
+      "claim": "The owner's Mac is model number MC7X4B/A (repo MACHINE_AUDIT.md, read from a System Information screenshot). Retail listings give MC7X4 as the 'MacBook Air M2 16 GB / 256 GB SSD' SKU. From memory, that late-2024 16 GB/256 GB M2 Air shipped only with the 8-core GPU. So the owner very probably has an 8-core GPU and only 256 GB internal storage. Confirm with `system_profiler SPDisplaysDataType` and `df -h /`.",
+      "source_url": "https://www.flipkart.com/apple-macbook-air-m2-16-gb-256-gb-ssd-macos-sequoia-mc7x4hn-a/p/itmdc5308fa78421",
+      "confidence": "medium",
+      "relevance": "Budgets should assume the weaker 8-core GPU. A 256 GB SSD explains why UE5.8 plus its DDC filled the disk, and makes an external SSD almost mandatory."
+    },
+    {
+      "claim": "Reverse-engineered M2 GPU figures: 10 cores at 1.398 GHz, 3,579 GFLOPS FP32. By scaling, the 8-core M2 gives about 2.86 TFLOPS. The llama.cpp Apple Silicon table lists M2 bandwidth as 100 GB/s, against M1 68, M3 100, M4 120 and M5 154 GB/s. At 30 fps and 1280x800 (1.02 MP), the 8-core M2 has at theoretical peak about 93k FLOP and about 3.2 KB of DRAM traffic per pixel per frame, shared with the CPU.",
+      "source_url": "https://github.com/philipturner/metal-benchmarks",
+      "confidence": "high",
+      "relevance": "This sets the hard ceiling. Bandwidth, not ALU, is the usual limit for deferred G-buffers, shadow atlases and foliage overdraw on this chip."
+    },
+    {
+      "claim": "In Apple's Metal Feature Set Tables (21 May 2026), M2-series is family Apple8 and supports both Metal 3 and Metal 4. Support by family: mesh shading Apple7+, MetalFX spatial upscaling Apple3+, MetalFX temporal upscaling Apple7+, MetalFX frame interpolation Apple5+. MetalFX denoised upscaling needs Apple9 (M3/M4). M5-series is Apple10. The largest 2D texture on Apple8 is 16384.",
+      "source_url": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+      "confidence": "high",
+      "relevance": "MetalFX temporal upscaling (used by Godot 4.4+) is available on M2. The ray-tracing denoiser path is not, so ray-traced GI and shadows are not a good fit."
+    },
+    {
+      "claim": "Apple's M3/A17 Pro tech talk says family-9 GPUs add fixed-function ray-traversal hardware, hardware-accelerated mesh shading and dynamic shader-core memory. Earlier chips such as M2 run Metal ray tracing on the general shader cores.",
+      "source_url": "https://developer.apple.com/videos/play/tech-talks/111375/",
+      "confidence": "high",
+      "relevance": "Lumen-class software-traced GI was the most expensive part of the UE5.8 look. On M2, the lighting target should come from precomputed sky visibility driven by the LiDAR canopy height model, shadow maps, screen-space GI/AO and froxel fog, not from ray tracing."
+    },
+    {
+      "claim": "Apple (WWDC20, 'Optimize Metal Performance for Apple silicon Macs'): the GPU's hidden-surface removal shades only visible pixels. Fragments that discard or write depth are 'feedback' fragments, and 'alpha tested foliage falls into this category'. Draw opaque, then feedback, then translucent. Load/store actions 'consume the majority of your app's system bandwidth', so use memoryless attachments where possible. With HSR working fully, a depth pre-pass for opaque geometry brings no extra benefit.",
+      "source_url": "https://developer.apple.com/videos/play/wwdc2020/10632/",
+      "confidence": "high",
+      "relevance": "Foliage overdraw is the main cost on a Mac for a dense conifer forest. Needles and ferns should use opaque or near-opaque geometry near the camera. Alpha cards should be few and drawn after opaque geometry. Impostors should have opaque cores. This also removes the stippled/dithered masked look seen in the UE5.8 frames."
+    },
+    {
+      "claim": "Measured from the repo's data/forest-wide.f32 (467,601 trees, 8.5 m spacing), full 360° counts from 20 random forest points: median 37 trees within 30 m, 412 within 100 m, 917 within 150 m, 3,562 within 300 m, 9,425 within 500 m, 31,401 within 1 km and 118,361 within 2 km. A 90° view frustum sees roughly a quarter of these. Estimated budget (mine, not measured): full-detail trees to about 30–40 m (about 10 in view), mid LOD to about 150 m (about 230), impostors to 1–2 km (about 8–30k), and a textured canopy heightfield from the LiDAR DSM beyond that. That gives about 2–4 M triangles in the main view plus a similar amount across shadow cascades, and 500–1,500 instanced draws.",
+      "source_url": "https://github.com/andrekaljevic/aokigahara/blob/main/data/forest-wide.json",
+      "confidence": "medium",
+      "relevance": "This turns the 5 km free-roam goal into concrete LOD tiers the M2 can afford. The earlier three.js viewer already drew 7–8 M triangles in about 90 draw calls. The distant heightfield fixes UE5.8's 'dark flat masses' in the distant canopy."
+    },
+    {
+      "claim": "Thermal throttling: I could not fetch measured M2 Air GPU stress-test figures this session, because the proxy blocks notebookcheck, tomshardware, anandtech, apple.com and search. From memory, reviewers found that the fanless M2 Air loses a significant share of GPU performance in looped 3DMark/Cinebench runs compared with the fan-cooled M2 MacBook Pro 13; I have no exact percentage. The repo's migration brief already says to benchmark after 10 minutes of load. Godot issue #119436 reports a Metal 'timeout waiting for fence' freeze on an M2 MacBook Air with Godot 4.6.1.",
+      "source_url": "https://github.com/godotengine/godot/issues/119436",
+      "confidence": "low",
+      "relevance": "Decisions should use warm, capped-30-fps measurements with about 25% GPU headroom, not cold peak fps. Capping fps also lowers heat, so sustained frame rates hold."
+    },
+    {
+      "claim": "Optional note on newer Macs. M4 has 120 GB/s and M5 154 GB/s against M2's 100 (llama.cpp table). M3 and later add hardware ray tracing and mesh shading plus MetalFX denoised upscaling; M5 is family Apple10. A Mac mini or MacBook Pro has a fan, which removes the Air's throttling. UK prices are from memory and unverified because apple.com is blocked here: Mac mini M4 16 GB/256 GB about £599 (Oct 2024); MacBook Pro 14-inch M5 16 GB/512 GB about £1,599 (Oct 2025). I could not confirm the September 2026 line-up.",
+      "source_url": "https://github.com/ggml-org/llama.cpp/discussions/4167",
+      "confidence": "low",
+      "relevance": "A £599-class Mac mini would give roughly 1.2–1.5× the sustained GPU performance, no throttling and more storage options. It is not needed to decide the engine."
+    },
+    {
+      "claim": "External storage (from memory; Apple's spec pages are blocked here). The M2 Air has two Thunderbolt 3 / USB4 ports at up to 40 Gb/s. NVMe enclosures on those ports typically reach about 2.5–3 GB/s; USB 3.2 Gen 2 drives about 1 GB/s. The 256 GB M2 Air SSD was widely reported as slower than the 512 GB model because it uses a single NAND package. Use APFS, not exFAT, for git working trees and caches.",
+      "source_url": "https://github.com/andrekaljevic/aokigahara/blob/rebuild/measured-2026-09-19/unreal/AokigaharaUE/Docs/MACHINE_AUDIT.md",
+      "confidence": "low",
+      "relevance": "An external TB/USB4 SSD can hold the 916 MB+ LiDAR sources, engine import caches and renders without touching the internal disk."
+    },
+    {
+      "claim": "Why UE5.8 burnt usage, from this repo's own evidence. The ue5.8/aokigahara-production branch has only 12 files under unreal/: Python import scripts, JSON heightmaps and two docs. There is no .uproject, .uasset or .umap. The world state therefore lived only as binary files on the Mac, which agents could not diff or review, and it was lost when the project was corrupted. MACHINE_AUDIT.md admits the hardware values were read off a screenshot, and the visual baseline exists only as owner phone photos and captures.",
+      "source_url": "https://github.com/andrekaljevic/aokigahara/tree/ue5.8/aokigahara-production/unreal/AokigaharaUE",
+      "confidence": "high",
+      "relevance": "The next engine must keep scenes, materials and settings as text in git. It must also let the cloud agent render and measure frames itself, so the owner no longer has to be the eyes."
+    },
+    {
+      "claim": "Headless verification in the cloud container already works for web engines. Chromium 1194 (Playwright's headless_shell) is pre-installed at /opt/pw-browsers. tools/audit_render.mjs renders fixed cameras through SwiftShader WebGL, and tools/lighting_stats.py scores frames against the UE5.8 targets: sunfleck fraction 0.07–0.16, shadow blue ratio 1.16–1.73, 8.5–10.2 stops. An earlier probe rendered three r186 WebGPU at 960x600 in about 0.65 s per frame, or about 1.8 s with SSGI, on SwiftShader.",
+      "source_url": "https://github.com/andrekaljevic/aokigahara/blob/claude/aokigahara-engine-selection-tqyqx6/docs/engine_selection/RESUME.md",
+      "confidence": "high",
+      "relevance": "This is the cheapest possible self-verification loop: deterministic cameras, a numeric lighting score and no GPU or Mac needed."
+    },
+    {
+      "claim": "Godot's `--headless` switches to the headless display driver and the dummy audio driver, so it renders no pixels. Frame capture needs `--write-movie` with `--fixed-fps` and `--quit-after` under a real or virtual display. In this container Xvfb is installed and mesa-vulkan-drivers 25.2.8 (lavapipe) is installable. Open issue #82435 (2023, still labelled confirmed): Forward+ and Mobile crash on llvmpipe/lavapipe, while Compatibility works. Whether 4.7/4.8 still crashes is unverified.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/editor/command_line_tutorial.rst",
+      "confidence": "medium",
+      "relevance": "Godot's text scenes suit agents, but cloud renders of Forward+ lighting (SDFGI, volumetric fog) are not yet proven. The Godot prototype agent must test this first."
+    },
+    {
+      "claim": "Blender can run in the cloud container even though download.blender.org is blocked. PyPI hosts the official 'Blender as a Python module' wheels: bpy 5.2.2 (15 Sep 2026, Python 3.13, manylinux x86_64 and macOS arm64, about 400 MB) and LTS 4.5.14 (15 Sep 2026, Python 3.11). Cycles renders on the CPU in background mode. Whether EEVEE works headless on Mesa without a GPU is unverified.",
+      "source_url": "https://pypi.org/project/bpy/",
+      "confidence": "high",
+      "relevance": "Cloud agents can bake assets with Cycles, whatever the runtime engine: tree impostors, canopy albedo/normal atlases, AO/bent normals, and reference 'ground-truth' lighting frames."
+    },
+    {
+      "claim": "MCP servers in September 2026:\n- blender-mcp is now 'mcp-for-blender' (2.0.0 on PyPI, 16 Sep 2026; about 29.2k GitHub stars; third-party). It runs arbitrary Python in Blender and captures the viewport.\n- Coding-Solo/godot-mcp (about 5.8k stars) launches the editor, runs projects and captures debug output, with no screenshot tool.\n- hi-godot/godot-ai targets Godot 4.7+ with game/editor capture.\n- CoplayDev/unity-mcp v10.0.0 (30 Jun 2026; about 14.4k stars) is community-run and says it is not affiliated with Unity.\n- chrome-devtools-mcp 1.10.1 (23 Sep 2026) takes screenshots and performance traces, headless.\n- @playwright/mcp is at 0.0.82.",
+      "source_url": "https://pypi.org/project/blender-mcp/",
+      "confidence": "medium",
+      "relevance": "MCP is mature enough for Mac-side inspection. In the cloud, though, plain Playwright/Godot/Blender CLI scripts do the same job with less context."
+    },
+    {
+      "claim": "Claude Code cost guidance (live docs):\n- 'Prefer CLI tools' over MCP servers because CLIs add no per-tool listing.\n- /clear between tasks; /compact with instructions.\n- Sonnet for most coding, Opus for architecture; Haiku for simple subagents.\n- Plan mode for complex tasks.\n- Hooks to filter logs, for example grep ERROR instead of reading 10,000 lines.\n- CLAUDE.md under 200 lines, with specialised instructions moved to skills.\n- Subagents for verbose operations.\n- Agent teams use about 7× more tokens than standard sessions when teammates run in plan mode.\n- Resuming after the cache TTL re-processes the whole context.",
+      "source_url": "https://code.claude.com/docs/en/costs",
+      "confidence": "high",
+      "relevance": "These practices directly counter the UE5.8 waste of huge editor logs, long sessions and repeated context."
+    },
+    {
+      "claim": "Anthropic's engineering post: 'agents typically use about 4× more tokens than chat interactions, and multi-agent systems use about 15× more tokens than chats'. Multi-agent systems suit broad parallel research. They are a poor fit when agents must share context or depend on each other heavily, which is typical of coding.",
+      "source_url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "confidence": "high",
+      "relevance": "Use multi-agent runs only for one-off parallel research such as this engine decision. Build the engine, the data pipeline and the lighting in single, scoped sessions."
+    },
+    {
+      "claim": "Image cost for Claude is ⌈w/28⌉×⌈h/28⌉ visual tokens. A 1280x800 audit frame costs about 1,334 tokens, and a 4-view contact sheet of 640x400 tiles costs the same. Newer models accept up to 2576 px / 4,784 tokens per image. Images stay in the conversation and are re-sent on every later turn.",
+      "source_url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+      "confidence": "high",
+      "relevance": "Token-efficient loop: run the fixed cameras, then read lighting_stats JSON (about 100 tokens) and look at a single contact sheet only when a metric crosses a threshold. Do image-heavy review in a subagent so the images do not stay in the main context."
+    },
+    {
+      "claim": "GitHub Git LFS on Free/Pro accounts includes 10 GiB storage and 10 GiB bandwidth per month; the largest LFS file is 2 GiB. Release assets must each be under 2 GiB, and 'there is no limit on the total size of a release, nor bandwidth usage'. In this cloud container, lfs.github.com is unreachable and git-lfs is not installed; the repo's tools/enable_lfs.sh records that egress refused LFS. GitHub release assets are reachable.",
+      "source_url": "https://github.com/github/docs/blob/main/data/variables/large_files.yml",
+      "confidence": "high",
+      "relevance": "Keep code, scenes and small derived data in git. Publish versioned binary packs (materials, impostors, CHM/sky-visibility rasters) as release assets with SHA-256 manifests. Keep raw LiDAR on the external SSD, never on the internal disk."
+    }
+  ],
+  "fidelity_ceiling": "On an 8-core M2 at a locked 30 fps, the ceiling is roughly 'high-end indie / AA'. It is comparable to, and in specific areas better than, the UE5.8 frames; it is not cinematic photorealism.\n\n**Can match or beat UE5.8**\n- **Near field (0–50 m).** Photo-derived moss and lava materials already exist at 1k–4k, and dense instanced ferns and moss are affordable.\n- **Distant canopy.** A textured heightfield built from the 0.5 m LiDAR DSM plus impostors would beat UE5.8's dark flat masses.\n- **Sky.** A physical sky with aerial perspective would fix the blown-out flat sky.\n- **The owner's lighting look (g–j frames).** It can be approximated in five layers:\n  1. 4-cascade sun shadows with PCSS up to about 150–250 m, cast by real foliage geometry, giving the dappled sunflecks;\n  2. per-texel sky-visibility and sun-transmittance maps ray-marched through the LiDAR canopy height model in the cloud, and re-baked per sun angle (or computed on the GPU as a heightfield shadow), which darken the interior, leave bright gaps and give canopy shadow beyond the cascade range;\n  3. SSAO/GTAO plus SSIL, or half-resolution SDFGI in Godot, for warm bounce;\n  4. froxel volumetric fog lit by the shadowed sun, for shafts and haze;\n  5. auto-exposure with an AgX/ACES tonemapper, for the 8–10 stop range.\n\n  The repo's lighting_stats.py makes the match measurable.\n\n**Will not match**\n- fully dynamic multi-bounce GI with time-of-day changes;\n- Virtual-Shadow-Map-sharp canopy shadows at hundreds of metres, which the CHM term only approximates;\n- Nanite-level geometric density in the mid-distance;\n- ray-traced reflections.\n\nReal-time hardware ray tracing is not available on M2.",
+  "m2_air_feasibility": "Feasible, if the scene is designed for the chip rather than for UE-style brute force.\n\n**Suggested budget (my estimates; to be verified on the Mac after 10 minutes warm)**\n- **Frame rate:** a 30 fps cap (33.3 ms), aiming for about 25 ms GPU time to leave thermal headroom.\n- **Resolution:** internal about 1280x800 (about 1 MP), or 0.67 scale with MetalFX temporal upscaling to 1470x956 or 1710x1112.\n- **Main view:** 2–4 M triangles, 500–1,500 instanced/indirect draws. For WebGPU in a browser, keep it at or below about 500 draws.\n- **Shadows:** 4 cascades to 150–250 m in a 4096 atlas, with low-LOD casters in cascades 3–4. Beyond that, the CHM transmittance texture takes over.\n- **Foliage:** opaque-first draw order. Alpha-tested layers averaging 3 or fewer per pixel. Near needles as geometry. Impostors from about 150 m to 2 km.\n- **GPU time per effect:**\n\n| Effect | Budget |\n|---|---|\n| GI (SSIL or half-resolution SDFGI) | ≤ 4 ms |\n| Volumetric fog | ≤ 2–3 ms |\n| SSAO | ≤ 1.5 ms |\n| Post-processing and upscaling | about 2 ms |\n\n- **Memory:** 16 GB unified, shared with macOS. From memory, the recommended GPU working set is about two-thirds of RAM. Plan for 3–4 GB or less of resident compressed textures (4k only near the camera; 2k/1k elsewhere, streamed) and 1–2 GB of geometry.\n\n**Risks**\n- Throttling on this fanless machine.\n- Metal driver bugs in Godot (fence freeze on an M2 Air).\n- The 8-core GPU is weaker than the 10-core figures used in most benchmarks.\n\nNo verified fps figures for comparable forests on an M2 Air could be retrieved, so a one-evening warm benchmark of the chosen prototype is the acceptance gate.",
+  "storage_footprint": "**Internal disk**\nThe owner's SKU appears to have a 256 GB SSD, so the internal disk should hold only the engine or browser, the git working tree of code and text scenes, and a small cache.\n\n| Item | Size |\n|---|---|\n| Godot 4.7.2 macOS editor zip | 170.6 MB (export templates of 1.28 GB are optional) |\n| three.js / Babylon | no install; npm packages are tens of MB |\n| Blender bpy wheel | about 400 MB; the app is about 1 GB |\n| Estimated project | 3–8 GB including import and shader caches |\n| Raw Yamanashi LiDAR, MMS and DEM | about 0.9 GB compressed; will expand when decompressed |\n\n**Plan**\n1. Buy a 1 TB+ NVMe drive in a TB3/USB4 enclosure and format it APFS. Put raw data, the engine import caches (.godot/ can be deleted and rebuilt) and renders on it.\n2. Git holds only code, text scenes and small derived data.\n3. Publish binary packs (materials, impostors, rasters) as GitHub release assets under 2 GiB each, with SHA-256 manifests checked by tools/verify_manifest.py.\n4. Avoid LFS: the free quota is 10 GiB storage plus 10 GiB bandwidth a month, and LFS is unreachable from the cloud container.\n5. Never let an engine's shader cache or DDC-like cache live unbounded on the internal disk. Check `du -sh ~/Library/Caches/*` monthly.",
+  "agent_operability": "**Split of work**\n\nThe cloud agent (Linux, no GPU, 4 CPUs) owns:\n- the data pipeline: LAS/DEM to terrain tiles, CHM to sky-visibility and transmittance rasters, placements;\n- all code and text scenes;\n- asset baking with Cycles CPU through the PyPI bpy wheel;\n- headless audit renders: Chromium SwiftShader WebGPU/WebGL works today, and Godot through Xvfb plus lavapipe is still to be proven.\n\nThe Mac owns only:\n- a scripted, warm 10-minute performance run that writes a JSON of frame times;\n- a final visual sign-off on 4–6 fixed cameras.\n\nNo phone photos and no GUI-only steps.\n\n**Token-efficient loop**\n1. Use the fixed camera file (harness/cams*.json).\n2. Render deterministically (`--fixed-fps` / `--write-movie`, or Playwright).\n3. Run tools/lighting_stats.py and read the JSON first.\n4. Only on a threshold change, view one 1280x800 contact sheet (about 1.3k tokens), ideally in a subagent.\n5. Filter logs through hooks or grep.\n\n**Session habits**\n- Plan mode to settle each step before implementing it.\n- One scoped session per step: data, terrain, trees, lighting, then performance.\n- /clear between steps.\n- Sonnet for routine work.\n- Multi-agent runs only for broad research (about 15× chat tokens).\n- CLI scripts rather than MCP in the cloud. Use MCP (mcp-for-blender, godot-ai, chrome-devtools-mcp) only when the owner wants live editor inspection on the Mac.",
+  "cost_licence": "Software cost can be zero. Godot (MIT), three.js (MIT), Babylon (Apache-2.0), Blender (GPL; the bpy wheel is free), Mesa and Playwright are all free. Unity would add licence activation friction in headless batch mode.\n\nGitHub: release assets have no total-size or bandwidth cap. LFS is 10 GiB free and then paid.\n\nAgent usage is the real cost. Anthropic's enterprise average is about $13 per developer per active day. Multi-agent runs cost about 15× a chat and agent teams about 7× a standard session, so keep runs single-agent and scoped.\n\nHardware, optional:\n- external NVMe SSD with a TB3/USB4 enclosure: roughly £80–150 for 1 TB (estimate, not verified);\n- M4 Mac mini: about £599 (from memory, not verified);\n- M5 MacBook Pro 14-inch: about £1,599 (from memory, not verified).",
+  "latest_versions": "Checked on 23 Sep 2026 against npm, PyPI, crates.io and GitHub:\n\n| Package | Version and date |\n|---|---|\n| three | 0.186.0 (8 Sep 2026) |\n| @babylonjs/core | 9.27.1 (18 Sep 2026) |\n| playcanvas | 2.22.4 (23 Sep 2026) |\n| Godot stable | 4.7.2 (18 Aug 2026) |\n| Godot dev | 4.8-dev6 (15 Sep 2026) |\n| bpy | 5.2.2 (15 Sep 2026); LTS 4.5.14 (15 Sep 2026) |\n| Bevy (crates.io) | 0.19.1 stable, 0.20.0-rc.1 (dates not retrieved) |\n| playwright | 1.63.0 (4 Sep 2026) |\n| @playwright/mcp | 0.0.82 (18 Sep 2026) |\n| chrome-devtools-mcp | 1.10.1 (23 Sep 2026) |\n| mcp-for-blender (blender-mcp wrapper) | 2.0.0 (16 Sep 2026) |\n| CoplayDev unity-mcp | v10.0.0 (30 Jun 2026) |\n| @coding-solo/godot-mcp (npm) | 0.1.1 (3 Feb 2026) |\n| Claude Code | 2.1.280 (22 Sep 2026) |\n| Apple Metal Feature Set Tables | revision dated 21 May 2026 |\n| Mesa lavapipe in Ubuntu 24.04 apt | 25.2.8 |\n| Pre-installed Chromium (Playwright build) | 1194 |",
+  "risks": [
+    "The GPU core count is unconfirmed. If it is 8-core, as the MC7X4 SKU suggests, it has about 20% less GPU than the 10-core figures in most published benchmarks.",
+    "Fanless throttling can turn a cold 30 fps into a warm 20–25 fps. Every performance decision must use a warm, capped run.",
+    "Metal driver and engine bugs on M2: a Godot Metal fence freeze on an M2 Air (#119436) and an SDFGI bounce bug on Metal in 4.7 (fixed only in 4.8). The Vulkan/MoltenVK fallback has its own M2 artefacts (#121662).",
+    "Headless Godot Forward+ on lavapipe may crash (#82435). If it does, cloud agents can verify only the Compatibility renderer or browser renders, not the final lighting.",
+    "SwiftShader and lavapipe frames can differ from Metal output in precision, fog and GI noise. Cloud lighting metrics are a proxy, and a Mac sign-off is still needed.",
+    "The CHM-driven sky-visibility and transmittance approach is a custom shader term. It needs careful blending with near-field shadow maps, or the transition at the cascade edge will show.",
+    "Alpha-tested foliage can easily blow the fill-rate budget on Apple's hidden-surface-removal design, so asset authoring must follow the opaque-first rule.",
+    "Storage: a 256 GB internal SSD shared with macOS leaves little room. Without an external SSD, any engine's caches will recreate the UE5.8 disk crisis.",
+    "LFS does not work from the cloud container. Committing large binaries directly to git would bloat the history permanently."
+  ],
+  "unknowns": [
+    "GPU core count (8 or 10), free internal disk space, macOS version, and whether an external SSD is available. Run `system_profiler SPDisplaysDataType SPHardwareDataType; df -h /`.",
+    "Measured sustained GPU throttling figures for the M2 Air. Review sites and search were blocked by the proxy this session.",
+    "Any verified fps figures for comparable dense-forest scenes on an M2 Air, whether games, Godot demos or WebGPU demos.",
+    "Whether Godot 4.7/4.8 Forward+ now runs under Xvfb plus lavapipe without crashing, and how long a frame with SDFGI and volumetric fog takes on 4 CPUs.",
+    "Whether EEVEE renders headless on Mesa in the bpy 5.2.2 wheel, or only Cycles CPU.",
+    "Current UK Apple prices and the September 2026 Mac line-up (apple.com was blocked).",
+    "Metal's recommended GPU working-set size on a 16 GB M2. I recall about two-thirds of RAM, not verified.",
+    "Unity 6.x batchmode rendering and licensing behaviour on headless Linux (Unity docs were blocked)."
+  ]
+}

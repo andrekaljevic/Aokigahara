@@ -1,0 +1,153 @@
+{
+  "topic": "Capture-based photorealism: Gaussian splatting / photogrammetry for a real 25 km² Aokigahara plot (September 2026)",
+  "summary": "Splat tooling is ready by September 2026, and most of it is free. KHR_gaussian_splatting was marked ratified on 3 Sep 2026. SPZ 4 shipped in May 2026. PlayCanvas Streamed SOG with splat-transform 3.6.4 provides level of detail (LOD), collision voxels and relighting through a proxy mesh. Spark 2.2 adds LoD streaming to three.js on WebGL2. three r186 has a basic WebGPU splat renderer.\n\nTraining works on the Mac at hero-spot scale: Brush 0.3, OpenSplat on Metal (MPS) and msplat handle roughly 1–3 M splats from 300–1,500 images. Postshot and RealityScan run on Windows only.\n\nCapture is the problem. A splat only rebuilds what a camera walked past. Aokigahara is a special protection zone and natural monument, and leaving the trails is prohibited. Only trail corridors can be captured, which is a small share of the 25 km². Covering all public trails would mean about 1.6 TB of 360 video and roughly 260k frames, which needs CUDA cluster compute.\n\nLighting: a splat holds real, photographic light, including the actual dappled sun. That light is fixed at capture time, it does not take shadows from other objects, it is limited by the camera's dynamic range, and it must match the mesh world's sun. Splats therefore do not pass the lighting acceptance test for the world. Their value is as ground truth for calibrating that lighting.\n\nDrones see little under the canopy and need consultation first. Google's terms forbid reusing Street View. Yamanashi's MMS colour points are open data but cover roads only, and there are no source photos to train on.\n\nRecommendation: build the walkable world as meshes from the LiDAR data. As an option, one trip could capture 5–15 hero splats on public trails, plus HDR panoramas and photogrammetry. Splats should not be the core of the build.",
+  "findings": [
+    {
+      "claim": "KHR_gaussian_splatting (splats as glTF point primitives with SH colour) went from 'Release Candidate' (merged 28 Jan 2026, announced 3 Feb 2026) to 'Complete, Ratified by the Khronos Group' in the KhronosGroup/glTF repo on 3 Sep 2026 (verified via git history). The spec's lighting section says lighting is baked into SH and relighting is left to implementations.",
+      "source_url": "https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_gaussian_splatting/README.md",
+      "confidence": "high",
+      "relevance": "An open, engine-neutral delivery format now exists for hero splats. Any engine chosen (web or native) can load the same assets, and nothing is locked to Unreal."
+    },
+    {
+      "claim": "PlayCanvas Streamed SOG: the global splat budget defaults to 1 M. The docs recommend about 1 M on mobile and 3 M or more on desktop. Two LOD modes exist: distance (default from engine 2.23, lower memory) and error (2.22 default, higher memory). SOG files are about 15–20x smaller than PLY. splat-transform decimation is memory-bounded and scales to scenes of 100 M+ Gaussians.",
+      "source_url": "https://raw.githubusercontent.com/playcanvas/developer-site/main/docs/user-manual/gaussian-splatting/building/performance.md",
+      "confidence": "high",
+      "relevance": "Sets a realistic splat budget for the M2 Air (about 1.5–3 M alongside a mesh world). Shows large captured areas can be streamed without holding them in 16 GB of memory."
+    },
+    {
+      "claim": "@playcanvas/splat-transform 3.6.4 (npm, 23 Sep 2026, MIT) reads PLY, SOG, SPZ, SPLAT, KSPLAT and XGRIDS LCC/LCC2. It writes Streamed SOG (lod-meta.json), GLB with KHR_gaussian_splatting, a sparse-voxel collision octree (.voxel.json) and a .collision.glb mesh via --collision-mesh.",
+      "source_url": "https://www.npmjs.com/package/@playcanvas/splat-transform",
+      "confidence": "high",
+      "relevance": "A command-line tool that agents can drive in cloud containers (npm is reachable). It covers conversion, LOD building and walkable collision for hero splats."
+    },
+    {
+      "claim": "PlayCanvas docs state that splats cannot receive shadows. The GsplatRelighting script lights a proxy mesh with standard lights (HDRI, PCSS sun, omni lights) into a screen-space texture and multiplies each splat fragment by it. The docs name proxy-mesh accuracy as the main quality lever.",
+      "source_url": "https://raw.githubusercontent.com/playcanvas/developer-site/main/docs/user-manual/gaussian-splatting/building/relighting.md",
+      "confidence": "high",
+      "relevance": "This is the only evidenced relighting route. In a forest, fine foliage and branches cannot be matched by a proxy mesh, so relit canopy splats would show misplaced light. A forest splat's natural lighting has to be accepted as baked."
+    },
+    {
+      "claim": "The PlayCanvas blog 'Turning a Gaussian Splat Into a Videogame' (22 Apr 2026) builds a browser FPS on a splat of a few million Gaussians. It generates collision with splat-transform, navmesh with recast-navigation, and baked 392 light probes (about 15 s) so dynamic meshes match the splat's baked lighting. The build is 68 MB, with the splat streamed separately.",
+      "source_url": "https://github.com/playcanvas/blog/blob/main/blog/2026-04-22-turning-a-gaussian-splat-into-a-videogame.md",
+      "confidence": "high",
+      "relevance": "Shows a playable hero area can be built from a splat. It also confirms that everything dynamic must be lit to match the capture, not the other way round."
+    },
+    {
+      "claim": "Spark (World Labs, MIT): 2.0.0 released 14 Apr 2026, 2.2.0 on 11 Sep 2026 (npm). It is a three.js (peer ≥0.180) WebGL2 renderer with LoD splat-tree streaming and paged GPU memory. Default LoD budgets taken from the 2.2.0 source: 2.5 M desktop, 1.5 M iOS, 1 M Android, 0.75 M Vision Pro, 0.5 M Quest. The code has no WebGPU path.",
+      "source_url": "https://www.npmjs.com/package/@sparkjsdev/spark",
+      "confidence": "high",
+      "relevance": "Could drop straight into the existing three.js viewer. It is tied to WebGLRenderer, though, so it clashes with a move to three r186 WebGPU with SSGI for lighting."
+    },
+    {
+      "claim": "three.js r186 (0.186.0, 8 Sep 2026) ships examples/jsm/objects/GaussianSplat.js, a 'minimal' splat renderer that works only with WebGPURenderer (GPU counting sort, no LOD). It also includes GLTFGaussianSplatLoaderExtension for KHR_gaussian_splatting. Inspected in the npm package.",
+      "source_url": "https://www.npmjs.com/package/three",
+      "confidence": "high",
+      "relevance": "Splats and WebGPU SSGI can share one three.js renderer. Without LOD, it only suits small hero spots of about 1–3 M splats."
+    },
+    {
+      "claim": "Engine support elsewhere. Babylon.js 9.x (9.27.1, 18 Sep 2026) loads PLY, SPZ and SOG, and splats can cast shadows. The Godot plugin GDGS v3.3.0 (30 Jul 2026, MIT) relights splats with up to 8 lights, lets them cast but not receive shadows, generates collision, and shows about 6 M points. It has no LOD. aras-p's UnityGaussianSplatting has had no significant development since Dec 2023.",
+      "source_url": "https://github.com/ReconWorldLab/godot-gaussian-splatting",
+      "confidence": "medium",
+      "relevance": "Whichever engine is chosen can host hero splats. None of them can relight or shadow splats properly, and only PlayCanvas, Spark and Cesium stream large scenes."
+    },
+    {
+      "claim": "Mac training tools. Brush's latest tag is v0.3.0 (14 Sep 2025, confirmed from the git tag); main is still active (20 Sep 2026). It ships Apple Silicon builds, uses MCMC-like training, streams datasets larger than RAM, and radiancefields reports a 10 M-splat cap. OpenSplat builds with MPS (Metal), is AGPLv3 and needs about 2 GB per million Gaussians. msplat (Apache-2.0) trains the Mip-NeRF360 garden scene (30k iterations) in 700 s to 3.51 M Gaussians on an M4 Max.",
+      "source_url": "https://github.com/rayanht/msplat",
+      "confidence": "medium",
+      "relevance": "Hero-spot training on the owner's Mac is feasible. My estimate is 4–5x slower than an M4 Max plus fanless throttling, so about 1–3 h per spot. OpenSplat's memory figure caps a 16 GB machine at about 4–5 M Gaussians."
+    },
+    {
+      "claim": "Postshot (1.x, 2026) and RealityScan 2.2 (24 Jun 2026, adds AMD GPU support) have Windows-only desktop apps. RealityScan also has a Linux CLI build and is free below US$1 M annual revenue. I could not reach the vendor sites, so these claims rest on secondary summaries.",
+      "source_url": "https://radiancefields.com/postshot-launches-v1-0-out-of-beta",
+      "confidence": "medium",
+      "relevance": "The best commercial splat and photogrammetry trainers cannot run on the owner's Mac. Running them would mean renting a Windows GPU machine."
+    },
+    {
+      "claim": "COLMAP 4.0.0 (tag 15 Mar 2026) integrated GLOMAP as a global mapper. The standalone GLOMAP repo was archived in Mar 2026. 4.1 added spherical (equirectangular) camera models for 360 footage, and 4.2.0 (31 Aug 2026) adds CoreML on macOS. Tag dates were verified with git.",
+      "source_url": "https://github.com/colmap/colmap/releases",
+      "confidence": "high",
+      "relevance": "Camera posing from 360 walk footage can run on the Mac, or through pycolmap in cloud containers, so agents can script it. Only the capture itself needs a human."
+    },
+    {
+      "claim": "Hierarchical 3DGS (Kerbl et al., SIGGRAPH 2024) is the reference for street-scale splats. Its datasets used 5,800–40,000 photos (SmallCity is a 450 m road) from 5–6 helmet GoPros firing every 0.5 s. Processing needed CUDA (tested on Windows and Ubuntu, no macOS). The 1,500-image toy set took about 47 + 95 + 171 min on an RTX A6000, and full scenes took 'a few hours on a compute cluster'.",
+      "source_url": "https://github.com/graphdeco-inria/hierarchical-3d-gaussians/blob/main/README.md",
+      "confidence": "high",
+      "relevance": "That density is about 13 images per metre of path. On that basis, trail-scale capture needs cluster-class CUDA compute. It is far beyond the M2 Air and far beyond the owner's usage and spending tolerance."
+    },
+    {
+      "claim": "My own estimate, based on the finding above: all public trails in the plot (about 20 km, assumed) × 13 images per m ≈ 260k images. With an Insta360 X5 at 180 Mbps (≈81 GB/h) and about 20 h for two passes at walking pace, that is ≈1.6 TB of raw video. Full-area coverage with 20 m swaths would need about 1,250 km of mostly off-trail walking.",
+      "source_url": "https://onlinemanual.insta360.com/x5/en-us/faq/specs/fileformat",
+      "confidence": "low",
+      "relevance": "Shows why a splat-only 25 km² world is out of reach. It needs roughly a thousand km of capture, most of it in places where entry is prohibited."
+    },
+    {
+      "claim": "Yamanashi Prefecture materials describe Aokigahara as a national-park special protection zone and special zone, and part of the Fujisan Primordial Forest natural monument. Secondary summaries say leaving the paths breaches the Natural Parks Act and the Cultural Properties Act, that unauthorised filming in the forest is forbidden, and that tripods are restricted. The Yamanashi Film Commission handles shoot enquiries. An eco-tour guideline limits routes and guide ratios. Official pages were blocked here, so these points come from search snippets.",
+      "source_url": "https://www.pref.yamanashi.jp/fujisan-whc/ecotourguidline.html",
+      "confidence": "medium",
+      "relevance": "Capture is limited to public trails, by hand, preferably arranged with the Film Commission or a licensed eco-tour guide. This alone rules out capture-led coverage of the plot."
+    },
+    {
+      "claim": "Drones: the Ministry of the Environment Kanto office says drone flights in national parks need no Natural Parks Act permit. Pilots should still get landowner or manager consent and avoid disturbing wildlife, and Fuji-Hakone-Izu enquiries go to the Numazu ranger office. MLIT requires Japanese registration and Remote ID for aircraft of 100 g or more. Mt Fuji climbing routes ban drones.",
+      "source_url": "https://kanto.env.go.jp/nature/mat/m_5_drone.html",
+      "confidence": "medium",
+      "relevance": "Flying is possible with consent from the prefecture as forest owner, but a drone cannot see under the dense canopy. It would add little to walking-height fidelity, and the distant canopy is already better sourced from the LiDAR DSM/CHM."
+    },
+    {
+      "claim": "Google Maps Platform Terms (last modified 26 Aug 2026), §3.2.3. (a) No scraping: no bulk download of Street View images and no storing or rehosting outside the Services. (c) No creating content based on Google Maps Content. A UK billing address falls under these main terms, not the EEA version.",
+      "source_url": "https://cloud.google.com/maps-platform/terms",
+      "confidence": "high",
+      "relevance": "Confirms Street View imagery cannot legally be used to train splats or textures for this project."
+    },
+    {
+      "claim": "The Yamanashi 2024 point cloud (airborne LP and MMS) is reported as dual-licensed CC BY 4.0 / ODbL, with 3D Tiles distribution. MMS points carry per-point camera RGB at about 3 cm spacing, on roads only. The project's catalogue notes that airborne RGB is an orthophoto drape.",
+      "source_url": "https://www.geospatial.jp/ckan/dataset/yamanashi-pointcloud-2024",
+      "confidence": "medium",
+      "relevance": "MMS points could become fixed-size point splats (a coloured point look, not a trained radiance field) along Route 139 and the lake roads. They could also seed training from the owner's own capture. They cannot provide trail or under-canopy splats."
+    },
+    {
+      "claim": "Capture guidance for vegetation: wind-moved leaves and shifting sun or cloud cause floaters and brightness flicker. Overcast light gives the cleanest, most relightable splats, and sky regions are prone to exposure artefacts.",
+      "source_url": "https://realhorizons.ai/blog/outdoor-gaussian-splatting-capture-guide/",
+      "confidence": "medium",
+      "relevance": "There is a direct conflict. The owner's target look (dappled sun, bright sky gaps) is exactly the condition that degrades a forest splat, and dappled patches move during a 10–20 min capture."
+    },
+    {
+      "claim": "The AirVis engine rendered a 106.4 M-splat town (a drone scan by Andrii Shramko) in real time on an M2 MacBook Air (late 2025, reported in a Show HN post and by GIGAZINE). The engine is proprietary and no frame rate was given.",
+      "source_url": "https://news.ycombinator.com/item?id=46277477",
+      "confidence": "medium",
+      "relevance": "Evidence that the owner's class of machine can render large streamed splat scenes, so rendering is not the bottleneck. Capture and lighting consistency are."
+    },
+    {
+      "claim": "XGRIDS PortalCam (a handheld unit combining LiDAR and four cameras for splat capture) sells for about US$4,999 including 1 year of LCC Basic, and LCC Studio is about US$2,500 a year. splat-transform reads its LCC and LCC2 output. The same searches found no existing public Gaussian splat or 3D scan of Aokigahara.",
+      "source_url": "https://store.xgrids.com/products/portalcam",
+      "confidence": "medium",
+      "relevance": "LiDAR-backed capture would improve splat geometry in forests but is expensive for a solo owner. There is no third-party capture to reuse; any capture means a trip."
+    }
+  ],
+  "fidelity_ceiling": "Inside a captured on-trail hero spot, the image is photographic. Moss, lava, roots, bark and the real dappled light, bounce and sky occlusion all exceed the UE5.8 frames. That quality falls apart once the viewer strays more than a few metres from the capture path or looks at surfaces the camera never saw. Typical artefacts are floaters around sky gaps, blurred thin branches and fern tips, and clipped highlights or crushed interior shadows from the camera's limited dynamic range. The time of day and wind state are fixed, splats cannot receive shadows, and the lighting cannot be changed except approximately through a proxy mesh.\n\nOutside the hero spots, splats contribute nothing, and the mesh world sets the ceiling for more than 99% of the 25 km². Splats therefore cannot carry the walkable-world lighting test. Their value there is as photographic ground truth for calibrating the mesh world's lighting, for example HDR panoramas and splats captured under canopy at a chosen sun time.",
+  "m2_air_feasibility": "Rendering is feasible. Spark defaults to a 2.5 M-splat budget on desktop, PlayCanvas recommends 1–3 M, and AirVis rendered a 106 M-splat town on an M2 Air. The owner should budget about 1.5–2.5 M visible splats at 1280×800 alongside the mesh forest (my estimate; I found no measured frame rate for an M2 Air).\n\nTraining is feasible only at hero-spot scale. Brush 0.3 (Apple Silicon build), OpenSplat (MPS) or msplat can each train 1–3 M splats from 300–1,500 frames in roughly 1–3 h per spot. That estimate scales msplat's 700 s M4 Max figure by 4–5x for an 8- or 10-core M2 GPU, plus fanless throttling. OpenSplat's roughly 2 GB per million Gaussians caps the 16 GB machine at about 4–5 M. COLMAP 4.x (global mapper, spherical cameras, CoreML on macOS) can pose 1–2k frames on the CPU.\n\nTrail-scale or plot-scale training (hundreds of thousands of images) is not feasible on the Mac. Hierarchical 3DGS needed CUDA A6000 or cluster time.",
+  "storage_footprint": "Everything raw should live on an external SSD, never the internal disk. Figures below are estimates.\n\nHero-spot programme (10–15 spots on public trails, about 10–20 min of 8K 360 video each, or phone and mirrorless stills):\n- Raw video: about 0.2–0.4 TB (X5 at ≈81 GB/h).\n- Extracted frames: 50–150 GB.\n- COLMAP databases: a few GB.\n- Trained PLY: about 0.25–0.75 GB per spot (1–3 M splats × about 248 B with SH3).\n- Shipped SOG (15–20x smaller): about 15–50 MB per spot, so 0.2–0.7 GB for the whole set including LOD levels.\n\nAll-trails capture (about 20 km): about 1.6 TB of raw video and about 260k frames (0.5–1 TB). Streamed SOG output would be on the order of 2–4 GB.\n\nA 2 TB USB SSD covers either programme. The repo and the deployed app only need the SOG/SPZ outputs.",
+  "agent_operability": "After capture, the pipeline is almost entirely command-line and scriptable. Agents can drive:\n- ffmpeg frame extraction and equirectangular-to-cubemap splitting;\n- COLMAP 4.x or pycolmap (PyPI is reachable from cloud containers);\n- Brush CLI, OpenSplat or msplat on the Mac;\n- splat-transform (npm, MIT) for cleaning, cluster filtering, LOD, SOG/GLB/SPZ export and collision voxels;\n- loading in Spark, PlayCanvas or three r186.\n\nAgents can check renders in the repo's existing headless-Chromium audit (SwiftShader WebGL2/WebGPU), though slowly. Cloud containers have no GPU, so training must run on the Mac (owner-supervised, fanless) or on a rented CUDA box. I have not verified whether splat-transform's GPU steps (cluster filter, voxelisation) run in a GPU-less container.\n\nThe capture itself cannot be automated. It needs the owner in Japan, on public trails, ideally coordinated with the Yamanashi Film Commission or a licensed guide. Each hero spot also needs manual cleanup: floaters, sky and people.\n\nAgent usage per hero spot is small compared with hand-modelling. The mesh world still needs its full agent-built pipeline, so splats add work rather than replace it.",
+  "cost_licence": "Software is free for this use:\n- MIT: Spark, the PlayCanvas engine, splat-transform, three.js, the SPZ library and the Godot GDGS plugin.\n- Apache-2.0: msplat.\n- AGPLv3: OpenSplat (fine for a local training tool).\n- Brush is open source (licence not re-verified).\n- RealityScan is free below US$1 M revenue but Windows only; Postshot has a free tier and is also Windows only.\n\nData and imagery:\n- KHR_gaussian_splatting is an open Khronos standard.\n- Yamanashi point clouds are reportedly CC BY 4.0 / ODbL, so attribution is required.\n- Google Street View and Maps content is contractually barred from reuse (GMP Terms §3.2.3, 26 Aug 2026).\n\nHardware and trips (low confidence, not sourced):\n- An Insta360 X5-class 360 camera costs about £500.\n- A UK–Japan trip of about a week costs roughly £1.5–3k.\n- A 2 TB SSD costs about £100–150.\n- An XGRIDS PortalCam costs about US$4,999 plus LCC subscriptions (sourced; buying one is not justified here).\n- Cloud CUDA for all-trails training would run to hundreds of GPU-hours, which conflicts with the owner's usage and spending limits.\n\nGenerative alternative: World Labs Marble costs US$20–95 a month. It is not a real-place capture and fails the brief's fidelity-to-place goal.",
+  "latest_versions": "Libraries and formats:\n- Spark @sparkjsdev/spark 2.2.0: 11 Sep 2026 (2.0.0 on 14 Apr 2026).\n- playcanvas engine 2.22.4: 23 Sep 2026 (2.23.0-beta.17 the same day).\n- @playcanvas/splat-transform 3.6.4: 23 Sep 2026.\n- three 0.186.0 (r186, native WebGPU GaussianSplat): 8 Sep 2026.\n- @babylonjs/core 9.27.1: 18 Sep 2026 (9.0 in about Mar 2026).\n- KHR_gaussian_splatting: RC 28 Jan 2026, announced 3 Feb 2026, marked Ratified in the repo 3 Sep 2026.\n- SPZ 4: 5 May 2026.\n- CesiumJS 1.139 (KHR splat support, Mar 2026); 3D Tiles hierarchical splat LOD announced 27 Apr 2026 (secondary sources).\n\nTrainers and reconstruction:\n- Brush v0.3.0: 14 Sep 2025 (latest tag; main active 20 Sep 2026).\n- COLMAP 4.2.0: 31 Aug 2026 (4.0.0 on 15 Mar 2026 with GLOMAP integrated).\n- msplat 1.1.4 (date unknown).\n- Postshot 1.1.x (2026, Windows).\n- RealityScan 2.2: 24 Jun 2026 (Windows).\n\nEngine plug-ins:\n- Godot GDGS plugin v3.3.0: 30 Jul 2026.\n- aras-p UnityGaussianSplatting: no significant development since Dec 2023.",
+  "risks": [
+    "Lighting mismatch: a splat's baked sun direction, colour and exposure will differ from the mesh world's dynamic lighting, which makes visible seams where a hero spot meets the mesh terrain. The only fix is to lock the whole game to the capture's time of day, or to capture under overcast light and accept proxy relighting, which loses the dappled look.",
+    "Dappled sun and wind during capture cause floaters, flicker and smeared foliage, which is exactly the look the owner prizes.",
+    "Camera dynamic range: under-canopy scenes (bright sky gaps against a dark floor) clip in 360 cameras unless exposure is locked or bracketed. Baked-in clipping cannot be fixed later.",
+    "Legal and etiquette: off-trail entry is prohibited (special protection zone and natural monument). Filming may need Film Commission consultation. Suicide-related sensitivities apply: never capture or publish people or personal items, and frame the project as nature, not the 'suicide forest' (the backlash to Logan Paul's 2018 video is the cautionary case).",
+    "A single trip is a one-shot risk: weather, crowds (people become floaters) and closures can waste it, and a re-shoot means another international trip.",
+    "Splats cannot receive shadows. Characters, props and the player's light will look pasted on unless everything is lit from probes baked from the splat.",
+    "Renderer lock-in: Spark is WebGL2-only while three r186 splats are WebGPU-only. Mixing splats with a WebGPU SSGI lighting path narrows the choice to three r186's basic renderer (no LOD) or PlayCanvas.",
+    "Scope creep: chasing trail-scale splats would recreate the UE5.8 waste pattern: terabytes of data, cloud GPU spending and heavy agent cleanup.",
+    "Engine plug-ins (Godot GDGS, Unity community packages) lack LOD, and Metal support is not explicitly documented for GDGS."
+  ],
+  "unknowns": [
+    "Actual total length of public trails inside the chosen 5×5 km plot. The ~20 km figure is my assumption, not measured from OSM.",
+    "Whether handheld, non-commercial capture on public trails needs any notification to Yamanashi Prefecture (forest owner) or the Film Commission. Official pages were unreachable from this container.",
+    "The exact licence text on the geospatial.jp Yamanashi dataset page (CC BY 4.0 / ODbL is from a secondary snippet), and whether any MMS source images are published (probably not).",
+    "Measured frame rate for Spark, PlayCanvas or three r186 at a 1.5–2.5 M splat budget plus a mesh forest on an 8- or 10-core M2 Air at 1280×800. The owner's GPU core count is itself unknown.",
+    "Real Brush, OpenSplat or msplat training times and peak memory on a fanless 16 GB M2 Air for a 1,000-frame forest scene.",
+    "Whether splat-transform's GPU-backed steps (filter-cluster, voxelise) run in GPU-less cloud containers.",
+    "Which engine the parallel lighting research selects, since that decides whether hero splats go through Spark (WebGL2), three r186 (WebGPU) or PlayCanvas.",
+    "Brush's current licence and any release after v0.3.0 beyond the active main branch."
+  ]
+}

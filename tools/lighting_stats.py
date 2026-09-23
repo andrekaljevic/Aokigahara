@@ -2,8 +2,7 @@
 """Measure the lighting character of rendered frames, engine-agnostically.
 
 The owner's most valued result from the UE5.8 attempt was its natural forest lighting: dappled
-sun on the floor, a dark sky-occluded understorey, bright sky gaps, cool shadows and warm
-highlights. This tool turns that look into numbers so that renders from any engine can be compared
+sun on the floor, a dark sky-occluded understorey, bright sky gaps and warm sunlit patches. This tool turns that look into numbers so that renders from any engine can be compared
 against the UE5.8 baseline in renders/ue58_baseline/ instead of by eye alone.
 
 Usage:
@@ -19,9 +18,16 @@ Metrics:
     stops_p01_p99       dynamic range in stops between the 1st and 99th percentile
     sunfleck_fraction   share of ground-band pixels brighter than 4 x the ground median (dappled sun)
     sky_fraction        share of upper-band pixels that are bright and blue-dominant (sky gaps)
-    shadow_blue_ratio   mean B/R in the darkest 20 % of pixels (sky-lit shadows read cool, > 1)
-    highlight_blue_ratio mean B/R in the brightest 10 % of non-sky ground pixels (sun reads warm, < 1)
+    black_fraction      share of pixels darker than the black floor (linear 0.002, about 7/255 in sRGB)
+    shade_blue_ratio    summed B over summed R across the shade band: pixels above the black floor
+                        between their 5th and 35th luminance percentiles (> 1 reads cool, < 1 warm)
+    highlight_blue_ratio summed B over summed R across the brightest 10 % of ground-band pixels
     clipped_fraction    share of pixels with any channel at 250 or above in 8-bit sRGB
+
+Colour ratios are ratios of summed channels over a luminance band that excludes near-black pixels.
+A per-pixel mean of B/R over the darkest pixels was tried first and rejected: in dark frames it is
+dominated by JPEG noise in near-black pixels and moved from 1.23 to 1.63 on the same render when it
+was re-encoded from PNG to JPEG.
 """
 
 import argparse
@@ -32,6 +38,7 @@ import numpy as np
 from PIL import Image
 
 EPS = 1e-4
+BLACK_FLOOR = 0.002
 
 
 def srgb_to_linear(c):
@@ -48,6 +55,9 @@ def measure(path):
     r, b = rgb[..., 0], rgb[..., 2]
     blue_ratio = (b + EPS) / (r + EPS)
 
+    def ratio_of_sums(mask):
+        return float(b[mask].sum() / max(r[mask].sum(), EPS)) if mask.any() else float("nan")
+
     pct = {f"p{p:02d}": float(np.percentile(lum, p)) for p in (1, 5, 25, 50, 75, 95, 99)}
 
     ground_median = float(np.median(ground))
@@ -57,12 +67,16 @@ def measure(path):
     upper_blue = blue_ratio[:split] > 1.0
     sky = float(np.mean(upper_bright & upper_blue))
 
-    dark_cut = np.percentile(lum, 20)
-    shadow_blue = float(np.mean(blue_ratio[lum <= dark_cut]))
+    lit = lum >= BLACK_FLOOR
+    if lit.sum() > 100:
+        lo, hi = np.percentile(lum[lit], [5, 35])
+        shade_blue = ratio_of_sums(lit & (lum >= lo) & (lum <= hi))
+    else:
+        shade_blue = float("nan")
 
-    g_blue = blue_ratio[split:]
-    g_bright_cut = np.percentile(ground, 90)
-    highlight_blue = float(np.mean(g_blue[ground >= g_bright_cut]))
+    g_bright = np.zeros_like(lum, dtype=bool)
+    g_bright[split:] = ground >= np.percentile(ground, 90)
+    highlight_blue = ratio_of_sums(g_bright)
 
     return {
         "file": path,
@@ -72,7 +86,8 @@ def measure(path):
         "stops_p01_p99": float(np.log2((pct["p99"] + EPS) / (pct["p01"] + EPS))),
         "sunfleck_fraction": sunfleck,
         "sky_fraction": sky,
-        "shadow_blue_ratio": shadow_blue,
+        "black_fraction": float(np.mean(~lit)),
+        "shade_blue_ratio": shade_blue,
         "highlight_blue_ratio": highlight_blue,
         "clipped_fraction": float(np.mean((rgb8 >= 250).any(axis=-1))),
     }
@@ -86,7 +101,7 @@ def main():
 
     rows = [measure(p) for p in args.images]
     keys = ["log_avg_luminance", "stops_p01_p99", "sunfleck_fraction", "sky_fraction",
-            "shadow_blue_ratio", "highlight_blue_ratio", "clipped_fraction"]
+            "black_fraction", "shade_blue_ratio", "highlight_blue_ratio", "clipped_fraction"]
     print("file".ljust(40) + "".join(k[:12].rjust(13) for k in keys))
     for r in rows:
         print(r["file"].split("/")[-1][:39].ljust(40) + "".join(f"{r[k]:13.4f}" for k in keys))

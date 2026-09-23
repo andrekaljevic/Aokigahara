@@ -1,8 +1,23 @@
 # Engine selection — paused work, and how to resume it
 
-**Status: paused at the owner's request on 23 September 2026, about 25 minutes into the research
-phase.** No engine decision has been made yet. Nothing below is a recommendation; it is the saved
-state of an unfinished investigation, recorded so that no progress is lost.
+**Status, 23 September 2026, 19:30 UTC: resumed.** The research phase and both prototypes have
+finished; fact-checking, judging and the decision record are still running. The raw results are
+checkpointed in `wip/` and `prototypes/` as they arrive. No engine decision has been made yet.
+Nothing below is a recommendation.
+
+Headline prototype results. An agent in the cloud container, with no GPU and no Mac, built and
+rendered the repository's real terrain, trees and materials in both engines, and scored the renders
+against the UE5.8 lighting baseline with `tools/lighting_stats.py`. The full reports are in
+`wip/proto_godot.json` and `wip/proto_webgpu.json`; the renders and their scores are in
+`prototypes/`.
+
+- **Godot 4.7.2 (Forward+ on software Vulkan).** The SDFGI render meets four of the five baseline
+  targets. It misses only the warm-highlight target.
+- **three.js r186 WebGPU.** It rendered, and a baked canopy sky-visibility map gave the plain
+  render a dappled look. But its screen-space GI pass broke the shadows. The best plain render
+  meets one of the five targets: it has too many sunflecks and over-blue shade.
+
+(Earlier status: paused at the owner's request about 25 minutes into the research phase.)
 
 ## The question being answered
 

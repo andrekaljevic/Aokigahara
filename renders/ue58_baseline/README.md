@@ -34,19 +34,31 @@ python3 tools/lighting_stats.py path/to/candidate/*.png
 ```
 
 What separates the frames the owner valued (`g`–`j`) from the flatter UE5.8 frames (`a`–`e`) and
-from the earlier Three.js viewer (`renders/after_p4/`):
+from the earlier Three.js viewer (`renders/after_p4/C1`, `C3`):
 
-| Metric | `g`–`j` | `a`–`e` | Three.js pass 2 |
+| Metric | `g`–`j` (target) | `a`–`e` | Three.js pass 2 |
 |---|---|---|---|
-| `sunfleck_fraction` — ground pixels brighter than 4 × the ground median | 0.07–0.16 | 0.01–0.03 | 0.03–0.04 |
-| `shadow_blue_ratio` — mean B/R in the darkest 20 % | 1.16–1.73 | 1.05–1.14 | 0.53–0.55 |
-| `log_avg_luminance` — exposure key | 0.003–0.008 | 0.02–0.04 | 0.02–0.03 |
+| `sunfleck_fraction` — ground pixels brighter than 4 × the ground median | **0.07–0.16** | 0.01–0.03 | 0.03–0.04 |
+| `log_avg_luminance` — exposure key | **0.003–0.008** | 0.02–0.04 | 0.02–0.03 |
+| `black_fraction` — pixels darker than about 7/255 | **0.17–0.43** | 0.00 | 0.05–0.10 |
+| `highlight_blue_ratio` — B/R of the brightest ground pixels (below 1 is warm) | **0.29–0.42** | 0.54–0.76 | 0.39–0.76 |
+| `shade_blue_ratio` — B/R of the shade band above the black floor | 0.60–1.28 | 1.05–1.19 | 0.48–0.49 |
 | `stops_p01_p99` — dynamic range | 8.5–10.2 | 3.3–5.7 | 10.0–10.9 |
 
-In words: the valued look has many sharp sunflecks on the floor, sky-lit shadows that read cool
-rather than brown, a low overall exposure, and a wide range that the tonemapper holds without
-clipping. The Three.js viewer's wide range comes from near-black trunks rather than from sunlit
-patches, so range alone is not a match.
+In words: the valued look has many sharp sunflecks on the floor, a low overall exposure, genuinely
+deep shade under the canopy, and warm sunlit patches. The first three rows separate it cleanly from
+the flatter frames and from the Three.js viewer. Warm highlights separate it from the flatter UE5.8
+frames but overlap one Three.js camera (`C3`, 0.39). Shade colour does not separate it: it runs from slightly warm
+to slightly cool across `g`–`j`, so it is a sanity check (the Three.js viewer's brown 0.48 is
+outside it) rather than a target. Dynamic range alone is not a match either, because the Three.js
+viewer's wide range comes from near-black trunks rather than from sunlit patches.
+
+**Correction, 23 September 2026.** The first version of this table reported a per-pixel
+`shadow_blue_ratio` of 1.16–1.73 for `g`–`j` and read it as "cool, sky-lit shadows". That metric
+averaged B/R over the darkest pixels, where JPEG noise dominates. It moved from 1.23 to 1.63 when
+the same render was re-encoded from PNG to JPEG. It has been replaced by the band-based
+`shade_blue_ratio` above, and the claim of cool shadows is withdrawn.
 
 These are JPEG screen captures, not HDR buffers, so the numbers describe the displayed image
-after tonemapping. They are a comparison aid, not a physical measurement.
+after tonemapping. They are a comparison aid, not a physical measurement. Compare renders at the
+same resolution, and prefer PNG for candidate renders.
