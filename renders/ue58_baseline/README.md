@@ -3,7 +3,7 @@
 Frames captured by the owner from the Unreal Engine 5.8 build of this world (Metal SM6, Lumen,
 Nanite), made on the MacBook Air before the UE project was abandoned and the engine deleted. They
 are kept as the visual baseline that any replacement engine is judged against. All frames are
-1280 × 800 except the before/after strip.
+1280 × 800 except the before/after strip and frames `l` and `m` (1280 × 720).
 
 The owner's most valued result from that attempt was the natural lighting, best seen in frames
 `g` to `j`: dappled sun through the canopy, a dark sky-occluded understorey, bright sky gaps, cool
@@ -22,6 +22,8 @@ shadows and warm sunlit highlights.
 | `ue58_i_fern_sunfleck.jpg` | Ferns catching sun against dense trunks |
 | `ue58_j_rock_fern_sun.jpg` | Rocks and ferns under canopy light |
 | `ue58_k_rock_fern_sun_alt.jpg` | Same view as `j`, brighter exposure |
+| `ue58_l_trail_sunflecks.jpg` | Trail through open pines, sunflecks (1280 × 720, added 23 September) |
+| `ue58_m_rock_slab_tiling.jpg` | Rock slab and boulder in sun, showing hard-edged, repeating ground textures (1280 × 720, added 23 September) |
 
 ## Lighting metrics
 
@@ -68,3 +70,12 @@ the same render was re-encoded from PNG to JPEG. It has been replaced by the ban
 These are JPEG screen captures, not HDR buffers, so the numbers describe the displayed image
 after tonemapping. They are a comparison aid, not a physical measurement. Compare renders at the
 same resolution, and prefer PNG for candidate renders.
+
+## Frames `l` and `m`
+
+These two were added later from the same build. They are brighter than the target look: exposure key 0.040 and
+0.076, and almost no near-black pixels (black fraction 0.001 and 0.000). So they are not lighting targets. They are
+kept because they show the build's typical content away from the best views:
+- evenly spaced pines with visibly flat crown cards over an open, grassy floor, unlike the dense moss-and-lava forest;
+- in `m`, square, hard-edged patches where two ground materials meet, and a visibly repeating rock texture.
+
