@@ -1,0 +1,302 @@
+{
+  "per_view": [
+    {
+      "file": "d000_yaw000.png",
+      "d": 0,
+      "yaw": 0,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d000_yaw090.png",
+      "d": 0,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d000_yaw180.png",
+      "d": 0,
+      "yaw": 180,
+      "holes": 0.0,
+      "edge_density": 0.12670659722222222,
+      "detail": 4.707106902083334,
+      "log_avg_luminance": 0.10823799567777971,
+      "sunfleck_fraction": 0.12162037037037036,
+      "black_fraction": 0.010909722222222222,
+      "highlight_blue_ratio": 0.4754374310425537
+    },
+    {
+      "file": "d000_yaw270.png",
+      "d": 0,
+      "yaw": 270,
+      "holes": 0.0,
+      "edge_density": 0.172296875,
+      "detail": 6.0881558034722225,
+      "log_avg_luminance": 0.05173303754685195,
+      "sunfleck_fraction": 0.2377025462962963,
+      "black_fraction": 0.009671875,
+      "highlight_blue_ratio": 0.4824455035886763
+    },
+    {
+      "file": "d002_yaw000.png",
+      "d": 2,
+      "yaw": 0,
+      "holes": 0.0,
+      "edge_density": 0.16708854166666667,
+      "detail": 4.414149877777778,
+      "log_avg_luminance": 0.11637384988463877,
+      "sunfleck_fraction": 0.30119212962962966,
+      "black_fraction": 0.007748263888888889,
+      "highlight_blue_ratio": 0.4732999744538105
+    },
+    {
+      "file": "d002_yaw090.png",
+      "d": 2,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d002_yaw180.png",
+      "d": 2,
+      "yaw": 180,
+      "holes": 0.0,
+      "edge_density": 0.04780729166666667,
+      "detail": 1.6779419041666668,
+      "log_avg_luminance": 0.09127101138395136,
+      "sunfleck_fraction": 0.13536458333333334,
+      "black_fraction": 0.017914930555555555,
+      "highlight_blue_ratio": 0.46393400860108536
+    },
+    {
+      "file": "d002_yaw270.png",
+      "d": 2,
+      "yaw": 270,
+      "holes": 0.0,
+      "edge_density": 0.06259027777777777,
+      "detail": 2.0901381451388885,
+      "log_avg_luminance": 0.04426829926667102,
+      "sunfleck_fraction": 0.14787905092592593,
+      "black_fraction": 0.024763888888888887,
+      "highlight_blue_ratio": 0.5698196303223517
+    },
+    {
+      "file": "d005_yaw000.png",
+      "d": 5,
+      "yaw": 0,
+      "holes": 0.0,
+      "edge_density": 0.023855902777777778,
+      "detail": 1.1719880847222222,
+      "log_avg_luminance": 0.017699303484036755,
+      "sunfleck_fraction": 0.18701967592592592,
+      "black_fraction": 0.105828125,
+      "highlight_blue_ratio": 0.09858492229616383
+    },
+    {
+      "file": "d005_yaw090.png",
+      "d": 5,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d005_yaw180.png",
+      "d": 5,
+      "yaw": 180,
+      "holes": 0.7789375,
+      "edge_density": 0.0004712091226086137,
+      "detail": 0.9785533047466468,
+      "log_avg_luminance": 0.3290718321673497,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 0.9916537164919931
+    },
+    {
+      "file": "d005_yaw270.png",
+      "d": 5,
+      "yaw": 270,
+      "holes": 0.0,
+      "edge_density": 0.004479166666666667,
+      "detail": 0.7884887263888889,
+      "log_avg_luminance": 0.05084075082933003,
+      "sunfleck_fraction": 1.4467592592592593e-05,
+      "black_fraction": 0.007862847222222222,
+      "highlight_blue_ratio": 0.786595843706435
+    },
+    {
+      "file": "d010_yaw000.png",
+      "d": 10,
+      "yaw": 0,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d010_yaw090.png",
+      "d": 10,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d010_yaw180.png",
+      "d": 10,
+      "yaw": 180,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d010_yaw270.png",
+      "d": 10,
+      "yaw": 270,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw000.png",
+      "d": 20,
+      "yaw": 0,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw090.png",
+      "d": 20,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw180.png",
+      "d": 20,
+      "yaw": 180,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw270.png",
+      "d": 20,
+      "yaw": 270,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    }
+  ],
+  "by_distance": [
+    {
+      "d": 0,
+      "holes": 0.5,
+      "edge_density": 0.07475086805555556,
+      "detail": 2.698815676388889
+    },
+    {
+      "d": 2,
+      "holes": 0.25,
+      "edge_density": 0.06937152777777778,
+      "detail": 2.045557481770833
+    },
+    {
+      "d": 5,
+      "holes": 0.444734375,
+      "edge_density": 0.007201569641763265,
+      "detail": 0.7347575289644395
+    },
+    {
+      "d": 10,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0
+    },
+    {
+      "d": 20,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0
+    }
+  ],
+  "references": [
+    {
+      "file": "U01_c59f556b_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.3358157790143084,
+      "detail": 22.64543480127186
+    },
+    {
+      "file": "U05_f16d2764_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.4032703199523052,
+      "detail": 26.565521442269475
+    },
+    {
+      "file": "U08_6816f8d9_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.39028467806041334,
+      "detail": 23.691133983008744
+    },
+    {
+      "file": "U10_de969dec_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.36017488076311605,
+      "detail": 21.16013096035374
+    }
+  ]
+}

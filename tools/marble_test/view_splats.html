@@ -46,6 +46,9 @@ try {
 
   const frame = () => new Promise((r) => requestAnimationFrame(r));
   window.__shots = [];
+  // The first view after loading needs extra frames while Spark uploads and sorts every splat;
+  // without them the first one or two views come back empty.
+  for (let i = 0; i < 24; i++) { renderer.render(scene, camera); await frame(); }
   for (const p of poses) {
     camera.position.set(p.x, p.y, p.z);
     camera.rotation.set(THREE.MathUtils.degToRad(p.pitch || 0), THREE.MathUtils.degToRad(p.yaw || 0), 0);
