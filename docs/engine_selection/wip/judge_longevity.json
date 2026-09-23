@@ -1,0 +1,129 @@
+{
+  "lens": "Risk and longevity: which path is least likely to dead-end. The criteria are engine maturity and trajectory on Apple Silicon, how portable the data and assets are, how easily the project could switch engine later, and how much rests on one or two maintainers (bus factor) of key plugins. Scores use the revised lighting_stats metrics (sunfleck_fraction, log_avg_luminance, black_fraction, highlight_blue_ratio, stops). The withdrawn shadow_blue_ratio is ignored. I checked the prototype renders and UE frame 8 by eye.",
+  "scores": [
+    {
+      "path": "P1 Godot 4 native macOS app (Forward+ on Metal, own clipmap or Terrain3D, MultiMesh vegetation, LiDAR terrain and trees)",
+      "lighting": 7,
+      "fidelity": 6,
+      "mac_feasibility": 6,
+      "storage": 8,
+      "agent_efficiency": 8,
+      "cost": 10,
+      "time_to_first_result": 8,
+      "weighted_total": 7.3,
+      "rationale": "Lighting: the only path that has already produced a render from real data that scores close to the UE look. Godot 4.7.2 with SDFGI on lavapipe gave log_avg 0.0056, sunfleck 0.157 and black 0.27, all in target, but highlight_blue 0.70 against a target of 0.29–0.42 and 8.18 stops against 8.5. It misses warm sunlit patches, bright sky gaps and light shafts. SDFGI is load-bearing, because without it only 1–2 targets are met. Its cost on an integrated M2 GPU is unmeasured, and on Metal it needs 4.8 for bounce light, since 4.7.3 has no backport. That is why lighting gets 7 and not 8. Longevity: MIT-licensed and forkable, with a foundation behind it and releases about every six months. Native Metal has been the default driver since 4.4 and is still getting investment (the acyclic render graph came in 4.7). There is no licence server or account. Scenes are text (.tscn, GDScript), so agents can diff them and git holds the world state, which is exactly what UE5.8 lacked. Dead-end risks: the Metal fence freeze #119436 is open and reproduces on an M2 Air; the fog drift bug #120163 is open; HDDAGI is unmerged and could replace SDFGI; Terrain3D has a small team and supports 4.7/4.8 only on unreleased main. The prototype did not need Terrain3D (it built the terrain as an ArrayMesh), so that plugin is optional. Lock-in is moderate: GDScript does not port, but every data layer and bake can stay engine-agnostic, so switching later means rewriting only the runtime. Forward+ rendering in the cloud container is proven at about 4 minutes per settled frame, so the owner's Mac is needed only for performance and Metal checks."
+    },
+    {
+      "path": "P2 Web / WebGPU (three.js r186 WebGPURenderer + TSL; Babylon or PlayCanvas as alternatives)",
+      "lighting": 5,
+      "fidelity": 5,
+      "mac_feasibility": 5,
+      "storage": 9,
+      "agent_efficiency": 7,
+      "cost": 10,
+      "time_to_first_result": 7,
+      "weighted_total": 6.3,
+      "rationale": "Lighting: the baked canopy sky-visibility map plus shadows from alpha-tested foliage gives the right character by eye (t4_off_tuned). By the numbers it meets only log_avg (0.0036). Sunfleck is 0.34 and black 0.51, both far above target, highlights are 0.48 and the range is 12.8 stops. SSGI through RenderPipeline broke shadows (frames came out 25–30 times brighter), there is no auto-exposure, and LightProbeGrid has neither save/load nor streaming. All of the GI layer would be custom agent code, so lighting gets 5. Longevity is the strongest of any path at platform level and the weakest at library level. WebGPU is a W3C standard, it needs no install, it gives a shareable URL, and glTF and KTX2 assets are the most portable. But three.js breaks its API monthly: r186 renamed LightProbeGrid, changed SunLight cascades from 4 to 2 and changed SSGINode render targets in r185. Agents' training knowledge of TSL is thin and goes stale quickly. The WebGPU and TSL layer rests on a few maintainers. Safari WebGPU needs macOS 26 or later and has had device-lost reports, so Chrome is the only safe target on the Mac. There is no MetalFX in the browser, and no API for a memory budget. Headless verification works but is slow: about 20–28 s per frame on SwiftShader, and the WebGL2 backend rendered the ground black. Switching away later is cheap, because this is the lowest lock-in of any path."
+    },
+    {
+      "path": "P3 Unity 6 (URP 6.6 / 6.7 LTS; HDRP in maintenance mode)",
+      "lighting": 4,
+      "fidelity": 6,
+      "mac_feasibility": 5,
+      "storage": 3,
+      "agent_efficiency": 3,
+      "cost": 7,
+      "time_to_first_result": 4,
+      "weighted_total": 4.55,
+      "rationale": "No prototype exists. URP lacks native volumetric fog, auto-exposure and a physical sky; 6.7 adds only fixed exposure. APV sky-occlusion bakes treat leaves as opaque grey, so they cannot transmit dappled light. SCGI can be tested now in 6.6, but on the M2 it runs only in compute (software) mode and is unmeasured. HDRP has the full look but is frozen and reportedly runs at about 20 fps on an empty scene on M1. Longevity risk is the highest of the engine paths. Unity's rendering strategy keeps changing: HDRP frozen, BIRP deprecated, a new GI system mid-rollout. The company has a history of pricing and licence changes (the 2023 runtime-fee episode). The engine is closed source with a licence server and needs account activation. The editor is about 8.5 GB and the Library folder can reach tens of GB on a 256 GB disk. Agents can reach it mainly through MCP on the Mac, which repeats UE5.8's pattern of heavy usage and binary-heavy state. Lock-in is high: C#, Unity APIs, and assets imported into Library."
+    },
+    {
+      "path": "P4a Bevy 0.19/0.20 (code-first Rust, wgpu on Metal)",
+      "lighting": 4,
+      "fidelity": 4,
+      "mac_feasibility": 6,
+      "storage": 7,
+      "agent_efficiency": 6,
+      "cost": 10,
+      "time_to_first_result": 3,
+      "weighted_total": 5.45,
+      "rationale": "Best of the rest on longevity. It is MIT/Apache, has a foundation and a large contributor base, is pure text, compiles in the cloud container, and wgpu runs natively on Metal. The lighting building blocks exist: atmosphere, volumetric fog, PCSS, auto-exposure and irradiance volumes. However, there is no GI on the M2: meshlets need Apple9 (M3 or later), and Solari has no RT hardware here. Lighting parity would rest entirely on custom bakes. There is no editor and no terrain system, and nothing has been prototyped. A breaking release every 4–5 months (0.19 to 0.20-rc now) makes agents' Bevy knowledge stale and costs usage on every upgrade. Cold Rust compiles on 4 CPUs are slow."
+    },
+    {
+      "path": "P4b Flax 1.12 (Lumen-like software DDGI, noted as the lighting wildcard)",
+      "lighting": 6,
+      "fidelity": 6,
+      "mac_feasibility": 4,
+      "storage": 6,
+      "agent_efficiency": 3,
+      "cost": 8,
+      "time_to_first_result": 3,
+      "weighted_total": 4.9,
+      "rationale": "On paper it has the closest thing to Lumen outside UE: software-traced DDGI over a global SDF, with the surface atlas reaching about 500 m. Hence lighting 6, although foliage SDF artefacts are documented and nothing has been measured on the M2. On longevity it is poor. The engine depends on essentially one principal developer. It has no Metal backend and runs through MoltenVK. Its community and agent training corpus are small, and its SDK hosts are blocked from the container. No prototype exists. The risk of a dead end is too high for a multi-year project."
+    },
+    {
+      "path": "P5 Capture-led hybrid (Gaussian-splat / photogrammetry hero spots from a site trip, embedded in P1 or P2)",
+      "lighting": 4,
+      "fidelity": 6,
+      "mac_feasibility": 5,
+      "storage": 2,
+      "agent_efficiency": 3,
+      "cost": 3,
+      "time_to_first_result": 2,
+      "weighted_total": 3.9,
+      "rationale": "As the core of the build it fails the lighting test. Splats are display-referred (per the KHR spec), cannot receive shadows, and carry the capture's fixed sun into a dynamically lit mesh world. Dappled sun and wind during capture also degrade them. They cover well under 1% of 25 km², because only trails can be walked. It depends on a single international trip, legal constraints on filming and off-trail entry are unverified, it needs 0.2–1.6 TB of raw video, and splat-transform's cleanup and collision steps need a GPU. The longevity upside is real, though, which is why this is an add-on for later: KHR_gaussian_splatting is ratified, and raw photos, HDRIs and 360 footage keep their value and can be retrained with better methods later."
+    },
+    {
+      "path": "P6 Blender/Cycles non-interactive reference (stills and fly-throughs; scored as reference and pipeline tool, NOT eligible as the product)",
+      "lighting": 9,
+      "fidelity": 7,
+      "mac_feasibility": 3,
+      "storage": 8,
+      "agent_efficiency": 7,
+      "cost": 10,
+      "time_to_first_result": 7,
+      "weighted_total": 6.95,
+      "rationale": "It is not eligible as the product because it is not free-roam, which is why mac_feasibility is 3 despite the high total. As a lighting reference, path-traced Cycles on real CHM tiles will beat Lumen for stills and gives ground truth for calibrating lighting_stats. As a pipeline tool it has the best longevity of anything assessed: Blender is GPL, backed by a foundation, extremely stable, and the bpy 5.2.2 wheel on PyPI runs headless in the cloud container (it needs Python 3.13). Use it to bake impostors, needle cards and AO, and for reference frames, whatever engine is chosen."
+    }
+  ],
+  "winner": "P1 Godot 4 native macOS app, with a condition from the risk lens: all world data and the canopy-lighting bakes must be kept engine-agnostic, so that Godot is a thin, replaceable runtime. Pin 4.7.2 for cloud verification now, and move to 4.8-stable for SDFGI bounce light on Metal. Use MoltenVK on 4.7.2 only as a fallback. Treat Terrain3D and HDDAGI as optional, never load-bearing.",
+  "runner_up": "P2 three.js r186 WebGPU, pinned and vendored, run in Chrome on the Mac and fed by the same engine-agnostic data and bake layer. It has the lowest lock-in and a shareable URL, but so far the weakest evidence on lighting (1 of 5 revised targets met, and SSGI broken in the prototype).",
+  "honest_ceiling": "On a fanless 8-core M2 Air with 16 GB and a 256 GB SSD (the MC7X4 model is very likely the 8-core GPU), a 5 × 5 km free-roam world can realistically reach about parity with UE5.8 frames g–j within roughly 150 m of the camera, at a locked 30 fps once warm. That assumes about 1280x800 internal resolution with MetalFX temporal upscaling and a static or slow sun. The lighting would come from:\n- PSSM/PCSS dappled sun;\n- SDFGI at half resolution, or SSIL, for warm bounce;\n- canopy sky-visibility and sun-transmittance maps baked from the real 0.5 m CHM (canopy height model), for the dark interior and for canopy shadow beyond the shadow-cascade range;\n- froxel fog for haze and shafts;\n- AgX tonemapping with auto-exposure.\n\nThis setup can beat UE5.8 in several areas, because none of them depend on the engine: measured 0.5 m terrain in place of stretched 1 m steps, real tree positions from the CHM, a physical sky, height-blended materials, understorey density, and far canopy tinted from ortho imagery. It will not beat UE5.8 on GI quality. Multi-bounce and off-screen bounce are missing, far canopy shadows will be softer than Virtual Shadow Maps would give, and mid-distance geometry will be less dense than Nanite. Changing time of day is expensive. My estimate is 80–90% of the valued lighting look; it rests on one real-data Godot render and has not been profiled on the Mac.\n\nGoing clearly beyond UE5.8 over a 5 km world would need two things. The first is better hardware: a fan-cooled Apple Silicon Mac from M3 onwards (M4 Pro or M5 class, with hardware ray tracing, MetalFX denoised upscaling and no throttling), or an RTX PC running Godot's Vulkan ray-tracing path once it matures. The second is better assets: species-accurate scanned Tsuga and Chamaecyparis foliage and bark, plus site capture for calibration. For non-interactive stills and fly-throughs, Blender Cycles on the same data already exceeds UE5.8's lighting today.",
+  "flip_conditions": [
+    "Warm 10-minute benchmark on the owner's Mac: with SDFGI at half resolution, 4-split PSSM, volumetric fog and MetalFX at 0.67 scale, Godot cannot hold 30 fps, and the no-SDFGI baked-canopy variant is no better lit than the web equivalent. Then flip to P2, which has the same bake layer, lower lock-in and a shareable URL.",
+    "The Metal fence freeze (#119436) or the Metal SDFGI bugs reproduce on the owner's Mac, 4.8-stable has not fixed them by about Q1 2027, and the MoltenVK fallback is also unstable. Then flip to P2.",
+    "The three.js RenderPipeline/SSGI shadow loss is isolated and fixed, and a Chrome WebGPU build on the M2 meets at least 4 of the 5 revised lighting_stats targets at a warm 30 fps. Then P2 overtakes P1 on longevity: a web standard, the lowest lock-in and no install.",
+    "The owner makes a shareable browser URL a hard requirement. Then choose P2.",
+    "HDDAGI or screen-probe GI merges into a stable Godot release and profiles well on Metal on an M2. This strengthens P1 further.",
+    "The owner buys a fan-cooled M3+/M4/M5 Mac. P1 stays the choice, but Flax DDGI and hardware-RT paths (Bevy Solari, Godot HDDAGI) become viable second opinions. Re-evaluate Flax only if its maintainer base widens.",
+    "Unity 6.6/6.7 SCGI is shown running a dense conifer scene on an M2 at 30 fps, and the owner accepts working inside the editor with a large disk footprint. Only then does P3 re-enter; I consider this unlikely given how usage-sensitive the owner is.",
+    "Godot changes its licence or governance, or stalls its Metal driver. This is very unlikely under MIT and could be forked, but it would favour P2."
+  ],
+  "must_do_regardless": [
+    "Make the data and lighting pipeline the durable asset, and the engine a thin consumer. It should use Python/numpy/GDAL/lidR scripts that write GeoTIFF/.f32/glTF/KTX2 outputs. Keep code in git; publish binaries as GitHub release assets with SHA-256 manifests (each under 2 GiB, no LFS). This is the main hedge against any engine dead-ending.",
+    "Run one scripted download on the Mac to an external APFS SSD: Yamanashi 0.5 m DEM/DSM/relief plus the Forestry Agency DCHM, and airborne LAS for the roughly 220–250 sheets. Take MMS data only for hero sheets. First test whether the gic-yamanashi S3 URLs work from the Mac, and whether a per-sheet URL list would let the cloud pull the data directly. Credit the CC BY 4.0 source.",
+    "Build natively in EPSG:6676 with a local origin. Re-project the legacy AEQD assets (convergence is 0.092°, giving about 4 m error on the axes and 5.7 m at the corners) rather than applying a simple offset.",
+    "Replace the 467,601 procedural placements with stems detected from the CHM (lidR/lasR in the cloud; lidR on osx-arm64 comes from CRAN, not conda). Calibrate against the 20 m forest-resource mesh, and label the infill as synthetic. The baked canopy maps and the visible trees must agree.",
+    "Bake canopy sky-visibility and per-sun-angle transmittance maps from the CHM (rvt-py or a numpy heightfield march; CanRad.jl only if Julia installs). Apply them to every material, including trunks, rocks, foliage and fog volumes, not just the ground, which was a limitation in both prototypes.",
+    "Use the revised tools/lighting_stats.py as the regression gate, with fixed cameras matching the UE g–j viewpoints. Check the metrics first and look at contact sheets only when a threshold is crossed. Retire shadow_blue_ratio. The current gap is warm highlights (0.70 against 0.29–0.42), so tune sun colour, albedo and bounce, not the sky tint.",
+    "Before committing, run a scripted warm 10-minute benchmark on the owner's Mac and record the output as JSON. Also capture GPU core count, macOS version, free disk and recommendedMaxWorkingSetSize. For Godot, test both 4.8-dev with Metal and 4.7.2 with MoltenVK.",
+    "Pin engine and library versions and vendor the plugins. Never make an unmerged PR (HDDAGI) or a plugin with a small maintainer team (Terrain3D, impostor plugins) load-bearing without a fallback written in-house, such as a GDScript clipmap or octahedral impostors baked in bpy.",
+    "Keep engine caches, raw LiDAR and renders off the 256 GB internal SSD, and set a monthly cache-size check.",
+    "Build conifers from species parameters in bpy, using scanned or photographed needle cards and bark (Poly Haven pine_forest donors or paid scans). Use opaque cores and draw opaque geometry first to protect hidden-surface removal on Apple GPUs. Use ortho imagery as the far-canopy albedo, and reshoot the material photos at full resolution, because the current packs are upscaled from 125–340 px crops.",
+    "Produce 2–3 Blender Cycles reference frames of real CHM tiles as ground truth for lighting calibration.",
+    "Keep agent usage down: one scoped single-agent session per stage, plan mode first, Sonnet for routine work, CLI tools rather than MCP in the cloud, and image review in subagents."
+  ],
+  "key_risks": [
+    "SDFGI carries most of the lighting win in the Godot prototype, but its cost on the M2's integrated GPU is unmeasured, and Godot's docs advise making it optional on integrated graphics. If it has to be switched off, the lighting falls back to the bake-only level, about 2 of 4 targets.",
+    "Godot on Metal is not mature enough to rely on without checks. The fence freeze #119436 is open and reproduces on an M2 Air. The SDFGI bounce fix is only in 4.8, with no 4.7.3 backport. MetalFX works only with the Metal driver. So the choice is between 4.8 pre-release builds and MoltenVK without MetalFX.",
+    "Open fog bugs affect the haze and shafts the owner values: volumetric fog drift during camera motion (#120163) and yellowing at low density (#118348). The macOS frame-pacing bugs #110600 and #114258 affect a capped 30 fps.",
+    "Plugin bus factor: Terrain3D (small team; 4.7/4.8 only on unreleased main), stale impostor plugins, and HDDAGI unmerged. Agents would have to maintain the custom replacements.",
+    "Lock-in: GDScript and .tscn files do not port. This is acceptable only if data and bakes stay engine-agnostic. A runtime rewrite to P2 would cost several agent sessions.",
+    "Verification drift: lavapipe and SwiftShader output may differ from Metal output, and cloud frames take 4–30 s each. Final sign-off still needs the Mac.",
+    "Web path: three.js changes monthly, SSGI was broken in the prototype, there is no auto-exposure, LightProbeGrid has no streaming or save/load, Safari WebGPU needs macOS 26 or later, there is no MetalFX, and no memory-budget API.",
+    "Unity path: rendering strategy keeps changing (HDRP frozen), licence and pricing history, editor-bound and binary-heavy state, and a large disk footprint. This risks repeating the UE5.8 failure.",
+    "The baked canopy maps and the visible tree geometry can disagree unless tree positions come from the CHM.",
+    "Fanless throttling (unquantified here) makes cold fps numbers misleading.",
+    "Capture trip: a single chance, unverified legal limits on filming and off-trail entry, terabyte-scale storage, and splats that cannot join dynamic lighting."
+  ]
+}

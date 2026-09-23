@@ -1,0 +1,75 @@
+{
+  "topic": "Fact-check: capture-based photorealism (Gaussian splatting / photogrammetry) for a 25 km² Aokigahara plot, September 2026",
+  "checks": [
+    {
+      "claim": "KHR_gaussian_splatting went from Release Candidate (merged 28 Jan 2026) to 'Complete, Ratified by the Khronos Group' on 3 Sep 2026. Lighting is baked into SH and relighting is left to implementations.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_gaussian_splatting/README.md",
+      "correction": "Git history confirms the claim: 'Add KHR_gaussian_splatting (#2490)' on 2026-01-28, then 'Update extensions registry (#2642)' on 2026-09-03, and the Status reads Ratified. The report left out one detail: §Image State & Relighting says splats are display-referred, and glTF scene lighting, exposure and tonemapping 'generally do not affect rendered splats'. See omissions."
+    },
+    {
+      "claim": "@playcanvas/splat-transform 3.6.4 (npm, 23 Sep 2026, MIT) reads PLY/SOG/SPZ/SPLAT/KSPLAT/LCC/LCC2 and writes Streamed SOG, KHR GLB, .voxel.json and .collision.glb. Agents can drive it in cloud containers.",
+      "verdict": "partially",
+      "source_url": "https://github.com/playcanvas/developer-site/blob/main/docs/user-manual/splat-transform/docker.md",
+      "correction": "Version, date (2026-09-23 16:38 UTC), licence, formats and --collision-mesh are all confirmed from the npm tarball README. However, --filter-cluster, --filter-floaters, .voxel.json and --collision-mesh are GPU-only (WebGPU through the 'webgpu'/Dawn npm dependency), and '-g cpu' is 'incompatible with the GPU-only features'. In a GPU-less cloud container only SOG and LOD writing works, and SH compression runs about 5–10x slower. Collision and cleanup must run on the Mac or on a GPU host. This answers the report's open unknown in the negative."
+    },
+    {
+      "claim": "PlayCanvas Streamed SOG: global budget defaults to 1 M (about 1 M recommended on mobile, 3 M+ on desktop). LOD mode is distance by default from 2.23 and error by default in 2.22. SOG is 15–20x smaller than PLY. Splats cannot receive shadows. GsplatRelighting lights a proxy mesh, and proxy accuracy is the main quality lever.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/playcanvas/developer-site/blob/main/docs/user-manual/gaussian-splatting/building/shadows.md",
+      "correction": "Every point is verified in the docs repo (performance.md, lod-streaming.md: 'Distance mode became the default in engine 2.23; 2.22 defaults to error mode', sog.md, relighting.md line 80, shadows.md: 'Splats cannot directly receive shadows'). Two nuances: the current stable npm release is 2.22.4, where the higher-memory error mode is still the default (2.23 is only beta.17), so a 16 GB M2 build must set GSPLAT_LODMODE_DISTANCE explicitly. Splats can also cast shadows onto meshes, and a shadow-catcher proxy is the documented workaround for receiving shadows."
+    },
+    {
+      "claim": "Spark 2.0.0 was released on 14 Apr 2026 and 2.2.0 on 11 Sep 2026 (MIT, three peer >=0.180). It is a WebGL2 renderer with LoD streaming and paged memory. Default budgets are 2.5 M desktop, 1.5 M iOS, 1 M Android, 0.75 M Vision Pro and 0.5 M Quest, and there is no WebGPU path.",
+      "verdict": "confirmed",
+      "source_url": "https://www.npmjs.com/package/@sparkjsdev/spark",
+      "correction": "The npm registry times and the 2.2.0 dist confirm it: 'isOculus() ? 5e5 : isVisionPro() ? 75e4 : isAndroid() ? 1e6 : isIos() ? 15e5 : 25e5', 256 pages on desktop, and zero 'webgpu' references in spark.module.js."
+    },
+    {
+      "claim": "three r186 (0.186.0, 8 Sep 2026) ships a 'minimal' GaussianSplat.js that works only with WebGPURenderer (GPU counting sort, no LOD), plus GLTFGaussianSplatLoaderExtension. Mixing splats with a WebGPU SSGI path therefore forces the choice between Spark (WebGL2) and r186 (WebGPU).",
+      "verdict": "partially",
+      "source_url": "https://github.com/mrdoob/three.js/blob/r186/examples/jsm/objects/GaussianSplat.js",
+      "correction": "Date, 'minimal' wording, the loader extension and the lack of LOD are all confirmed. But the class doc says 'The forceWebGL fallback of WebGPURenderer is supported' (only the legacy WebGLRenderer is not). On the WebGL2 backend it switches to a CPU sort (_sortCPU) and skips the SH compute pass. The lock-in risk is therefore overstated. One WebGPURenderer code path can serve both backends, and the repo's headless SwiftShader audit could render r186 splats through WebGL2."
+    },
+    {
+      "claim": "Mac trainers: Brush's latest tag is v0.3.0 (Sep 2025) with main still active and licence not re-verified. OpenSplat builds with MPS, is AGPLv3 and needs ~2 GB per million Gaussians. msplat (Apache-2.0) trains garden at 30k iterations in 700 s to 3.51 M Gaussians on an M4 Max.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/ArthurBrussee/brush",
+      "correction": "The tags confirm v0.3.0 as Brush's latest, with the last main commit on 2026-09-20. Brush is Apache-2.0 (LICENSE and Cargo.toml), which settles the report's unknown, and the workspace version was bumped to 1.0.0 on 15 Aug 2026 (#518) but is still untagged. OpenSplat's LICENSE is AGPLv3, its README says 'GPU_RUNTIME defaults to MPS' and gives '~2GB of GPU memory for each million gaussians'. The msplat README shows 3.51 M Gaussians in 700 s on an M4 Max. The M2 Air timings are still the report's own extrapolation and remain unmeasured."
+    },
+    {
+      "claim": "COLMAP 4.2.0 (31 Aug 2026) adds CoreML on macOS, and 4.x has a global mapper and spherical cameras. Camera posing can run on the Mac or through pycolmap in cloud containers.",
+      "verdict": "partially",
+      "source_url": "https://github.com/colmap/colmap/blob/4.2.0/CHANGELOG.rst",
+      "correction": "The date and features are confirmed, and pycolmap 4.2.0 wheels for macOS arm64 and manylinux x86_64 have been on PyPI since 1 Sep 2026. CoreML, however, is only an ONNX execution provider for learned features and matchers (LoMa); SIFT extraction, matching and mapping on the Mac run on the CPU. The COLMAP FAQ also states that without a CUDA GPU 'you can use all COLMAP functionality except the dense reconstruction part' (4.2 adds HIP for AMD, not Metal). COLMAP therefore cannot produce the dense photogrammetry meshes the report proposes for hero spots on the M2 Air."
+    },
+    {
+      "claim": "Postshot 1.x and RealityScan 2.2 (24 Jun 2026, with AMD support) are Windows-only desktop apps. RealityScan is free below US$1 M revenue and has a Linux CLI.",
+      "verdict": "unverifiable",
+      "source_url": "https://www.jawset.com/",
+      "correction": "The egress proxy blocks jawset.com, realityscan.com, dev.epicgames.com and radiancefields.com, so I could not confirm or refute this. The report's evidence is also secondary. Note that RealityScan also exists as an iOS/Android capture app; only the desktop reconstruction app is in question."
+    },
+    {
+      "claim": "Leaving the trails in Aokigahara is prohibited (special protection zone and natural monument), so only trail corridors can be captured.",
+      "verdict": "unverifiable",
+      "source_url": "https://www.pref.yamanashi.jp/fujisan-whc/ecotourguidline.html",
+      "correction": "pref.yamanashi.jp, env.go.jp, e-gov law pages and bunka.go.jp are all blocked here. Treat the claim as unproven. The Natural Parks Act restricts listed acts in special protection zones (collecting, damaging, fires, and entry only where an area is formally designated as an entry-restricted zone). A blanket statutory ban on walking off-trail should be checked with the Numazu ranger office or the prefecture before it is used as a decision factor. Guidance and the eco-tour guideline may be what restricts off-trail entry, rather than a statute."
+    },
+    {
+      "claim": "AirVis rendered a 106.4 M-splat town in real time on an M2 MacBook Air (Show HN / GIGAZINE), so rendering is not the bottleneck on the owner's machine.",
+      "verdict": "unverifiable",
+      "source_url": "https://news.ycombinator.com/item?id=46277477",
+      "correction": "news.ycombinator.com, the HN APIs and gigazine.net are all blocked. The engine is proprietary and no frame rate was reported. This is the only M2 Air evidence in the report, so the M2 feasibility section rests on no measured frame rate for Spark, PlayCanvas or three r186."
+    }
+  ],
+  "important_omissions": [
+    "Splats are display-referred, which conflicts with the lighting acceptance test. The ratified KHR spec (§Image State & Relighting) says glTF scene lighting, exposure and tonemapping 'generally do not affect rendered splats'. The owner's target look depends on HDR dynamic range and eye adaptation. Hero splats will not respond to auto-exposure and tonemapping in a scene-referred mesh renderer unless they are inverse-tonemapped, and the camera's clipping cannot be recovered. This strengthens the report's own conclusion that splats cannot carry the lighting test. Source: https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_gaussian_splatting/README.md",
+    "Several splat-transform steps are GPU-only: --filter-cluster, --filter-floaters, .voxel.json and --collision-mesh. They cannot run in the GPU-less cloud containers where agents work; the docs' CPU-only Docker variant drops them. Cleanup and collision generation for any hero splat therefore land on the owner's fanless Mac, through Dawn/Metal, which is a supervision and usage cost the report did not budget. Source: https://github.com/playcanvas/developer-site/blob/main/docs/user-manual/splat-transform/docker.md",
+    "COLMAP cannot do dense photogrammetry on the Mac. Dense MVS needs CUDA (or, since 4.2, HIP), so the 'photogrammetry' strand of the proposed trip has no scripted Mac path through COLMAP. The report omits the native free alternative, Apple RealityKit Object Capture (PhotogrammetrySession on Apple Silicon macOS, which outputs textured USDZ/OBJ). It suits hero rocks, roots and lava blocks. Not fetched here; developer.apple.com is unreachable. Sources: https://github.com/colmap/colmap/blob/4.2.0/doc/faq.rst and https://developer.apple.com/documentation/realitykit/photogrammetrysession",
+    "The three r186 GaussianSplat runs on WebGPURenderer's WebGL2 fallback with a CPU sort. That removes most of the Spark-versus-WebGPU lock-in risk and means the existing SwiftShader headless audit could test splats without WebGPU. Source: https://github.com/mrdoob/three.js/blob/r186/examples/jsm/objects/GaussianSplat.js",
+    "The PlayCanvas 'splat into a videogame' case is an indoor scan of an abandoned building, sealed with --voxel-external-fill. It is not evidence for an outdoor forest with sky gaps, thin foliage and wind. Its light-probe baking shows meshes being lit to match the splat, which is the opposite of the owner's goal of a dynamic, calibratable forest lighting model. Source: https://github.com/playcanvas/blog/blob/main/blog/2026-04-22-turning-a-gaussian-splat-into-a-videogame.md",
+    "The current stable PlayCanvas release (2.22.4, 23 Sep 2026) still defaults to the higher-memory error LOD mode. Any M2 Air prototype must set GSPLAT_LODMODE_DISTANCE explicitly or run the 2.23 beta. Source: https://github.com/playcanvas/developer-site/blob/main/docs/user-manual/gaussian-splatting/building/lod-streaming.md",
+    "The Godot GDGS 3.3.0 relighting docs state that relighting 'cannot remove the light that was baked into it' and that 'splats do not receive cast shadows'. This confirms, across engines, that no current splat renderer can put dynamic canopy shadows onto captured ground. Source: https://github.com/ReconWorldLab/godot-gaussian-splatting/blob/main/README.md"
+  ],
+  "overall_reliability": "High for everything that could be checked against primary sources: npm and PyPI registries, package tarballs and GitHub repos. All version numbers and dates checked were exact: KHR ratified on 3 Sep 2026; splat-transform 3.6.4, Spark 2.2.0, three 0.186.0, PlayCanvas 2.22.4, Babylon 9.27.1, COLMAP 4.2.0, Brush v0.3.0 and GDGS v3.3.0; the PlayCanvas budget, LOD and shadow statements; the OpenSplat and msplat figures; and GMP Terms §3.2.3 (last modified 26 Aug 2026). The main corrections work against agent operability. splat-transform's collision and cleanup steps need a GPU, so they cannot run in the cloud containers. COLMAP's CoreML support is narrow and it has no dense MVS without CUDA, so the Mac has no dense photogrammetry path through it. The WebGPU lock-in risk is overstated because r186 splats also run on WebGL2. The legal claim about going off-trail, the Postshot/RealityScan platform claims and the AirVis M2 Air claim could not be verified, because the proxy blocks the vendor, Japanese government and HN sites. The report itself marked them medium confidence. The recommendation holds and is somewhat strengthened: build the walkable world from meshes driven by the LiDAR data, and treat splats as optional lighting ground truth, not as the core of the build."
+}

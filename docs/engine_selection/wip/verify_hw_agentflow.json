@@ -1,0 +1,79 @@
+{
+  "topic": "Fact-check of 'M2 MacBook Air rendering ceiling, and AI-agent workflow efficiency' (checked 23 Sep 2026; web search budget was exhausted, so all checks used direct fetches of primary sources, GitHub, PyPI and npm)",
+  "checks": [
+    {
+      "claim": "Model MC7X4 is the 13-inch M2 MacBook Air with 16 GB and 256 GB, so the owner very probably has the 8-core GPU and a 256 GB SSD.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/scrapfly/scrapfly-scrapers/blob/main/bestbuy-scraper/results/products.json",
+      "correction": "This is stronger than the report's 'from memory'. A Best Buy product record gives Model Number MC7X4LL/A: 'MacBook Air 13-inch – Apple M2 – 16GB Memory – 256GB SSD', Graphics 'Apple M2 8-core', Midnight. Flipkart and Kaspi scrapes agree on 16 GB / 256 GB. The owner should still confirm with system_profiler."
+    },
+    {
+      "claim": "Apple's Metal Feature Set Tables (21 May 2026) put M2 in family Apple8 with Metal 3 and 4 support. By family: mesh shading needs Apple7, MetalFX spatial upscaling Apple3, temporal upscaling Apple7, frame interpolation Apple5 and denoised upscaling Apple9. M5 is Apple10, and the largest 2D texture is 16384. Hardware ray-traversal first appears in family 9 (M3).",
+      "verdict": "confirmed",
+      "source_url": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+      "correction": "Every row matches the PDF, dated 21 May 2026. On M2, Metal ray tracing is available only on the general shader cores; the table lists 'Ray tracing in compute pipelines' from Apple6. Apple's M3 tech talk (developer.apple.com/videos/play/tech-talks/111375) confirms that hardware-accelerated ray tracing and mesh shading are new in family 9. Caution: WebFetch's own summary of this PDF invented a different table. Read the raw text."
+    },
+    {
+      "claim": "WWDC20 'Optimize Metal Performance for Apple silicon Macs': alpha-tested foliage produces 'feedback' fragments that reduce the benefit of hidden-surface removal. Draw opaque, then feedback, then translucent. Load and store actions consume 'the majority of your app's system bandwidth'.",
+      "verdict": "confirmed",
+      "source_url": "https://developer.apple.com/videos/play/wwdc2020/10632/",
+      "correction": "The transcript quotes match word for word."
+    },
+    {
+      "claim": "The 10-core M2 GPU runs at 1.398 GHz for 3,579 GFLOPS FP32, which scales to about 2.86 TFLOPS for 8 cores. Memory bandwidth is 100 GB/s. The recommended GPU working set is about two-thirds of RAM (listed as unverified).",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/philipturner/metal-benchmarks",
+      "correction": "The metal-benchmarks table row reads 'M2 | 8 | 1.398 | 10 | 3579'. The llama.cpp table gives M2 as 100 GB/s. The working-set figure can now be marked verified: ggml Metal logs on a 16 GB Apple8 device (M2 Pro) report recommendedMaxWorkingSetSize = 11453.25 MB, which is 10,922.67 MiB and exactly two-thirds of 16 GiB (github.com/01-ai/Yi README). Plan for about 10.7 GiB of GPU-visible memory at most, before macOS and browser overhead."
+    },
+    {
+      "claim": "Latest Godot versions are 4.7.2 stable (18 Aug 2026) and 4.8-dev6 (15 Sep 2026). Godot uses MetalFX temporal upscaling from 4.4 onwards.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/blob/4.4-stable/servers/rendering/renderer_rd/effects/metal_fx.mm",
+      "correction": "git tags and the godot-builds release pages confirm both dates. The 4.4-stable source already has MFXSpatialEffect and MFXTemporalEffect (MTLFXTemporalScaler). I did not verify the 170.6 MB macOS editor zip size, because the asset list failed to load."
+    },
+    {
+      "claim": "Godot's --headless mode uses the headless display driver and the dummy audio driver; frame capture needs --write-movie with --fixed-fps and --quit-after. Issue #82435 (Forward+ and Mobile crash on llvmpipe/lavapipe; Compatibility works) is still open and labelled confirmed.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/issues/82435",
+      "correction": "The docs define --headless as '--display-driver headless --audio-driver Dummy'. --write-movie forces --fixed-fps, and --quit-after sets the frame count. #82435 is open with the labels bug, confirmed, crash and topic:rendering. Correction: mesa-vulkan-drivers 25.2.8-0ubuntu0.24.04.2 is already installed in this container, not just installable. Whether Forward+ runs on lavapipe in 4.7 or 4.8 is still unproven."
+    },
+    {
+      "claim": "Godot issue #119436 reports a Metal 'timeout waiting for fence' freeze on an M2 MacBook Air with Godot 4.6.1.",
+      "verdict": "partially",
+      "source_url": "https://github.com/godotengine/godot/issues/119436",
+      "correction": "The issue is open and labelled confirmed on 4.6.1, but it is not specific to the M2 Air. It also reproduces on an M1 Max and an M4-series Mac. It is assigned to the Metal driver maintainer, and the reporter says they have a patch. Treat it as a general Godot Metal risk, not an M2 Air limitation."
+    },
+    {
+      "claim": "PyPI publishes official bpy wheels: 5.2.2 (15 Sep 2026, Python 3.13, manylinux x86_64 and macOS arm64, about 400 MB) and LTS 4.5.14 (15 Sep 2026, Python 3.11). mcp-for-blender is at 2.0.0 (16 Sep 2026).",
+      "verdict": "partially",
+      "source_url": "https://pypi.org/pypi/bpy/json",
+      "correction": "The bpy facts are correct. 5.2.2 requires Python ==3.13.* exactly. The Linux wheel is 402 MB and the macOS arm64 wheel 245 MB. The container's default python3 is 3.11, although /usr/bin/python3.13 exists, so agents must create a 3.13 virtual environment or use 4.5.14 (cp311). mcp-for-blender's latest release is 2.0.3 (21 Sep 2026), not 2.0.0 (pypi.org/project/mcp-for-blender)."
+    },
+    {
+      "claim": "Agent-cost figures: multi-agent systems use about 15× the tokens of chat and agents about 4×; agent teams about 7× a standard session; the enterprise average is about $13 per developer per active day; CLI tools are preferred over MCP; CLAUDE.md should stay under 200 lines. Image cost is ⌈w/28⌉×⌈h/28⌉ visual tokens (1280x800 ≈ 1,334), capped at 2576 px / 4,784 tokens on newer models.",
+      "verdict": "confirmed",
+      "source_url": "https://code.claude.com/docs/en/costs",
+      "correction": "The costs page confirms the 7×, $13, 'Prefer CLI tools' and under-200-lines figures. The Anthropic engineering post confirms '4× … 15× more tokens than chats'. The vision docs confirm the formula, and the 2576 px / 4,784 tier applies to 'Claude 4.7 and later models'. The docs also say base64 images are re-sent on every turn and recommend the Files API."
+    },
+    {
+      "claim": "GitHub Free/Pro Git LFS includes 10 GiB storage and 10 GiB bandwidth, and the largest LFS file is 2 GiB. Each release asset must be under 2 GiB, and there is no limit on total release size or bandwidth.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/github/docs/blob/main/data/variables/large_files.yml",
+      "correction": "Confirmed by large_files.yml and about-releases.md. Omitted limit: at most 1,000 assets per release (data/variables/releases.yml)."
+    },
+    {
+      "claim": "The fanless M2 Air loses a significant share of GPU performance under sustained load (no figure given).",
+      "verdict": "unverifiable",
+      "source_url": "",
+      "correction": "The egress proxy blocks review sites (notebookcheck, anandtech, tomshardware), apple.com and Wikipedia, and web search was exhausted. No primary measurement was found, so the 10-minute warm benchmark on the owner's Mac stays the only acceptance evidence. The UK Mac prices are also unverifiable here."
+    }
+  ],
+  "important_omissions": [
+    "WebGPU support on the owner's Mac. Safari 26 (released 15 Sep 2025; runs on macOS Sonoma, Sequoia and Tahoe) added WebGPU, and Chrome has had it on macOS since version 113. Safari 26 lacks two things this plan needs: GPU timestamp queries, which a browser-route benchmark needs for per-pass GPU timings, and 'transient' (memoryless) attachments, which Apple's advice on load/store bandwidth relies on. Chrome has timestamp queries (fully from 144) and transient attachments (146+). Any three.js/Babylon/PlayCanvas benchmark on the Mac should therefore run in Chrome. Sources: @mdn/browser-compat-data 8.1.2 on npm (api.GPUQuerySet timestamp, createTexture accept_transient_attachment); Safari 26 release notes at developer.apple.com/documentation/safari-release-notes/safari-26-release-notes.",
+    "The headless-render proof is weaker than the report implies. docs/engine_selection/RESUME.md (branch claude/aokigahara-engine-selection-tqyqx6) says the 0.65 s and 1.8 s per frame SwiftShader WebGPU timings were on placeholder geometry, in Chromium 141 ('1194' is Playwright's build number). Cloud audit time for a real frame with 2–4 M triangles, dense alpha foliage, shadow cascades and SSGI on 4 CPUs is unmeasured and could be minutes per frame. That changes how many audit renders the loop can afford.",
+    "The bpy 5.2.2 wheel requires Python 3.13 exactly, while the container's default is 3.11. Cloud baking scripts must pin a 3.13 virtual environment or use LTS 4.5.14 (pypi.org/pypi/bpy/json).",
+    "Lavapipe (Mesa 25.2.8) is already installed in the container, so the Godot Forward+ plus Xvfb headless test (#82435) costs almost nothing to run. It should be run before the engine decision rather than left as 'unverified'.",
+    "The Godot Metal fence freeze (#119436) is still open on 4.6.1 and affects several Apple Silicon Macs. Whether 4.7.x includes the fix is not established. This matters if Godot is chosen for the M2."
+  ],
+  "overall_reliability": "High for the claims the engine decision rests on. The SKU and 8-core GPU, the Metal feature table, no hardware ray tracing on M2, the HSR and alpha-foliage guidance, FLOPS and bandwidth, the Godot versions and MetalFX, the headless and lavapipe status, bpy availability, the token-cost figures and the GitHub LFS and release limits all checked out against primary sources, and none were refuted. Minor corrections: #119436 is not specific to the M2 Air, mcp-for-blender is now 2.0.3, and bpy 5.2.2 is pinned to Python 3.13. The performance budgets (2–4 M triangles, 30 fps at about 1 MP, per-effect ms), the throttling magnitude, UK prices and the single-NAND SSD point remain the author's unverified estimates. Treat them as hypotheses for the warm benchmark on the Mac, not as evidence."
+}

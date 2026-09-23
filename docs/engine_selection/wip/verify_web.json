@@ -1,0 +1,76 @@
+{
+  "topic": "Fact-check: Browser / WebGPU stack (three.js r186, Babylon.js 9, PlayCanvas 2.22) for the Aokigahara free-roam rebuild on an M2 Air",
+  "checks": [
+    {
+      "claim": "three.js r186 was released on 8 Sep 2026 (npm 0.186.0). It adds VXGI (#34402), a WebGPU LightProbeGrid (the old class renamed LightProbeGridWebGL), SunLight with CSM (#34221) with the cascade count 'reduced to 2', and SSAONode. r185 came out on 25 Jun 2026 (0.185.1 on 1 Jul). Other versions: Babylon 9.27.1 (18 Sep), 9.0 (26 Mar 2026), PlayCanvas 2.22.4, Spark 2.2.0, takram atmosphere 0.19.1, Electron 44.4.5, Tauri CLI 2.11.5, 3d-tiles-renderer 0.5.3, meshoptimizer 1.2.0.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/mrdoob/three.js/releases/tag/r186",
+      "correction": "The release page and npm registry timestamps match: three 0.186.0 at 2026-09-08T19:25Z, 0.185.0 on 2026-06-25, 0.185.1 on 2026-07-01, @babylonjs/core 9.0.0 on 2026-03-26 and 9.27.1 on 2026-09-18, and all the other package versions and dates exactly as reported. The r186 notes list 'Reduce cascade count to 2. 52184ab'."
+    },
+    {
+      "claim": "The r186 package has SSGI, GTAO, SSAO, SSR, TRAA, TAAU, Godrays, FSR1 and Denoise nodes, CSMShadowNode and TileShadowNode. It has no auto-exposure. BatchedMesh issues one drawIndexed per sub-geometry, with no multi-draw-indirect, while single drawIndirect/drawIndexedIndirect calls are supported. onBeforeCompile is not supported on node materials.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/mrdoob/three.js/blob/r186/src/renderers/webgpu/WebGPUBackend.js",
+      "correction": "I checked the npm tarball. examples/jsm/tsl/display contains all the listed nodes. Searching src and examples/jsm for autoexposure, eye-adaptation or luminance-adaptation finds nothing. WebGPUBackend.js loops passEncoder.drawIndexed per BatchedMesh draw and supports drawIndexedIndirect/drawIndirect from an indirect buffer. onBeforeCompile does not appear in src/renderers/common, src/nodes or src/materials/nodes. The report missed one node: r186 also ships SSSNode (screen-space contact shadows for a single directional light)."
+    },
+    {
+      "claim": "Measured three.js WebGPU post-chain cost at 1600x900 on an RTX 2080 was 'SSGI 14.4, SSR 8.2, bloom 1.4, GTAO 0.3' ms, with SSGI at half resolution. Extrapolated to an M2 at 1280x800, SSGI alone would cost about 25–35 ms.",
+      "verdict": "partially",
+      "source_url": "https://github.com/ThreeNativeHQ/threenative/pull/99",
+      "correction": "The quotation is accurate, but the context is wrong. The figures come from 'a user-recorded Chrome trace of a real session' ('~24 ms of a 39.7 ms frame'), in a third-party framework (ThreeNative), with 46,190 instances and the resolution scaler on auto. They are not a controlled half-res GPU timing. In the same PR's controlled table, half-res SSGI settled at scale 0.72 (1152x648) and held 59.8/60 fps on the 2080. So SSGI cost at a known resolution is not established, and the M2 figure of 25–35 ms is an order-of-magnitude guess that could be too low or too high. 'SSGI is unaffordable on a fanless M2' is plausible but unmeasured."
+    },
+    {
+      "claim": "The VXGINode author says it uses 'a dense and not a sparse tree', 'works best with static occluders', is WebGPU-only, does not yet support BatchedMesh, and is 'no good candidate for large scenes with a lot of open space'. It reaches 60 fps on a Pixel 8a with 3 cones at 40°. Merged 31 Aug 2026.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/mrdoob/three.js/pull/34402",
+      "correction": "All confirmed. The r186 source adds a hard limit the report did not state: VXGINode's resolution defaults to 128 voxels along the longest axis and 'should not exceed 256' because of the storage buffer size. That confirms only a small camera-local volume is possible."
+    },
+    {
+      "claim": "LightProbeGrid (WebGPU) bakes L2 SH on the GPU: 8 px cubemap faces and 512 SH directions by default, optional bounce passes, and SunLight swapped out during the bake. Incremental baking was merged on 7 Sep 2026. The plan is per-tile grids baked offline and streamed.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/mrdoob/three.js/blob/r186/examples/jsm/lighting/LightProbeGrid.js",
+      "correction": "The factual parts are confirmed in source: cubemapSize=8, sampleCount=512, bounces, pass/start/count, and replaceSunLights. The PR merged on 7 Sep 2026. One detail is wrong: the atlas is seven RGBA sub-volumes stacked in one 3D texture. The streaming plan has no support in the library; see the omissions."
+    },
+    {
+      "claim": "WebGPU on the Mac: Safari has it only on macOS 26 Tahoe or later (Safari 26.0, 15 Sep 2025). Chrome has had it since 113. Firefox since 145 (Tahoe, Apple Silicon) and 147 (all macOS). Safari 27 (Sep 2026) runs on macOS 27, 26 and Sequoia, fixes WGSL and limit bugs, and adds a Safari MCP server.",
+      "verdict": "confirmed",
+      "source_url": "https://developer.apple.com/tutorials/data/documentation/safari-release-notes/safari-27-release-notes.json",
+      "correction": "Confirmed. The Safari 27.0 notes (released 14 Sep 2026) say 'available for … macOS 27, macOS 26, and macOS Sequoia' and list clip_distances, 'Restored maxStorageBuffersInFragmentStage' and 'Allow your agent to connect to a Safari browser … via the Safari MCP server'. MDN browser-compat-data confirms Firefox 145 on Tahoe/Apple silicon, 147 on older macOS on Apple silicon, and no Intel Macs. Caveats: caniuse still marks Safari 26.0–27 WebGPU as 'only enabled by default on macOS 26 Tahoe or later', so Safari 27 on Sequoia gives the MCP server but no WebGPU. caniuse also still lists Firefox as Tahoe-only up to version 157, which conflicts with MDN."
+    },
+    {
+      "claim": "Apple caps the Metal GPU working set at about 75% of unified memory (about 12 GB on 16 GB), or about 2/3 by other reports, so a realistic resident budget is about 3–5 GB.",
+      "verdict": "partially",
+      "source_url": "https://developer.apple.com/forums/thread/732035",
+      "correction": "The 75% figure comes from a non-Apple forum user ('I believe Apple has a hard coded limit of 75%'), not from Apple documentation, and the thread gives no figure for 16 GB machines. Treat 10.7–12 GB as unverified. It must be read from MTLDevice.recommendedMaxWorkingSetSize on the owner's Mac. The 3–5 GB budget is a reasonable design choice, not a sourced fact."
+    },
+    {
+      "claim": "GitHub Pages caps a published site at 1 GB, with a 100 GB/month soft bandwidth limit and a 10-minute deploy timeout. Cloudflare R2 gives 10 GB-month free, then $0.015/GB-month, with zero egress. Class B reads are free up to 10 M/month, then $0.36 per million.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/r2/pricing.mdx",
+      "correction": "All confirmed from the docs sources: github/docs github-pages-limits.md and cloudflare-docs r2/pricing.mdx. The report left out Class A writes ($4.50/M after 1 M free) and one caveat: the free r2.dev public URL is 'rate-limited and should only be used for development'. Production use needs a custom domain on Cloudflare (cloudflare-docs r2/buckets/public-buckets.mdx)."
+    },
+    {
+      "claim": "Babylon.js 9 (volumetric lighting, IBL shadows, RSM GI, Frame Graph) has no lighting advantage over three.js r186. Auto-exposure must be hand-written.",
+      "verdict": "partially",
+      "source_url": "https://github.com/BabylonJS/Babylon.js/blob/master/packages/dev/core/src/PostProcesses/RenderPipeline/Pipelines/standardRenderingPipeline.ts",
+      "correction": "The @babylonjs/core 9.27.1 npm package (checked locally) does confirm giRSM/giRSMManager, clustered lighting, compute volumetric lighting (FrameGraph volumetricLightingTask), IBL-shadow voxel tracing, and no SSGI or probe-volume GI. But Babylon ships built-in HDR eye adaptation: StandardRenderingPipeline has hdrAutoExposure, hdrMinimumLuminance, hdrIncreaseRate and hdrDecreaseRate. three.js lacks it, and it is a named part of the owner's lighting target. The difference is small but real, and the report missed it."
+    },
+    {
+      "claim": "The headless agent loop is proven in this container: Chromium 141 with SwiftShader WebGPU renders three r186 at about 0.65 s per frame (about 1.8 s with SSGI+TRAA) and needs a swizzle shim. What carries over from the repo: app.js (47 KB) with 4 onBeforeCompile hooks and 4 InstancedMesh, and forest-wide.f32 at 11.2 MB. The repo is at github.com/andre-kaljevic/Aokigahara.",
+      "verdict": "partially",
+      "source_url": "https://github.com/andrekaljevic/Aokigahara",
+      "correction": "The local files confirm everything: RESUME.md lines 59–65 give the 0.65 s and 1.8 s figures, the swizzle shim and the blocked cdn.playwright.dev; viewer/app.js is 47,433 bytes with 4 onBeforeCompile hooks and 4 InstancedMesh; forest-wide.f32 is 11,222,424 bytes. The one error is the repository URL: git remote is github.com/andrekaljevic/Aokigahara, with no hyphen."
+    }
+  ],
+  "important_omissions": [
+    "Per-tile, streamed probe grids are not supported by the r186 LightProbeGrid. Each grid is a separate additive light node (LightProbeGridNode.setup adds irradiance and blends only by a 'falloff' weight). Every fragment samples 7 texels of every grid in the scene, and the grid clamps to its bounding box. There is no save/load or serialisation API. A 5 km world therefore needs custom work: one camera-following (toroidal) SH atlas node plus custom export/import. This is the core of the lighting plan and needs more agent work than the report states. Source: https://github.com/mrdoob/three.js/blob/r186/examples/jsm/tsl/lighting/LightProbeGridNode.js",
+    "Bake scale is not addressed. Each probe renders a full 6-face cubemap of the scene. At 8–16 m spacing over 25 km² with a few vertical layers, that is roughly 0.4–1.6 M probes and millions of scene renders. At SwiftShader's roughly 0.65 s per frame, baking in the cloud container is infeasible. It must run on the Mac GPU (slow and thermally throttled) or use a custom compute bake from the LiDAR DSM/CHM heightfield. So the claim that the probe atlases can be 'built in the cloud container' is unsupported. Sources: https://github.com/mrdoob/three.js/blob/r186/examples/jsm/lighting/LightProbeGrid.js and /home/user/Aokigahara/docs/engine_selection/RESUME.md",
+    "The SSGI cost evidence comes from a third-party framework's Chrome trace, not a three.js benchmark. The same PR shows half-res SSGI holding 60 fps at 1152x648 on the RTX 2080. The decision should not rest on the 25–35 ms extrapolation; a 1-hour M2 measurement of SSGINode at half resolution would settle it. Source: https://github.com/ThreeNativeHQ/threenative/pull/99",
+    "three.js r186 already ships SSSNode (screen-space contact shadows for the sun). It helps fine dappling and contact detail below the resolution of the near cascade, and the report left it out of the lighting recipe. Source: https://github.com/mrdoob/three.js/blob/r186/examples/jsm/tsl/display/SSSNode.js",
+    "Babylon.js has built-in HDR auto-exposure (StandardRenderingPipeline hdrAutoExposure); three.js does not. Source: https://github.com/BabylonJS/Babylon.js/blob/master/packages/dev/core/src/PostProcesses/RenderPipeline/Pipelines/standardRenderingPipeline.ts",
+    "Safari 27 installs on Sequoia, but caniuse says its WebGPU is still Tahoe-only. On Sequoia, the Safari MCP server cannot be used to test the WebGPU build; Chrome plus Playwright or DevTools is the only route. Sources: https://github.com/Fyrd/caniuse/blob/main/features-json/webgpu.json and the Safari 27 release notes",
+    "Cloud hosting may be unnecessary. This is a single-user viewer, so the tiles can be served over localhost from the external SSD that already holds the LiDAR. That avoids R2 set-up and the need for a custom domain (r2.dev is rate-limited and for development only), and keeps GBs out of the browser cache on the nearly full internal disk. Source: https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/r2/buckets/public-buckets.mdx",
+    "Sources disagree on Firefox WebGPU on pre-Tahoe macOS: MDN browser-compat-data says 147+ on Apple silicon, while caniuse says Tahoe-only up to 157. Chrome remains the only unambiguous target on the owner's Mac. Sources: https://github.com/mdn/browser-compat-data/blob/main/api/GPU.json and https://github.com/Fyrd/caniuse/blob/main/features-json/webgpu.json"
+  ],
+  "overall_reliability": "High on versions, dates, feature availability, browser support, licences and hosting prices: every version and date I checked matched npm and the primary sources. Medium to low on performance: the key SSGI number is a misread third-party Chrome trace and the M2 extrapolation is unsupported. The unsourced part is how the lighting recipe would be built. The report treats per-tile streamed LightProbeGrids and cloud-side probe baking as routine, but r186 supports neither out of the box, and baking over 25 km² is infeasible in the container. The conclusion that lighting parity must come from custom baked, LiDAR-driven work stands, but its cost and risk are understated."
+}

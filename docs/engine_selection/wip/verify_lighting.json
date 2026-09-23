@@ -1,0 +1,80 @@
+{
+  "topic": "Fact-check: reproducing UE5 Lumen-style forest lighting without Unreal (lighting-parity report)",
+  "checks": [
+    {
+      "claim": "The target look is quantified in the repo: frames g–j have shadow B/R 1.16–1.73 (cool, skylight-tinted understorey) against 1.05–1.14 for the flatter frames and 0.53–0.55 for three.js. So the look is sunflecks plus blue-tinted sky occlusion plus low exposure, and warm bounce is secondary.",
+      "verdict": "refuted",
+      "source_url": "/home/user/Aokigahara/renders/ue58_baseline/README.md (working tree; also tools/lighting_stats.py and lighting_stats.json, revised 23 Sep 2026)",
+      "correction": "The repo withdrew this metric today. The per-pixel shadow_blue_ratio was dominated by JPEG noise in near-black pixels: it moved from 1.23 to 1.63 when the same render was re-encoded. Its band-based replacement, shade_blue_ratio, reads 0.60–1.28 for g–j (h, i and j read warm), and the README says 'the claim of cool shadows is withdrawn'. Shade colour no longer separates the look, and dynamic range doesn't either: the three.js viewer reaches 10.0–10.9 stops. The discriminators are now sunfleck_fraction 0.07–0.16, log_avg_luminance 0.003–0.008, black_fraction 0.17–0.43 and warm highlights (highlight_blue_ratio 0.29–0.42). The report's claim that the understorey 'reads cool blue' should be dropped. Its view that warm light is secondary is also weakened, because warm sunlit patches are a target metric."
+    },
+    {
+      "claim": "Agent operability: three r186 WebGPU renders headless at about 0.65 s per frame (1.8 s with SSGI), making it the best option for agents to check. Godot Forward+ on lavapipe is unreliable (#82435), so Godot's lighting features probably need the Mac.",
+      "verdict": "refuted",
+      "source_url": "/home/user/Aokigahara/docs/engine_selection/wip/proto_godot.json and proto_webgpu.json; /home/user/Aokigahara/docs/engine_selection/RESUME.md",
+      "correction": "The repo's own prototypes, finished today, show the opposite. Godot 4.7.2 Forward+ on lavapipe (Mesa 25.2.8) under xvfb ran SDFGI, SSAO, SSIL, volumetric fog, 4-split PSSM, AgX and auto-exposure on real terrain, trees and materials, with no render errors. It took about 7.4 s per frame steady and about 4 min per settled still, and added about 255 MB. #82435 is still open, but it reports 4.1.1 crashing in VMs and did not reproduce here. The 0.65 s and 1.8 s figures were for a placeholder scene. On the real 8 M-triangle scene, three r186 WebGPU on SwiftShader took about 20 s per frame (about 27–28 s with SSGI). Its SSGI RenderPipeline also made frames 25–30 times brighter and flat and removed all shadows (cause not isolated), and there is no built-in auto-exposure. Both engines can be checked headless, and Godot's GI path is the one that currently works there."
+    },
+    {
+      "claim": "SDFGI on Metal gives no light bounce (#120496). The fix, PR #122675, was merged on 21 August 2026 for 4.8, so a Godot prototype relying on SDFGI needs a 4.8 dev build or must drop SDFGI.",
+      "verdict": "partially",
+      "source_url": "https://github.com/godotengine/godot/issues/120496",
+      "correction": "The merge date, milestone and issue link are all correct. The PR has no cherry-pick label, and 4.7.2 (18 August) came out before the fix. However, the issue gives a third option: switch the macOS rendering driver to Vulkan (MoltenVK) in 4.7.x. The catch is that MetalFX only works with the Metal driver (ProjectSettings rendering/scaling_3d/mode.macos), so this workaround costs MetalFX. The bug was reported on an M5; an M2 has not been confirmed as affected, though that is likely."
+    },
+    {
+      "claim": "Godot 4.7-stable was released on 18 June 2026. 4.7.2 (18 August 2026) is the latest stable, and 4.8 is at dev6 (about 15 September 2026).",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot-builds/releases",
+      "correction": "Confirmed. git ls-remote also shows no 4.7.3 or 4.8-stable tag."
+    },
+    {
+      "claim": "HDDAGI, PR #119869, is open. Draft PR #122999 (30 August 2026) adds screen probes, is 'confirmed working on MacBook Air M2 with Metal', and was tested on Sponza and the TPS demo with no M2 timings.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/pull/122999",
+      "correction": "Confirmed. #119869 is milestoned only '4.x', and its own thread never confirms Metal or macOS testing. #122999 gives only relative speed-ups (screen-probe passes 0.4–0.6x of the earlier time), no absolute milliseconds."
+    },
+    {
+      "claim": "three.js r186 (8 September 2026) ships SSGINode (low/medium/high presets), GTAONode, a WebGPU LightProbeGrid (L2 SH, multi-bounce, incremental baking #34486), VXGINode (#34402; at most 256 voxels; 'not suitable for large open scenes'), SunLight with CSM, GodraysNode, TAAU, FSR1, DenoiseNode and AgX.",
+      "verdict": "partially",
+      "source_url": "https://github.com/mrdoob/three.js/releases/tag/r186 (and the npm three@0.186.0 tarball source)",
+      "correction": "All modules are present, and npm shows 0.186.0 published on 8 September 2026. Four corrections from the source code. (1) LightProbeGrid supports bounces only when the whole grid is baked; ranged, incremental calls require bounces: 0. (2) It bakes by rendering a cubemap at every probe, runs on the GPU at runtime, and has no save or load API. So 'baked per tile with 1–2 bounces' and shipping an offline bake to the Mac both need custom code. (3) The VXGI 'open scenes' quote is not in the source, which says objects should stay static, resolution should not exceed 256, and it is 'less suitable for performance restricted use cases'. (4) SSGINode requires the WebGPU 'rg11b10ufloat-renderable' feature."
+    },
+    {
+      "claim": "MetalFX was merged into Godot for 4.4 (6 January 2025). MetalFX Temporal cut GPU time by about 19% against FSR2 on an M2 Air, and went from 39.7 ms to 33.2 ms on an M1 Max. Temporal mode disables MSAA and TAA.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/pull/99603",
+      "correction": "Confirmed, but the gain applies only with the Metal rendering driver (see the SDFGI workaround above)."
+    },
+    {
+      "claim": "CanRad.jl (MIT) computes sub-canopy sky-view factor and transmissivity from a CHM (C2R) or LiDAR points (L2R), is validated within 0.05 SVF, and is a headless, container-friendly way to bake Aokigahara sky visibility (Julia plus CanRad about 1 GB).",
+      "verdict": "partially",
+      "source_url": "https://github.com/c-webster/CanRad.jl",
+      "correction": "The licence, the C2R/L2R/T2R modes and the 0.05 SVF validation are confirmed. The README also says the required preparatory scripts are 'currently under development… please contact the author', and that large domains are meant to run on an HPC. It evaluates points one at a time, so 25 km² at 0.5–1 m would be a very large job on 4 CPUs. In this container the official Julia binary host (julialang-s3.julialang.org) and pkg.julialang.org both return 403 at the proxy. conda-forge is reachable as a fallback, but this install path is untested. rvt-py or a custom numpy height-field ray-march is the lower-risk bake."
+    },
+    {
+      "claim": "Container tooling: rvt-py 2.2.3 (Apache-2.0) provides sky_view_factor, sky_illumination and shadow_horizon. bpy 5.2.2 (15 September 2026) is a 402 MB manylinux cp313 wheel on PyPI. Babylon 9.0 came out on 26 March 2026, with 9.27.1 current; it has RSM GI, IBL shadows, SSAO2, SSR, TAA and a volumetric-lighting task, but no SSGI.",
+      "verdict": "confirmed",
+      "source_url": "https://pypi.org/pypi/bpy/json",
+      "correction": "Confirmed from the PyPI JSON: bpy manylinux wheel 401,697,653 bytes, uploaded 15 September 2026; rvt-py uploaded 4 July 2025 with the Apache classifier and all three functions in rvt/vis.py. The container has /usr/bin/python3.13. The npm @babylonjs/core 9.27.1 tarball contains giRSM, IBLShadows, ssao2, ssr, taa and volumetricLightingTask, and nothing for SSGI."
+    },
+    {
+      "claim": "Safari 26.0 ships WebGPU on by default on macOS Sonoma, Sequoia and Tahoe.",
+      "verdict": "confirmed",
+      "source_url": "https://developer.apple.com/tutorials/data/documentation/safari-release-notes/safari-26-release-notes.json",
+      "correction": "The Apple release notes say 'Added support for WebGPU' and that Safari 26 is available for macOS 26, Sequoia and Sonoma. webkit.org is blocked by the proxy, so the exact date was not re-checked."
+    },
+    {
+      "claim": "Unity: 6.5 shipped on 15 June 2026, HDRP is in maintenance mode, URP APV supports sky occlusion, and Surface Cache GI is only in 6.7 alpha.",
+      "verdict": "unverifiable",
+      "source_url": "",
+      "correction": "unity.com, docs.unity3d.com and discussions.unity.com are all blocked by the egress proxy. Treat these points as unverified. They matter little, because Unity ranked fourth."
+    }
+  ],
+  "important_omissions": [
+    "The repo's completed prototypes change the ranking (docs/engine_selection/prototypes/lighting_stats_prototypes.json, with the revised metric). Godot 4.7.2 with SDFGI meets the exposure key (0.006), sunflecks (0.157) and black fraction (0.27), with shade at 0.74, and misses only warm highlights (0.70 against 0.29–0.42). The canopy-only trick without SDFGI also meets the key, sunfleck and black targets, but it darkens only the terrain. The best plain three.js render meets 1 of 5 by the prototype summary. The re-scored figures show sunfleck and black fractions well over target, and three.js SSGI broke the shadows. So SDFGI is more load-bearing than 'optional', and three.js is the less proven path, not the better one to verify.",
+    "Godot volumetric fog GI inject only uses VoxelGI and SDFGI. LightmapGI, ReflectionProbe and SSIL are ignored (Godot 4.7 Environment.xml, volumetric_fog_gi_inject). In the report's no-SDFGI recipe, baked canopy terms fed through AO or global uniforms will not darken the fog, so fog under the canopy would be lit by open-sky ambient unless custom FogVolume shaders sample the baked maps. Source: https://raw.githubusercontent.com/godotengine/godot/4.7-stable/doc/classes/Environment.xml",
+    "MetalFX in Godot is exclusive to the Metal driver (ProjectSettings rendering/scaling_3d/mode.macos). The practical 4.7.x fix for the SDFGI bounce bug, the Vulkan/MoltenVK driver (#120496), therefore costs MetalFX. The alternative is a 4.8-dev build, and 4.8 has no stable release yet. Source: https://raw.githubusercontent.com/godotengine/godot/4.7-stable/doc/classes/ProjectSettings.xml",
+    "Godot's own SDFGI docs say it 'will perform best on systems with recent dedicated GPUs', and that on integrated graphics 'tweaking the settings is necessary'. The M2 is integrated graphics, so the report's 3–6 ms SDFGI estimate is unsupported and must be profiled on the Mac, preferably under both Metal (4.8-dev) and Vulkan (4.7.2). Source: https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/global_illumination/using_sdfgi.rst",
+    "Check the report's three.js probe-field plan against how LightProbeGrid bakes. It captures one cubemap per probe at runtime on the viewer's GPU and cannot save or load a bake. The report's 8 m × 4-layer field over 25 km² is about 1.56 M probes, or about 9.4 M cube-face renders, so it needs a custom offline bake and a custom SH upload. Source: three@0.186.0 examples/jsm/lighting/LightProbeGrid.js",
+    "The remaining lighting gap in both prototypes is warm, saturated sunlit patches (highlight_blue_ratio), not cool shade. That points to tuning the sun colour, albedo and bounce (SDFGI or SSIL) rather than skylight tinting, which reverses the report's priority of sky-tint over warm bounce. Source: /home/user/Aokigahara/renders/ue58_baseline/README.md"
+  ],
+  "overall_reliability": "About half the web facts check out: Godot versions, PR numbers and dates, the MetalFX numbers, the three.js r186 modules, the Babylon, bpy and rvt-py details, and Safari WebGPU. Three are only partly right (the SDFGI Metal fix, three.js r186's probe and voxel GI details, CanRad.jl), and the Unity points could not be checked. Two claims the decision rests on are refuted by the repository's own evidence from today. First, the 'cool sky-lit shadows' target comes from a metric the repo has withdrawn as JPEG noise. Second, the report says Godot needs the Mac for lighting checks while three.js is the easiest to verify headless; the finished prototypes show Godot Forward+ with SDFGI, SSIL and volumetric fog rendering headless and scoring closest to the UE5.8 look, while the three.js SSGI pipeline broke the shadows. Keep the report's baked canopy sky-visibility and sunfleck idea, which both prototypes support as a cheap partial win. Do not rely on its ranking, its judgement that SDFGI is optional, or its 85–90% ceiling until M2 profiling is done."
+}
