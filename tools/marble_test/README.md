@@ -35,6 +35,19 @@ It runs entirely in the Claude Code cloud container. The owner's Mac is not invo
    - fine detail and edge density, comparable with the owner's photos;
    - the lighting metrics.
 
+## Trying it on the free Marble plan (no API key)
+
+`chisel_glb.py` exports the same real ground and tree positions as a GLB block-out. The owner can
+upload it in Marble's Chisel editor (marble.worldlabs.ai → 3D input mode → Start → Upload a glb or
+fbx model), place the panorama camera at the origin at head height, and generate a world from a
+prompt using free credits. The free plan cannot export, so the result is judged by walking it in
+the browser and taking screenshots.
+
+```bash
+python3 tools/marble_test/chisel_glb.py --dem $W/data/dem/08LE9335.tif --dsm2 $W/data/dsm2/08LE9335.tif \
+    --view $W/panos/08LE9335_v2.json --out $W/aokigahara_08LE9335_v2_chisel.glb
+```
+
 ## Running it
 
 It needs `WLT_API_KEY` set as an environment variable in the cloud environment's settings,
