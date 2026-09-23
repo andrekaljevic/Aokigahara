@@ -44,6 +44,7 @@ from the earlier Three.js viewer (`renders/after_p4/C1`, `C3`):
 | `highlight_blue_ratio` — B/R of the brightest ground pixels (below 1 is warm) | **0.29–0.42** | 0.54–0.76 | 0.39–0.76 |
 | `shade_blue_ratio` — B/R of the shade band above the black floor | 0.60–1.28 | 1.05–1.19 | 0.48–0.49 |
 | `stops_p01_p99` — dynamic range | 8.5–10.2 | 3.3–5.7 | 10.0–10.9 |
+| `sky_peak` — brightness of sky gaps, 95th-percentile 8-bit | 176–243 | 221–228 | 235–246 |
 
 In words: the valued look has many sharp sunflecks on the floor, a low overall exposure, genuinely
 deep shade under the canopy, and warm sunlit patches. The first three rows separate it cleanly from
@@ -52,6 +53,11 @@ frames but overlap one Three.js camera (`C3`, 0.39). Shade colour does not separ
 to slightly cool across `g`–`j`, so it is a sanity check (the Three.js viewer's brown 0.48 is
 outside it) rather than a target. Dynamic range alone is not a match either, because the Three.js
 viewer's wide range comes from near-black trunks rather than from sunlit patches.
+
+`sky_peak` does not separate the frames either, but it catches a different failure: sky gaps that
+render dull and grey. The first Godot prototype scored 109–132 there. Nothing in this set of
+metrics detects the flat, pale, textureless sky of frames `a`–`e`; that flaw is judged by eye on a
+contact sheet.
 
 **Correction, 23 September 2026.** The first version of this table reported a per-pixel
 `shadow_blue_ratio` of 1.16–1.73 for `g`–`j` and read it as "cool, sky-lit shadows". That metric

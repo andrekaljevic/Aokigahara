@@ -18,6 +18,8 @@ Metrics:
     stops_p01_p99       dynamic range in stops between the 1st and 99th percentile
     sunfleck_fraction   share of ground-band pixels brighter than 4 x the ground median (dappled sun)
     sky_fraction        share of upper-band pixels that are bright and blue-dominant (sky gaps)
+    sky_peak            95th percentile of the brightest 8-bit channel over those sky pixels; dull,
+                        greyed sky gaps score low (NaN when the frame shows almost no sky)
     black_fraction      share of pixels darker than the black floor (linear 0.002, about 7/255 in sRGB)
     shade_blue_ratio    summed B over summed R across the shade band: pixels above the black floor
                         between their 5th and 35th luminance percentiles (> 1 reads cool, < 1 warm)
@@ -65,7 +67,10 @@ def measure(path):
 
     upper_bright = upper > np.percentile(lum, 99) * 0.5
     upper_blue = blue_ratio[:split] > 1.0
-    sky = float(np.mean(upper_bright & upper_blue))
+    sky_mask = upper_bright & upper_blue
+    sky = float(np.mean(sky_mask))
+    sky_px = rgb8[:split][sky_mask]
+    sky_peak = float(np.percentile(sky_px.max(axis=1), 95)) if len(sky_px) >= 50 else float("nan")
 
     lit = lum >= BLACK_FLOOR
     if lit.sum() > 100:
@@ -86,6 +91,7 @@ def measure(path):
         "stops_p01_p99": float(np.log2((pct["p99"] + EPS) / (pct["p01"] + EPS))),
         "sunfleck_fraction": sunfleck,
         "sky_fraction": sky,
+        "sky_peak": sky_peak,
         "black_fraction": float(np.mean(~lit)),
         "shade_blue_ratio": shade_blue,
         "highlight_blue_ratio": highlight_blue,
@@ -100,7 +106,7 @@ def main():
     args = ap.parse_args()
 
     rows = [measure(p) for p in args.images]
-    keys = ["log_avg_luminance", "stops_p01_p99", "sunfleck_fraction", "sky_fraction",
+    keys = ["log_avg_luminance", "stops_p01_p99", "sunfleck_fraction", "sky_fraction", "sky_peak",
             "black_fraction", "shade_blue_ratio", "highlight_blue_ratio", "clipped_fraction"]
     print("file".ljust(40) + "".join(k[:12].rjust(13) for k in keys))
     for r in rows:

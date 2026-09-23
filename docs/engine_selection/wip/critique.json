@@ -1,0 +1,167 @@
+{
+  "verdict": "The draft reaches a sound decision: Godot 4 on Metal as the winner and three.js r186 WebGPU as runner-up. The evidence supports it. Every judge-score mean in section 5 recomputes correctly from the three verdicts, and every prototype metric in section 4 matches docs/engine_selection/prototypes/lighting_stats_prototypes.json. No part of the draft recommends UE5.\n\nIt is not ready to hand to the owner. It over-claims lighting parity, and the plan has execution defects that would waste the usage the owner cares about:\n1. The one cheap test that decides the choice comes last. SDFGI cost on the M2, Metal stability and 30 fps are not measured until after the whole Milestone 1 build.\n2. The cloud verification loop pins Godot 4.7.2, but the recipe needs 4.8-dev features.\n3. The Milestone 0 Python environment fails to install. I tested it here: rvt-py pulls in a source-only gdal.\n4. It plans to publish raw data and bought scans as release assets on a repo that is public (checked via the GitHub API), while the data licence is on its own \"unverified\" list.\n5. It has no usage or time budget and no stop rule.\n\nSix further medium issues cover section 4 (the \"every material\" canopy term, cameras \"composed like\" g–j, a clipping gate that misses the flat-sky flaw), section 6 (disk totals and cache locations), section 8 (Milestone 1 scope) and section 10 (the switch-to-P2 rule).\n\nSeveral defects are already fixed in the committed docs/ENGINE_SELECTION.md (cccac83) and need no further action: the 4-of-5 gate that counted stops, the six-versus-four camera contradiction, the /tmp PNG paths, the unqualified 8-core claim, and the external SSD made optional. Most of the other issues below are still present in that committed file.",
+  "issues": [
+    {
+      "severity": "high",
+      "location": "§8 Milestone 0 and Milestone 1 (first Mac benchmark comes only at the end of M1); §10 flip conditions",
+      "problem": "The decision's biggest unknowns are all first measured on the Mac only after M1: SDFGI cost on a fanless 8-core M2, whether the Metal SDFGI bug (#120496, reported on an M5) affects an M2 on 4.7.2, the Metal fence freeze #119436, and whether 30 fps is reachable. By then agents will have built the whole data pipeline, stem detection, bakes, clipmap and bpy trees. If Godot fails those tests, most of that engine-side usage is wasted. The existing prototype (docs/engine_selection/prototypes/godot/proj, 5 M triangles, SDFGI, fog, 4-split PSSM) could answer them now. Its only blocker is the hard-coded `const REPO := \"/home/user/Aokigahara\"` in main.gd.",
+      "fix": "Add a Milestone 0 step: 'Mac probe on existing assets'.\n1. The agent changes REPO to a `--repo=` user argument and sets `rendering_device/driver.macos=\"metal\"` and `rendering/scaling_3d/mode.macos` to MetalFX Temporal.\n2. It adds a `--bench` mode: a scripted 10-minute camera path that logs `Performance.TIME_PROCESS`, GPU frame time and `RENDER_VIDEO_MEM_USED` to JSON.\n3. The owner runs it four ways: 4.8-dev6 Metal, 4.7.2 Metal (does the SDFGI bounce bug reproduce on M2?), 4.7.2 MoltenVK, and each with SDFGI off.\n4. Apply the flip conditions to this result before any pipeline work starts."
+    },
+    {
+      "severity": "high",
+      "location": "§8 Milestone 0, agent step 1 ('Pin Godot 4.7.2 for Linux'), against owner step 3 and §4 recipe",
+      "problem": "The cloud verification loop would run 4.7.2, but the Mac target and the recipe are 4.8-dev. The recipe relies on 4.8-only features: directional contact shadows (dev6), coverage-preserving mip import and texture streaming (dev5), and multi-bounce AO (dev4). The Metal SDFGI fix is also 4.8-only. The headless gate would therefore score a different configuration from the one shipped, and resources saved by 4.8 may not load in 4.7.",
+      "fix": "Pin the same build in the cloud and on the Mac. `Godot_v4.8-dev6_linux.x86_64.zip` (78.1 MB) is on github.com/godotengine/godot-builds/releases, and I confirmed it downloads through this container's proxy. The macOS universal zip is 184.6 MB, not 'about 170 MB'. Keep 4.7.2 only as the MoltenVK/stable fallback. Record the exact build hash in `godot/VERSION` and re-render the gate cameras whenever it changes."
+    },
+    {
+      "severity": "high",
+      "location": "§6 'Usage practices'; §8 all milestones",
+      "problem": "The owner's defining constraint is agent usage, yet the plan gives no usage or wall-clock estimate for any milestone except M0 ('about one day'). It also has no budget cap and no stop rule. Milestone 1 bundles data acquisition, DEM/DSM/CHM, stem detection, bakes, clipmap, species trees in bpy, ferns and litter, the full lighting recipe, a Cycles reference and gate iteration. At 3–4 minutes per settled headless still, open-ended tuning is exactly the UE5.8 failure mode.",
+      "fix": "Split M1 into two parts, each with a session budget and a stop rule:\n- **M1a (lighting):** the existing tree library on one sheet, run to the lighting gate.\n- **M1b (measured data):** CHM stems, bakes, species trees.\n\nState a budget for each, for example 'M1a ≤ N scoped sessions; if the gate is not met after N, stop and report to the owner before continuing'. Cap renders per iteration, for example 4 gate cameras and at most 3 iterations per session. Add an estimated calendar time to first walkable result on the Mac."
+    },
+    {
+      "severity": "high",
+      "location": "§8 M0 owner step 4 ('upload the sheets as release assets'); §6 'binaries as release assets'; §3 and §9 (paid scans); §12 unverified list",
+      "problem": "The GitHub API reports andrekaljevic/Aokigahara as public, with Pages enabled, so every release asset is public redistribution. The plan publishes raw Yamanashi LAS and derived packs while its own §12 lists 'the Yamanashi licence and sheet details' as unverified. It also leaves out three other licence conditions:\n- The Forestry Agency 20 m register licence is unknown.\n- OSM-derived trails and building masks are ODbL.\n- It recommends buying scans (Fab/Megascans), whose Standard Licence does not allow redistributing the asset files, while publishing binaries as release assets.",
+      "fix": "Add a licence step to M0. The owner confirms the licence text on the geospatial.jp dataset page, plus the Forestry Agency and forest-register terms, before any public upload. Add an ATTRIBUTION.md covering CC BY 4.0 for Yamanashi and the Forestry Agency and ODbL for OSM layers. Keep purchased or third-party-licensed assets out of the public repo and its releases: use a private repo's releases or keep them local on the external SSD. Alternatively, publish only derived rasters, not raw LAS, until the licence is confirmed."
+    },
+    {
+      "severity": "medium",
+      "location": "§8 Milestone 0 agent step 2",
+      "problem": "The planned environment ('Python 3.13 with uv, holding bpy 5.2.2, rasterio, laspy, pyproj and rvt-py') does not install. rvt-py 2.2.3 declares Requires-Python >=3.6,<3.12, while bpy 5.2.2 is ==3.13.*. rvt-py also depends on PyPI `gdal` (3.13.3, source-only). I tested `uv pip install rvt-py` into a 3.13 venv here, and it failed with 'Could not find gdal-config'; apt only offers libgdal-dev 3.8.4. rasterio 1.5.1 and pyproj 3.8.0 need Python ≥3.12.",
+      "fix": "Keep bpy in its own Python 3.13 venv. For the bakes, either:\n- install rvt-py with `uv pip install --no-deps rvt-py numpy scipy`. Only `rvt.vis` is needed (sky_view_factor, sky_illumination, shadow_horizon), and it imports just numpy and scipy; `scipy.ndimage.morphology` still imports on SciPy 1.18.1, with a deprecation warning. Or\n- put rvt-py plus conda-forge gdal into the conda env alongside lidR/lasR.\n\nPin the working lockfile in `pipeline/`."
+    },
+    {
+      "severity": "medium",
+      "location": "§1 paragraph 4; §3 'Realistic result'",
+      "problem": "The draft over-claims in three ways.\n- **'can reproduce all three':** §1 says shadow maps, LiDAR-baked canopy maps, fog and auto-exposure 'can reproduce all three'. None of that is demonstrated. No LiDAR CHM map has been built: the prototype's canopy map was splatted from the repo's procedural crowns and applied only to the ground. No prototype produced light shafts. Every Godot render misses warm highlights.\n- **The 'three things':** the list leaves out warm sunlit patches, which the revised README names as a discriminator and which the draft's own gate requires.\n- **'Realistic result':** §3 states 'A warm, locked 30 fps' as fact, with no M2 frame timing for any engine.",
+      "fix": "Reword §1:\n- 'The valued look comes mostly from sunflecks, deep shade, a low exposure key and warm sunlit patches.'\n- 'A Godot render using the repo's 8 m terrain and procedural tree placements, with a canopy map splatted from those crowns (not yet LiDAR), meets 3 of the 4 primary targets from one viewpoint. Shafts and warm highlights are not yet shown.'\n\nIn §3, relabel '30 fps' as 'target, unmeasured on any M2'. Add the 30 fps figure, the 75–90% ceiling and the 8–10 GB LAS extrapolation to the §12 unverified list."
+    },
+    {
+      "severity": "medium",
+      "location": "§4 'What the table shows' (bullets 1–2)",
+      "problem": "Two statements need correcting.\n- **'No render hits the warm-highlight target' is false.** The three.js `t1_off.jpg` (in the prototype JSON, omitted from the table) scores highlight_blue_ratio 0.370, inside 0.29–0.42.\n- **The table leaves out the shade_blue_ratio sanity check the README keeps (0.60–1.28).** On it, three.js is far off (t4 2.90, t6 3.47, t3 1.82) while all Godot renders pass (0.68–0.92). All three Godot renders have near-identical highlight B/R (0.697–0.698) whatever the GI mode.\n\nThis points to sun colour and albedo, not the GI technique.",
+      "fix": "Say: 'No Godot render meets the warm-highlight target. It is identical (0.70) across GI modes, so it is set by sun colour and moss albedo. The crushed three.js t1_off does meet it (0.37).' Add a shade B/R column as a sanity check, which strengthens the case for Godot. Add the caveat that all four Godot rows come from a single camera not composed like g–j. The committed cccac83 version adds this caveat."
+    },
+    {
+      "severity": "medium",
+      "location": "§4 recipe items 2–4; 'The baked canopy map carries the load'",
+      "problem": "Two things are unresolved.\n- **How the two occlusion terms combine.** The recipe applies both SDFGI (with sky light and occlusion) and the CHM sky-view factor to every material and to the ambient light. Godot's AO output multiplies SDFGI's indirect light as well, so inside SDFGI's range sky occlusion is counted twice. The prototype shows it: SDFGI plus the canopy map (sun6) meets 2 of 4 primary targets, fewer than either alone (3 of 4 each).\n- **Which term is load-bearing.** The draft says the canopy map 'carries the load', while all three judges' key risks call SDFGI load-bearing. The difference is never reconciled.",
+      "fix": "Specify the blend. Either:\n- inside the last SDFGI cascade (about 200 m), use the CHM term only for sun transmittance beyond PSSM range, and fade the CHM sky-view factor in beyond it; or\n- with SDFGI off, apply the CHM sky-view factor to ambient on every material.\n\nMake 'SDFGI on / CHM-only / both' a required 3-way comparison on the gate cameras in M1a. State in §4 that the judges' view differs, and that the single-camera evidence cannot yet settle which term is load-bearing."
+    },
+    {
+      "severity": "medium",
+      "location": "§6 storage table and 'The Mac total is about 5–15 GB'",
+      "problem": "The storage section has three errors.\n- **The total.** The table's own rows sum to about 13–20 GB: 0.17 + <1 + 1–4 + 2–5 + about 10.\n- **The cache location.** It puts project code on the internal disk and 'Import and Metal shader caches' on the external SSD. Godot keeps its import and shader cache in `.godot/` inside the project folder, so a project on the internal disk puts its caches there too. macOS's own Metal pipeline cache (under /private/var/folders) cannot be moved.\n- **Editor count.** The owner downloads two editors (184.6 + 170.6 MB).",
+      "fix": "Correct the total to about 13–20 GB, of which about 10 GB is raw LiDAR. State that the whole Godot project, the git working tree including `.godot/`, lives on the external APFS SSD, and the internal disk holds only the editors plus the macOS Metal cache (estimate a few hundred MB). Add a monthly check: `du -sh .godot ~/Library/Caches`."
+    },
+    {
+      "severity": "medium",
+      "location": "§4 'How it will be measured', items 1–2; §2 'a clipped white sky'",
+      "problem": "The gate has two concrete gaps.\n- **The clipping check cannot catch the flaw it targets.** The UE frames a–e, which had the flat pale sky, all score clipped_fraction 0.0000 in renders/ue58_baseline/lighting_stats.json, and their sky pixels peak at 243/255. The flaw was a flat, textureless pale sky, not clipping, so 'clipped_fraction < 0.5%' passes the UE flaw.\n- **'Composed like frames g–j' is undefined.** The UE camera poses are lost, and sunfleck and black fraction depend strongly on composition.",
+      "fix": "Describe the §2 flaw as 'flat, pale, textureless sky'. Add a sky check to the gate: for example, luminance standard deviation or a vertical gradient across sky_fraction pixels above a threshold, calibrated against g–j.\n\nDefine the camera composition rules:\n- eye height 1.6–1.7 m;\n- pitch −5° to +5°;\n- UE default 90° horizontal FOV;\n- sun elevation about 25–35°, side- or back-lit;\n- sky_fraction within g–j's 0.014–0.075. All Godot prototype frames, at about 0.076–0.090, sit slightly above it.\n\nState these in `harness/cams_ue58.json`."
+    },
+    {
+      "severity": "medium",
+      "location": "§1 paragraph 2; §10 'Switch to P2 if … the warm benchmark cannot hold 30 fps even without SDFGI'",
+      "problem": "Switching to the browser path because native Godot on Metal is too slow is illogical. P2 would carry the same content with no MetalFX, plus JavaScript and browser overhead and no memory-budget API. Nothing shows it would be faster. It is also the path with the weaker lighting evidence.",
+      "fix": "Replace the rule with: 'if the warm benchmark fails, first reduce render scale, shadow distance, impostor distance and foliage density. Switch to P2 only if a Chrome WebGPU build of the same content, benchmarked on the same Mac, beats Godot's frame time at equal or better lighting-gate scores.' Keep the shareable-link and Metal-instability triggers as they are."
+    },
+    {
+      "severity": "medium",
+      "location": "§8 Milestone 0 owner step 4 and agent steps; §8 Milestone 1 slice",
+      "problem": "Data acquisition has four gaps.\n- **No plot extent.** The 5 × 5 km plot is never defined anywhere (the repo terrain grids are 2 km, 19.5 × 14 km and 32 × 30 km), so no per-sheet list can be produced.\n- **The S3 test is illogical.** 'If it downloads [on the Mac], export the per-sheet URL list so the cloud can fetch the sheets itself' does not follow. The S3 403 seen from the cloud was S3's own AccessDenied, so the Mac succeeding could mean an IP restriction that still blocks the cloud.\n- **No existing-data option.** M1 waits on new downloads, though the owner already holds sheet 08LE9307: airborne LAS plus MMS, so it includes a road.\n- **Sheet count.** A 500 m square slice can touch up to 9 sheets of 300 × 400 m, not '4–6'.",
+      "fix": "1. Add an M0 deliverable: the plot bounds in EPSG:6676 (xmin, ymin, xmax, ymax) plus the list of covering 1/500 sheet IDs.\n2. On the Mac, list the resources through the CKAN API (`https://www.geospatial.jp/ckan/api/3/action/package_show?id=yamanashi-pointcloud-2024`), or from the catalogue's download index.\n3. Then test one sheet URL from the cloud; only a 200 there means the cloud can fetch the sheets itself.\n4. Start M1a on 08LE9307, which is already on the Mac.\n5. Choose the M1b slice as whole sheets."
+    },
+    {
+      "severity": "medium",
+      "location": "§8 Milestone 1; §7 'Docs/REBUILD_2026-09-19.md, which sets the evidence rules'",
+      "problem": "The M1 steps skip the REBUILD doc's own gate, which requires two checks before any world-building:\n- validating the EPSG:6676 axis order against the MMS trajectory with `audit_measured_axes.py`, plus one independent GSI control;\n- comparing the raw-cell reconstruction against Yamanashi's published 0.5 m DEM, DSM1 and DSM2.\n\nThe doc says 'No full-world propagation until that gate passes'. The M1 acceptance criteria are also vague: 'terrain RMSE … is reported' has no threshold, 'trees register to CHM maxima' has no metric, and the method for measuring GPU memory is not stated.",
+      "fix": "Make the first M1 step: run test_geo.py, test_measured_rebuild.py, audit_measured_axes.py and a comparison of the provider DEM against the reconstruction.\n\nSet numeric acceptance criteria, for example:\n- terrain RMSE ≤ 0.15 m against the provider's 0.5 m DEM, with NaN gaps counted and interpolation named;\n- at least 80% of placed dominant stems within 1 m of a CHM local maximum, with height within 10%;\n- GPU memory read from `Performance.RENDER_VIDEO_MEM_USED` in the bench JSON."
+    },
+    {
+      "severity": "medium",
+      "location": "§8 Milestone 2 and §9 (whole document)",
+      "problem": "Walkability is never addressed, although the brief is a first-person, walkable free-roam world. There is no character controller and no collision: no HeightMapShape3D terrain collider per streamed tile, no trunk or rock colliders, and no plan for collision streaming. Terrain3D's instancer gives instances no collision (§7 of the Godot research), and MultiMesh instances have none either.",
+      "fix": "Add walkability to M1a and M2. Include:\n- a CharacterBody3D controller;\n- HeightMapShape3D colliders built from the 1 m terrain per tile;\n- capsule colliders for trunks within about 50 m, generated from the stem list;\n- simplified convex shapes for hero rocks.\n\nAdd to acceptance: 'a scripted walk over lava relief completes without falling through or snagging', and include physics time in the bench JSON."
+    },
+    {
+      "severity": "medium",
+      "location": "§8 Milestone 1 ('builds Tsuga and Chamaecyparis in bpy (LOD0, LOD1, impostor)'); §9 'Conifers'",
+      "problem": "Tree authoring is probably the largest single agent-usage item and sets the fidelity ceiling, but it is one clause long. Blender's Sapling tree generator is not in the bpy wheel, and extensions.blender.org and projects.blender.org are blocked from the container: I tested both and they failed. EZ-Tree has only billboard foliage. Building new species trees inside M1 also mixes asset changes into the lighting-gate results.",
+      "fix": "Keep the lighting gate on the existing tree-library-v2.glb (M1a). Move species trees into a separately budgeted step. Name the approach, for example either:\n- a custom bpy L-system/space-colonisation script with scanned needle cards and bark; or\n- the archived Sapling add-on from the GitHub mirror `github.com/blender/blender-addons` (reachable by git here; compatibility with 5.2 unverified).\n\nAccept each species against reference photos before placing it at scale."
+    },
+    {
+      "severity": "medium",
+      "location": "§3 'Realistic result'; §4 recipe item 9; M1 acceptance ('at 0.67 MetalFX scale')",
+      "problem": "'About 1280×800 internal resolution, upscaled with MetalFX from about 0.67 scale' contradicts itself. It could mean output 1280×800 with internal about 858×536, or internal 1280×800 with output about 1910×1194. The M1 frame-time acceptance never states the output resolution, so the 33.3 ms target is ambiguous.",
+      "fix": "Fix one pair and use it everywhere. For example: output 1470×956, the Air's default scaled resolution, window or fullscreen; internal 0.67 scale ≈ 985×640 via MetalFX Temporal. The alternative is output 1920×1200 with internal about 1286×804. Keep 1280×800 only for the headless gate renders."
+    },
+    {
+      "severity": "low",
+      "location": "§8 Milestone 0 (agent set-up) and §6 'Who does what'",
+      "problem": "Container limits are ignored. Each new cloud session starts on a fresh machine, so lavapipe, Godot, bpy (402 MB) and the conda R env (1–2 GB) must be reinstalled every session. This container has about 25 GB free. Unzipping about 220–250 airborne LAS sheets at once could approach that limit.",
+      "fix": "Add a checked-in `tools/cloud_setup.sh`, run by the environment setup script or a SessionStart hook. Process LAS one sheet at a time (unzip, rasterise, delete). Publish derived rasters (DEM, DSM2, CHM, sky-view factor and transmittance, about 1 GB) as versioned release assets, so later sessions download those rather than raw LAS."
+    },
+    {
+      "severity": "low",
+      "location": "§4 recipe item 1",
+      "problem": "The shadow settings contradict themselves. They specify 'about 0.5° angular size' and then 'Use PCSS only if the budget allows'. In Godot, light_angular_distance > 0 is PCSS (contact-hardening shadows); lights_and_shadows.rst says 0.5 ≈ the Sun and warns it is expensive. The prototype used 0.6. The contact-shadow cost of '0.04 ms on the pull request's test GPU' is on an RTX 5090; the same PR gives about 0.38 ms at 4K.",
+      "fix": "Say: 'start with angular distance 0 (PCF, blend splits); try 0.5° (PCSS) only if the bench budget allows'. Name the RTX 5090, and treat contact-shadow cost on the M2 as unmeasured."
+    },
+    {
+      "severity": "low",
+      "location": "§4 recipe item 4 ('more than about 5 ms [7]')",
+      "problem": "Source [7], using_sdfgi.rst, gives no millisecond figure; it says only that integrated GPUs need tuning. The 5 ms threshold is the research agent's judgement.",
+      "fix": "Cite the threshold as a planning budget (judgement), and cite [7] only for 'SDFGI performs best on recent dedicated GPUs; integrated graphics need tuning'."
+    },
+    {
+      "severity": "low",
+      "location": "§7 'Repository (on main unless a branch is named)'",
+      "problem": "`renders/ue58_baseline/` and `tools/lighting_stats.py` are not on main; `git cat-file` fails on origin/main. They exist only on claude/aokigahara-engine-selection-tqyqx6.",
+      "fix": "List them under branch claude/aokigahara-engine-selection-tqyqx6, or add a step to merge the baseline and the stats tool into main before M1."
+    },
+    {
+      "severity": "low",
+      "location": "§5 'P4 Bevy … no GI on the M2 (meshlets need M3 or later [26])'",
+      "problem": "The draft blames the wrong feature. Meshlets are Bevy's virtual geometry, not GI. The lack of real-time GI comes from Solari, which is experimental and needs ray queries with no RT hardware on the M2. Bevy does have baked irradiance volumes.",
+      "fix": "Say: 'no real-time GI on the M2 (Solari needs ray queries and is impractical without RT hardware; only baked irradiance volumes), and no virtual geometry (meshlets need Apple9/M3+ [26])'."
+    },
+    {
+      "severity": "low",
+      "location": "§3 'Short of/Better than UE5.8' and §9 'Resolution'; §3 'Not photoreal'",
+      "problem": "§3 claims 'measured 0.5 m terrain' as a gain over UE5.8, while §9 says to use 1 m terrain in the engine. 'No scan-quality Tsuga sieboldii or Chamaecyparis assets exist' overstates the evidence: none were found. The assets fact-check notes an unverified CC0 Sketchfab lead and commercial hinoki models.",
+      "fix": "Write 'measured terrain (0.5 m source, 1 m in engine; 0.5 m for bakes)' and 'no species-accurate scans were found'."
+    },
+    {
+      "severity": "low",
+      "location": "§5 introductory paragraph ('Two lenses weighted lighting heaviest')",
+      "problem": "Solving the judges' score tables for their weights gives:\n- fidelity lens: lighting 0.30, the heaviest weight;\n- risk lens: lighting, Mac feasibility and agent efficiency tied at 0.20;\n- waste lens: agent efficiency 0.25 above lighting 0.20.\n\nOnly one lens weighted lighting heaviest, although the brief makes lighting parity the primary acceptance test.",
+      "fix": "State each lens's weights explicitly. Add a one-line lighting-only ranking, P1 7.0 > P6 8.7 (ineligible) > P2 5.2 > Flax 5.5 (two judges, unmeasured) > P3 4.7. This confirms the winner on the primary criterion. Note that the waste lens also scored Flax (about 5.0)."
+    },
+    {
+      "severity": "low",
+      "location": "§3 'Going beyond UE5.8' item 2; §12 unverified list",
+      "problem": "Some of the draft's status labels are out of line with the evidence.\n- **§3 item 2:** it treats Unity Surface Cache GI and Flax DDGI as 'next-generation GI once it has shipped'. SCGI already ships in URP 17.4–17.6 behind the SURFACE_CACHE define and can be tested in 6.6, and Flax DDGI has shipped.\n- **§12 unverified list:** it lists 'HDRP maintenance mode' as unverified, though the Unity fact-check marked it confirmed from secondary sources.",
+      "fix": "Reword to 'once proven on this class of hardware', and move HDRP maintenance mode to 'corroborated by secondary sources only'."
+    },
+    {
+      "severity": "low",
+      "location": "§6 and §9 ('no dithering'); §4 recipe item 9 (30 fps cap)",
+      "problem": "Two recipe settings are unqualified.\n- **Alpha-to-coverage.** It needs MSAA, which MetalFX Temporal disables, so foliage anti-aliasing must rely on alpha-scissor or alpha-hash plus the temporal resolve. A blanket 'no dithering' acceptance rule may ban the right technique. The UE5.8 flaw was dithering without a temporal resolve.\n- **The 30 fps cap.** It is prescribed without noting #114258: on macOS Metal, process time rises sharply when max_fps is capped.",
+      "fix": "Change the acceptance to 'no visible stipple after temporal resolve at 1× and 0.67× scale'. In the M0 bench, compare `Engine.max_fps=30` against a vsync-based cap."
+    },
+    {
+      "severity": "low",
+      "location": "§1 paragraph 1 ('Godot is deliberately a thin runtime that can be replaced')",
+      "problem": "The recipe depends heavily on Godot-specific parts, so the runtime is not thin: SDFGI, FogVolume and spatial shaders, global shader uniforms, which only custom ShaderMaterials can read, not StandardMaterial3D, and GDScript streaming. The risk judge estimates a switch to P2 at several agent sessions.",
+      "fix": "State which layers are engine-agnostic: the pipeline, rasters, stem list, glTF/KTX2 assets and gate. State which layers are Godot-specific and would be rewritten on a switch: the shaders, fog, streaming and controller, estimated at several sessions. Note that 'every material' means converting materials to shared ShaderMaterial templates."
+    },
+    {
+      "severity": "low",
+      "location": "§6 renders bullets, §3 hardware, §4 gate (already fixed in committed docs/ENGINE_SELECTION.md, cccac83)",
+      "problem": "These draft defects are already corrected in the committed record:\n- the /tmp scratchpad PNG paths;\n- 'MC7X4 is sold as … 8-core' stated without 'very probably';\n- a gate of 4 of 5 that counted stops, which the README does not treat as a discriminator;\n- M1 requiring the gate on six cameras against four in §4;\n- the sun6 row counted 3/5 where the primary targets give 2/4;\n- a mandatory external SSD;\n- missing notes on SDFGI and integrated GPUs, and on wind and dynamic occluders.",
+      "fix": "No further action beyond making sure the orchestrator publishes the committed version, not this draft, as the base for the fixes above."
+    }
+  ]
+}
