@@ -1,0 +1,136 @@
+# Sources consulted by the interrupted research agents
+
+The searches and pages the two unfinished agents had reached when the run was paused on
+23 September 2026. They are leads, not verified findings: no claim has been extracted from them.
+
+## Lighting parity research (interrupted)
+
+- search: Godot 4.6 release global illumination SDFGI 2026
+- search: Godot 4.7 release notes rendering
+- https://godotengine.org/blog/release/
+- https://gamedev.net/news/4010/
+- https://github.com/godotengine/godot/releases
+- https://github.com/godotengine/godot/releases/tag/4.7-stable
+- search: Godot HDDAGI reduz pull request SDFGI replacement status
+- search: Godot 4.5 MetalFX upscaling Apple Silicon Metal renderer
+- search: Godot 4.7 "what's new" SSR lightmapper SDFGI area lights shadows changes
+- https://github.com/godotengine/godot/pull/122999
+- https://github.com/godotengine/godot/pull/119869
+- https://www.cgchannel.com/2026/06/discover-5-key-features-for-cg-artists-in-godot-4-7/
+- search: Godot 4.5 release bent normal maps specular occlusion stencil buffer September 2025
+- search: Godot SDFGI foliage alpha scissor MultiMeshInstance3D leaves light leaking forest
+- https://github.com/godotengine/godot/issues/115766
+- search: Godot SDFGI performance Apple M1 M2 Metal integrated GPU ms benchmark
+- https://github.com/godotengine/godot/pull/99603
+- search: three.js SSGINode WebGPU screen space global illumination example r180
+- search: three.js DDGI irradiance probe volume WebGPU implementation 2026
+- https://github.com/mrdoob/three.js/releases
+- https://github.com/mrdoob/three.js/releases/tag/r186
+- https://discourse.threejs.org/t/global-illumination/91243
+- https://github.com/mrdoob/three.js/pull/34402
+- search: three.js LightProbeGrid irradiance probes bake example webgpu
+- https://github.com/mrdoob/three.js/pull/34486
+- https://github.com/mrdoob/three.js/pull/33906
+- https://threejs.org/docs/pages/SSGINode.html
+- https://github.com/mrdoob/three.js/pull/31890
+- search: Babylon.js 9.0 release global illumination volumetric lighting features 2026
+- search: PlayCanvas engine 2.x lightmapper ambient occlusion SSAO volumetric fog WebGPU 2026 release
+- https://blogs.windows.com/windowsdeveloper/2026/03/26/announcing-babylon-js-9-0/
+- https://api.playcanvas.com/engine/interfaces/VolumetricFog.html
+- https://github.com/playcanvas/engine/releases
+- search: Babylon.js IBL shadows voxel global illumination GIRSM reflective shadow maps SSAO2 documentation
+- search: Unity 6 Adaptive Probe Volumes sky occlusion URP documentation time of day
+- search: Unity 6.4 OR 6.5 release 2026 URP HDRP rendering new features Mac
+- https://discussions.unity.com/t/render-pipelines-strategy-for-2026/1710004/print
+- https://docs.unity3d.com/6000.4/Documentation/Manual/urp/probevolumes-skyocclusion.html
+- search: Unity "render pipelines strategy for 2026" URP real-time global illumination HDRP maintenance
+- search: Assassin's Creed 4 "world ambient occlusion" top-down height map Wronski GDC 2014 road to next-gen graphics
+- search: "Lighting, Atmosphere, and Tonemapping in Ghost of Tsushima" Patry SIGGRAPH 2021 slides
+- search: "Creating the Atmospheric World of Red Dead Redemption 2" Fabian Bauer SIGGRAPH 2019 advances slides
+- https://www.glowybits.com/blog/2022/12/18/ghost_talks/
+- https://imgeself.github.io/posts/2020-06-19-graphics-study-rdr2/
+- search: Ghost of Tsushima irradiance probes "sky visibility" baked time of day tree foliage indirect lighting Patry
+- search: "world ambient occlusion" Assassin's Creed top-down depth map trees sky occlusion technique
+- search: "Terrain Rendering in Far Cry 5" GDC 2018 Jeremy Moore terrain shadows ambient occlusion height map trees
+- search: Far Cry "deferred radiance transfer volumes" GDC 2012 Gilabert Stefanov time of day global illumination
+- search: "Rendering the World of Far Cry 4" McAuley vegetation trees translucency ambient occlusion sky visibility
+- search: Horizon Zero Dawn Decima vegetation lighting canopy sky occlusion GDC talk "Guerrilla" foliage rendering
+- https://archive.org/stream/GDC2015McAuley/GDC2015-McAuley_djvu.txt
+- https://ubm-twvideo01.s3.amazonaws.com/o1/vault/gdc2015/presentations/McAuley_Stephen_Rendering_the_World.pdf
+- search: Far Cry 4 "sky occlusion" height map top-down "world space" trees McAuley slides blurred height
+- search: distant shadows height field shadow map trees open world game technique "far shadows" GDC terrain and forest
+- search: Samurai Landscapes Building and Rendering Tsushima Island GDC 2021 Rockenbeck grass trees shadows
+- search: Godot 4 photorealistic forest SDFGI volumetric fog god rays showcase video Terrain3D
+- search: Godot forest scene sunlight through trees SDFGI screenshots reddit godot 2026
+- search: Road to Vostok Godot 4 lighting forest SDFGI or lightmap how it's lit
+- https://wrobot.itch.io/jungledemo
+- search: "Road to Vostok" early access system requirements GPU Godot forest graphics review 2026
+- search: M2 MacBook Air fanless GPU thermal throttling sustained gaming performance drop percent 3DMark Wild Life Extreme stress test
+- search: Apple M2 10-core GPU TFLOPS FP32 3.6 notebookcheck benchmarks GTX 1650 comparison
+- search: Safari 26 WebGPU enabled by default macOS Tahoe WebKit announcement
+- search: headless Chrome WebGPU SwiftShader Linux no GPU "--enable-unsafe-webgpu" puppeteer screenshot compute shaders
+- search: Webster CanRad.jl canopy height model shortwave transmissivity sky view fraction synthetic hemispherical images lidar
+- search: Moeser 2014 synthetic hemispherical images airborne LiDAR canopy closure radiation transfer Agricultural Forest Meteorology
+- search: Godot 4 Forward+ lavapipe llvmpipe software Vulkan CI render screenshot xvfb movie maker headless
+- https://github.com/hanscanonico/grid_commanders/pull/696
+- https://github.com/blisspixel/fragr/pull/30
+- https://github.com/godotengine/godot/issues/82435
+- search: three.js WebGPU SSGI GTAO performance MacBook Air M1 M2 fps ms cost
+- search: Godot "MacBook Air" M1 OR M2 SDFGI fps "volumetric fog" Forward+ Metal performance forum
+- https://github.com/godotengine/godot/issues/103723
+- search: "Outskirts" Godot environment demo jedenjenda23 forest SDFGI volumetric
+- https://github.com/mrdoob/three.js/pull/34319
+- search: SDFGI cost milliseconds benchmark Godot 4 GTX 1060 OR RX 580 half resolution cascades Calinou
+- search: Unity URP real-time global illumination 6.6 OR 6.7 beta "Surface Cache" OR "real-time GI" URP 2026 announcement
+- https://gamefromscratch.com/unity-getting-real-time-global-illumination/
+- search: "Surface Cache GI" Unity preview 6.5 OR 6.6 date Metal Apple Silicon requirements limitations
+- search: godotengine.org releases 4.6 "screen space reflections" rewrite "lightmap" "Jolt" January 2026 highlights rendering
+- search: Kingdom Come Deliverance 2 SVOGI voxel global illumination forest lighting Digital Foundry CryEngine
+
+## Web / WebGPU research (interrupted)
+
+- https://github.com/mrdoob/three.js/releases
+- search: three.js r185 release 2026 WebGPURenderer
+- https://github.com/mrdoob/three.js/releases/tag/r186
+- search: three.js LightProbeGrid WebGPU irradiance volume bake example
+- https://github.com/mrdoob/three.js/releases/tag/r185
+- https://threejs.org/examples/files.json
+- search: Safari 26 WebGPU shipped macOS Tahoe webkit.org blog
+- search: Babylon.js 9.0 release features Frame Graph IBL shadows GPU-driven 2026
+- https://blogs.windows.com/windowsdeveloper/2026/03/26/announcing-babylon-js-9-0/
+- https://blogs.windows.com/windowsdeveloper/2026/03/30/part-2-babylon-js-9-0-tooling-updates-and-new-geospatial-features/
+- https://babylonjs.medium.com/welcome-to-babylon-js-9-0-c3edc9ee6428
+- https://app.cinevva.com/news/2026-03-26-babylonjs-9
+- search: Babylon.js 9 atmosphere addon physically based sky geospatial 3D tiles large world rendering
+- https://doc.babylonjs.com/features/featuresDeepDive/lights/iblShadows
+- https://www.arttechpost.com/blog/babylon-js-9-0-what-is-new-in-the-web-3d-engine
+- search: PlayCanvas streamed LOD Gaussian splats SOG large scene 2026 blog
+- search: WebGPU Safari memory limit per tab GPU memory crash large scene Apple Silicon 2026
+- search: webgpureport Apple M2 maxBufferSize maxStorageBufferBindingSize Chrome Metal limits
+- https://developer.playcanvas.com/user-manual/gaussian-splatting/building/lod-streaming/
+- https://github.com/playcanvas/blog/blob/main/blog/2026-04-22-turning-a-gaussian-splat-into-a-videogame.md
+- search: "three.js" WebGPU forest terrain demo photoreal 2026 millions of trees compute culling
+- search: three.js VXGINode voxel cone tracing pull request WebGPU 2026
+- https://github.com/mrdoob/three.js/pull/34486
+- https://github.com/mrdoob/three.js/pull/34402
+- search: WebKit WebGPU macOS GPU process memory limit maxBufferSize Safari 26 limits values
+- search: Chrome WebGPU macOS Apple M2 adapter limits maxBufferSize 4GB "maxStorageBufferBindingSize" webgpureport
+- https://github.com/gpuweb/gpuweb/issues/6957
+- search: GitHub Pages limits repository size 1 GB published site bandwidth 100GB file size 100 MB
+- search: Cloudflare R2 pricing free tier 10 GB storage zero egress fees class A class B operations
+- search: 3DTilesRendererJS three.js WebGPU support 2026 quantized mesh terrain streaming
+- search: most realistic browser WebGPU nature forest scene demo 2026 volumetric light shafts foliage
+- search: WebGPU fanless MacBook Air thermal throttling browser 3D sustained performance M2
+- https://github.com/Braffolk/fable5-world-demo
+- https://github.com/Braffolk/fable5-world-demo/blob/main/PROJECT_LAAS_v2.md
+- search: Electron 44 release Chromium version 2026
+- search: Tauri macOS WKWebView WebGPU support macOS 26 navigator.gpu
+- https://webkit.org/blog/17333/webkit-features-in-safari-26-0/
+- search: "Safari 26" WebGPU "macOS Sequoia" not available only Tahoe
+- search: airborne LiDAR canopy height model sky view factor below-canopy solar radiation shading model synthetic hemispherical images
+- search: three.js WebGPURenderer onBeforeCompile ShaderMaterial not supported TSL migration manual
+- search: Apple GPU tile-based deferred rendering hidden surface removal alpha test discard performance foliage Metal best practices
+- search: WebGPU ray tracing extension proposal status 2026 Chrome acceleration structure
+- https://github.com/gpuweb/gpuweb/wiki/Implementation-Status
+- search: three.js SSGINode pull request SSILVB WebGPU performance ms
+- https://github.com/mrdoob/three.js/pull/34221

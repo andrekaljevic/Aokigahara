@@ -1,0 +1,31 @@
+<!doctype html><html><body style="margin:0"><script>if(self.GPUTexture){const cv=GPUTexture.prototype.createView;GPUTexture.prototype.createView=function(d){if(d&&d.swizzle!==undefined){d=Object.assign({},d);delete d.swizzle;}return cv.call(this,d);};}</script><script type="importmap">{"imports":{"three":"./three186/package/build/three.webgpu.js","three/webgpu":"./three186/package/build/three.webgpu.js","three/tsl":"./three186/package/build/three.tsl.js","three/addons/":"./three186/package/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three/webgpu';
+import {pass,mrt,output,diffuseColor,normalView,packNormalToRGB,unpackRGBToNormal,sample,velocity,vec4,add} from 'three/tsl';
+import {ssgi} from 'three/addons/tsl/display/SSGINode.js';
+import {traa} from 'three/addons/tsl/display/TRAANode.js';
+import {SunLight} from 'three/addons/lights/SunLight.js';
+import {SunLightNode} from 'three/addons/lights/SunLightNode.js';
+import {SkyMesh} from 'three/addons/objects/SkyMesh.js';
+const log=[];window.__log=log;
+try{
+const renderer=new THREE.WebGPURenderer({antialias:false});renderer.setSize(960,600);renderer.toneMapping=THREE.AgXToneMapping;renderer.shadowMap.enabled=true;document.body.appendChild(renderer.domElement);
+await renderer.init();log.push('backend '+(renderer.backend.isWebGPUBackend?'WebGPU':'WebGL'));
+renderer.library.addLight(SunLightNode,SunLight);
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(60,960/600,.1,3000);camera.position.set(0,1.7,0);camera.lookAt(30,4,-60);
+const sky=new SkyMesh();sky.scale.setScalar(2000);scene.add(sky);sky.sunPosition.value.set(.4,.35,-.6);
+scene.fog=new THREE.FogExp2(0x9aa7b0,.012);
+const hemi=new THREE.HemisphereLight(0xaec6d8,0x2a3122,.6);scene.add(hemi);
+const sun=new SunLight(0xfff1dc,4);sun.position.set(.4,.35,-.6);sun.castShadow=true;scene.add(sun);
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(600,600,64,64).rotateX(-Math.PI/2),new THREE.MeshStandardMaterial({color:0x3b4a2a,roughness:.95}));ground.receiveShadow=true;scene.add(ground);
+const N=4000,trunk=new THREE.InstancedMesh(new THREE.CylinderGeometry(.18,.3,14,8).translate(0,7,0),new THREE.MeshStandardMaterial({color:0x4a3b2e,roughness:.9}),N),crown=new THREE.InstancedMesh(new THREE.ConeGeometry(2.4,9,10).translate(0,13,0),new THREE.MeshStandardMaterial({color:0x2d4a24,roughness:.8}),N);
+const m=new THREE.Matrix4();let k=0;for(let i=0;i<N;i++){const x=(Math.random()-.5)*400,z=(Math.random()-.5)*400;if(Math.hypot(x,z)<3)continue;const s=.7+Math.random()*.6;m.makeScale(s,s,s).setPosition(x,0,z);trunk.setMatrixAt(k,m);crown.setMatrixAt(k,m);k++;}
+trunk.count=crown.count=k;for(const o of [trunk,crown]){o.castShadow=o.receiveShadow=true;scene.add(o);}
+const pp=new THREE.RenderPipeline(renderer);const sp=pass(scene,camera);sp.setMRT(mrt({output,diffuseColor,normal:packNormalToRGB(normalView),velocity}));
+const col=sp.getTextureNode('output'),dif=sp.getTextureNode('diffuseColor'),dep=sp.getTextureNode('depth'),nor=sp.getTextureNode('normal'),vel=sp.getTextureNode('velocity');
+const sn=sample(uv=>unpackRGBToNormal(nor.sample(uv)));const gi=ssgi(col,dep,sn,camera);gi.sliceCount.value=2;gi.stepCount.value=8;
+const comp=vec4(add(col.rgb.mul(gi.a),dif.rgb.mul(gi.rgb)),col.a);pp.outputNode=traa(comp,dep,vel,camera);
+const mode=new URLSearchParams(location.search).get('mode')||'ssgi';log.push('mode '+mode);if(mode==='noshadow'){sun.castShadow=false;}const times=[];for(let f=0;f<8;f++){const t=performance.now();if(mode==='ssgi')pp.render();else renderer.render(scene,camera);await renderer.backend.device.queue.onSubmittedWorkDone();times.push(Math.round(performance.now()-t));}
+log.push('frame ms '+times.join(','));if(mode==='ssgi')pp.render();else renderer.render(scene,camera);window.__png=renderer.domElement.toDataURL('image/png');await new Promise(r=>requestAnimationFrame(r));window.__done=true;
+}catch(e){log.push('ERR '+e.stack);window.__done=true;}
+</script></body></html>
