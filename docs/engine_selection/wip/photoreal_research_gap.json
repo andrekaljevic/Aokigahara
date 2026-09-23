@@ -1,0 +1,102 @@
+{
+  "track": "Perceptual gap analysis: real Aokigahara photos vs UE5.8 frames vs Godot/three.js prototypes",
+  "summary": "No, not in real time on an M2 Air, and not with the content the plan budgets for. I viewed 10 real photos, UE5.8 frames a, e and g–j, all 4 Godot renders, 2 three.js renders and 1 older viewer render, and ran lighting_stats plus my own detail and colour metrics on them.\n\nTwo results matter most.\n\n(1) The lighting gate measures how close a frame is to UE, not how close it is to a photograph. No real photo meets more than 2 of the 4 primary targets; the Godot SDFGI render meets 3. The real forest is brighter (key 0.006–0.012 against a target of 0.003–0.008) and less black (black fraction 0.06–0.22 against 0.17–0.43). Its highlights are not orange: sunlit patches and shade are about the same colour, whereas UE g–j (and the plan's plan to warm the sun) have a strong warm-sun/cool-shade split.\n\n(2) The largest gaps are in content, not lighting. The real photos have about 1.5–2.5 times the edge density of UE g–j or Godot: twigs, thin sub-canopy stems, leaf litter, root tangles, clumped moss, lichen on the bark. Godot's surfaces carry about half the fine detail of the photos. The trees are one or two instanced conifers on a smooth carpet of moss.\n\nRanked by how much each makes a frame read as a render:\n1. Geometric clutter and silhouettes.\n2. Surface detail.\n3. Irregularity and repetition.\n4. Lighting (for Godot, this ranks 2nd today).\n5. Camera and colour grade. This is cheap to fix and fully closable in Godot.\n\nRatings on a 0–100 scale:\n- UE5.8 g–j: about 35.\n- Godot at its best: about 18.\n- three.js at its best: about 14.\n- The recommended plan, fully executed on the M2 Air: about 40 (32–48). That is roughly level with UE5.8, not photoreal.\n\nPhoto-grade results need scanned species trees and a scanned debris kit, plus either much stronger hardware or offline or captured media (Cycles, Gaussian splats).",
+  "findings": [
+    {
+      "claim": "The lighting gate rewards looking like UE, not looking like a photograph. None of the 13 real photos meets more than 2 of the 4 primary targets (U07, U09 and U12 meet 0), while Godot's SDFGI render meets 3. Passing the gate therefore says nothing about photorealism.",
+      "source": "python3 tools/lighting_stats.py on refphotos/U*_1280.jpg (scratchpad real.json) compared with docs/ENGINE_SELECTION.md §4",
+      "confidence": "high"
+    },
+    {
+      "claim": "The exposure key and black targets are darker than the real forest. Across the 12 panoramas the key is 0.0060–0.0117 (median 0.0097), and only 5 of 12 fall inside the 0.003–0.008 target; UE g and h (0.0033 and 0.0036) are darker than every photo. Black fraction is 0.056–0.221 (median 0.095), and only 2 of 12 fall inside the 0.17–0.43 target. That holds even though the photographer crushed the blacks (Lightroom Blacks −17), and UE h's 0.43 is about twice the darkest photo.",
+      "source": "lighting_stats on the real photos compared with renders/ue58_baseline/lighting_stats figures",
+      "confidence": "high"
+    },
+    {
+      "claim": "Several targets roughly match the photos or are too narrow. Sunfleck fraction is 0.091–0.224 (median 0.159), so the 0.16 upper bound is too low (6 of 12 inside). Shade B/R is 0.63–0.77 (12 of 12 inside the 0.60–1.28 range). Sky peak is 166–244 (11 of 12 at 170 or above). Dynamic range is 9.6–11.8 stops (5 of 12 inside 8.5–10.2). Godot's 6.5–8.6 stops is 2–3 stops short of the photos, and its sky peak of 109–132 is well below them.",
+      "source": "lighting_stats on the real photos, Godot renders and UE frames",
+      "confidence": "high"
+    },
+    {
+      "claim": "The warm-highlight target conflicts with the photos, but only once white balance is taken out of the comparison. Raw highlight B/R in the photos is 0.69–0.80 (0 of 12 inside 0.29–0.42), but that figure depends on white balance: Lightroom Auto WB was set to 3900–4450 K with tint +15 to +30. A ratio that does not depend on white balance, highlight B/R divided by shade B/R, gives: real 0.90–1.17 (median about 1.07), UE g–j 0.33–0.57, Godot 0.76–0.96, three.js t4 0.17. In the photos sun and shade differ in brightness, not colour. UE g–j has a stylised orange-sun/cool-shade split. The plan's step of a warmer sun and lighter moss to reach 0.29–0.42 would move Godot away from the photos.",
+      "source": "lighting_stats ratios; XMP crs:Temperature/Tint read from refphotos/*.webp",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Where the photos come from: U01–U13 are a single shoot on a Fujifilm X body with the XF23mmF1.4 R lens (about 35 mm equivalent), taken 29 February 2016 between 12:46 and 13:17. They share one Lightroom 6.5 preset: Shadows +36 to +82, Blacks −17, Whites −44, Vibrance +17, Saturation −5, cropped to about 2:1. The light is winter midday, the deciduous understorey is bare and U07 shows snow. The set is one graded look on one day, not a neutral survey. U15 is a separate, heavily dehazed phone edit (Dehaze +81), and the 4K portrait is an upscale.",
+      "source": "XMP metadata embedded in scratchpad/refphotos/*.webp and U15_5c871a80.jpg",
+      "confidence": "high"
+    },
+    {
+      "claim": "Gap ranked #1 is geometric clutter and silhouettes. The share of pixels with a strong edge (Sobel gradient above 48/255) is 0.41–0.50 in the real photos, 0.18–0.32 in UE g–j, 0.09–0.29 in UE a–e and 0.21–0.28 in Godot. three.js scores 0.35–0.54, but that is aliasing and moiré, not detail. By eye, the real floors are made of twigs, single leaves, root tangles, 3D moss clumps and lava rubble at 0.1–2 m scale; the renders show smooth carpets and heightfield humps. The causes are assets and data, the hardware (overdraw and aliasing from thin geometry at 985×640 internal resolution) and partly the engine (Godot has no Nanite-class virtualised geometry). Godot on the M2 can close this only within about 10–20 m of the camera.",
+      "source": "scratchpad/percept.py edge density; scratchpad/crops_sheet.jpg and contact_real_ue_godot.jpg",
+      "confidence": "high"
+    },
+    {
+      "claim": "Gap #2 is surface detail and texel density. Fine detail (mean absolute Laplacian over lit pixels, 8-bit) is 22.6–39.0 in the photos and 12.7–17.2 in Godot, about half. The amplitude-spectrum slope is −1.00 to −1.17 in the photos, −1.28 in Godot (too smooth) and −0.90 to −0.95 in three.js (aliasing). Godot's ground is a single 1k moss set tiled every 2.2 m (about 2 mm per texel, adequate at 1280 px) with no litter, lichen or macro variation. The texel density is fine; the lack of variety and the flatness are the problem. This is an asset and craft issue. It can mostly be closed near the camera with 2k photo-derived sets, decals and height blending, but the 10.7 GiB working set and, as far as I know, the lack of built-in texture streaming in Godot cap the variety.",
+      "source": "scratchpad/percept.py; docs/engine_selection/prototypes/godot/proj/main.gd lines 146–157; viewer/assets/materials_v2",
+      "confidence": "medium"
+    },
+    {
+      "claim": "The trees and the structure of the stand look wrong. The renders instance one or two straight, evenly spaced conifers with identical branch plates over an empty, park-like understorey. The real stands have many thin, crooked sub-canopy stems, mottled bark with pale lichen, and leaning or fallen trunks. Local maxima in the canopy height model (CHM) find only dominant stems, so the thin stems that drive the photographic look are invisible to the LiDAR and must be added statistically. Two agent sessions per species of bpy space-colonisation (milestone 1c) will not reach scan quality. This is an asset and data limit, not an engine limit.",
+      "source": "contact sheet by eye; ENGINE_SELECTION.md milestones 1b and 1c",
+      "confidence": "high"
+    },
+    {
+      "claim": "Colour and camera are the cheapest gap to close. Mean saturation over lit pixels is 0.14–0.22 in the photos, 0.37–0.42 in UE g–j, 0.24–0.27 in Godot and 0.37–0.57 in three.js. In the brightest 5% of ground pixels, the linear R/B shares are 0.37–0.40 / 0.26–0.30 in the photos, 0.47–0.51 / 0.15–0.18 in UE g–j (orange) and 0.37–0.38 / 0.26–0.27 in Godot, which already matches the photos. The photos use a 35 mm-equivalent lens and a 2:1 crop; the renders use a 70° game FOV with no lens character. Fixing this is craft and tuning (a LUT, grain, a slight vignette and chromatic aberration, a narrower FOV for stills), fully closable in Godot at negligible GPU cost.",
+      "source": "scratchpad/percept.py; godot main.gd (cam.fov = 70)",
+      "confidence": "high"
+    },
+    {
+      "claim": "Lighting is gap #4 for UE, because UE g–j is already the closest to the photos on key and sunflecks, and gap #2 for Godot today. What remains is micro-occlusion in moss and rubble crevices, needle and leaf transmission, specular glints on glossy evergreen leaves (U09, U12), rim-lit trunks and bright sky gaps. In Godot, SDFGI cells are coarse and SSAO/SSIL are screen-space only. The M2 (Apple8) has no hardware ray tracing and no MetalFX denoiser. The fine GI is limited by engine and hardware; the sky and exposure are tuning.",
+      "source": "image comparison; ENGINE_SELECTION.md §3 on the hardware",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Irregularity and scale cues rank #3. The renders repeat the same instanced models on uniform spacing with uniform moss colour. The photos get their scale cues from saplings, twigs, fern fronds, fallen leaves and snow patches of known size, and from irregular trunk diameters and lean. Closing this is craft and asset work; variety costs memory and draw calls on the M2.",
+      "source": "contact_real_ue_godot.jpg by eye",
+      "confidence": "medium"
+    },
+    {
+      "claim": "These stills flatter every engine, because free-roam adds temporal problems. Thin twigs and needles resolved from 985×640 internal through MetalFX Temporal will shimmer and ghost. LOD and impostor transitions, wind that moves the crowns without updating their occlusion, and a fanless chip that throttles all push the moving result below the still-frame ratings. This is a hardware limit on the M2 Air.",
+      "source": "ENGINE_SELECTION.md §3 target resolution and limits; judgement",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Photorealism ratings, judgement on the scale defined in ratings_or_numbers: UE5.8 g–j about 35 (30–42; j and i best, g's blue haze and orange ground read as CG); UE5.8 a–e about 22; Godot best (sdfgi or sdfgi_canopy_sun6) about 18; three.js best (t4) about 14, with its moiré, blue shade and park-like spacing; old viewer C3 about 10; the recommended plan fully executed on the M2 Air about 40 (32–48) for curated stills near the trail and about 35 in motion.",
+      "source": "my visual judgement, backed by the metrics above",
+      "confidence": "medium"
+    },
+    {
+      "claim": "The only routes to 80 or more on this budget are offline or captured media: Blender Cycles stills and fly-throughs with scanned species trees and a scanned debris kit (about 80–85), or Gaussian splats of trail corridors (about 85–90, but only at captured spots, with lighting fixed at capture time and under 1% of the plot). Real-time photoreal free-roam forests are at the frontier even on RTX 4090-class hardware (about 65–75 with UE5-class tech and scanned foliage).",
+      "source": "judgement; docs/engine_selection/wip/research_capture.json",
+      "confidence": "medium"
+    },
+    {
+      "claim": "How to fix the gate so it measures photorealism (about 1 session). Replace the absolute highlight B/R target with the white-balance-free highlight/shade split of 0.9–1.2. Retarget key to 0.006–0.012, black fraction to 0.06–0.22, sunflecks to 0.09–0.22 and dynamic range to at least 9.5 stops. Add detail checks: edge density of at least 0.40, spectral slope of −1.0 to −1.2, and saturation of 0.14–0.25 under the photo grade. The current gate would steer agents towards the UE look, not the real one.",
+      "source": "derived from the measurements above",
+      "confidence": "medium"
+    }
+  ],
+  "verdict_on_photorealism": "No. On a fanless M2 Air in real-time free-roam, neither Godot, three.js nor any other engine will produce frames that pass as photographs of Aokigahara.\n\nThe recommended plan's realistic ceiling is about 40 out of 100 for stills (32–48) and about 35 in motion. That is roughly level with UE5.8 g–j (about 35), slightly better in colour, sky and measured terrain, and short in geometric density.\n\nThe gap is dominated by:\n- geometric clutter and thin structure;\n- species-accurate trees;\n- surface variety.\n\nThose are asset and data limits compounded by the hardware, not lighting problems.\n\nThe plan's gate also points the wrong way: the real photos fail it, and its warm-highlight target moves the look away from reality.\n\nWhere near-photoreal is achievable:\n- Gaussian splats of captured trail spots: about 85–90, locally only.\n- Offline Blender Cycles stills and fly-throughs with scanned trees and debris: about 80–85.\n- A fan-cooled M4 Max class Mac or an RTX 4080/4090-class PC with scanned assets: about 60–75 in real time.\n\nThe camera and colour-grade part of the gap (saturation, white balance, lens, grain) can be fully closed in Godot on the M2 at almost no cost. Doing so is worth perhaps +5 to +8 points.",
+  "what_it_would_take": [
+    "Recalibrate the lighting gate against the real photos before any tuning: use the highlight/shade split of 0.9–1.2 instead of an absolute highlight B/R of 0.29–0.42, key 0.006–0.012, black fraction 0.06–0.22, dynamic range of at least 9.5 stops, and add edge density of at least 0.40, spectral slope of −1.0 to −1.2 and saturation of 0.14–0.25. About 1 session.",
+    "Drop the 'warmer sun, lighter moss' step. Instead match the photos with a camera white balance and LUT: about 4200 K with a magenta tint, Shadows lifted, Blacks crushed, Whites −44, saturation about 0.2. Add a narrower FOV for stills and subtle grain, vignette and chromatic aberration. Cheap, and fully closable in Godot.",
+    "Build a scanned near-field debris kit, which is the largest single lever: 20–40 twig, branch, log, root-plate and lava-rock meshes, litter decals, and moss as real 3D clumps (shells, parallax or cards). This means photogrammetry on a site visit or bought scans kept out of the public repository.",
+    "Add sub-canopy stems statistically, since the CHM sees only dominant crowns. The photos show roughly 2–3 times the thin-stem density of the renders.",
+    "Use species-accurate Tsuga and Chamaecyparis from the owner's own photogrammetry or verified scans, not 2-session procedural bpy trees. Otherwise the trees cap the result at about 45.",
+    "Test in motion, not only stills: shimmer of thin geometry under MetalFX at 985×640 internal, LOD pop and throttling on the fanless Air, with an honest downgrade if it fails.",
+    "For genuinely photographic output, add an offline track: Blender Cycles renders of the same LiDAR-placed scene, or Gaussian splats of trail corridors used as hero spots and ground truth.",
+    "For real-time results above about 55: a fan-cooled M4 Max class Mac or an RTX 4080/4090 PC, with virtualised geometry and ray-traced or mature probe GI (Godot HDDAGI once proven, or equivalent)."
+  ],
+  "ratings_or_numbers": "SCALE (0–100): how likely an attentive viewer who knows the photos is to take a 1280-px still for an Aokigahara photograph.\n- 100: indistinguishable under scrutiny.\n- 85: passes a glance, fails scrutiny (best offline scanned or path-traced work).\n- 70: best real-time forest on RTX 4090-class with scanned foliage.\n- 50: good AAA console forest.\n- 35: good indie/AA.\n- 20: clearly CG prototype.\n- 5: greybox.\n\nRATINGS:\n- UE5.8 g–j: 35 (30–42).\n- UE5.8 a–e: 22.\n- Godot best: 18.\n- three.js best (t4): 14.\n- Old viewer C3: 10.\n- Recommended plan on the M2 Air: 40 (32–48) for stills, about 35 in motion.\n- M2 Air ceiling for any engine in real time: about 50.\n- Cycles offline with scans: 80–85.\n- Splats at captured spots: 85–90.\n\nREAL PHOTOS (12 panoramas, lighting_stats):\n- key 0.0060–0.0117 (median 0.0097); 5/12 in target 0.003–0.008\n- sunfleck 0.091–0.224 (median 0.159); 6/12 in 0.07–0.16\n- black 0.056–0.221 (median 0.095); 2/12 in 0.17–0.43\n- highlight B/R 0.69–0.80; 0/12 in 0.29–0.42 (white-balance dependent: Lightroom Auto WB 3900–4450 K, tint +15 to +30)\n- shade B/R 0.63–0.77; 12/12 in range\n- dynamic range 9.6–11.8 stops; 5/12 in 8.5–10.2\n- sky peak 166–244; 11/12 at 170 or above\n- primary targets met per photo: at most 2 of 4\n\nHIGHLIGHT/SHADE SPLIT (does not depend on white balance):\n- real: 0.90–1.17\n- UE g–j: 0.33–0.57\n- UE a–e: 0.47–0.64\n- Godot: 0.76–0.96\n- three.js t4: 0.17; t1: 0.37\n\nDETAIL AND COLOUR (scratchpad/percept.py; photos and renders at 1280 px wide):\n- Edge density: real 0.41–0.50; UE g–j 0.18–0.32; UE a–e 0.09–0.29; Godot 0.21–0.28; three.js 0.18–0.54 (inflated by aliasing).\n- Fine detail (mean absolute Laplacian): real 22.6–39.0; Godot 12.7–17.2.\n- Spectral slope: real −1.00 to −1.17; UE g–j −1.09 to −1.18; Godot −1.28; three.js −0.90 to −0.95.\n- Saturation: real 0.14–0.22; UE g–j 0.37–0.42; Godot 0.24–0.27; three.js 0.37–0.57.\n- Sunlit-highlight R/B share: real 0.37–0.40 / 0.26–0.30; UE g–j 0.47–0.51 / 0.15–0.18; Godot 0.37–0.38 / 0.26–0.27.\n\nGODOT ASSETS: ground is one 1k moss set tiled every 2.2 m (about 2 mm per texel); FOV 70°; the tree library is a 12 MB glb.\n\nFILES (scratchpad): real.json, renders.json, percept.py, crops_sheet.jpg, contact_real_ue_godot.jpg.",
+  "unknowns": [
+    "The photos are one winter shoot (29 February 2016, bare understorey, snow) with one Lightroom grade. Whether the owner wants that look or a neutral, summer or daylight-balanced one is undecided, and it changes the colour targets.",
+    "These metrics are proxies. The compositions differ (2:1 photo crops against 16:10 renders, a 40% sky/ground split), the photos were downscaled from 2000 px, and JPEG artefacts affect the edge and noise figures. UE h and j's high Laplacian values are inflated by hard shadow edges and noise.",
+    "The photorealism ratings are my judgement. No blind human test was run.",
+    "Frame time on the M2 for dense near-field debris, thin twigs and 2k materials is unmeasured, as is how much the fanless Air throttles.",
+    "Whether Godot 4.7/4.8 has built-in texture streaming or virtualised geometry by September 2026 was not checked.",
+    "Whether scans of Tsuga sieboldii or Chamaecyparis can be obtained, and what they would cost, is unverified, as is the feasibility and legality of an off-trail capture trip.",
+    "How the grade and white balance change the absolute tonal targets beyond the white-balance-free split ratio has not been quantified."
+  ]
+}

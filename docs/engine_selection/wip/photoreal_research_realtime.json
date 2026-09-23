@@ -1,0 +1,108 @@
+{
+  "track": "State of the art: what achieves photoreal real-time forests in 2026, on what hardware, and can an M2 Air get there with any engine?",
+  "summary": "No. On the M2 Air, no engine can produce a free-roam 5 km forest that people would mistake for a photo. The forests closest to that in 2026 all rely on ray or path tracing, extremely dense foliage geometry and neural denoising or upscaling, running on hardware with 3.5 to 35 times the M2's GPU compute.\n\n- **Witcher 4 UE5 tech demo:** a base PS5 (10.3 TFLOPS, hardware ray tracing) runs Nanite Foliage and hardware Lumen at 60 fps, rendering at about 900p and upscaling to 1440p.\n- **NVIDIA and CD Projekt RED's path-traced Witcher 4 forest (GDC/GTC 2026):** a 5 × 5 km area (the same size as the owner's plot) with about 1 million trees modelled down to individual needles. It runs at 58 fps on an RTX 4070 (960p upscaled to 1440p with DLSS) and at about 80 fps in 4K on an RTX 5090.\n- **Clips actually taken for real footage:** only short, curated UE5 + Megascans clips on an RTX 4090, and Unrecord, which also relies on imitating bodycam artefacts.\n\n**The M2 in shipped games.** It plays at roughly 720p to 900p internal resolution, 30 fps, low settings, with no ray tracing. It sits below the minimum spec for Assassin's Creed Shadows and Crimson Desert. It also lacks what those tiers depend on: hardware ray tracing, the neural accelerators added in M5, and a fan.\n\n**The only photo-like output an M2 can show:**\n- replayed Gaussian-splat captures of small patches, with the light fixed and no wind;\n- offline renders (stills or fly-throughs).\n\n**The smallest step that changes the answer** is an RTX 4070/5070-class PC: about £529 for the card or about £1,474 prebuilt, or a rented cloud PC. It only changes the answer together with Unreal (NvRTX path tracing) and species-accurate scanned trees. Godot has no equivalent path-traced foliage stack. Even then, the result reaches 'mistaken for footage' only in curated clips.\n\n**Caveat on sources:** the egress proxy blocked most primary sites (NVIDIA, Epic docs, Tom's Hardware, PC Gamer, Notebookcheck, arXiv), so most figures come from search-result summaries.",
+  "findings": [
+    {
+      "claim": "The Witcher 4 UE5 tech demo (State of Unreal, June 2025, UE 5.6) runs at 60 fps on a base PS5 using Nanite Foliage (voxels at distance) and hardware Lumen. A UE programmer, quoted in the Digital Foundry thread, put it at about 900p average (dips to mid-800s) upscaled to 1440p. Digital Foundry found it highly impressive but called it unrepresentative of a shipped game, and CD Projekt RED said the same. Nobody claims it passes for footage.",
+      "source": "https://www.notebookcheck.net/Witcher-4-tech-demo-shows-60-FPS-gameplay-with-ray-tracing-on-base-PS5.1029496.0.html ; https://www.techpowerup.com/337730/the-witcher-4s-director-talks-about-unreal-engine-5-tech-demo-running-at-60-fps-on-ps5 ; https://www.neogaf.com/threads/the-witcher-4-unreal-engine-5-tech-demo-digital-foundry-reaction.1684835/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "NVIDIA and CD Projekt RED's path-traced Witcher 4 forest (GDC/GTC 2026) covers 5 × 5 km with about 60 million plants, about 1 million trees and 200+ species, modelled down to individual pine needles, and is fully path traced with RTX Mega Geometry. It runs at 58 fps on an RTX 4070 (960p→1440p, DLSS Quality) and at about 80 fps on an RTX 5090 (1440p→4K). The foliage system relies on partitioned top-level acceleration structures, which is NVIDIA-specific technology. NVIDIA says it will open-source it 'later this year'.",
+      "source": "https://videocardz.com/newz/the-witcher-4-path-traced-rtx-mega-geometry-demo-runs-at-around-80-fps-4k-on-rtx-5090-with-dlss ; https://www.techspot.com/news/111936-nvidia-shows-witcher-4-forest-demo-running-path.html ; https://www.nvidia.com/en-us/geforce/news/gdc-2026-nvidia-geforce-rtx-announcements/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "UE 5.7 Nanite Foliage (Experimental) is made of three parts: Assemblies (instanced parts; one example tree drops from 3.5 GB to about 29 MB), Skinning (wind) and Voxels (near-pixel-sized voxels at distance). Epic claims 60 fps on current-generation hardware, and one test scene went from 62 to 119 fps with 77,376 trees of 20 million polygons each. No evidence was found that it runs on Metal or Apple Silicon.",
+      "source": "https://digitalproduction.com/2025/11/12/unreal-engine-5-7-foliage-pcg-and-in-editor-ai/ ; https://www.unrealengine.com/news/unreal-engine-5-7-is-now-available ; https://dev.epicgames.com/documentation/unreal-engine/nanite-foliage (blocked)",
+      "confidence": "medium"
+    },
+    {
+      "claim": "NVIDIA's Zorah demo (UE5, NvRTX branch; shown at CES and GDC 2025) is fully path traced with about 500 million triangles, and uses RTX Neural Shaders and DLSS 4. It runs at about 80 fps on an RTX 5090 with DLSS (1440p→4K) but reportedly falls to about 13 fps at native 4K. It is a 108 GB download.",
+      "source": "https://www.techpowerup.com/335622/nvidia-releases-108-gb-ue5-path-tracing-demo-zorah ; https://wccftech.com/unreal-engine-5-zorah-tech-demo-13-fps-rtx-5090/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Real-time scenes actually mistaken for real footage:\n- Unrecord (UE5, 2023) was taken for real bodycam video until the developers released editor footage. The illusion leans on imitating bodycam artefacts (lens, motion, compression).\n- Web3D's UE5 forest (Megascans Norway maple, Ultra Dynamic Sky) was called 'realer than real'. It ran on an RTX 4090 with an i9-14900K and 128 GB of RAM.\nAll of these are short clips along curated camera paths, not continuous free roam.",
+      "source": "https://www.digitaltrends.com/computing/unrecord-took-internet-by-storm/ ; https://mp1st.com/news/unrecord-bodycam-fps-devs-prove-gameplay-footage-is-legit-by-sharing-unreal-engine-5-editor-video ; https://80.lv/articles/this-incredible-ue5-environment-demo-looks-realer-than-real-life",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Senua's Saga: Hellblade II (UE5) combines photogrammetry of real Icelandic locations with deliberate camera simulation. It recommends an RTX 3080 and runs at 30 fps on Xbox Series X|S. Shipped 'near-photoreal' games reach that look with scanned real places plus camera emulation, on hardware far above the M2.",
+      "source": "https://www.notebookcheck.net/Senua-s-Saga-Hellblade-II-PC-system-requirements-confirmed-ahead-of-launch.834069.0.html ; https://www.pcgamer.com/games/action/senuas-saga-hellblade-2-pc-system-requirements-leave-one-big-question-unanswered/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Cyberpunk 2077 on Mac (July 2025):\n- The minimum tier (M1, 16 GB) gives 1440×900 or 1600×900 at a 30 fps target, using MetalFX dynamic resolution.\n- The 'For this Mac' preset never turns on ray tracing.\n- CD Projekt RED recommends an M3 Pro for 1080p/60 fps.\n- The M1 Air (8 GB, unsupported) managed about 12 fps.\nNo M2 Air figure was found; M2 Macs have no ray tracing.",
+      "source": "https://www.tomshardware.com/software/macos/cyberpunk-2077-system-requirements-revealed-for-apple-silicon-macs-m3-pro-recommended-for-1080p-60-fps-gameplay ; https://support.cdprojektred.com/en/cyberpunk/mac/sp-technical/issue/2891/cyberpunk-2077-mac-system-requirements ; https://www.notebookcheck.net/Cyberpunk-2077-tested-on-M1-Air-M1-Max-M3-Max-and-M4-MacBook-Pro-Here-s-how-well-it-runs-on-each.1061925.0.html",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Recent open-world games with forests set the base M2 below minimum spec:\n- Assassin's Creed Shadows (feudal Japan) needs at least an M1 Max or M2 Pro, for 720p/30 fps on Low.\n- Crimson Desert (March 2026) needs at least an M2 Pro or M3. It uses MetalFX upscaling, frame generation and the MetalFX denoiser, with hardware ray tracing only on M3 and later.\n- One YouTube test shows Crimson Desert at about 15 fps on the lowest settings on an M2 Air.",
+      "source": "https://www.ubisoft.com/en-us/help/assassins-creed-shadows/connectivity-and-performance/article/system-requirements-for-assassins-creed-shadows/000111013 ; https://thegameswiki.com/crimson-desert/wiki/macos-version ; https://www.youtube.com/watch?v=Di7Pu3A48p0",
+      "confidence": "medium"
+    },
+    {
+      "claim": "The fanless penalty is large. With the same M5 chip, Cyberpunk at 1200p Low with MetalFX ran at 54 fps on the MacBook Air 13 (about 9 W sustained) and at 76 fps on the fan-cooled MacBook Pro 14 (about 20 W), a gap of about 40%. The M2 Air's GPU throttled in 3DMark Wild Life after about 4 minutes before a thermal-pad mod.",
+      "source": "https://www.notebookcheck.net/Apple-MacBook-Air-13-M5-gasps-for-air-as-MacBook-Pro-14-M5-shows-40-higher-gaming-performance-in-Cyberpunk-2077.1264788.0.html ; https://wccftech.com/m2-macbook-air-overheating-problems-solved-with-modding/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "On features, the M2 has no hardware ray tracing. Unreal on macOS runs Lumen with software ray tracing only, and Nanite needs M2 or later with SM6. Apple's documentation lists MTLFXTemporalDenoisedScaler (MetalFX's denoiser, used with ray tracing) as macOS 26+ with a per-device supportsDevice check. Games use it alongside hardware ray tracing on M3 and later. So the ray-tracing-plus-neural-denoiser stack that current photoreal forests depend on is absent on this Mac.",
+      "source": "https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscaler ; https://www.unrealengine.com/tech-blog/bringing-unreal-engine-on-macos-up-to-feature-parity-with-windowsprogress-report ; https://developer.apple.com/videos/play/wwdc2025/211/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Raw GPU gap:\n- M2 with 8-core GPU: about 2.9 TFLOPS FP32 (3.6 for the 10-core), 100 GB/s.\n- PS5: 10.28 TFLOPS, 448 GB/s, with ray-tracing hardware.\n- RTX 4070: 29 TFLOPS (NVIDIA's shader figure), 504 GB/s, plus RT and tensor cores.\nThe Witcher 4 demos therefore run on about 3.5 times (PS5) and about 10 times (RTX 4070) the M2 Air's compute, before counting its missing RT and neural hardware.",
+      "source": "https://en.wikipedia.org/wiki/Apple_M2 ; https://www.notebookcheck.net/Sony-finally-reveals-PlayStation-5-specs-10-3-TFLOPs-32-CU-GPU-at-2-23-GHz-can-give-stiff-competition-to-the-Xbox-Series-X.458404.0.html ; https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Newer Apple hardware:\n- M5 (October 2025) has a neural accelerator in every GPU core and third-generation ray tracing, with up to 45% more graphics performance than M4 (Apple's claim).\n- One estimate puts the M5 Max 40-core close to a desktop RTX 4070 in Cyberpunk. A MacBook Pro 14 with that chip costs £4,099 in the UK.\n- The M6 Mac mini (announced 25 August 2026, shipping 22 September) has a 12-core GPU with hardware ray tracing and costs £899. Apple claims twice the M4's graphics performance.\nNone of these Macs has an equivalent of RTX Mega Geometry or DLSS Ray Reconstruction. That NVIDIA stack is what the path-traced 5 km forest runs on.",
+      "source": "https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/ ; https://wccftech.com/m5-max-estimated-gaming-benchmark-faster-than-laptop-rtx-5070-ti/ ; https://www.macworld.com/article/2942089/macbook-pro-m5-pro-max-release-specs-price.html ; https://9to5mac.com/2026/08/25/apple-announces-new-mac-mini-heres-everything-new/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "UK costs, September 2026, from price trackers (retail, not MSRP):\n- RTX 5070 card: about £529. RTX 5070 Ti: about £990. RTX 5090: about £2,019.\n- UK-built RTX 5070 PCs: from £1,474.\n- MacBook Air M5: from £1,099.\n- Shadow cloud PC Neo tier (RTX 2000 Ada, 16 GB; weaker than an RTX 4070): £32.99 a month after the promotion. The Power tier is £49.99 a month; its GPU was not confirmed.\n- GeForce NOW cannot run a custom build.",
+      "source": "https://bestvaluegpu.com/en-gb/history/new-and-used-rtx-5070-price-history-and-specs/ ; https://gpupricehistory.com/uk/rtx-5090 ; https://webuildtheperfectpcforyoultd.co.uk/blogs/gaming-pc-guides-advice/best-rtx-5070-gaming-pc-uk-2026-builds-prices-performance ; https://www.idealo.co.uk/compare/209562407/apple-macbook-air-13-m5-2026.html ; https://shadow.tech/gb/shadowpc/offers/",
+      "confidence": "low"
+    },
+    {
+      "claim": "Gaussian splatting gives photo-like appearance by replaying captured photos, and it runs on modest GPUs. Spark (World Labs, three.js/WebGL2, MIT licence; 2.0 released April 2026) streams 100M+ splat worlds with a level-of-detail system and 'renders fast even on low-powered mobile devices'. A Godot 3DGS plugin added a relighting proxy in July 2026, but splats store captured light rather than materials, so the baked-in light cannot be removed. For a forest that means no moving sun, no wind, and quality only along captured paths, which rules it out across 25 km² at ground level.",
+      "source": "https://github.com/sparkjsdev/spark ; https://www.worldlabs.ai/blog/spark-2.0 ; https://github.com/ReconWorldLab/godot-gaussian-splatting ; https://www.kiriengine.app/blog/3d-gaussian-splatting-in-godot-workflows",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Neural 'photorealism enhancement' of game frames is real-time only on desktop RTX. REGEN (IEEE Transactions on Games, 2026) runs at 1280×720 on an RTX 4090 with no TensorRT, with a demo on an RTX 4070 Super. It flickers more when trained on diffusion output, it was trained on street datasets, and it gained ONNX export and UE5 integration in June 2026. Nothing suggests it could run alongside a forest renderer on 2.9 TFLOPS with no tensor hardware.",
+      "source": "https://github.com/stefanos50/REGEN ; https://arxiv.org/abs/2508.17061",
+      "confidence": "high"
+    },
+    {
+      "claim": "Generative world models such as Genie 3 (August 2025; Project Genie rollout January 2026) produce photoreal-looking interactive worlds at 720p and 24 fps in the cloud. They stay consistent for about 1 minute ('largely' for several minutes), and they invent the scenery rather than reproducing a surveyed plot, so they cannot recreate this LiDAR plot.",
+      "source": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/ ; https://9to5google.com/2026/01/29/google-project-genie/",
+      "confidence": "medium"
+    }
+  ],
+  "verdict_on_photorealism": "No. In 2026, no engine can deliver real-time, free-roam photorealism in the 'mistaken for a photo' sense for a large walkable forest on a fanless 8-core M2 Air.\n\n**Why:**\n- **What current photoreal forests need:** very dense foliage geometry, hardware ray or path tracing for light and shadow through foliage, neural denoising and upscaling, and 10+ TFLOPS sustained.\n- **What the M2 Air has:** about 2.9 TFLOPS, 100 GB/s, no hardware ray tracing, and no neural accelerators in the GPU, while throttling within minutes.\n- **What shipped games get out of it:** about 720p to 900p internal, 30 fps, low settings, no ray tracing.\n- **Engines don't close the gap:** Godot, three.js and Unreal on Mac all lack a path-traced foliage stack there.\n\n**The M2 ceiling** is the engine selection's own estimate: high-end indie / AA, 'not photoreal'.\n\n**Two exceptions give photo-like pictures on an M2, but not the brief:**\n- Gaussian-splat captures of small patches (fixed lighting, no wind, only where captured).\n- Offline renders (Blender Cycles stills or fly-throughs).\n\n**Where it becomes achievable:**\n- **Floor for path-traced forests at this scale: an RTX 4070/5070-class PC.** NVIDIA's path-traced 5 × 5 km Witcher 4 forest runs at 58 fps at 1440p with DLSS on an RTX 4070.\n- **Where the clips viewers mistook for real were made: RTX 4090/5090.**\n- **M5 Max / M6 Macs:** they narrow the raw gap, but lack the NVIDIA-only Mega Geometry and Ray Reconstruction stack. They also cost 2 to 8 times as much.\n\n**Smallest step that changes the answer: an RTX 5070 desktop.** That is about £529 for the card or about £1,474 prebuilt. A cloud PC rental from £33 to £50 a month is cheaper, but its GPU tier is unverified. The step only counts together with Unreal's NvRTX path tracing (not Godot) and species-accurate scanned trees. Even then, 'mistaken for footage' has only been shown in curated clips, not in continuous free roam.",
+  "what_it_would_take": [
+    "A Windows PC with an RTX 4070/5070 or better as the floor (card about £529, prebuilt from about £1,474, Sept 2026). An RTX 4090/5090 (about £2,019 card) for the look of the viral 'looks real' forest clips. At least 1 TB of SSD, since Zorah alone is 108 GB.",
+    "A renderer with path-traced or hardware-ray-traced lighting through foliage plus a neural denoiser: Unreal 5.7+ with Nanite Foliage and hardware Lumen, or NVIDIA's NvRTX branch with RTX Mega Geometry and DLSS Ray Reconstruction. That means re-admitting Unreal on the PC only; Godot and three.js have no equivalent.",
+    "Species-accurate trees scanned or modelled down to the needle (Tsuga sieboldii, Chamaecyparis obtusa), plus moss, lava rock and forest litter, from the owner's own photogrammetry. This is the content cap already identified, and no hardware removes it.",
+    "Wind animation that keeps the ray-tracing structures up to date (partitioned acceleration structures in Mega Geometry, Nanite Skinning), otherwise moving foliage gives the scene away.",
+    "Camera emulation (exposure, lens, grain, motion blur, mild compression): Unrecord and Hellblade II both show this does much of the 'reads as footage' work.",
+    "Keep the LiDAR pipeline engine-agnostic (DEM, CHM, stem list, bakes). It carries over unchanged to an RTX and Unreal target.",
+    "On the M2 only: for photo-like views, (a) Gaussian-splat captures of a few trail segments shown with Spark/three.js, accepting fixed light and no wind, or (b) Blender Cycles offline stills and fly-throughs made from the same data.",
+    "Cheapest trial before buying hardware: rent a cloud Windows PC (Shadow Power tier, about £50 a month, GPU unverified; or an RTX-class cloud instance) and stream it to the Air to test a path-traced forest slice."
+  ],
+  "ratings_or_numbers": "**GPU compute and bandwidth:**\n\n| GPU | FP32 compute | Memory bandwidth | Ray-tracing hardware |\n|---|---|---|---|\n| M2, 8-core GPU | about 2.9 TFLOPS (10-core: 3.6) | 100 GB/s | none |\n| PS5 | 10.28 TFLOPS | 448 GB/s | yes |\n| RTX 4070 | 29 TFLOPS (NVIDIA's shader figure) | 504 GB/s | yes, plus tensor cores |\n\n**Demos and their frame rates:**\n\n| Demo | Hardware | Frame rate | Resolution |\n|---|---|---|---|\n| Witcher 4 UE5 demo | base PS5 | 60 fps | about 900p internal → 1440p |\n| Path-traced Witcher 4 forest (5 × 5 km, about 1M trees, 60M plants) | RTX 4070 | 58 fps | 960p → 1440p, DLSS Quality |\n| Same forest | RTX 5090 | about 80 fps | 1440p → 4K |\n| Zorah | RTX 5090 | about 80 fps (13 fps at native 4K) | with DLSS |\n\nUE 5.7 Nanite Foliage test: 62 → 119 fps with 77,376 trees.\n\n**Mac results in shipped games:**\n\n| Game | Mac | Result |\n|---|---|---|\n| Cyberpunk 2077 | M1 16 GB (minimum) | 900p, 30 fps, MetalFX, no ray tracing |\n| Cyberpunk 2077 | M1 Air 8 GB | about 12 fps |\n| Assassin's Creed Shadows | minimum is M1 Max / M2 Pro | 720p, 30 fps, Low |\n| Crimson Desert | minimum is M2 Pro / M3 | M2 Air about 15 fps (one YouTube test) |\n| Cyberpunk 2077, 1200p Low | M5 Air vs M5 MacBook Pro | 54 fps at about 9 W vs 76 fps at about 20 W (about 40% lost to fanless cooling) |\n\n**UK prices:**\n- RTX 5070: about £529. RTX 5070 Ti: about £990. RTX 5090: about £2,019.\n- RTX 5070 prebuilt PC: from £1,474.\n- M5 Air: from £1,099. M6 Mac mini: £899. MacBook Pro 14 M5 Max 40-core: £4,099.\n- Shadow cloud PC: £32.99 a month (Neo, RTX 2000 Ada) or £49.99 a month (Power).\n\n**Neural and generative methods:**\n- REGEN enhancement: real-time at 1280×720 on an RTX 4090 or 4070 Super.\n- Genie 3: 720p, 24 fps, consistent for about 1 minute.",
+  "unknowns": [
+    "No measured M2 Air frame rate exists for any near-photoreal forest scene. The Crimson Desert M2 Air figure comes from a single YouTube video.",
+    "Whether UE 5.7/5.8 Nanite Foliage runs on Metal or Apple Silicon at all; Epic's documentation was blocked by the egress proxy.",
+    "No perceptual study was found showing that typical viewers mistake any real-time forest, including the path-traced Witcher 4 one, for footage during continuous free roam. The 'mistaken for real' claims are journalistic and cover short clips.",
+    "Whether RTX Mega Geometry foliage has been open-sourced yet (NVIDIA said 'later this year'), and whether it will ever reach Metal.",
+    "Real-world gaming performance of the M6 Mac mini and M5 Max: Apple's claims and a single estimate only, not independent benchmarks.",
+    "UK GeForce NOW price, and the GPU in Shadow's Power tier. Prices come from trackers and search summaries and are unverified at retailers.",
+    "The owner's exact M2 GPU (8-core vs 10-core) and how much it throttles under a sustained rendering load.",
+    "Many primary sources were blocked by the egress proxy (NVIDIA, Epic docs, CD Projekt RED, Tom's Hardware, PC Gamer, Notebookcheck, TechSpot, arXiv, World Labs, sparkjs.dev), so most figures come from search-result summaries. Only GitHub and developer.apple.com could be read directly."
+  ]
+}
