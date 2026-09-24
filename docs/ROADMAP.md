@@ -142,11 +142,25 @@ Budget: 6–8 sessions. Owner: plot boundary, final test and walk.
 A Cycles photo mode for stills and fly-throughs from the same data; look-around stops made with Marble from real
 photos; ambient sound; seasons and weather; caves, if the municipal cave report's CD yields geometry.
 
-## Decisions needed from the owner
+## Owner's decisions (24 September 2026)
 
-1. A new private repository, or continue in this one.
-2. The look: sunny and dappled, or soft overcast.
-3. Spending beyond the cloud credit (paid tree tools, scans, a rented GPU or Mac): yes, capped, or no.
-4. Files still on the Mac worth uploading: the 20 m forest register (8.5 MB), the MMS colour point cloud (698 MB,
-   optional), and parts .05 onwards of the Pass 2 handover.
-5. Whether to ask the author of the Aokigahara floor scan for permission (I can draft the message).
+1. **A new private repository:** `aokigahara-free-roam`, created by the owner (this session is not allowed to create
+   repositories).
+2. **The look: sunny and dappled,** matching the valued frames g–j. The lighting gate uses their numbers.
+3. **No spending beyond the cloud credit,** unless minimal. So no paid tree tools, bought scans, rented GPUs or rented
+   Macs; free resources only.
+4. **Forest register: yes.** The owner uploads `fr_mesh20m_08le3_2025.7z` (8.5 MB) from
+   `/Users/Shared/Aokigahara-survey-2026-09-17` on the Mac. The MMS colour point cloud and the remaining Pass 2
+   handover parts are skipped: neither is needed for the fresh start.
+5. **No contact** with the author of the Aokigahara floor scan.
+
+## Start here (for the first session in the new repository)
+
+Attach `andrekaljevic/Aokigahara` read-only as the source, then run Phase 0 steps 0.2–0.6 in the new repository:
+
+- **Copy in:** this roadmap, `docs/engine_selection/PROJECT_HISTORY.md`, `docs/ENGINE_SELECTION.md` (as reference),
+  `tools/lighting_stats.py`, `tools/marble_test/yamanashi_sheets.py`, the Godot prototype in
+  `docs/engine_selection/prototypes/godot/`, and the target frames `renders/ue58_baseline/ue58_g`–`j` with
+  `lighting_stats.json`. Add the owner's photos and the vegetation GeoPackage when the owner uploads them.
+- **Write:** `CLAUDE.md` (the rules above plus these decisions) and `docs/DECISIONS.md` (one page).
+- **Work** at normal effort, with no helper-agent teams. Commit after each step.
