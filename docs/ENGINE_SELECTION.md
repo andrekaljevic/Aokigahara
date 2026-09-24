@@ -125,7 +125,11 @@ The slope-driven moss is a shader rule and is portable, as are the rocks, the te
 - **Nothing recoverable.** The world existed only as binary `.uasset` files on the Mac. Branch
   `ue5.8/aokigahara-production` holds 12 script and JSON files and no `.uproject`, so the corrupted project could not
   be recovered.
-- **Agents worked blind.** They could not see the viewport, so the owner had to supply phone photos.
+- **Agents judged by eye, on a few views, against a moving target.** Early on they could not see the viewport, so the
+  owner supplied phone photos. Later they captured and read their own frames, but many captures were invalid (taken
+  mid-compile or before the shader cache started), several changes never reached the screen (Nanite silently off,
+  default materials, auto-exposure absorbing light changes), and nothing measured stopped the lighting drifting from
+  the valued frames to a bright, overcast park. The full account is in `docs/engine_selection/PROJECT_HISTORY.md`.
 - **Disk.** UE plus its derived-data cache filled a disk that is very probably 256 GB.
 
 ## 3. The honest ceiling
@@ -824,6 +828,10 @@ Budget: 2 sessions per species, *Tsuga* then *Chamaecyparis*.
   GitHub mirror; Blender's extension sites are blocked from the cloud.
 - Produce LOD0, LOD1 and an opaque-core octahedral impostor.
 - Accept each species against reference photographs before placing it at scale.
+- Check existing sources first (asset audit of 15 September, `PROJECT_HISTORY.md`): CC0 scans of *Chamaecyparis
+  obtusa* on Sketchfab (ffish.asia) and PBRPX *C. pisifera* trunk scans (CC0) may supply bark, branch reference or
+  whole trunks. The Ministry of the Environment vegetation map places natural hinoki forest with *Arachniodes mutica*
+  over the forest core and *Tsuga* forest nearby, which sets the species mix per zone.
 
 ### Milestone 2: the full 5 × 5 km plot
 
@@ -1052,6 +1060,8 @@ Added in the revision (all under `docs/engine_selection/` unless stated):
 39. `marble_walkout/README.md`, with `garden_scores.json` and `lane_scores.json`: the walk-out test on sample worlds
     and the owner's hands-on test of 23 September 2026. The screenshot and its metrics are not committed.
 40. Repository: `tools/marble_test/README.md` and its scripts: the real-terrain kit and its credit costs.
+41. `PROJECT_HISTORY.md` and `history/git_timeline.md`: what went wrong across the restarts of 9–22 September, from
+    every branch, the owner's 11 September git bundle and 15 September frames.
 
 **Unverified — do not rely on these:**
 
