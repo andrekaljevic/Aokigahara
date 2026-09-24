@@ -1,0 +1,81 @@
+{
+  "topic": "Fact-check: Godot Engine 4.x as the engine for a walkable, photoreal 5 x 5 km Aokigahara on a fanless M2 MacBook Air",
+  "checks": [
+    {
+      "claim": "The latest stable release is 4.7.2 (18 Aug 2026). 4.7 shipped on 18 Jun 2026, 4.7.1 on 14 Jul, 4.6 on 26 Jan 2026 and 4.6.3 on 20 May 2026. 4.8-dev6 came out on 15 Sep 2026 as a macOS startup-crash hotfix, and the team hopes to enter feature freeze later in September.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot-website/blob/master/collections/_article/dev-snapshot-godot-4-8-dev-6.md",
+      "correction": "Every date checked against the article front-matter in the godot-website repo and against the git tags in godotengine/godot and godotengine/godot-builds. There is no 4.7.3 yet: the 4.7 branch reads 4.7.3-rc, and its first cherry-pick batch (#123613) was merged on 20 Sep 2026. The 'hope to enter feature freeze later in the month' wording is in the dev5 article (10 Sep), not dev6."
+    },
+    {
+      "claim": "On Metal in 4.7, lights add no bounced light to SDFGI (#120496). The fix is PR #122675, merged on 21 Aug 2026 for milestone 4.8; whether it was backported is unconfirmed.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/pull/122675",
+      "correction": "The PR is confirmed: merged 21 Aug 2026, milestone 4.8, labels platform:macos and topic:rendering, and it closes #120496 (reported on an M5 under macOS 26.5.1). The backport can now be answered: the 4.7 branch log from 17 Aug to 20 Sep 2026, which includes the 4.7.3 cherry-pick batch #123613, has no atomic-bit, SDFGI or Metal commit. 4.7.2 (tagged 16 Aug) and 4.7.3 so far lack the fix. On Metal, the options are the Vulkan/MoltenVK driver or 4.8 pre-release builds."
+    },
+    {
+      "claim": "No new GI has landed. HDDAGI (#119869) is open (opened 29 May 2026, last active 26 Aug, milestone 4.x). The screen-probe GI (#122999) is a draft whose author says it is 'totally not ready for review or merge'. There is no hardware ray tracing on Metal.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/pull/119869",
+      "correction": "Both PRs are as described. On ray tracing: 4.7 does add an experimental ray-tracing API to RenderingDevice (raytracing_pipeline, SUPPORTS_RAY_QUERY). Its documentation says it is 'currently only supported when using Vulkan. This is not supported on macOS and iOS (even on hardware supporting raytracing)'. The M2 has no ray-tracing hardware in any case. HDDAGI's known problems (Linux+Mono build, DX12 probe occlusion) do not mention Metal at all, so it is untested on Apple GPUs even if it merges."
+    },
+    {
+      "claim": "Native Metal is the default macOS driver, Apple Silicon only, with MoltenVK still selectable. MetalFX spatial and temporal upscaling have been built in since 4.4, and temporal at scale 1.0 works as TAA.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/blob/master/doc/classes/Viewport.xml",
+      "correction": "The ProjectSettings.xml on master reads driver.macos default \"metal\", 'only supported on Apple Silicon Macs', with vulkan via MoltenVK as the alternative. MetalFX was announced in the 4.4-beta1 article. The minimum temporal scale must be read at run time from LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE. Since 4.7, MetalFX Temporal falls back to bilinear on the Mobile renderer, so it needs Forward+."
+    },
+    {
+      "claim": "4.8-dev6 adds screen-space contact shadows for directional lights (PR #118045, merged 10 Sep 2026), measured at about 0.18 ms at 1152x648 on an RTX 5090. 4.8-dev5 adds mip-level texture streaming.",
+      "verdict": "partially",
+      "source_url": "https://github.com/godotengine/godot/pull/118045",
+      "correction": "The merge date, milestone and features are correct: StreamedTexture2D, TextureStreaming and ResourceImporterStreamedTexture are on master. The cost figure is misread. 0.18 ms is the whole test frame with contact shadows on, against 0.14 ms with them off. The actual cost is about 0.04 ms at 1152x648 and about 0.38 ms at 3840x2160 on the PR's (high-end) test GPU. The PR has no Metal or Apple measurements."
+    },
+    {
+      "claim": "Terrain3D: regions of 64–2048 m, at most 32x32 regions (65,536 m per side), instancer instances have no collision, and the docs call Metal support 'not clear'. v1.0.2 (19 May 2026) targets Godot 4.4–4.6, so 4.7/4.8 may need a build from main.",
+      "verdict": "partially",
+      "source_url": "https://github.com/TokisanGames/Terrain3D/blob/main/doc/docs/platforms.md",
+      "correction": "The docs quotes are exact. The platforms page says 'We do have Metal users but full Terrain3D support is not clear', and the macOS release binaries need `xattr -dr com.apple.quarantine` or a signed build from source. v1.0.2-stable has compatibility_minimum = 4.4 and is dated 2026-05-19. Main now targets Godot 4.5–4.8 explicitly (compatibility_minimum = 4.5), with fixes on 21 and 23 Sep 2026 (e.g. 'Fix viewport_container getter for Godot 4.8'). So 4.7/4.8 support exists, but only as unreleased main builds, which must be compiled or taken from CI."
+    },
+    {
+      "claim": "A Metal 'timeout waiting for fence' freeze was confirmed on an M2 MacBook Air with 4.6.1, in the editor and in exports (#119436), and the issue is still open.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/issues/119436",
+      "correction": "Still open. It reproduces on an M1 Max, an M4 Ultra and an M2 MacBook Air (2022) under macOS 26.4.1, and a repro project exists. The 4.7 branch has no commit that fixes it."
+    },
+    {
+      "claim": "Download sizes for 4.7.2: macOS universal editor 170.6 MB, Linux x86_64 editor 77.9 MB, all-platform export templates 1.28 GB; GitHub release assets can be fetched from the cloud container.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot/releases/tag/4.7.2-stable",
+      "correction": "The Content-Length values are exact: 170,622,178, 77,860,424 and 1,281,349,702 bytes. I downloaded the Linux editor into this container successfully."
+    },
+    {
+      "claim": "--headless renders nothing. Forward+ in no-GPU Linux containers works through Xvfb plus Mesa lavapipe only 'in some setups' and is fragile, because the llvmpipe crash #82435 is still open. The consequence claimed is that every lighting iteration needs the Mac.",
+      "verdict": "partially",
+      "source_url": "https://github.com/godotengine/godot/issues/82435",
+      "correction": "#82435 (2023, Godot 4.1 in VMs) is still open, but I tested this exact container first-hand and Forward+ works. After `apt-get install mesa-vulkan-drivers`, Godot 4.7.2 ran under `xvfb-run` with `--write-movie --fixed-fps 10 --quit-after 30`. The log read 'Vulkan 1.4.318 - Forward+ - llvmpipe (LLVM 20.1.2)', and the scene used SDFGI, volumetric fog, directional shadows and SSAO. The GPU time was about 230 ms per frame at 1152x648, 30 frames in 18 s, and all 30 PNGs were valid and correctly lit. `--headless --import` took 8.6 s. So cloud agents can render real Forward+ lighting frames for layout and regression checks. The Mac is still needed for Metal-specific bugs and for performance."
+    },
+    {
+      "claim": "Large-world coordinates: 2048–4096 m is the 'maximum recommended single-precision range for a first-person 3D game', so a centred 5 x 5 km plot needs no double-precision build.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/physics/large_world_coordinates.rst",
+      "correction": "The table row is exact. The same page is more permissive: double precision is 'usually not required' for 'Open world games with a playable on-foot area not exceeding 8192×8192 meters (centered around the world origin)'."
+    },
+    {
+      "claim": "Road to Vostok (Godot 4) entered Steam Early Access on 7 Apr 2026 and sold more than 140,000 copies in its first week.",
+      "verdict": "unverifiable",
+      "source_url": "",
+      "correction": "store.steampowered.com, roadtovostok.com and en.wikipedia.org are all blocked by the egress proxy, and my web-search budget was used up. Treat this as unverified and give it no weight in the decision."
+    }
+  ],
+  "important_omissions": [
+    "Volumetric-fog light shafts drift away from their light and from the geometry while the camera moves. #120163 is open and confirmed on 4.2 to 4.7 (Vulkan). A first-person walk through shafts is exactly the owner's lighting case, so this needs a test in the prototype. A second open fog bug, #118348 'Volumetric fog turns yellow at low densities', affects the thin aerial haze the look depends on. Sources: https://github.com/godotengine/godot/issues/120163 , https://github.com/godotengine/godot/issues/118348",
+    "The report misses other open macOS frame-pacing bugs that make M2 Air performance numbers unreliable. #110600 '[macOS 26] Stuttering and very unstable frame process time with vsync disabled' and #114258 '[macOS Metal] Severe process time increase when max_fps is capped' matter because capping the frame rate is the obvious way to control fanless throttling. Source: https://github.com/godotengine/godot/issues?q=is%3Aissue%20is%3Aopen%20label%3Aplatform%3Amacos%20label%3Atopic%3Arendering%20metal",
+    "SDFGI 'supports dynamic lights, but not dynamic occluders or dynamic emissive surfaces' (using_sdfgi.rst). Wind-animated canopy and swaying ferns will not update the GI or the sky occlusion. SDFGI also only reaches its cascade max distance (roughly 200 m at the default 4 cascades and 0.2 m minimum cell size), so the far forest's darkness depends entirely on the baked canopy-height-model (CHM) term. The docs also say it 'will perform best on systems with recent dedicated GPUs'. Source: https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/global_illumination/using_sdfgi.rst",
+    "Cloud rendering is viable, and this changes the usage calculation in Godot's favour: agents can iterate on Forward+ lighting frames in the container (verified on this container above, about 0.23 s per frame on lavapipe). The owner's Mac is then needed only for Metal checks and performance sign-off. The report says the opposite.",
+    "The fix for the Metal SDFGI bounce bug has not reached 4.7.3 so far (4.7 branch log up to 20 Sep 2026), and 4.8-stable has no date. Meanwhile Terrain3D's only 4.7/4.8-compatible code is unreleased main. The realistic stack for a Metal SDFGI prototype today is therefore 4.8-dev6 with Terrain3D built from main: two pre-release dependencies. The alternative is 4.7.2 on MoltenVK, which loses the MetalFX upscalers because they are Metal-driver only.",
+    "An open 4.7.2 bug (#123266) makes an exported macOS app built with the Metal shader baker abort on startup when min_macos_version_arm64 is below 14 (the default is 13). The workaround is to set it to 14.0. This affects packaging a standalone build for the owner. Source: https://github.com/godotengine/godot/issues/123266",
+    "HDDAGI's own PR thread claims 'significantly faster base frame time' and 'an order of magnitude faster updates' than SDFGI. That makes it worth watching, but it has not been tested on Metal. Source: https://github.com/godotengine/godot/pull/119869"
+  ],
+  "overall_reliability": "High. Every checked version, date, PR and issue state, file size and docs quote held up against primary sources (git tags, the godot-website front-matter, GitHub PRs and issues, godot-docs and the Terrain3D docs). There were four corrections. The contact-shadow cost was misread: about 0.04 ms, not 0.18 ms. Terrain3D main already targets 4.5–4.8. The Metal SDFGI fix is confirmed absent from the 4.7 branch as of 20 Sep 2026. The report was too pessimistic about cloud rendering, which works in this container (Forward+ with SDFGI and fog on lavapipe, checked first-hand). The Road to Vostok sales claim could not be checked. The report's main conclusions stand: no Lumen- or VSM-equivalent, SDFGI plus custom CHM-derived shader terms as the lighting path, and M2 performance unproven. It also under-reports open bugs in volumetric fog (drift during camera motion) and in macOS frame pacing, both of which bear directly on the lighting-parity test. Test artefacts are in /tmp/claude-0/-home-user-Aokigahara/f3a7dee1-ddd5-5966-b7a1-ff45901003d9/scratchpad/gdt (test project in proj/, frames in out/)."
+}

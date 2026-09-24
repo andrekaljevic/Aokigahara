@@ -1,0 +1,146 @@
+{
+  "topic": "Unity 6 and every other engine or framework (shortlist and eliminate); UE5 excluded by the owner",
+  "summary": "Unity 6 is the only mature commercial engine left with a native Apple Silicon editor, now that the owner has ruled out UE5. It can plausibly get near the UE5.8 forest lighting, but not with Lumen-grade dynamic GI on an M2. Unity froze HDRP in Feb 2026 ('maintenance mode', meaning no new features). HDRP still has the whole look: volumetric fog, physical sky, sky occlusion from Adaptive Probe Volumes (APV), screen-space GI and auto-exposure. But it is heavy: users report about 20 fps for an empty HDRP project on M1 Macs. URP is where Unity's development now goes. It has APV sky occlusion and GPU instancing, and Surface Cache GI arrives with 6.7 LTS in Q4 2026. It has no native volumetric fog. Neither pipeline can use Metal ray tracing. Unity work would stay tied to the Mac: the cloud container's proxy blocks Unity's download and package hosts; Personal licences can no longer be activated offline; and the container has no GPU. It costs about 8.5 GB for the editor plus a Library folder that grows.\nShortlist:\n(1) Unity 6.3 LTS now, 6.7 LTS in Q4 2026, using URP. APV sky occlusion, a canopy-shadow term driven by the LiDAR canopy height model and a third-party volumetric fog would stand in for Lumen, Virtual Shadow Maps and Unity's missing fog.\n(2) Flax 1.12, as a wildcard. It is the only non-UE engine here with Lumen-like software-traced dynamic GI (DDGI over a global SDF) running on Apple Silicon. It runs through MoltenVK and has a small ecosystem.\n(3) Bevy 0.19, the code-first option that cloud agents can build. It has atmosphere, volumetric fog, SSAO, TAA, PCSS and auto-exposure. On an M2 it has neither virtual geometry nor Solari ray-traced GI, and it has no editor.\nEliminated:\n- O3DE: macOS support is experimental.\n- Stride: its editor is Windows-only.\n- Unigine and CryEngine: no Mac version.\n- RealityKit: no GI or terrain system.\n- Custom Metal: would cost too much agent effort.\n- Wicked Engine: on the watch-list only.\n- UE5: excluded by the owner.",
+  "findings": [
+    {
+      "claim": "Unity's 'Render Pipelines strategy for 2026' (Feb 2026) puts HDRP into maintenance mode. HDRP gets stability and regression fixes only, plus a Switch 2 port, and no new features. BIRP is deprecated from Unity 6.5, and nearly all rendering investment goes to URP. Its planned URP work includes physical light units, auto and pre-exposure, a physical sky, real-time GI and SSR.",
+      "source_url": "https://unity.com/topics/render-pipelines-strategy-for-2026",
+      "confidence": "high",
+      "relevance": "HDRP has every feature needed for the lighting look (volumetric fog, PBR sky, SSGI, APV), but choosing it now means a frozen pipeline. URP is the supported path, but in 2026 it still lacks parts of the look."
+    },
+    {
+      "claim": "Version timeline:\n- Unity 6.3 LTS: December 2025.\n- 6.4: March 2026.\n- 6.5: June 2026.\n- 6.6: released 1 Sep 2026, the last update release before 6.7 LTS.\n- 6.7 LTS: scheduled for Q4 2026, with a 6.7 beta current.\n6.6 deprecates Intel Macs, and 6.8 drops them.",
+      "source_url": "https://gamefromscratch.com/unity-6-6-released/",
+      "confidence": "high",
+      "relevance": "A new project would start on 6.3 LTS or 6.6 and move to 6.7 LTS in late 2026. This is also when Surface Cache GI becomes broadly available."
+    },
+    {
+      "claim": "Surface Cache GI (SCGI) is Unity's new real-time GI, with no lightmap bakes. Unity says it is in preview in the 6.7 alpha and 'will become broadly available with Unity 6.7 LTS'. It uses hardware ray tracing if available, otherwise a compute-based software ray-tracing backend, and its core lives in Core RP. It is targeted at URP.",
+      "source_url": "https://x.com/unity/status/2079377478997459307",
+      "confidence": "medium",
+      "relevance": "This is the closest Unity equivalent to Lumen's bounce light. The compute fallback suggests it could run on an M2, but Metal/M2 performance and quality under a dense canopy are unverified."
+    },
+    {
+      "claim": "URP still has no native volumetric fog as of 6.3. No version or timeline for it has been announced, so users rely on third-party fog assets. A community thread titled 'URP 6.3 still has no native volumetric fog' documents this.",
+      "source_url": "https://discussions.unity.com/t/urp-6-3-still-has-no-native-volumetric-fog/1735239",
+      "confidence": "medium",
+      "relevance": "The UE5.8 look includes light shafts and aerial haze, so URP would need a third-party or custom fog. HDRP has it built in."
+    },
+    {
+      "claim": "URP/HDRP Adaptive Probe Volumes (APV) can bake a static sky-occlusion value into each probe, including light that bounced off static geometry. At runtime they relight from the live ambient probe as the sky colour changes, so a time of day works without rebaking. APV data streams from disk in cells, for worlds larger than CPU or GPU memory.",
+      "source_url": "https://docs.unity3d.com/6000.3/Documentation/Manual/urp/probevolumes-skyocclusion.html",
+      "confidence": "high",
+      "relevance": "This is a direct, evidenced substitute for Lumen's sky occlusion: a dark understorey with bright gaps where the sky is visible. Probe streaming (https://docs.unity3d.com/6000.4/Documentation/Manual/urp/probevolumes-streaming.html) makes 5 km x 5 km viable."
+    },
+    {
+      "claim": "Book of the Dead is Unity's HDRP forest demo, built from Megascans photogrammetry. For forest lighting it used:\n- baked 'Occlusion Probes' for sky occlusion on foliage;\n- an extra grass-occlusion system;\n- Area Volumes that drive atmospheric scattering and sun;\n- a custom wind shader.\nA community port updated to Unity 6000.3 targets M-series Macs (macOS 15+), but publishes no performance figures.",
+      "source_url": "https://github.com/mrmacright/Book-Of-The-Dead",
+      "confidence": "medium",
+      "relevance": "It is precedent that Unity's photoreal forests got their dark-interior look from baked sky-occlusion volumes, the same trick a LiDAR canopy-height-model bake would drive here. See also https://unity.com/blog/industry/book-of-the-dead-quixel-wind-scene-building-and-content-optimization-tricks"
+    },
+    {
+      "claim": "Unity cannot use Metal ray tracing or other Metal 3 ray-tracing features, even on Macs with hardware RT. There is no HDRP ray tracing or path tracing on macOS, and Unity staff describe it only as a future intention.",
+      "source_url": "https://discussions.unity.com/t/no-raytracing-planned-for-apple-devices/1554014",
+      "confidence": "medium",
+      "relevance": "On the Mac, every Unity GI option is baked probes, screen-space GI or SCGI's software path. There is no ray-traced shortcut."
+    },
+    {
+      "claim": "Users report very poor HDRP performance on M1 Macs: about 18–20 fps in an empty HDRP project, and about 30 fps for HDRP demo builds on low settings. These are anecdotal forum reports.",
+      "source_url": "https://discussions.unity.com/t/hdrp-empty-project-on-mac-m1-goes-to-20-fps/1611131",
+      "confidence": "medium",
+      "relevance": "On a fanless M2 Air, HDRP plus a dense forest is likely below 30 fps at 1280x800 and would throttle. URP is the realistic pipeline for walkable frame rates."
+    },
+    {
+      "claim": "Unity Terrain limits:\n- Heightmaps above 4096x4096 are not supported per tile (maximum 4097 samples), so large areas use multiple tiles.\n- The GPU Resident Drawer (BatchRendererGroup instancing and GPU occlusion) cannot render terrain trees or details, because it only works with MeshRenderers.\n- SpeedTree 8, 9 and 10 files (.st/.st9) import directly.",
+      "source_url": "https://issuetracker.unity3d.com/issues/error-heightmaps-above-4096x4096-in-resolution-are-not-supported-after-import-height-map-raw",
+      "confidence": "medium",
+      "relevance": "A 0.5 m DEM over 5 km needs about 3x3 to 4x4 terrain tiles. The 467,601 trees would have to be MeshRenderer instances (or a custom or third-party instancer) to use the GPU Resident Drawer; see https://flora.magneticarcade.com/gpu-resident-drawer"
+    },
+    {
+      "claim": "Disk footprint:\n- The Unity 6.2 editor takes about 8.49 GB on macOS.\n- Users report Library folders (mostly ShaderCache) growing to 60–100+ GB. It is disposable, rebuildable cache.",
+      "source_url": "https://discussions.unity.com/t/unity-hub-feature-request-optimise-installation-of-editor/1690858",
+      "confidence": "medium",
+      "relevance": "Unity is far lighter than UE5.8 plus its DDC, but the Library folder can still fill a small SSD without housekeeping; see https://discussions.unity.com/t/library-folder-huge/900715"
+    },
+    {
+      "claim": "Pricing:\n- Unity Personal is free under $200k per year in revenue or funding.\n- Pro rose 5% on 12 Jan 2026, to $2,310 per seat per year.\n- The Unity AI assistant costs Personal users about $10 per month after a 14-day, 1,000-credit trial.\n- The official Unity MCP server is free and uses no credits.",
+      "source_url": "https://unity.com/products/pricing-updates",
+      "confidence": "medium",
+      "relevance": "The owner can stay on Personal at no cost. External agents such as Claude Code can use Unity MCP without buying Unity AI credits; see https://unity.com/blog/unity-ai-mcp-how-to-get-started"
+    },
+    {
+      "claim": "Unity is agent-operable on the Mac through several routes:\n- Official Unity MCP (com.unity.ai.assistant 2.0.0-pre): scene and GameObject edits, scripts, tests, builds from Claude Code.\n- Community CoplayDev/unity-mcp.\n- Text (YAML) scenes.\n- -batchmode -executeMethod builds.\nIt does not work in this cloud container. On 23 Sep 2026, download.unity3d.com, public-cdn.cloud.unity3d.com and packages.unity.com all failed through the proxy (tested by curl). Unity no longer supports manual activation of Personal licences. The container also has no GPU.",
+      "source_url": "https://docs.unity3d.com/Packages/com.unity.ai.assistant@2.0/manual/unity-mcp-overview.html",
+      "confidence": "high",
+      "relevance": "Unity work would run mainly on the owner's Mac, as the UE5.8 work did, unless the owner adds the Unity hosts to the environment's allowed domains and supplies a licence file. Personal-licence activation friction: https://www.ankursheel.com/blog/unity-personal-license-manual-activation-workaround"
+    },
+    {
+      "claim": "Bevy release dates on crates.io:\n- 0.19.0: 19 Jun 2026.\n- 0.19.1: 13 Aug 2026.\n- 0.20.0-rc.1: 15 Sep 2026.\nIts examples cover:\n- atmosphere and atmospheric fog;\n- volumetric fog and fog volumes;\n- SSAO, TAA and auto-exposure;\n- PCSS soft shadows and contact shadows;\n- irradiance volumes and light-probe blending;\n- occlusion culling and SSR.",
+      "source_url": "https://github.com/bevyengine/bevy/blob/main/examples/README.md",
+      "confidence": "high",
+      "relevance": "That covers most ingredients of the look except dynamic GI. crates.io is reachable from the cloud container, so agents can compile Bevy and render headless there (with lavapipe), which saves Mac disk and time."
+    },
+    {
+      "claim": "Bevy's virtual geometry (MeshletPlugin) requires TEXTURE_INT64_ATOMIC. wgpu enables that on Metal only for the Apple9 GPU family (M3 and later). The M2 is Apple8, so meshlets cannot run on the owner's Mac.",
+      "source_url": "https://github.com/gfx-rs/wgpu/blob/trunk/wgpu-hal/src/metal/adapter.rs",
+      "confidence": "high",
+      "relevance": "Rules out Bevy's Nanite-like path on the M2. Dense forest would need classic LODs and impostors. Requirement list: https://github.com/bevyengine/bevy/blob/main/crates/bevy_pbr/src/meshlet/mod.rs"
+    },
+    {
+      "claim": "Bevy Solari (ray-traced GI) is experimental and needs WgpuFeatures::EXPERIMENTAL_RAY_QUERY. wgpu v29 (18 Mar 2026) added Metal acceleration structures, gated on macOS 15+ and supportsRaytracing. The M2 has no hardware RT (it arrived with the M3). The official editor-prototype repo was archived on 16 Apr 2026, and there is still no Bevy editor.",
+      "source_url": "https://github.com/bevyengine/bevy/blob/main/crates/bevy_solari/src/lib.rs",
+      "confidence": "medium",
+      "relevance": "Solari might start on an M2 but is unlikely to run at interactive rates with alpha-tested foliage (my inference, not measured). Bevy lighting would rely on shadows, SSAO, fog and baked probes, with no GI."
+    },
+    {
+      "claim": "Flax 1.12 (May 2026) runs its editor natively on Apple Silicon, rendering through Vulkan over MoltenVK. Its real-time GI works like this:\n- DDGI with a custom software ray tracer over a Global SDF and a Global Surface Atlas (conceptually close to Lumen), with no RT hardware needed.\n- Scrolling probe cascades (up to 4) and a fallback irradiance beyond range.\n- The Global SDF covers about 200 m around the camera at up to 10 cm detail.\n1.12 improved DDGI for large open areas. The licence is a 4% royalty only above $250k per quarter.",
+      "source_url": "https://github.com/FlaxEngine/FlaxDocs/blob/master/manual/graphics/lighting/gi/realtime.md",
+      "confidence": "high",
+      "relevance": "It is the only non-UE engine here with fully dynamic software-traced GI and terrain and foliage tools on a Mac. Risks:\n- GPU-baked SDFs show artefacts on foliage (per Flax's SDF docs).\n- MoltenVK overhead.\n- A small community means agents have less training data.\nRelease notes: https://flaxengine.com/blog/flax-1-12-released/"
+    },
+    {
+      "claim": "Wicked Engine (version 0.72.x in source) now has a native Metal backend that requires the Metal 4 GPU family, and it enables ray tracing when the device supports it. Its features include DDGI, surfel GI, voxel GI, SSGI, a procedural terrain generator, impostors, virtual textures and texture streaming. The editor builds on macOS via Xcode. It is essentially one maintainer's project and stores scenes in a binary WISCENE format.",
+      "source_url": "https://github.com/turanszkij/WickedEngine",
+      "confidence": "high",
+      "relevance": "The feature list is impressive and it has native Metal, but it is pre-1.0, has a very small ecosystem, stores scenes in binary and needs macOS 26. Watch-list only; not shortlisted."
+    },
+    {
+      "claim": "Eliminated engines:\n- O3DE 26.05 (May 2026): macOS as a host platform is experimental; 26.05 only 'adds placeholders' for macOS ARM64 dependencies.\n- Stride 4.3 (14 Nov 2025, .NET 10): Game Studio is Windows-only, and runtime CI covers Windows and Linux only.\n- UNIGINE 2.21 (27 Mar 2026): Windows and Linux only.\n- CRYENGINE: last public release 5.7 LTS (2022); Windows only.",
+      "source_url": "https://github.com/o3de/sig-release/blob/main/releases/26.05.0/26.05.0.md",
+      "confidence": "high",
+      "relevance": "None of them has a usable editor on an M2 Mac, so all are eliminated. See also https://github.com/stride3d/stride, https://www.cgchannel.com/2026/04/unigine-2-21-is-out/ and https://www.cryengine.com/support/view/system-requirements"
+    },
+    {
+      "claim": "RealityKit supports one directional light and at most eight dynamic lights, plus IBL. The 2026 releases add soft shadows and baked lightmaps. It has no real-time GI, volumetric fog or terrain system, and it is aimed at spatial and AR content.",
+      "source_url": "https://codingxr.markhorgan.com/articles/shadows-lights-in-realitykit/",
+      "confidence": "medium",
+      "relevance": "Eliminated for a 5 km forest. Custom Metal (with MetalFX) is technically possible but means writing an engine, the opposite of 'less wasteful'. A native path offers little over the web/WebGPU route, which is covered elsewhere."
+    }
+  ],
+  "fidelity_ceiling": "Unity HDRP can hit the full forest look: volumetric fog and shafts, physical sky, APV sky occlusion, SSGI, PCSS, contact shadows and exposure. Book of the Dead is the precedent. But HDRP is frozen and too heavy for an M2 Air at playable rates.\nUnity URP on 6.7 LTS gets close with these parts:\n- APV with baked sky occlusion for the dark understorey and bright gaps;\n- Surface Cache GI for warm bounce, once it ships;\n- soft cascaded shadows for dappled sun near the camera;\n- third-party volumetric fog;\n- auto-exposure;\n- a shader term driven by the LiDAR canopy height model for distant canopy shadow and visibility, standing in for Virtual Shadow Maps.\nExpected result: the UE5.8 look within about 150–300 m of the camera, with softer, lower-frequency bounce than Lumen.\nFlax's software DDGI is conceptually the closest to Lumen but unproven on this content.\nBevy tops out below UE5.8 on lighting: no dynamic GI on the M2, only shadows, SSAO, fog, atmosphere and baked probes.",
+  "m2_air_feasibility": "Unity editor: runs on Apple Silicon (6.6 drops Intel Macs), uses Metal, needs about 8 GB of RAM. It fits in 16 GB, but a large forest scene plus shader compiles will be tight.\nURP with GPU Resident Drawer, APV and baked sky occlusion: estimated 30–60 fps at 1280x800 with aggressive LOD, impostors and roughly 150–250 m of shadow distance. This is an estimate, not measured.\nHDRP: anecdotal reports of about 20 fps even for empty HDRP scenes on M1 Macs, so it is not feasible for a walkable forest on a fanless M2.\nSurface Cache GI on Metal/M2: cost unknown.\nFlax: runs natively through MoltenVK; DDGI cost on an M2 Air is unknown.\nBevy: runs natively on Metal via wgpu. Meshlets are impossible (Apple9 only) and Solari is impractical. The rest of its feature set is lightweight enough.\nWicked: requires Metal 4 (macOS 26).\nSustained load on a fanless Air will throttle in every engine, so budget for about 60–70% of peak.",
+  "storage_footprint": "Unity:\n- Editor 6.x with Mac build support: about 8.5 GB.\n- Library folder: regenerable cache, commonly 5–20 GB for a mid-size project, with reports of 60–100+ GB when ShaderCache is not pruned.\n- Assets: the owner's existing PBR packs, plus a 0.5 m terrain (tens to hundreds of MB).\n- Total: roughly 20–40 GB with housekeeping, versus a UE5.8 install plus DDC that exhausted the disk.\nBevy:\n- Rust toolchain: about 1.5 GB.\n- target folder: about 4 GB or more per profile, reported for a template build.\n- Can be built in the cloud container, so almost nothing needs to be built on the Mac.\nFlax: editor size not verified (estimated a few GB), plus .NET SDK, Xcode and the Vulkan SDK if built from source.\nWicked: small source tree, but needs Xcode.",
+  "agent_operability": "Unity on the Mac:\n- Good tooling: official Unity MCP (free, no credits), community unity-mcp, text/YAML scenes and prefabs, C#, and -batchmode -executeMethod for builds and scripted scene generation.\n- The weakness: the cloud container cannot install or run Unity. The proxy blocks download.unity3d.com, public-cdn.cloud.unity3d.com and packages.unity.com. Personal licences cannot be activated offline. The container has no GPU for rendering.\n- So agents would drive the Mac's editor (the UE5.8 pattern again, only lighter), unless the owner allow-lists the Unity hosts and supplies a licence file.\nBevy:\n- The most agent-friendly: pure Rust and text, no editor, and crates.io is reachable.\n- Agents can compile and render headless in the cloud (lavapipe) and hand the Mac only a binary.\n- The cost: slow cold compiles on 4 CPUs and no visual editor for the owner.\nFlax: C#/C++ with JSON scenes and assets; small training corpus; SDK hosts (flaxengine.com, lunarg, dotnet) are blocked from the container.\nWicked: binary WISCENE scenes and Lua/C++; poor fit for agents.",
+  "cost_licence": "Unity:\n- Personal: free under $200k revenue or funding.\n- Pro: $2,310 per seat per year from 12 Jan 2026 (not needed).\n- Unity AI: optional, about $10 per month for Personal after the trial.\n- Unity MCP: free.\nBevy: MIT/Apache, free.\nFlax: free, with a 4% royalty only above $250k per quarter.\nWicked: MIT.\nGodot (covered elsewhere): MIT.\nUnigine and CryEngine: irrelevant, since they do not run on the Mac.",
+  "latest_versions": "As of 23 Sep 2026:\n- Unity: 6.6 (1 Sep 2026); 6.3 LTS (Dec 2025); 6.7 in beta, with 6.7 LTS due Q4 2026; 6.5 (June 2026). HDRP is in maintenance mode (announced Feb 2026).\n- Bevy: 0.19.0 (19 Jun 2026), 0.19.1 (13 Aug 2026), 0.20.0-rc.1 (15 Sep 2026).\n- wgpu: v30.0.1 (21 Aug 2026).\n- Flax: 1.12 (May 2026).\n- O3DE: 26.05.0 (May 2026).\n- Stride: 4.3 (14 Nov 2025).\n- UNIGINE: 2.21 (27 Mar 2026).\n- CRYENGINE: 5.7 LTS (Apr 2022, last public release).\n- Wicked Engine: 0.72.117 (master).\n- Godot: 4.7.2 (per the saved Godot report; covered by another agent).\n- UE5.8: excluded by the owner.",
+  "risks": [
+    "Unity URP's lighting parity depends on features that are preview or third-party today: Surface Cache GI arrives with 6.7 LTS in Q4 2026 and is unverified on Metal/M2, and URP has no native volumetric fog.",
+    "HDRP gives the fullest lighting, but it is in maintenance mode and reportedly runs at about 20 fps for empty scenes on M1 Macs. Choosing it bets on a frozen pipeline that is too heavy for the machine.",
+    "Unity cannot run in the Claude Code web container: its download and package hosts are blocked, Personal licences cannot be activated offline, and there is no GPU. Agent work therefore shifts back onto the owner's Mac, repeating the UE5.8 pattern of usage and disk cost, though on a smaller scale.",
+    "The Unity Library folder, especially ShaderCache, can grow to tens of GB on a small SSD. It needs scripted housekeeping.",
+    "The GPU Resident Drawer does not handle terrain trees, so 467k trees need a custom BatchRendererGroup instancer or a third-party one (such as Flora) plus impostors. That is extra agent work.",
+    "Canopy shadows far from the camera have no Virtual Shadow Maps equivalent in any engine here. Every option needs the baked canopy-shadow and sky-visibility trick driven by the LiDAR canopy height model.",
+    "Flax: MoltenVK on Metal, a small community, foliage-SDF artefacts, and little training data for agents.",
+    "Bevy: no editor, API churn every roughly 4–5 months (0.19 to 0.20), no GI and no virtual geometry on the M2, and multi-GB target folders.",
+    "Several sources are search snippets from hosts this container cannot fetch (unity.com, discussions.unity.com, docs.unity3d.com, cgchannel and flaxengine.com are blocked). Dates and prices should be fact-checked."
+  ],
+  "unknowns": [
+    "Real frame rates of URP (or HDRP) with APV, sky occlusion and dense conifer foliage on a fanless M2 Air at 1280x800.",
+    "Whether Surface Cache GI in 6.7 runs on Metal/Apple8 (M2), and how much it costs with alpha-tested foliage.",
+    "The GPU core count of the owner's M2 (8 or 10), which changes the budget by about 25%.",
+    "Flax DDGI cost and quality for a 5 km forest on an M2 via MoltenVK, and the exact size of its editor install.",
+    "Whether Bevy Solari even initialises on an M2 through wgpu's Metal ray-query path, and at what cost.",
+    "Whether the owner is willing to add the Unity hosts to the cloud environment's allowed domains and provide a licence file, which would let agents run Unity batch jobs in the cloud (still with no GPU rendering).",
+    "Time to bake APV sky occlusion for 25 km² on an M2, and the size of the probe data on disk."
+  ]
+}

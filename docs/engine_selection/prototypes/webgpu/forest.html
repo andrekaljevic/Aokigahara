@@ -1,0 +1,96 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Forest lighting probe</title></head><body style="margin:0;background:#000">
+<script>if(self.GPUTexture){const cv=GPUTexture.prototype.createView;GPUTexture.prototype.createView=function(d){if(d&&d.swizzle!==undefined){d=Object.assign({},d);delete d.swizzle;}return cv.call(this,d);};}</script>
+<script type="importmap">{"imports":{"three":"./three/build/three.webgpu.js","three/webgpu":"./three/build/three.webgpu.js","three/tsl":"./three/build/three.tsl.js","three/addons/":"./three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three/webgpu';
+import {pass,mrt,output,diffuseColor,normalView,packNormalToRGB,unpackRGBToNormal,sample,velocity,vec2,vec3,vec4,float,add,mix,smoothstep,texture,uv,positionWorld,normalMap,fog,densityFogFactor,color,uniform,clamp,exp,max,pow} from 'three/tsl';
+import {ssgi} from 'three/addons/tsl/display/SSGINode.js';
+import {ao} from 'three/addons/tsl/display/GTAONode.js';
+import {traa} from 'three/addons/tsl/display/TRAANode.js';
+import {godrays} from 'three/addons/tsl/display/GodraysNode.js';
+import {bilateralBlur} from 'three/addons/tsl/display/BilateralBlurNode.js';
+import {SkyMesh} from 'three/addons/objects/SkyMesh.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const Q=new URLSearchParams(location.search);const P=(k,d)=>Q.has(k)?Q.get(k):d;
+const W=+P('w',1280),H=+P('h',800),POST=P('post','ssgi'),BACK=P('backend','webgpu'),FRAMES=+P('frames',POST==='off'?1:8);
+const CAMS=[{x:32.14,z:-9.84,yaw:.45,pitch:-.025},{x:44,z:-24,yaw:2.2,pitch:-.12},{x:32.14,z:-9.84,yaw:.45,pitch:.25}];
+const cam=CAMS[+P('cam',0)];const SUNEL=+P('sunel',34)*Math.PI/180,SUNAZ=+P('sunaz',60)*Math.PI/180; // az from south(+z) toward east(+x)
+const EXPO=+P('exp',1.0),SKYK=+P('skyk',3.0),SUNI=+P('suni',7),HEMI=+P('hemi',2.2);
+const log=[];window.__log=log;const T0=performance.now();const lap=m=>log.push(m+' @'+Math.round(performance.now()-T0)+'ms');
+try{
+// ---------- renderer
+const renderer=new THREE.WebGPURenderer({antialias:false,forceWebGL:BACK==='webgl'});renderer.setPixelRatio(1);renderer.setSize(W,H);
+renderer.toneMapping=P('tm','agx')==='aces'?THREE.ACESFilmicToneMapping:THREE.AgXToneMapping;renderer.toneMappingExposure=EXPO;
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;document.body.appendChild(renderer.domElement);
+await renderer.init();lap('backend '+(renderer.backend.isWebGPUBackend?'WebGPU':'WebGL2'));
+// ---------- terrain data
+const hj=await (await fetch('ra/terrain/local-height.json')).json();const hgt=new Float32Array(await (await fetch('ra/terrain/local-height.f32')).arrayBuffer());
+const GW=hj.width;const hAt=(x,z)=>{const fx=Math.min(Math.max((x-hj.minX)/hj.dx,0),GW-1.001),fz=Math.min(Math.max((z-hj.minZ)/hj.dz,0),GW-1.001),i=Math.floor(fx),j=Math.floor(fz),u=fx-i,v=fz-j;const a=hgt[j*GW+i],b=hgt[j*GW+i+1],c=hgt[(j+1)*GW+i],d=hgt[(j+1)*GW+i+1];return (a*(1-u)+b*u)*(1-v)+(c*(1-u)+d*u)*v-900;};
+const CX=cam.x,CZ=cam.z,GY=hAt(CX,CZ);
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(62,W/H,.1,4000);camera.rotation.order='YXZ';camera.position.set(CX,GY+1.72,CZ);camera.rotation.set(cam.pitch,cam.yaw,0);camera.updateMatrixWorld();
+// ---------- canopy sky-visibility bake (stand-in for a LiDAR canopy-height-model bake)
+const fi=new Float32Array(await (await fetch('ra/forest-instances.f32')).arrayBuffer());
+const gltf=await new GLTFLoader().loadAsync('ra/tree-library-v2.glb');lap('glb loaded');
+const lib={};for(const o of gltf.scene.children){if(o.isMesh)lib[o.name]=[o];else if(o.children.length)lib[o.name]=o.children.filter(c=>c.isMesh);}log.push('lib entries '+Object.keys(lib).length+' parts/tsuga_a_high '+(lib.tsuga_a_high||[]).length);
+const bb=n=>{const b=new THREE.Box3();for(const m of lib[n]){m.geometry.computeBoundingBox();b.union(m.geometry.boundingBox);}return b;};
+const R=520,SVN=512,SVS=2*R/SVN;const x0=CX-R,z0=CZ-R;
+const V=['tsuga_a','tsuga_b','tsuga_c','hinoki_a','hinoki_b','hinoki_c'];const hash=(a,b,s)=>{let h=(Math.imul(Math.round(a*10),73856093)^Math.imul(Math.round(b*10),19349663)^Math.imul(s,83492791))>>>0;h^=h>>>13;h=Math.imul(h,1274126177)>>>0;return ((h^(h>>>16))>>>0)/4294967296;};
+const trees=[];for(let q=0;q<fi.length;q+=6){const x=fi[q],z=fi[q+2];const d=Math.hypot(x-CX,z-CZ);if(d>R)continue;const cl=fi[q+5];const r=hash(x,z,1);let v=cl===1||cl===3?V[3+Math.floor(r*3)]:V[Math.floor(r*3)];if(hash(x,z,2)<.05)v=hash(x,z,3)<.5?'snag_a':'snag_b';const s=fi[q+3]*(.85+.4*hash(x,z,4));trees.push({x,y:hAt(x,z),z,s,yaw:fi[q+4],v,d});}
+const INF=+P('infill',.5),TS=+P('ts',1.12);for(const t of trees)t.s*=TS;if(INF>0){const cs=5;for(let j=Math.floor(-260/cs);j<=260/cs;j++)for(let i=Math.floor(-260/cs);i<=260/cs;i++){const x=Math.round(CX/cs)*cs+i*cs+(hash(i,j,31)-.5)*cs,z=Math.round(CZ/cs)*cs+j*cs+(hash(i,j,32)-.5)*cs;const d=Math.hypot(x-CX,z-CZ);if(d<3||d>260||hash(i,j,33)>INF)continue;trees.push({x,y:hAt(x,z),z,s:.75+.45*hash(i,j,34),yaw:hash(i,j,35)*6.28,v:V[Math.floor(hash(i,j,36)*6)],d});}}
+const crownR={};for(const v of [...V,'snag_a','snag_b']){const b=bb(v+'_high');crownR[v]=v.startsWith('snag')?0.6:Math.max(b.max.x-b.min.x,b.max.z-b.min.z)/2;log.push(v+' h='+(b.max.y-b.min.y).toFixed(1)+' crownR='+crownR[v].toFixed(1));}
+const cov=new Float32Array(SVN*SVN);for(const t of trees){const rr=crownR[t.v]*t.s*.85;const ci=(t.x-x0)/SVS,cj=(t.z-z0)/SVS,rp=rr/SVS;for(let j=Math.floor(cj-rp);j<=Math.ceil(cj+rp);j++)for(let i=Math.floor(ci-rp);i<=Math.ceil(ci+rp);i++){if(i<0||j<0||i>=SVN||j>=SVN)continue;const dd=Math.hypot(i-ci,j-cj)/rp;if(dd<1)cov[j*SVN+i]+=1-dd*dd*.5;}}
+const blur=(a,r)=>{const o=new Float32Array(a.length);for(let pass=0;pass<2;pass++){const src=pass?o.slice():a;for(let j=0;j<SVN;j++)for(let i=0;i<SVN;i++){let s=0,n=0;for(let k=-r;k<=r;k++){const ii=pass?i:i+k,jj=pass?j+k:j;if(ii<0||jj<0||ii>=SVN||jj>=SVN)continue;s+=src[jj*SVN+ii];n++;}o[j*SVN+i]=s/n;}}return o;};
+let cb=blur(cov,Math.round(6/SVS));cb=blur(cb,Math.round(6/SVS));
+const svd=new Uint8Array(SVN*SVN*4);let svMean=0;for(let j=0;j<SVN;j++)for(let i=0;i<SVN;i++){const k=j*SVN+i;const sv=Math.max(+P('svmin',.03),Math.exp(-SKYK*cb[k]));svMean+=sv;const g=(hAt(x0+(i+.5)*SVS,z0+(j+.5)*SVS)-30)/140;svd[k*4]=sv*255;svd[k*4+1]=Math.min(255,Math.max(0,g*255));svd[k*4+2]=0;svd[k*4+3]=255;}
+log.push('sky-visibility mean '+(svMean/SVN/SVN).toFixed(3)+' at camera '+(svd[(Math.floor((CZ-z0)/SVS)*SVN+Math.floor((CX-x0)/SVS))*4]/255).toFixed(3));
+const svTex=new THREE.DataTexture(svd,SVN,SVN,THREE.RGBAFormat,THREE.UnsignedByteType);svTex.magFilter=svTex.minFilter=THREE.LinearFilter;svTex.needsUpdate=true;
+const svUV=positionWorld.xz.sub(vec2(x0,z0)).div(2*R);const svS=texture(svTex,svUV);const groundY=svS.g.mul(140).add(30);
+const skyVisGround=svS.r;const skyVisTree=mix(svS.r,float(1),smoothstep(2,26,positionWorld.y.sub(groundY)));lap('sky-vis baked, trees in R: '+trees.length);
+// ---------- lights
+const sunDir=new THREE.Vector3(Math.cos(SUNEL)*Math.sin(SUNAZ),Math.sin(SUNEL),Math.cos(SUNEL)*Math.cos(SUNAZ));
+const sun=new THREE.DirectionalLight(0xffe0bd,SUNI);sun.position.copy(camera.position).addScaledVector(sunDir,250);sun.target.position.copy(camera.position);scene.add(sun,sun.target);
+sun.castShadow=true;const SR=+P('shadowr',90);Object.assign(sun.shadow.camera,{left:-SR,right:SR,top:SR,bottom:-SR,near:1,far:600});sun.shadow.mapSize.set(4096,4096);sun.shadow.bias=-0.0004;sun.shadow.normalBias=0.04;sun.shadow.radius=3;sun.shadow.camera.updateProjectionMatrix();
+const hemi=new THREE.HemisphereLight(P('hsky','#9cbfe8'),P('hgnd','#40382a'),HEMI);scene.add(hemi);
+const sky=new SkyMesh();sky.scale.setScalar(3000);sky.turbidity.value=4;sky.rayleigh.value=1.2;sky.mieCoefficient.value=.004;sky.sunPosition.value.copy(sunDir);scene.add(sky);
+scene.fogNode=fog(color(P('fogc','#5d7690')).mul(float(+P('fogk',0.35))),densityFogFactor(+P('fogd',0.009)));
+// ---------- terrain (2 m inner patch + 8 m outer DEM)
+const tl=new THREE.TextureLoader();const tex=(p,srgb)=>{const t=tl.load('ra/materials_v2/'+p);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=8;if(srgb)t.colorSpace=THREE.SRGBColorSpace;return t;};
+const mossD=tex('moss_diff_1k.jpg',1),mossN=tex('moss_nor_gl_1k.jpg'),mossR=tex('moss_rough_1k.jpg'),litD=tex('litter_diff_1k.jpg',1),litN=tex('litter_nor_gl_1k.jpg'),bnz=tex('blend_noise_512.png');
+const tm=new THREE.MeshStandardNodeMaterial();const tuv=positionWorld.xz.div(2.4);const nz=texture(bnz,positionWorld.xz.div(37)).r;const lm=smoothstep(.42,.62,nz);
+tm.colorNode=mix(texture(mossD,tuv).rgb.mul(vec3(.92,1,.85)),texture(litD,positionWorld.xz.div(1.7)).rgb.mul(.8),lm);tm.roughnessNode=mix(texture(mossR,tuv).r,float(.85),lm);tm.metalness=0;
+tm.normalNode=normalMap(texture(mossN,uv()),vec2(1.3));tm.aoNode=skyVisGround;
+const mkTerr=(size,seg,cx,cz,drop)=>{const g=new THREE.PlaneGeometry(size,size,seg,seg).rotateX(-Math.PI/2);g.translate(cx,0,cz);const p=g.attributes.position,u=g.attributes.uv;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);p.setY(i,hAt(x,z)-drop);u.setXY(i,x/2.4,z/2.4);}g.computeVertexNormals();const m=new THREE.Mesh(g,tm);m.receiveShadow=true;m.castShadow=true;scene.add(m);return m;};
+mkTerr(560,280,Math.round(CX/2)*2,Math.round(CZ/2)*2,0);mkTerr(2048,256,0,0,.6);
+// ---------- instanced trees / saplings / rocks
+const matCache=new Map();const nodeMat=(m,treeAO)=>{const k=m.uuid+treeAO;if(matCache.has(k))return matCache.get(k);const n=new THREE.MeshStandardNodeMaterial();
+ for(const p of ['map','normalMap','roughnessMap','metalnessMap','aoMap','alphaTest','side','vertexColors','color','roughness','metalness','normalScale','transparent','opacity','alphaMap'])if(m[p]!==undefined)n[p]=m[p]?.clone&&!m[p].isTexture?m[p].clone():m[p];
+ n.transparent=false;n.aoNode=treeAO?skyVisTree:skyVisGround;matCache.set(k,n);return n;};
+const groups=new Map();const add2=(name,mat4,shadow)=>{const k=name+'|'+shadow;(groups.get(k)??groups.set(k,[]).get(k)).push(mat4.clone());};
+const M=new THREE.Matrix4(),Qt=new THREE.Quaternion(),Sv=new THREE.Vector3(),Pv=new THREE.Vector3(),Yax=new THREE.Vector3(0,1,0);
+const NEAR=+P('near',45),MID=+P('mid',230);
+for(const t of trees){const lod=t.d<NEAR?'high':t.d<MID?'low':'far';const name=t.v+'_'+(lib[t.v+'_'+lod]?lod:'low');Qt.setFromAxisAngle(Yax,t.yaw);M.compose(Pv.set(t.x,t.y-.15,t.z),Qt,Sv.setScalar(t.s));add2(name,M,t.d<SR*1.4);}
+let ns=0,nr=0;for(let j=-36;j<=36;j++)for(let i=-36;i<=36;i++){const x=CX+i*2+(hash(i,j,11)-.5)*2,z=CZ+j*2+(hash(i,j,12)-.5)*2;const d=Math.hypot(x-CX,z-CZ);if(d<2.2||d>72)continue;const r=hash(i,j,13);
+ if(r<.085){const v=['sap_tsuga','sap_hinoki','sap_small'][Math.floor(hash(i,j,14)*3)];Qt.setFromAxisAngle(Yax,hash(i,j,15)*6.28);M.compose(Pv.set(x,hAt(x,z),z),Qt,Sv.setScalar(.5+hash(i,j,16)*.9));add2(v+'_'+(d<25?'high':'low'),M,true);ns++;}
+ else if(r<.21){const v=['rock_a','rock_b','rock_c','rock_d'][Math.floor(hash(i,j,17)*4)];Qt.setFromEuler(new THREE.Euler(hash(i,j,18)*.4,hash(i,j,19)*6.28,0));const s=.35+Math.pow(hash(i,j,20),2)*1.6;M.compose(Pv.set(x,hAt(x,z)-s*.25,z),Qt,Sv.set(s*(1+hash(i,j,21)*.6),s*.7,s));add2(v+'_high',M,true);nr++;}
+ else if(r<.225){const v=hash(i,j,22)<.5?'log_a':'log_b';Qt.setFromAxisAngle(Yax,hash(i,j,23)*6.28);M.compose(Pv.set(x,hAt(x,z)-.1,z),Qt,Sv.setScalar(.8+hash(i,j,24)*.5));add2(v+'_high',M,true);}}
+let tris=0,calls=0;for(const [k,list] of groups){const [name,sh]=k.split('|');const parts=lib[name];if(!parts){log.push('missing '+name);continue;}const treeAO=!name.startsWith('rock')&&!name.startsWith('log');
+ for(const part of parts){const im=new THREE.InstancedMesh(part.geometry,nodeMat(part.material,treeAO),list.length);list.forEach((m,i)=>im.setMatrixAt(i,m));im.castShadow=sh==='true';im.receiveShadow=true;im.frustumCulled=false;scene.add(im);tris+=(part.geometry.index?part.geometry.index.count:part.geometry.attributes.position.count)/3*list.length;calls++;}}
+lap('instanced groups '+groups.size+' meshes '+calls+' instanced tris '+(tris/1e6).toFixed(2)+'M saplings '+ns+' rocks '+nr);
+// ---------- post
+let pp=null;const sp=pass(scene,camera);
+if(POST!=='off'){pp=new THREE.RenderPipeline(renderer);sp.setMRT(mrt({output,diffuseColor,normal:packNormalToRGB(normalView),velocity}));
+ const col=sp.getTextureNode('output'),dif=sp.getTextureNode('diffuseColor'),dep=sp.getTextureNode('depth'),nor=sp.getTextureNode('normal'),vel=sp.getTextureNode('velocity');const sn=sample(u=>unpackRGBToNormal(nor.sample(u)));
+ let comp;
+ if(POST==='ao'){const a=ao(dep,sn,camera);a.radius.value=.6;comp=vec4(col.rgb.mul(a.getTextureNode().r),col.a);}
+ else {const gi=ssgi(col,dep,sn,camera);gi.sliceCount.value=+P('slices',2);gi.stepCount.value=+P('steps',10);gi.radius.value=+P('gir',6);gi.giIntensity.value=+P('gii',6);gi.thickness.value=.5;comp=vec4(add(col.rgb.mul(gi.a),dif.rgb.mul(gi.rgb)),col.a);}
+ if(P('rays','1')==='1'&&POST!=='ao'){const gr=godrays(dep,camera,sun);gr.raymarchSteps.value=+P('raysteps',40);gr.density.value=+P('raydens',.5);gr.maxDensity.value=.35;const grb=bilateralBlur(gr.getTextureNode());comp=vec4(comp.rgb.add(vec3(1,.86,.66).mul(grb.r).mul(float(+P('rayk',.35)))),comp.a);}
+ pp.outputNode=traa(comp,dep,vel,camera);}
+// ---------- render + time
+const sync=async()=>{if(renderer.backend.isWebGPUBackend)await renderer.backend.device.queue.onSubmittedWorkDone();else{const gl=renderer.backend.gl;const px=new Uint8Array(4);gl.readPixels(0,0,1,1,gl.RGBA,gl.UNSIGNED_BYTE,px);}};
+const draw=()=>pp?pp.render():renderer.render(scene,camera);
+let t=performance.now();draw();await sync();lap('first frame (compile) '+Math.round(performance.now()-t)+'ms');
+const times=[];for(let f=1;f<FRAMES;f++){t=performance.now();draw();await sync();times.push(Math.round(performance.now()-t));}
+log.push('steady frame ms '+times.join(','));const ri=renderer.info.render;log.push('info calls '+ri.drawCalls+' tris '+ri.triangles);
+draw();window.__png=renderer.domElement.toDataURL('image/png');lap('captured');window.__done=true;
+}catch(e){log.push('ERR '+(e.stack||e));window.__done=true;}
+</script></body></html>

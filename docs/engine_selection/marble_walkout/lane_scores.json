@@ -1,0 +1,302 @@
+{
+  "per_view": [
+    {
+      "file": "d000_yaw000.png",
+      "d": 0,
+      "yaw": 0,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d000_yaw090.png",
+      "d": 0,
+      "yaw": 90,
+      "holes": 0.0,
+      "edge_density": 0.2058125,
+      "detail": 6.464483547222223,
+      "log_avg_luminance": 0.008715266867973142,
+      "sunfleck_fraction": 0.13103587962962962,
+      "black_fraction": 0.20443923611111112,
+      "highlight_blue_ratio": 1.0329697448866513
+    },
+    {
+      "file": "d000_yaw180.png",
+      "d": 0,
+      "yaw": 180,
+      "holes": 0.0,
+      "edge_density": 0.332984375,
+      "detail": 9.716712149305554,
+      "log_avg_luminance": 0.03013514959680182,
+      "sunfleck_fraction": 0.13671875,
+      "black_fraction": 0.08485763888888889,
+      "highlight_blue_ratio": 0.9624061850964799
+    },
+    {
+      "file": "d000_yaw270.png",
+      "d": 0,
+      "yaw": 270,
+      "holes": 0.0,
+      "edge_density": 0.2692673611111111,
+      "detail": 7.317536531944445,
+      "log_avg_luminance": 0.016601997076758558,
+      "sunfleck_fraction": 0.1394241898148148,
+      "black_fraction": 0.13080381944444444,
+      "highlight_blue_ratio": 0.6650756076511908
+    },
+    {
+      "file": "d002_yaw000.png",
+      "d": 2,
+      "yaw": 0,
+      "holes": 0.0,
+      "edge_density": 0.26358159722222224,
+      "detail": 5.551824524305555,
+      "log_avg_luminance": 0.03470586809806303,
+      "sunfleck_fraction": 0.10056423611111111,
+      "black_fraction": 0.07942534722222222,
+      "highlight_blue_ratio": 0.9485869644536232
+    },
+    {
+      "file": "d002_yaw090.png",
+      "d": 2,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d002_yaw180.png",
+      "d": 2,
+      "yaw": 180,
+      "holes": 0.0,
+      "edge_density": 0.194890625,
+      "detail": 4.7311499625,
+      "log_avg_luminance": 0.02702578829841602,
+      "sunfleck_fraction": 0.08912615740740741,
+      "black_fraction": 0.1121701388888889,
+      "highlight_blue_ratio": 0.8754158192259519
+    },
+    {
+      "file": "d002_yaw270.png",
+      "d": 2,
+      "yaw": 270,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d005_yaw000.png",
+      "d": 5,
+      "yaw": 0,
+      "holes": 0.09192534722222222,
+      "edge_density": 0.10725913916616162,
+      "detail": 2.4373382044963114,
+      "log_avg_luminance": 0.10758886867506105,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.030659722222222224,
+      "highlight_blue_ratio": 0.984787530068293
+    },
+    {
+      "file": "d005_yaw090.png",
+      "d": 5,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d005_yaw180.png",
+      "d": 5,
+      "yaw": 180,
+      "holes": 0.0021944444444444446,
+      "edge_density": 0.13021456807995324,
+      "detail": 2.731737864341193,
+      "log_avg_luminance": 0.09035767415728271,
+      "sunfleck_fraction": 0.01681712962962963,
+      "black_fraction": 0.012685763888888889,
+      "highlight_blue_ratio": 0.9863393949487012
+    },
+    {
+      "file": "d005_yaw270.png",
+      "d": 5,
+      "yaw": 270,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d010_yaw000.png",
+      "d": 10,
+      "yaw": 0,
+      "holes": 0.26099652777777776,
+      "edge_density": 0.03393270780377103,
+      "detail": 1.2264772535274133,
+      "log_avg_luminance": 0.17138938044164978,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.009166666666666667,
+      "highlight_blue_ratio": 0.9932353265048423
+    },
+    {
+      "file": "d010_yaw090.png",
+      "d": 10,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d010_yaw180.png",
+      "d": 10,
+      "yaw": 180,
+      "holes": 0.015307291666666667,
+      "edge_density": 0.06992981101337664,
+      "detail": 1.7180170294243655,
+      "log_avg_luminance": 0.1419215267410186,
+      "sunfleck_fraction": 8.680555555555556e-06,
+      "black_fraction": 0.001298611111111111,
+      "highlight_blue_ratio": 0.875198721400121
+    },
+    {
+      "file": "d010_yaw270.png",
+      "d": 10,
+      "yaw": 270,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw000.png",
+      "d": 20,
+      "yaw": 0,
+      "holes": 0.6893368055555555,
+      "edge_density": 0.015675470264107923,
+      "detail": 1.1216753808496605,
+      "log_avg_luminance": 0.2111527440176581,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.002642361111111111,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw090.png",
+      "d": 20,
+      "yaw": 90,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw180.png",
+      "d": 20,
+      "yaw": 180,
+      "holes": 0.3484375,
+      "edge_density": 0.0,
+      "detail": 0.6414941801225688,
+      "log_avg_luminance": 0.177420291815134,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    },
+    {
+      "file": "d020_yaw270.png",
+      "d": 20,
+      "yaw": 270,
+      "holes": 1.0,
+      "edge_density": 0.0,
+      "detail": 0.0,
+      "log_avg_luminance": 0.2849,
+      "sunfleck_fraction": 0.0,
+      "black_fraction": 0.0,
+      "highlight_blue_ratio": 1.0
+    }
+  ],
+  "by_distance": [
+    {
+      "d": 0,
+      "holes": 0.25,
+      "edge_density": 0.2020160590277778,
+      "detail": 5.874683057118055
+    },
+    {
+      "d": 2,
+      "holes": 0.5,
+      "edge_density": 0.11461805555555557,
+      "detail": 2.570743621701389
+    },
+    {
+      "d": 5,
+      "holes": 0.5235299479166666,
+      "edge_density": 0.059368426811528714,
+      "detail": 1.2922690172093763
+    },
+    {
+      "d": 10,
+      "holes": 0.5690759548611111,
+      "edge_density": 0.025965629704286917,
+      "detail": 0.7361235707379448
+    },
+    {
+      "d": 20,
+      "holes": 0.7594435763888889,
+      "edge_density": 0.003918867566026981,
+      "detail": 0.4407923902430573
+    }
+  ],
+  "references": [
+    {
+      "file": "U01_c59f556b_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.3358157790143084,
+      "detail": 22.64543480127186
+    },
+    {
+      "file": "U05_f16d2764_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.4032703199523052,
+      "detail": 26.565521442269475
+    },
+    {
+      "file": "U08_6816f8d9_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.39028467806041334,
+      "detail": 23.691133983008744
+    },
+    {
+      "file": "U10_de969dec_1280.jpg",
+      "holes": 0.0,
+      "edge_density": 0.36017488076311605,
+      "detail": 21.16013096035374
+    }
+  ]
+}

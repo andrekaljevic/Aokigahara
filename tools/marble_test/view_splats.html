@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Splat walk-out renderer</title>
+<style>html,body{margin:0;background:#000}canvas{display:block}</style>
+<script type="importmap">
+{"imports":{"three":"/nm/three/build/three.module.js","three/addons/":"/nm/three/examples/jsm/","@sparkjsdev/spark":"/nm/@sparkjsdev/spark/dist/spark.module.js"}}
+</script>
+<script>
+// A module that fails to load never runs, so report load errors here and stop the runner waiting.
+window.__log = [];
+window.addEventListener("error", (e) => { window.__log.push("LOAD ERR " + (e.message || e)); window.__done = true; });
+</script>
+</head>
+<body>
+<script type="module">
+// Renders one Gaussian-splat file from a list of camera poses and returns PNG data URLs.
+// Query: ?splat=/splat/file.spz&w=1280&h=800&fov=70&flip=1&frames=4&poses=[{"x":0,"y":1.6,"z":0,"yaw":0,"pitch":0},...]
+// Background is pure magenta so uncovered pixels (holes past the generated region) can be counted.
+import * as THREE from "three";
+import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
+
+const q = new URLSearchParams(location.search);
+const W = +q.get("w") || 1280, H = +q.get("h") || 800;
+const poses = JSON.parse(q.get("poses") || '[{"x":0,"y":0,"z":0,"yaw":0,"pitch":0}]');
+const log = (m) => window.__log.push(String(m));
+
+try {
+  const renderer = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(W, H);
+  renderer.setClearColor(0xff00ff, 1);
+  document.body.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(+q.get("fov") || 70, W / H, 0.05, 2000);
+  camera.rotation.order = "YXZ";
+  scene.add(new SparkRenderer({ renderer })); // Spark 2.x draws splats through this object
+
+  const splat = new SplatMesh({ url: q.get("splat") });
+  if (q.get("flip") !== "0") splat.quaternion.set(1, 0, 0, 0); // Marble exports are y-down (OpenCV); flip to y-up
+  scene.add(splat);
+  await splat.initialized;
+  const box = splat.getBoundingBox ? splat.getBoundingBox() : null;
+  if (box) log("bbox " + JSON.stringify({ min: box.min, max: box.max }));
+
+  const frame = () => new Promise((r) => requestAnimationFrame(r));
+  window.__shots = [];
+  // The first view after loading needs extra frames while Spark uploads and sorts every splat;
+  // without them the first one or two views come back empty.
+  for (let i = 0; i < 24; i++) { renderer.render(scene, camera); await frame(); }
+  for (const p of poses) {
+    camera.position.set(p.x, p.y, p.z);
+    camera.rotation.set(THREE.MathUtils.degToRad(p.pitch || 0), THREE.MathUtils.degToRad(p.yaw || 0), 0);
+    // Spark re-sorts splats for each new viewpoint over a few frames; render until the sort settles.
+    for (let i = 0; i < (+q.get("frames") || 4); i++) { renderer.render(scene, camera); await frame(); }
+    renderer.render(scene, camera);
+    window.__shots.push({ pose: p, png: renderer.domElement.toDataURL("image/png") });
+  }
+  log("ok");
+} catch (e) {
+  log("ERR " + (e && e.stack || e));
+}
+window.__done = true;
+</script>
+</body>
+</html>

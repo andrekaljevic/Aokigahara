@@ -1,0 +1,99 @@
+{
+  "topic": "Fact-check of the report \"Unity 6 and every other engine or framework (shortlist and eliminate)\" for the Aokigahara M2 Air rebuild. unity.com, docs.unity3d.com, discussions.unity.com and flaxengine.com are blocked here, so I checked against source code and mirrored release notes on GitHub, crates.io and Docker Hub instead.",
+  "checks": [
+    {
+      "claim": "Unity's 'Render Pipelines strategy for 2026' (Feb 2026) puts HDRP into maintenance mode: stability fixes and a Switch 2 port only, no new features. BIRP is deprecated from 6.5, and investment goes to URP. (unity.com is blocked; I found only secondary corroboration.)",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/TMHSDigital/Unity-Developer-Tools/blob/main/skills/render-pipeline-detection/SKILL.md",
+      "correction": "Several independent 2026 documents on GitHub repeat it: 'maintenance mode… no new features planned beyond Switch 2 support'; BIRP 'deprecated as of Unity 6.5, supported through Unity 6.7 LTS'. I could not reach the primary Unity page."
+    },
+    {
+      "claim": "Version timeline: 6.3 LTS in Dec 2025, 6.4 in Mar 2026, 6.5 in Jun 2026, 6.6 on 1 Sep 2026, and 6.7 in beta with LTS due Q4 2026. 6.6 deprecates Intel Macs and 6.8 drops them.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/frarees/unity-changelog/blob/main/TIMELINE",
+      "correction": "Minor corrections. Release dates from the changelog mirror: 6000.3.0f1 on 3 Dec 2025, 6000.4.0f1 on 18 Mar 2026, 6000.5.0f1 on 15 Jun 2026, 6000.6.0f1 on 31 Aug 2026 (not 1 Sep), 6000.6.2f1 on 18 Sep, 6000.7.0b1 on 17 Sep 2026. The 6.6 notes say: 'The Intel macOS Editor is deprecated in Unity 6.6 and it will no longer be available after Unity 6.7 LTS.' That is consistent with the report, and irrelevant for an M2."
+    },
+    {
+      "claim": "Surface Cache GI is in preview in the 6.7 alpha and 'will become broadly available with Unity 6.7 LTS'. It uses hardware RT if available, otherwise a compute software backend.",
+      "verdict": "partially",
+      "source_url": "https://github.com/Unity-Technologies/Graphics/tree/6000.4/staging/Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature",
+      "correction": "SCGI already ships in URP 17.4 and 17.5 (the Unity 6.4 and 6.5 branches) and in 6.6 (URP 17.6), as a public renderer feature compiled only when the SURFACE_CACHE scripting define is set. People are using it on 6.5 (https://github.com/Arlorean/UnitySCGI-CornellBox), though early builds supported only directional lights and emissive surfaces. The code picks the Hardware backend only when SystemInfo.supportsRayTracing is true, which Unity never reports on Metal, so on the M2 it always runs the compute software backend. It supports MeshRenderers and Terrain, is incompatible with Static Batching, and 6.7.0b1 moved it to Ray Query and added a denoiser. The owner does not have to wait for 6.7 LTS: SCGI can be tested on the M2 today in 6.6."
+    },
+    {
+      "claim": "URP still has no native volumetric fog; no version or timeline has been announced.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/Unity-Technologies/Graphics/tree/master/Packages/com.unity.render-pipelines.universal/Runtime/Overrides",
+      "correction": "The URP volume overrides on the public mirror (latest commit 8 Jul 2026, URP 17.6, i.e. Unity 6.6) contain no fog, volumetric-lighting, sky or atmosphere override. The 6.6 and 6.7 alpha/beta changelogs add no URP volumetric fog."
+    },
+    {
+      "claim": "URP on 6.7 LTS provides auto-exposure as part of the forest look (from the fidelity_ceiling section).",
+      "verdict": "refuted",
+      "source_url": "https://github.com/frarees/unity-changelog/blob/main/Changelogs/6000.7/6000.7.0a6.md",
+      "correction": "URP gains only 'fixed exposure… accessed through the volume system' in 6.7.0a6. The URP master branch has no auto-exposure or eye-adaptation override and no physical sky. Eye adaptation is one of the owner's stated lighting cues, so on URP it must be custom or third-party work, just like volumetric fog."
+    },
+    {
+      "claim": "APV sky occlusion is 'a direct, evidenced substitute' for Lumen sky occlusion, and APV streaming makes 5 km x 5 km viable.",
+      "verdict": "partially",
+      "source_url": "https://github.com/Unity-Technologies/Graphics/blob/master/Packages/com.unity.render-pipelines.high-definition/Documentation~/probevolumes-skyocclusion.md",
+      "correction": "Streaming is confirmed (disk-to-CPU and CPU-to-GPU cell streaming). But the sky-occlusion bake treats every surface as opaque and grey: 'transparent or translucent GameObjects like windows or leaves bounce light away instead of transmitting it through'. It also needs the Progressive GPU lightmapper, and the occlusion is static only. A conifer canopy would therefore bake as solid occluders, which risks over-dark understoreys with no dappled transmission. The 6.3 notes also fixed a 'memory allocation error when baking APV with sky occlusion… on MacOS'."
+    },
+    {
+      "claim": "Unity cannot use Metal ray tracing; there is no HDRP ray tracing or path tracing on macOS.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/Unity-Technologies/Graphics/blob/master/Packages/com.unity.render-pipelines.high-definition/Documentation~/Ray-Tracing-Getting-Started.md",
+      "correction": "The HDRP docs say it 'only supports ray tracing using the DirectX 12 API' (plus consoles). No Unity 6.x changelog adds Metal RT. Only the UnifiedRayTracing compute fallback runs on Metal (the changelogs include Metal bug fixes to it)."
+    },
+    {
+      "claim": "Unity Terrain is limited to 4097 heightmap samples per tile, and the GPU Resident Drawer works only with MeshRenderers, not terrain trees or details.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/Unity-Technologies/UnityCsReference/blob/master/Modules/Terrain/Public/TerrainData.bindings.cs",
+      "correction": "heightmapResolution is clamped to 33 through 4097. The GRD docs list 'GameObjects that have a Mesh Renderer component' and compute-capable APIs as requirements. At 0.5 m over 5 km, about 3x3 tiles are needed."
+    },
+    {
+      "claim": "Unity cannot be installed or run in the cloud container: the download and package hosts are blocked, Personal licences cannot be activated offline, and there is no GPU. Unity work is therefore tied to the Mac.",
+      "verdict": "partially",
+      "source_url": "https://hub.docker.com/r/unityci/editor/tags?name=6000.6",
+      "correction": "The Unity Linux editor is reachable. The game-ci image unityci/editor:ubuntu-6000.6.2f1-mac-mono-3 (18 Sep 2026; 28 layers, 5.79 GB compressed) can be pulled here: I tested auth.docker.io, registry-1.docker.io and a partial download of an image layer from production.cloudfront.docker.com through the proxy. For licensing, game-ci's Sep 2026 docs describe activating Personal in Hub on any machine and copying Unity_lic.ulf; 'Licenses are not tied to a specific Unity version or platform' (https://github.com/game-ci/documentation/blob/main/docs/03-github/02-activation.mdx). Still unverified: whether the editor starts with license.unity3d.com and packages.unity.com blocked. There is still no GPU, so this covers only headless batchmode import and scene generation."
+    },
+    {
+      "claim": "Bevy's MeshletPlugin needs TEXTURE_INT64_ATOMIC, which wgpu enables on Metal only for Apple9 (M3+), so it cannot run on the M2. Bevy release dates: 0.19.0 on 19 Jun, 0.19.1 on 13 Aug and 0.20.0-rc.1 on 15 Sep 2026.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/gfx-rs/wgpu/blob/trunk/wgpu-hal/src/metal/adapter.rs",
+      "correction": "In wgpu trunk, int64_atomics is true only on the Apple9 GPU family, and TEXTURE_INT64_ATOMIC also needs MSL 3.1. Bevy's meshlet plugin requires that feature. The crates.io API gives the same release dates, and wgpu 30.0.1 at 22 Aug 2026 UTC. Separately, wgpu gates Solari's ray query on MTLDevice.supportsRaytracing and macOS 15, not on hardware RT, and the M1/M2 GPUs meet the argument-buffer requirements. So Solari may initialise on the M2, but with no dedicated RT hardware."
+    },
+    {
+      "claim": "Flax 1.12 (May 2026) runs natively on Apple Silicon via Vulkan/MoltenVK, with software-traced DDGI over a Global SDF (about 200 m, 10 cm) and a Surface Atlas, in up to 4 cascades.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/FlaxEngine/FlaxDocs/blob/master/manual/graphics/lighting/gi/realtime.md",
+      "correction": "Tag 1.12.6912 is dated 13 May 2026. The source tree has Platform/Mac but only a Vulkan graphics device (no Metal backend), hence MoltenVK. The Surface Atlas GI can 'cover a scene up to 500m', beyond the 200 m Global SDF. DDGI uses 200–400 MB of GPU memory. The docs confirm that GPU-baked SDFs 'result in artifacts in various meshes (eg. foliage)'. I could not verify the royalty terms (flaxengine.com is blocked)."
+    },
+    {
+      "claim": "Wicked Engine 0.72.x has a native Metal backend that requires the Metal 4 GPU family and enables ray tracing when supported.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/turanszkij/WickedEngine/blob/master/WickedEngine/wiGraphicsDevice_Metal.cpp",
+      "correction": "It exits unless supportsFamily(GPUFamilyMetal4) is true, and enables RAYTRACING if supportsRaytracing() is true; the version is 0.72.117. Metal 4 means macOS 26 on M1 or later, so the owner's macOS version matters."
+    },
+    {
+      "claim": "O3DE 26.05 has experimental macOS support that only 'adds placeholders' for ARM64 dependencies; Stride's CI covers Windows and Linux runtimes only.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/o3de/sig-release/blob/main/releases/26.05.0/26.05.0.md",
+      "correction": "The O3DE 26.05 notes say: 'Add placeholders to support external dependencies of macOS (ARM64)… just a preliminary step.' The Stride README lists Windows and Linux runtime CI only."
+    },
+    {
+      "claim": "Pricing: Personal is free under $200k; Pro rose 5% on 12 Jan 2026. The official Unity MCP is free and uses no credits (com.unity.ai.assistant 2.0.0-pre).",
+      "verdict": "partially",
+      "source_url": "https://github.com/FunplayAI/funplay-unity-mcp/blob/main/README.md",
+      "correction": "unity.com is blocked. Secondary sources agree on the +5% on 12 Jan 2026, Personal at $0–200K, and MCP being free with no credits. However, the official package was at v2.7.0-pre.2 by May 2026, not 2.0.0-pre, so agent instructions pinned to the 2.0 docs may be stale."
+    }
+  ],
+  "important_omissions": [
+    "URP also lacks eye adaptation (auto-exposure) and a physical sky as well as volumetric fog; 6.7 adds only fixed exposure. Three of the owner's named lighting cues (haze and shafts, dynamic range with eye adaptation, and sky) would therefore be custom or third-party work on URP. Source: https://github.com/frarees/unity-changelog/blob/main/Changelogs/6000.7/6000.7.0a6.md",
+    "SCGI can be tested on the M2 now in Unity 6.6 with the SURFACE_CACHE define, and on a Mac it always uses the compute backend. A one-day spike (a conifer patch on Terrain, measuring fps and thermals) would settle the report's biggest unknown before any commitment. Source: https://github.com/Unity-Technologies/Graphics/blob/master/Packages/com.unity.render-pipelines.universal/Runtime/RendererFeatures/SurfaceCacheGIRendererFeature/SurfaceCacheGIRendererFeature.cs (lines about 1043–1045, the Hardware/Compute backend choice).",
+    "APV sky occlusion bakes foliage as opaque grey and cannot transmit light, and it needs the Progressive GPU lightmapper. Unity 6.6 added a cross-platform 'Unity Compute GPU Light Baker' built on compute shaders, with emulation where hardware RT is absent, which matters for baking on an M2. Sources: https://github.com/Unity-Technologies/Graphics/blob/master/Packages/com.unity.render-pipelines.high-definition/Documentation~/probevolumes-skyocclusion.md and https://github.com/frarees/unity-changelog/blob/main/Changelogs/6000.6/6000.6.0a6.md",
+    "A Unity 6.6 Linux editor can be pulled into this cloud container from Docker Hub (unityci/editor), and the game-ci .ulf method covers Personal licences. Headless batchmode work in the cloud may therefore be possible, which weakens the conclusion that Unity work must be tied to the Mac. Still unverified: whether licensing works while Unity's licence and package hosts are blocked. Sources: https://hub.docker.com/r/unityci/editor and https://github.com/game-ci/documentation/blob/main/docs/03-github/02-activation.mdx",
+    "The owner's macOS version is a gating unknown that the report does not flag. Wicked needs macOS 26 (Metal 4). wgpu, and therefore Bevy Solari, needs macOS 15 or later for ray query, and the Unity 6 Book of the Dead Mac port sets macOS 15 as its minimum. Sources: https://github.com/turanszkij/WickedEngine/blob/master/WickedEngine/wiGraphicsDevice_Metal.cpp and https://github.com/mrmacright/Book-Of-The-Dead/blob/master/CHANGELOG.md",
+    "The Book of the Dead Mac port is HDRP (6000.3.0f1) and publishes no performance figures. It proves the HDRP look can run on Apple Silicon, but it is no evidence for the recommended URP path. Source: https://github.com/mrmacright/Book-Of-The-Dead/blob/master/CHANGELOG.md",
+    "Flax's Global Surface Atlas covers up to 500 m of GI, not just the 200 m of the Global SDF, and DDGI costs only 200–400 MB of GPU memory. That makes Flax's long-range bounce light a closer match to the owner's lighting target than the report implies; it is still unmeasured on the M2. Source: https://github.com/FlaxEngine/FlaxDocs/blob/master/manual/graphics/lighting/gi/realtime.md"
+  ],
+  "overall_reliability": "Mostly reliable on facts: versions, dates, Metal and Apple-family gating, engine eliminations, Flax, Wicked and Bevy all hold up against source code and mirrored release notes, apart from small date and package-version slips. Where it is weaker is the Unity URP lighting case, which is the owner's main acceptance test. It overstates URP by listing auto-exposure (only fixed exposure exists, even in 6.7). It understates the limits of APV sky occlusion for foliage (leaves bake as opaque, with no light transmission). It misplaces Surface Cache GI as a 6.7-only preview, when it is already testable in 6.6. And it overstates how locked-out the cloud container is, since the Linux editor can be pulled from Docker Hub. Pricing and the HDRP maintenance-mode claim could only be corroborated through secondary sources, because unity.com is blocked from here."
+}

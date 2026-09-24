@@ -1,0 +1,111 @@
+{
+  "track": "Rendering on a rented cloud GPU and streaming it to the MacBook Air",
+  "summary": "If the GPU is rented, the M2 Air no longer limits rendering, and the Mac needs almost nothing installed: Amazon DCV and Pixel Streaming run in a browser, and Moonlight and Parsec are small apps. The owner's premise is also off: Godot is not GB-heavy (the editor is 171–185 MB). The GB problem was UE.\n\nAWS London prices, verified from AWS's price list dated 21 September 2026:\n- L4 GPU: g6.2xlarge $1.24/h on Linux; g6.4xlarge $2.42/h on Windows.\n- L40S GPU (g6e): not offered in London. Nearest is Stockholm at $2.75/h (g6e.2xlarge, Windows).\n\nTwo hidden costs:\n- **Disk.** It is billed even while the machine is stopped: about $46/month for 500 GB.\n- **Egress (download traffic).** $0.09/GB. At 1080p60 and 20 Mbps that is about $0.8/h, close to what the GPU costs.\n\nTotals: about £60–160/month at 10 h/week, and about £220–550 at 40 h/week. Shadow is a flat ~$38–55/month with weaker GPUs (GBP price unverified). RunPod is cheap but has no UDP, which rules out interactive streaming.\n\n**What the stronger GPU buys is hardware ray tracing.** For a dense, walkable forest, photorealism becomes plausible mainly with UE5.8 on an L40S or RTX 4090-class GPU (Lumen with hardware ray tracing, MegaLights, Nanite Foliage). That needs the owner's explicit OK, and Nanite Foliage is still Experimental. Godot gains much less. Mainline Godot has no hardware-ray-traced global illumination. NVIDIA's path-tracing fork is experimental, and its DLSS denoiser works only on Windows.\n\n**Agents.** Claude Code can run on the GPU machine and be driven through Remote Control (Pro and Max plans). Self-hosted environments are for Team and Enterprise plans only. The AWS APIs can be reached from this container, so cloud agents could start a GPU box, render and stop it again.\n\nMany primary pages (aws.amazon.com, Epic, RunPod, Shadow, Vagon, Hetzner) are blocked by the proxy. Figures for those come from search snippets and carry lower confidence.",
+  "findings": [
+    {
+      "claim": "AWS London (eu-west-2) on-demand prices, from the AWS Price List file dated 21 Sep 2026. L4 24 GB instances: g6.xlarge (4 vCPU/16 GiB) $1.0216/h Linux, $1.2056/h Windows; g6.2xlarge (8/32) $1.2410 and $1.6090; g6.4xlarge (16/64) $1.6797 and $2.4157. A10G 24 GB: g5.2xlarge $1.5385 and $1.9065. The 96 GB-GPU g7e.2xlarge (memory says RTX PRO 6000 Blackwell class) is $5.8453 and $6.2133. There is no g6e (L40S) row for London, and Ireland lists only g4dn and g5.",
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/eu-west-2/index.csv (parsed; extracts at /tmp/claude-0/-home-user-Aokigahara/f3a7dee1-ddd5-5966-b7a1-ff45901003d9/scratchpad/awsraw_eu-west-2.csv)",
+      "confidence": "high"
+    },
+    {
+      "claim": "The nearest L40S 48 GB (g6e) regions to the UK: Stockholm g6e.xlarge $1.974/h Linux or $2.158/h Windows, and g6e.2xlarge (8 vCPU/64 GiB) $2.378 or $2.746. Frankfurt g6e.xlarge $2.327 or $2.511, and g6e.2xlarge $2.8035 or $3.1715. Both regions also offer g6 (L4) slightly cheaper than London.",
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/eu-north-1/index.csv and .../eu-central-1/index.csv",
+      "confidence": "high"
+    },
+    {
+      "claim": "AWS running costs in London:\n- gp3 disk $0.0928/GB-month, charged while stopped;\n- snapshots $0.053/GB-month, or $0.01325 archived;\n- internet egress $0.09/GB for the first 10 TB 'beyond the global free tier' (memory: 100 GB/month);\n- public IPv4 $0.005/h.\nDCV itself has 'no additional charge' on EC2. New accounts start with a 0 vCPU quota for 'Running On-Demand G and VT instances', so a quota request comes first.",
+      "source": "AWS price files (AmazonEC2, AWSDataTransfer and AmazonVPC for eu-west-2); https://github.com/aws-samples/amazon-ec2-nice-dcv-samples (README); https://repost.aws/knowledge-center/ec2-on-demand-instance-vcpu-increase",
+      "confidence": "high"
+    },
+    {
+      "claim": "Moonlight's default bitrate formula gives 20 Mbps at 1080p60 and 40 Mbps at 1440p60. That is 9 and 18 GB per hour. At AWS's $0.09/GB, egress adds about $0.81 and $1.62 per hour, which is roughly the price of the L4 instance itself. RunPod and a home PC avoid this cost.",
+      "source": "https://github.com/moonlight-stream/moonlight-qt/blob/master/app/settings/streamingpreferences.cpp (getDefaultBitrate); arithmetic mine",
+      "confidence": "high"
+    },
+    {
+      "claim": "Shadow (flat-rate Windows cloud PC): Neo is $37.99/month with an RTX 2000 Ada 16 GB, 8 EPYC vCores, 16 GB RAM and a 512 GB SSD. Power is $54.99/month ($659.88/year). Lite variants on 12-month prepay run $22.49–32.99. Shadow's guidance is a ping of 30 ms or less. GBP prices and whether there is a UK datacentre are unverified (shadow.tech is blocked).",
+      "source": "https://support.shadow.tech/hc/en-us/articles/31001157820049-Shadow-PC-Gaming-Offers-Hardware-Specifications ; https://tech-insider.org/shadow-pc-vs-geforce-now-2026/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "RunPod Secure Cloud: RTX 4090 $0.69/h and RTX 5090 $0.99/h, per-second billing, no ingress or egress fees, network volumes $0.07/GB-month. However, pods are containers and 'do not support UDP'. That rules out Moonlight, Parsec and DCV-over-QUIC, so RunPod suits headless GPU renders by agents, not interactive play.",
+      "source": "https://www.runpod.io/pricing (via search; blocked for fetch); https://docs.runpod.io/pods/configuration/expose-ports",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Other providers, from secondary sources:\n- Vagon: per-minute billing; T4 at $0.99/h; A10G (8 cores, 32 GB) at $2.27/h; storage from $7.99/month; data out $1.50 per 10 GB after the first 10 GB.\n- TensorDock: RTX 4090 VMs from $0.37/h; Windows allowed; marketplace hosts, UK availability unknown.\n- Hetzner: GEX131 (RTX PRO 6000, 96 GB) €889/month or €1.4247/h, dedicated server in Germany; GEX44 (RTX 4000 SFF Ada) about €184/month plus setup.\n- Scaleway (Paris): L4 about $0.79–0.90/h, L40S about $1.47–1.68/h.\n- Azure: NV18ads A10 v5 from about $1.6/h, NV36ads about $3.2/h; offered in UK South, UK price unverified.\n- GCP: g2-standard-8 (L4) offered in europe-west2, London price unverified.",
+      "source": "https://vagon.io/cloud-computer/pricing ; https://www.tensordock.com/gpu-4090.html ; https://www.hetzner.com/dedicated-rootserver/gex131/ ; https://www.scaleway.com/en/pricing/gpu/ ; https://sparecores.com/server/azure/Standard_NV36ads_A10_v5 ; https://northflank.com/cloud/gcp/instances/g2-standard-8",
+      "confidence": "low"
+    },
+    {
+      "claim": "Streaming clients on the Mac:\n- DCV: a native client or an HTML5 browser client (zero install), using QUIC/UDP when the connection is direct.\n- Parsec: joins fine from a Mac, but can host only on Windows or macOS, not on a Linux VM.\n- Sunshine: hosts on Windows or Linux with NVENC; with the Moonlight Mac client it is the low-latency open-source pairing.\n- UE Pixel Streaming 2: streams WebRTC to a browser, and its infrastructure repo has a UE5.8 branch.",
+      "source": "https://github.com/aws-samples/amazon-ec2-nice-dcv-samples ; https://support.parsec.app/hc/en-us/articles/32381568346644-Hardware-and-Software-Compatibility ; https://github.com/LizardByte/Sunshine ; https://github.com/EpicGamesExt/PixelStreamingInfrastructure",
+      "confidence": "high"
+    },
+    {
+      "claim": "What the stream will feel and look like:\n- **Codec.** The M2 has no AV1 hardware decode (that arrived with M3), so the stream must be HEVC or H.264.\n- **Latency.** Cloud streaming adds about 30–60 ms end to end. Home-to-London round trips are about 5–15 ms, Stockholm about 30–40 ms (memory, not measured).\n- **Feel.** Acceptable for a walk; mouse look feels slightly floaty.\n- **Image.** Dense foliage in motion is the hardest content for video codecs. Expect smeared needles and leaves at 20 Mbps; 30–50 Mbps HEVC is needed near 1440p, and that raises egress costs.",
+      "source": "https://www.businesswire.com/news/home/20231030824811/en/Apple-unveils-M3-M3-Pro-M3-Max ; https://github.com/moonlight-stream/moonlight-qt/issues/1125 ; https://checkping.io/blog/cloud-gaming-latency-guide",
+      "confidence": "medium"
+    },
+    {
+      "claim": "GPU tiers compared with the M2 8-core (about 2.9 TFLOPS, 100 GB/s, no ray-tracing cores):\n- **L4:** 24 GB, 72 W, 300 GB/s, 30.3 TFLOPS FP32.\n- **L40S:** AD102, the same silicon as the RTX 4090, with 48 GB, 864 GB/s and 91.6 TFLOPS.\nBoth have third-generation RT cores and NVENC, so both do hardware ray tracing. The L4 is roughly console-class for games; the L40S is roughly 4090-class at lower clocks.",
+      "source": "https://www.nvidia.com/en-us/data-center/l4/ ; https://www.nvidia.com/en-us/data-center/l40s/ ; https://acecloud.ai/blog/nvidia-l4-vs-l40s-gpu/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "UE5.8 was released on 17 June 2026:\n- MegaLights is Production Ready.\n- Lumen has a new medium-quality mode (Beta).\n- It is the last planned major UE5 release.\n- Nanite Foliage (Assemblies, Skinning, Voxels) is still Experimental.\nThe Witcher 4 tech demo on UE5.6 ran a dense Nanite-foliage forest at 60 fps on a base PS5. A photoreal walkable forest is therefore a demonstrated UE capability on console-class or better GPUs, though made by expert studios.",
+      "source": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available ; https://80.lv/articles/unreal-engine-5-8-is-out-today-with-big-optimization-improvements-and-mesh-terrain ; https://dev.epicgames.com/documentation/unreal-engine/nanite-foliage ; https://www.cdprojekt.com/en/media/news/cd-projekt-red-and-epic-games-present-the-witcher-4-unreal-engine-5-tech-demo-at-the-state-of-unreal-2025/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Godot on RTX: NVIDIA's official fork (NVIDIA-RTX/godot, branch nvidia-pt-dlss, MIT, shown at GDC in March 2026) adds hardware path tracing on Forward+ and DLSS SR, RR and FG. Its denoiser needs DLSS Ray Reconstruction on an NVIDIA RTX GPU, and the Streamline features are Windows-only. It is experimental. Mainline Godot 4.7 has only initial Vulkan ray-tracing plumbing. A cloud RTX GPU therefore helps Godot mostly through higher settings, unless the owner adopts an experimental fork.",
+      "source": "https://raw.githubusercontent.com/NVIDIA-RTX/godot/nvidia-pt-dlss/README.md (branch exists) ; https://github.com/bailaiOWO/rtx-godot ; https://www.cgchannel.com/2026/03/get-nvidias-new-path-tracing-fork-of-the-godot-game-engine/",
+      "confidence": "medium"
+    },
+    {
+      "claim": "Unity has put HDRP into maintenance mode for 2026: no new features, with URP becoming the single pipeline. HDRP's path tracing and ray-traced GI still work, but it is a poor new bet compared with UE5.8.",
+      "source": "https://unity.com/topics/render-pipelines-strategy-for-2026",
+      "confidence": "medium"
+    },
+    {
+      "claim": "What the Claude Code docs say about running agents with a GPU:\n- Anthropic-hosted cloud sessions are about 4 vCPU, 16 GB RAM and 30 GB disk, with no GPU listed. For heavier work the docs point to Remote Control on your own hardware or to self-hosted environments.\n- There is 'no separate compute charge for the cloud VM'.\n- Self-hosted environments are a public beta for Team and Enterprise only.\n- Remote Control works on Pro, Max, Team and Enterprise with claude.ai login.\n- Desktop SSH sessions need a Linux or macOS remote.\n- The CLI runs natively on Windows 10+ and Server 2019+.\n- CLI computer use is macOS-only; Desktop computer use covers macOS and Windows.",
+      "source": "https://code.claude.com/docs/en/cloud-environments ; https://code.claude.com/docs/en/claude-code-on-the-web ; https://code.claude.com/docs/en/self-hosted-environments ; https://code.claude.com/docs/en/remote-control ; https://code.claude.com/docs/en/desktop ; https://code.claude.com/docs/en/setup",
+      "confidence": "high"
+    },
+    {
+      "claim": "The AWS EC2, SSM, S3 and STS endpoints answered from this cloud container through the proxy (tested today, unauthenticated). Agents could therefore keep coding in Anthropic's free containers and only start a GPU instance, run a render through SSM, collect PNGs from S3 and stop it again. That minimises idle GPU hours. The workflow itself is untested, and it needs scoped AWS credentials stored as environment secrets.",
+      "source": "curl tests to https://ec2.eu-west-2.amazonaws.com, https://ssm.eu-west-2.amazonaws.com, https://s3.eu-west-2.amazonaws.com (this session)",
+      "confidence": "medium"
+    },
+    {
+      "claim": "UE5 on Linux is a 20–30 GB precompiled zip that installs to about 63 GB; full installs pass 100 GB. With DDC and the project, a cloud disk of 300–500 GB is needed. In London that is about $28–46/month even while stopped. The level must also be rebuilt from scripts and data, or snapshotted, so the VM does not repeat the unrecoverable-.uasset failure.",
+      "source": "https://wiki.archlinux.org/title/Unreal_Engine_5 ; AWS eu-west-2 gp3 price",
+      "confidence": "medium"
+    },
+    {
+      "claim": "A spare RTX PC in the UK (unverified tracker prices, September 2026): RTX 5070 Ti card about £990, RTX 5080 about £1,515, both inflated. Prebuilt RTX 5070 Ti PCs cost about £1,900–2,400. Electricity is 26.32p/kWh under the October–December 2026 cap, so a 400 W system costs about £5–18/month. Streaming it over the home LAN with Moonlight gives the lowest latency, the best image and no egress.",
+      "source": "https://gpupricehistory.com/uk/rtx-5070-ti ; https://gpupricehistory.com/uk/rtx-5080 ; https://webuildtheperfectpcforyoultd.co.uk/collections/rtx-5070-ti ; https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-october-and-31-december-2026",
+      "confidence": "low"
+    },
+    {
+      "claim": "The exchange rate used is GBP/USD 1.3228 (23 Sep 2026), so $1 = £0.756.",
+      "source": "https://tradingeconomics.com/united-kingdom/currency",
+      "confidence": "medium"
+    }
+  ],
+  "verdict": "Only conditionally.\n\n**When cloud-GPU-plus-streaming wins.** It gives a better yield than Godot on the M2 only if all four conditions hold:\n1. Photorealism is non-negotiable.\n2. The owner explicitly OKs UE5.8 running in the cloud, not on the Mac. UE is the only engine here with a credible photoreal ceiling for a dense walkable forest on RTX-class hardware.\n3. Use stays light, around 10 h/week (about £120–160/month on AWS). At heavier use, a home RTX PC is cheaper within about 4–5 months.\n4. The owner's broadband gives a steady 30 Mbps or more with under 20 ms to London or Frankfurt.\n\nUnder those conditions, UE5.8 on an L40S or RTX 4090-class GPU, streamed to the Air, is the highest-yield route. The Mac footprint is close to zero, and agents can finally see renders on a real GPU.\n\n**When Godot on the M2 stays the better yield.** If any condition fails, and above all if UE stays excluded, keep the Godot plan. Streaming Godot from a cloud GPU adds latency, codec smearing on exactly the foliage detail the owner values, and an ongoing bill. In exchange it buys a modest gain, because Godot's ceiling is set by its features, not the GPU. The owner's premise also doesn't hold: Godot is about 170–185 MB, not GB-heavy.\n\n**Recommended next step.** Keep the engine-agnostic LiDAR pipeline and run milestone 0 on the Mac. If the owner allows UE in the cloud, spend about £10–20 on a one-day AWS spike:\n- a g6.4xlarge Windows instance in London, or a g6e.2xlarge in Stockholm;\n- UE5.8 fed the same pipeline data, viewed through the DCV browser client;\n- auto-stop and a budget alert.\n\nThen compare the frames and frame rates side by side before committing.",
+  "costs": "All figures are per month, at GBP/USD 1.3228. Each range covers a stream bitrate of 10 to 20 Mbps (AWS egress $0.09/GB after 100 GB free). Disk uses the London gp3 rate for every region. Raw price extracts are in /tmp/claude-0/-home-user-Aokigahara/f3a7dee1-ddd5-5966-b7a1-ff45901003d9/scratchpad/.\n\n**(a) 10 h/week, about 43 h/month:**\n- AWS London g6.2xlarge Linux (L4), Godot, 150 GB disk: £58–71 (compute $54, disk $14, egress $9–26).\n- AWS London g6.4xlarge Windows (L4, 64 GB RAM), UE5.8, 500 GB disk: £121–134 (compute $105, disk $46).\n- AWS Stockholm g6e.2xlarge Windows (L40S): £132–145. The same in Frankfurt: £146–159.\n- RunPod RTX 4090 plus a 200 GB volume: about £33, but not suitable for interactive streaming.\n- TensorDock RTX 4090: about £12 for compute, plus storage (unverified).\n- Shadow Neo or Power: $37.99 or $54.99 flat, about £29 or £42 (GBP unverified).\n\n**(b) 40 h/week, about 173 h/month:**\n- AWS g6.2xlarge Linux, Godot: £220–273.\n- AWS g6.4xlarge Windows, UE: £399–452, of which egress is $61–131.\n- AWS Stockholm g6e.2xlarge: £442–495. Frankfurt: £498–551.\n- RunPod 4090: about £101; RTX 5090: about £140.\n- Shadow: still flat at about £29–42, with weaker GPUs.\n\n**(c) A spare RTX PC, bought outright (UK, unverified):**\n- RTX 5070 Ti card about £990; RTX 5080 about £1,515.\n- Complete RTX 5070 Ti PC: about £1,600 DIY, £1,900–2,400 prebuilt.\n- Electricity at 26.32p/kWh and about 0.4 kW: roughly £5 per month in (a) and £18 in (b).\n- Break-even against the AWS UE configuration: about 12–18 months at 10 h/week, about 4–5 months at 40 h/week.\n\n**One-off spike** (one day, about 8 h on g6.4xlarge Windows plus a 500 GB disk for a week, then deleted): about $20–30, or £15–23.",
+  "mac_footprint": "- **Amazon DCV:** HTML5 client in the browser, so zero install. A native client is optional.\n- **UE Pixel Streaming 2:** browser only, zero install.\n- **Moonlight:** a small native app on the Mac (tens of MB, unverified). It pairs with a Sunshine host on Windows or Linux.\n- **Parsec:** a small Mac client, but the host must be Windows (no Linux hosting).\n- **Agents on the GPU machine:** Remote Control from claude.ai in the browser needs nothing on the Mac. Claude Desktop SSH sessions would need the Desktop app, and only reach Linux or macOS hosts.\n- **What the Mac gives up:** no engine, no DDC and no project data on the Mac. All of that lives on the rented disk.\n- **For comparison:** the Godot route puts only a 171–185 MB editor, or just an exported app plus data packs, on the Mac. The GB-heavy problem was specific to UE5.",
+  "unknowns": [
+    "The owner's broadband: steady downstream Mbps, round trip to AWS London, Frankfurt or Stockholm, jitter, data caps, and Wi-Fi versus wired.",
+    "Whether the owner's 'no UE5.8 restart' applied only to the Mac. UE in the cloud needs their explicit OK.",
+    "The owner's Claude plan (Pro or Max versus Team or Enterprise). This decides Remote Control versus self-hosted environments.",
+    "Real UE5.8 frame times for a dense Nanite-foliage forest with hardware-ray-traced Lumen on an L4 versus an L40S at 1080p and 1440p. Nanite Foliage is still Experimental in 5.8.",
+    "Whether the AWS G-instance vCPU quota is granted quickly on the owner's account, and on-demand g6/g6e availability at the hours they play.",
+    "Whether DLSS (SR/RR) and AWS's NVIDIA gaming or GRID drivers work for UE on g6/g6e. RunPod Vulkan graphics support inside containers is also unknown.",
+    "Shadow's GBP prices, its UK datacentre location, and the Power tier's exact GPU. Vagon's regions, and whether its streaming traffic counts as billable data-out.",
+    "Exact London prices for Azure NVads A10 v5 and GCP G2, and Hetzner and Scaleway terms (their primary pages are blocked by the proxy).",
+    "Codec artefacts on dense conifer foliage at 20–50 Mbps HEVC on the M2 Air's 2560x1664 panel. A short test stream would settle this.",
+    "Whether an agent-orchestrated GPU render box (start, SSM render, S3, stop) works end to end from the Anthropic container. Endpoints are reachable, but nothing has been run."
+  ]
+}

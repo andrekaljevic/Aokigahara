@@ -1,0 +1,8 @@
+<!doctype html><canvas id=c width=320 height=200></canvas><script type=module>
+const log=[];window.__log=log;try{const a=await navigator.gpu.requestAdapter();const d=await a.requestDevice();d.lost.then(i=>log.push('LOST '+i.message));
+const ctx=document.getElementById('c').getContext('webgpu');const f=navigator.gpu.getPreferredCanvasFormat();ctx.configure({device:d,format:f,alphaMode:'opaque'});
+const m=d.createShaderModule({code:`@vertex fn vs(@builtin(vertex_index) i:u32)->@builtin(position) vec4f{var p=array<vec2f,3>(vec2f(0,.8),vec2f(-.8,-.8),vec2f(.8,-.8));return vec4f(p[i],0,1);} @fragment fn fs()->@location(0) vec4f{return vec4f(1,.5,0,1);}`});
+const pl=d.createRenderPipeline({layout:'auto',vertex:{module:m,entryPoint:'vs'},fragment:{module:m,entryPoint:'fs',targets:[{format:f}]}});
+for(let k=0;k<3;k++){const e=d.createCommandEncoder();const p=e.beginRenderPass({colorAttachments:[{view:ctx.getCurrentTexture().createView(),loadOp:'clear',storeOp:'store',clearValue:[0,0,.3,1]}]});p.setPipeline(pl);p.draw(3);p.end();d.queue.submit([e.finish()]);await d.queue.onSubmittedWorkDone();await new Promise(r=>requestAnimationFrame(r));}
+log.push('ok '+f);}catch(e){log.push('ERR '+e.message)}setTimeout(()=>window.__done=true,500);
+</script>

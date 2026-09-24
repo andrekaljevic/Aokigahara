@@ -1,0 +1,75 @@
+{
+  "topic": "Fact-check: Real-data pipeline and photoreal asset sourcing (engine-agnostic)",
+  "checks": [
+    {
+      "claim": "The Yamanashi 2024 point cloud is CC BY 4.0 / ODbL, in EPSG:6676, and split into 1/500 sheets of 300 × 400 m. The plot needs about 221–252 sheets: airborne LAS is about 38 MB per sheet (about 8–10 GB for the plot) and MMS about 698 MB per sheet.",
+      "verdict": "unverifiable",
+      "source_url": "https://www.geospatial.jp/ckan/dataset/yamanashi-pointcloud-2024",
+      "correction": "I could not fetch the catalogue: geospatial.jp is blocked by the egress proxy for WebFetch as well as curl, and the web-search budget was used up. I did confirm the per-sheet sizes (38 MB airborne, 698 MB MMS), the EPSG:6676 assignment and the lack of an in-file CRS against the repo's measured_sources_2026-09-19.json (branch rebuild/measured-2026-09-19). But that file is the report's own source, not an independent one. The 300 × 400 m sheet size fits the national 1/500 base-map sheet system (a 1/5000 sheet is 3 × 4 km). The 8–10 GB total is still an extrapolation from one sheet, which may not be a forest sheet."
+    },
+    {
+      "claim": "Every Japanese data host is blocked from the cloud containers, so the Mac must do one scripted download of about 8–10 GB. The S3 403 on the MMS trajectory URL is part of this blocking.",
+      "verdict": "partially",
+      "source_url": "https://gic-yamanashi.s3.ap-northeast-1.amazonaws.com/2024/mmstrj/mmstrj.zip",
+      "correction": "The catalogue hosts (geospatial.jp, gsi.go.jp, rinya.maff.go.jp) are blocked. The dataset's actual download host is not: the proxy connects to gic-yamanashi.s3.ap-northeast-1.amazonaws.com (it answers 'Connection Established'). The 403 is S3's own AccessDenied ('Server: AmazonS3'), and it stays 403 when a geospatial.jp Referer is sent. So either the key has moved (S3 returns 403, not 404, for missing keys in a bucket that cannot be listed) or access is restricted to certain IPs. The owner should test that URL on the Mac. If it downloads there, the restriction is IP-based. If a current per-sheet URL list is published, the containers may be able to pull the raw data directly, which would take the 8–10 GB off the Mac's scarce disk. Separately, the GitHub-release plan is confirmed: each file must be under 2 GiB, a release can hold up to 1000 assets, and there is no limit on total release size (github/docs data/variables)."
+    },
+    {
+      "claim": "The whole pipeline installs from PyPI and conda-forge: laspy 2.7.0, lazrs 0.8.2, rasterio 1.5.1, pyforestscan 0.4.1, pylasr 0.17.4 (Linux x86_64 only), and PDAL and GDAL source-only on PyPI. On conda-forge: r-lidr 4.3.3, r-lasr 0.21.1, python-pdal 3.5.5, gdal 3.13.3 and r-base 4.6.1. Availability of r-lidr and r-lasr on osx-arm64 was not verified.",
+      "verdict": "partially",
+      "source_url": "https://conda.anaconda.org/conda-forge/osx-arm64/repodata.json.zst",
+      "correction": "Every PyPI version, date and wheel set matches the PyPI JSON exactly. r-lidr 4.3.3 is on conda-forge linux-64 (built 20 Sep 2026), but conda-forge has no osx-arm64 build of r-lidr at all. On the Mac, lidR must come from CRAN (install.packages, as its README says) or run only in the cloud. r-lasr 0.21.1 does exist for osx-arm64. The conda builds of both packages pin r-base below 4.6 (R 4.4 or 4.5), so an environment that takes the latest r-base (4.6.1) will not solve; pin R 4.5. On osx-arm64, PDAL 2.10.2 comes as libpdal (19 Sep 2026); the old 'pdal' osx-arm64 build is 2.7.2. The algorithm claims check out: lasR (GPL-3, last commit 17 Aug 2026) exports chm, local_maximum and region_growing. lidR exports dalponte2016, silva2016, li2012 and watershed, but these are long-standing, not new in 4.3.3. PDAL has filters.litree. PyCrown's last commit was 22 Jul 2020."
+    },
+    {
+      "claim": "bpy 5.2.2 (PyPI, 15 Sep 2026) has a 245 MB macOS arm64 wheel and a 402 MB manylinux x86_64 wheel and needs Python 3.13. apt's Blender is 4.0.2.",
+      "verdict": "confirmed",
+      "source_url": "https://pypi.org/pypi/bpy/json",
+      "correction": "Exact match: requires_python ==3.13.*, licence GPL-3.0; wheels for macOS 11 arm64 (245 MB), manylinux_2_28 x86_64 (402 MB), win_amd64 and win_arm64. apt's candidate is 4.0.2+dfsg-1ubuntu8. The container already has uv (/root/.local/bin/uv), so getting Python 3.13 is trivial; the container itself runs 3.11.15."
+    },
+    {
+      "claim": "EZ-Tree is MIT-licensed (npm @dgreenheck/ez-tree 1.1.0, 15 Jan 2026; last commit 16 Jul 2026), exports GLB, and can be used as a library to generate species-parameterised trees.",
+      "verdict": "partially",
+      "source_url": "https://github.com/dgreenheck/ez-tree",
+      "correction": "The licence, version and dates are confirmed. According to its README, GLB (and PNG) export is a feature of the standalone web app. The library returns three.js meshes, so a headless pipeline needs three's GLTFExporter. Leaves are 'single' or 'double' billboard quads (src/lib/enums.js). The presets are only ash, aspen, oak, pine and bush, and the pine preset uses one branch level. That is game-grade foliage, not photoreal conifer needles. Tsuga or Chamaecyparis would need custom parameters plus scanned foliage cards."
+    },
+    {
+      "claim": "meshoptimizer/gltfpack 1.2.0 (30 Jun 2026) and @gltf-transform/cli 4.5.0 (1 Sep 2026) are current. The three.js octahedral impostor (@three.ez, v0.0.1) was last committed 3 Nov 2025, and Godot-Octahedral-Impostors was last committed 3 Jun 2021.",
+      "verdict": "confirmed",
+      "source_url": "https://github.com/agargaro/octahedral-impostor",
+      "correction": "All confirmed (npm registry and git). One detail: the three.js impostor's package name is @three.ez/octahedron-imposter 0.0.1, and it is not published on npm (the registry returns 404). It can only be used from git or vendored, which strengthens the report's 'immature tooling' point. three 0.186.0 (8 Sep 2026) is also confirmed."
+    },
+    {
+      "claim": "Grid convergence between Plane Rectangular VIII and the project's AEQD frame at 138.658E, 35.4775N is about 0.092°. That is about 4 m of displacement at 2.5 km from the origin, and the scale factor there is about 0.99990.",
+      "verdict": "confirmed",
+      "source_url": "https://pypi.org/project/pyproj/",
+      "correction": "Recomputed with pyproj (EPSG:6676 compared with +proj=aeqd on GRS80): meridian convergence is 0.0917° and the scale factor is 0.999903. After a pure translation the residual is 4.0 m at 2.5 km on each axis, and 5.7 m at the plot corners (±2.5 km, ±2.5 km). So the worst case is somewhat larger than the report's 4 m."
+    },
+    {
+      "claim": "Storage for 5 × 5 km at 0.5 m is 200 MB per uint16 layer, so an engine set (16-bit height, 16-bit CHM, RGBA8 splat at 1 m, 8-bit sky-visibility) is about 0.7–1 GB. Terrain3D's docs say a 10k × 10k import needs region size 512.",
+      "verdict": "partially",
+      "source_url": "https://github.com/TokisanGames/Terrain3D/blob/main/doc/docs/controlmap_format.md",
+      "correction": "The region-size statement is confirmed (heightmaps.md: '10k / 32 = 312.5 minimum', so 512; the world is limited to 32 × 32 regions). The arithmetic is correct only for on-disk data. Inside an engine, formats are wider. Terrain3D stores height as 32-bit float (import_export.md) and the control map as a 32-bit integer packed into FORMAT_RF (controlmap_format.md), plus an RGBA8 colour map. A 10k × 10k Terrain3D import is therefore about 400 MB per map, or about 1.2 GB of unified memory and VRAM for height, control and colour, before mipmaps. That is significant on a 16 GB M2. Consider 1 m engine terrain (100 MB per layer) and keep 0.5 m for offline bakes."
+    },
+    {
+      "claim": "Megascans were free under the Fab Standard Licence only until the end of 2024 and cost from $0.99 per asset from 2025. Items acquired under a UE plan are UE-only. SpeedTree Indie costs $19 a month or $199 a year, Learning Edition cannot export, there is no glTF export, and it is GUI-only.",
+      "verdict": "unverifiable",
+      "source_url": "https://dev.epicgames.com/documentation/en-us/fab/licenses-and-pricing-in-fab",
+      "correction": "The proxy blocks cgchannel.com, dev.epicgames.com, fab.com, store.speedtree.com and support.unity.com, and the web-search budget was used up, so none of these pricing or licensing details could be re-checked. The owner should confirm current Fab and SpeedTree terms before buying anything. In particular, check whether Megascans remain free for UE-only use. That would not matter here, because UE is excluded, but it explains the 'UE-only trap'. Also check whether SpeedTree now offers scripting or command-line export."
+    },
+    {
+      "claim": "All Poly Haven assets are CC0. Its tree set is small, and Pine Tree 01 is about 17 M triangles. The repo's photo-derived packs total 178 MB and were cut from 125–340 px crops.",
+      "verdict": "partially",
+      "source_url": "https://github.com/andrekaljevic/aokigahara/blob/main/source_manifests/models/polyhaven_models_metadata.json",
+      "correction": "The repo's cached Poly Haven API manifest (updated 10 Sep 2026) gives pine_tree_01 a polycount of 17,427,094, so that is confirmed. The set is not trivially small for conifers: the 'pine_forest' collection also has fir_tree_01 (7.85 M), fir_sapling, fir_sapling_medium (2.3 M), pine_sapling_medium (9.8 M), pine_roots, dead_tree_trunk and tree stumps. These are useful CC0 donors for bark, roots and deadwood. I could not re-fetch the CC0 licence itself (polyhaven.com is blocked); the repo's handover README cites it. MATERIALS_UHD_MANIFEST.json confirms native_source_px of 125–340 and heuristic height, normal and roughness maps. The tier totals are 111.7 + 44.3 + 17.8 MB = 173.8 MB, not 178 MB."
+    }
+  ],
+  "important_omissions": [
+    "The dataset's download host (the gic-yamanashi S3 bucket) can be reached from the cloud containers; only the catalogue sites are blocked. If the owner exports the current per-sheet URL list from the catalogue on the Mac, agents may be able to download the raw LAS and products straight into the cloud, taking 8–10 GB off the Mac's internal disk. The trajectory URL gives an S3 AccessDenied (not a proxy block); the owner should test it on the Mac to tell 'key moved' from 'IP-restricted'. Source: curl -I of https://gic-yamanashi.s3.ap-northeast-1.amazonaws.com/2024/mmstrj/mmstrj.zip ('Server: AmazonS3').",
+    "conda-forge has no osx-arm64 build of r-lidr, and the lidR and lasR conda builds need R below 4.6. On the Mac, lidR must come from CRAN, or the lidR steps (Dalponte, watershed) should run only in the cloud. Source: https://conda.anaconda.org/conda-forge/osx-arm64/repodata.json.zst",
+    "The memory cost of terrain inside the engine differs from the on-disk arithmetic, and it depends on the engine. For example, Terrain3D keeps 32-bit height and 32-bit control maps, so a 0.5 m, 10k × 10k world is about 1.2 GB resident, a real share of 16 GB unified memory. This affects the engine choice and the resolution chosen for engine terrain versus offline bakes. Sources: https://github.com/TokisanGames/Terrain3D/blob/main/doc/docs/import_export.md and controlmap_format.md",
+    "Lighting-relevant: the report does not use the ortho images, and the airborne LAS RGB, which REBUILD_2026-09-19.md describes as an orthophoto drape, as a measured top-down canopy-colour source. That is the direct fix for the UE5.8 flaw 'distant canopy as dark flat masses' (far-canopy albedo, and impostor or clipmap tint). Ortho resolution is still unknown. Source: branch rebuild/measured-2026-09-19, unreal/AokigaharaUE/Docs/REBUILD_2026-09-19.md, line 59.",
+    "EZ-Tree's foliage is billboard quads, and its only conifer preset is a generic 'pine'. The 'fidelity ceiling' paragraph therefore overstates how close EZ-Tree gets to photoreal Tsuga or Chamaecyparis. Realistic conifers will need scanned needle cards and bark (Poly Haven pine_forest donors, or purchased scans) plus custom branching, most likely built in bpy. Sources: https://github.com/dgreenheck/ez-tree (README, src/lib/enums.js, src/lib/presets)",
+    "GitHub releases can hold the full raw LAS set, not just derived products: 2 GiB per file, 1000 assets per release, no limit on total size. About 220 per-sheet zips of about 38 MB each would fit in one release, making the cloud agents independent of the Mac after a single upload. CC BY 4.0 permits this with attribution. Source: https://github.com/github/docs (content/repositories/releasing-projects-on-github/about-releases.md; data/variables/releases.yml and large_files.yml)",
+    "Most of the Japanese data and commercial-asset claims (the Yamanashi licence, the DCHM release date, the 20 m mesh fields, DEM1A coverage, Megascans and SpeedTree pricing) still rest on search snippets only. Neither the original agent nor this fact-check could fetch the primary pages from the container. Treat them as leads until the owner confirms them on the Mac."
+  ],
+  "overall_reliability": "Medium-high for the parts that decide the engine choice. Every package version, date, wheel and licence claim I could test against a primary registry (PyPI JSON, npm registry, conda-forge repodata, git history of lasR, lidR, EZ-Tree, PyCrown, Terrain3D, PDAL and the impostor repos) matched exactly. The geodesy is correct (0.0917°, about 4 m on axis and 5.7 m at the corners). There are four material weaknesses. First, the report frames acquisition as Mac-only, but the S3 download host can be reached from the cloud, so the S3 403 is not proxy blocking. Second, it leaves conda-forge on macOS arm64 unresolved, and r-lidr is in fact missing there. Third, its storage figures ignore in-engine formats (Terrain3D uses 32-bit maps, about 1.2 GB for 10k²). Fourth, it overstates EZ-Tree as a photoreal tree route: the library does not export GLB itself, and leaves are billboards. The Yamanashi licence, product and sheet claims and the Megascans and SpeedTree pricing could not be independently re-verified here, because the proxy blocks the hosts and the web-search budget was used up. Minor slip: the material packs total 173.8 MB, not 178 MB. Scratch work is in /tmp/claude-0/-home-user-Aokigahara/f3a7dee1-ddd5-5966-b7a1-ff45901003d9/scratchpad/fc_pipeline."
+}

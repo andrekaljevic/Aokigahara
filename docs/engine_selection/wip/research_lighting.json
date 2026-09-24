@@ -1,0 +1,145 @@
+{
+  "topic": "Reproducing UE5 Lumen-style forest lighting without Unreal (owner's primary acceptance test)",
+  "summary": "Frames 6–10 get most of their look from three things, and full multi-bounce GI is not one of them. First, sharp sunflecks come through the canopy. Second, the understorey is sky-occluded and reads cool blue. Third, exposure is low, with a wide range and haze. The repo's metrics for g–j are: sunfleck fraction 0.07–0.16, shadow B/R 1.16–1.73, log-average luminance 0.003–0.008 and 8.5–10 stops. No alternative has Lumen plus Virtual Shadow Maps. All three parts are still reachable on the M2 Air with a split approach. Real-time cascaded sun shadows cover about the nearest 150–200 m. Sky-visibility and sun-transmissivity maps are baked offline from the measured Yamanashi 0.5 m canopy model, using validated forestry tools (CanRad.jl, rvt-py). An optional coarse SH or sky-visibility probe grid can be added: Ghost of Tsushima, Far Cry 3 and Book of the Dead did this. Real-time GI then only has to add short-range warm bounce: SSIL/SSAO in Godot, or SSGINode/GTAO/LightProbeGrid in three.js r186. SDFGI is optional. Its Metal bug is fixed only in 4.8-dev, and its successor HDDAGI is still unmerged. Froxel fog or shadow-map godrays, AgX and auto-exposure finish the look. Ranking: (1) Godot 4.8 Forward+ with baked canopy lighting and MetalFX. (2) three.js r186 WebGPU with baked canopy lighting, LightProbeGrid and SSGI; this is the best for agents to check, because it renders headless in the container today. (3) Babylon 9. (4) Unity URP APV sky occlusion: the closest ready-made option, but heavy and tied to the editor. Expected shortfall against Lumen: blurrier far canopy shadows, low-frequency bounce, and no off-screen bounce. My judgement is roughly 85–90% of the look. No published M2 timings exist for SDFGI or SSGI, so they must be profiled on the Mac.",
+  "findings": [
+    {
+      "claim": "The target look is quantified in the repo. The frames the owner valued (g–j = images 6–10) have sunfleck_fraction 0.07–0.16, shadow_blue_ratio 1.16–1.73, log_avg_luminance 0.003–0.008 and 8.5–10.2 stops. The flatter UE frames score 0.01–0.03 / 1.05–1.14 / 0.02–0.04, and the three.js pass has shadow B/R of only 0.53–0.55. My judgement from viewing the frames: the look comes mainly from direct-sun visibility through the canopy, sky occlusion tinted blue by skylight, and a low exposure key. Warm multi-bounce is secondary.",
+      "source_url": "/home/user/Aokigahara/renders/ue58_baseline/README.md (with lighting_stats.json and tools/lighting_stats.py)",
+      "confidence": "high",
+      "relevance": "This gives an objective acceptance test any engine's renders can be scored against. It also shows that the valued look can be built mostly without full real-time GI."
+    },
+    {
+      "claim": "Godot 4.7 was released on 18 June 2026. The latest stable is 4.7.2 (18 August 2026) and 4.8 is at dev6. Large-scale real-time GI is still SDFGI. HDDAGI, its successor, is an open PR (#119869) claiming faster frame times and an order of magnitude faster updates. A draft follow-up, #122999 (30 August 2026), adds screen probes and SVGF denoising, and is 'confirmed working on MacBook Air M2 with Metal'. It was tested only on Sponza and the TPS demo, with no forest scenes and no M2 timings.",
+      "source_url": "https://github.com/godotengine/godot/pull/122999",
+      "confidence": "high",
+      "relevance": "Nothing Lumen-class will ship in stable Godot in the near term, so a Godot plan must not depend on HDDAGI."
+    },
+    {
+      "claim": "On Metal, SDFGI gave no indirect contribution from lights (issue #120496). The fix, PR #122675, was merged on 21 August 2026 for the 4.8 milestone, so a 4.7.x build on the Mac lacks sun bounce from SDFGI.",
+      "source_url": "https://github.com/godotengine/godot/pull/122675",
+      "confidence": "high",
+      "relevance": "A Godot prototype that relies on SDFGI needs a 4.8 dev build, or has to drop SDFGI in favour of SSIL plus baked terms."
+    },
+    {
+      "claim": "Limits of Godot's SDFGI, from its docs: only static occluders count, cascade shifts show when the camera moves, and there is light leakage (Use Occlusion reduces it). The GI overview says SDFGI 'can support large open worlds without baking' and recommends letting players disable it on integrated graphics. Issue #115766 (4.6-stable, 2 February 2026) reports DirectionalLight3D leaking through multi-mesh walls under SDFGI. The Godot Garden comparison against Cycles found SDFGI over-occluding and producing spotty noise on large surfaces.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/global_illumination/using_sdfgi.rst",
+      "confidence": "high",
+      "relevance": "For foliage-heavy scenes, SDFGI's sky occlusion is approximate and leaky. Baked sky visibility from measured canopy data is likely to be more faithful."
+    },
+    {
+      "claim": "Godot sun shadows use PSSM with 2 or 4 splits, a Max Distance setting and Blend Splits. PCSS soft shadows come from Angular Distance (0.5° is roughly the Sun), and the docs warn they carry 'a high performance cost, especially for directional lights'. There is nothing like Virtual Shadow Maps, so canopy shadows beyond Max Distance fade or disappear. LightmapGI Shadowmask mode can keep distant baked sun shadows, but only for lightmapped static meshes.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/lights_and_shadows.rst",
+      "confidence": "high",
+      "relevance": "Dappled sun near the camera is achievable. Far canopy shadowing (the dark mid-distance in image 7) needs a baked or height-field term."
+    },
+    {
+      "claim": "Other Godot parts of the look, all Forward+ only: froxel volumetric fog with FogVolumes, GI/ambient inject and temporal reprojection; auto-exposure, documented as having 'moderate performance cost'; AgX with agx_white and agx_contrast (4.6, released 26 January 2026); a Hi-Z SSR rewrite and octahedral reflection probes (4.6); bent normal maps and specular occlusion (4.5).",
+      "source_url": "https://godotengine.org/releases/4.6/",
+      "confidence": "high",
+      "relevance": "Covers the haze, shafts, eye adaptation, tonemapping and fern and foliage specular occlusion seen in images 6–10."
+    },
+    {
+      "claim": "MetalFX upscaling was merged into Godot for 4.4 (6 January 2025). On an M2 MacBook Air, MetalFX Temporal cut GPU time by about 19% compared with FSR2. On an M1 Max it went from 39.7 ms to 33.2 ms. Temporal mode disables MSAA and TAA.",
+      "source_url": "https://github.com/godotengine/godot/pull/99603",
+      "confidence": "high",
+      "relevance": "This is the only measured M2 Air rendering number found. It supports rendering at 1280×800 internally and upscaling on the Mac."
+    },
+    {
+      "claim": "three.js r186 (8 September 2026) ships these relevant WebGPU parts. SSGINode (a visibility-bitmask SSIL port, with low/medium/high presets). GTAONode. LightProbeGrid for WebGPU: L2 SH irradiance probes baked on the GPU, with multi-bounce and incremental baking (PR #34486, merged 7 September 2026). VXGINode voxel cone tracing (PR #34402, merged 31 August 2026): 60 fps on a Pixel 8a, but static scenes only, at most 256 voxels on the longest axis, and 'not suitable for large open scenes'. Also a SunLight with cascaded shadows, GodraysNode (shadow-map raymarched), TAAU, FSR1, DenoiseNode and AgX.",
+      "source_url": "https://github.com/mrdoob/three.js/releases/tag/r186",
+      "confidence": "high",
+      "relevance": "This is the most complete web GI toolkit. LightProbeGrid can be baked incrementally per tile around the player for sky occlusion and bounce, and SSGI adds near-field detail."
+    },
+    {
+      "claim": "Third-party DDGI for three.js WebGPU exists but is immature. speedball-gi (MIT) does BVH-traced DDGI with sky contribution, has Sponza, court and ball-pool demos, and publishes no performance numbers. A vibegameengine starter kit (r182) combines a lightmap atlas with DDGI-style probes.",
+      "source_url": "https://github.com/norio/speedball-gi",
+      "confidence": "medium",
+      "relevance": "A possible upgrade path to dynamic probe GI, but too risky to build on for a 5 km forest."
+    },
+    {
+      "claim": "Babylon.js 9.0 (26 March 2026; 9.27.1 on npm) adds clustered lighting and Frame Graph v1. The core GI options are Reflective Shadow Map GI, IBL shadows (voxel-traced environment occlusion on a scene-bounded 2^n grid, plus screen-space shadows), SSAO2, SSR, TAA, CSM, a volumetric-lighting frame-graph task and FSR1. It has no SSGI and no probe-volume GI. PlayCanvas 2.22.4 has a runtime lightmapper, SSAO, TAA and a volumetric-fog frame pass.",
+      "source_url": "https://blogs.windows.com/windowsdeveloper/2026/03/26/announcing-babylon-js-9-0/",
+      "confidence": "medium",
+      "relevance": "Both are weaker than three.js r186 for this look. Babylon's IBL shadows give sky occlusion only within a bounded volume, not over 5 km."
+    },
+    {
+      "claim": "Unity: 6.4 shipped on 19 March 2026 and 6.5 on 15 June 2026. HDRP (SSGI, volumetrics, PCSS) is in maintenance mode, with investment going to URP. URP Adaptive Probe Volumes can bake per-probe sky occlusion (GPU lightmapper required) so that sky light can be relit at runtime. Real-time GI in URP (Surface Cache GI) is only in 6.7 alpha, with LTS later. For comparison, Unity's 2018 Book of the Dead forest used real-time sun plus baked 'Occlusion Probes': a 3D grid of 8-bit sky visibility, made by casting hemisphere rays, used to darken foliage.",
+      "source_url": "https://blog.unity.com/technology/book-of-the-dead-quixel-wind-scene-building-and-content-optimization-tricks",
+      "confidence": "medium",
+      "relevance": "APV sky occlusion is the closest ready-made match to Lumen's sky occlusion. The Book of the Dead occlusion probes are exactly the engine-agnostic trick that suits this project."
+    },
+    {
+      "claim": "AAA precedents for doing without per-frame GI in open worlds: Ghost of Tsushima computed SH irradiance probes from sky-visibility data, with plausible sky and sun bounce, and covered its lighting and tonemapping (SIGGRAPH 2021 Advances). Far Cry 3's Deferred Radiance Transfer Volumes placed thousands of probes automatically from the navmesh and relit them for time of day (GDC 2012). RDR2 used a sky-irradiance probe grid from voxelisation and raymarching (SIGGRAPH 2019). Assassin's Creed III/IV used 'World AO' (GDC 2014).",
+      "source_url": "https://advances.realtimerendering.com/s2021/jpatry_advances2021/index.html",
+      "confidence": "high",
+      "relevance": "Supports a baked sky-visibility and probe layer as the proven way to get dark, sky-occluded forest interiors at open-world scale on modest GPUs. Far Cry 3: https://www.gdcvault.com/play/1015326 ; RDR2: https://advances.realtimerendering.com/s2019/index.htm ; AC4: https://www.gdcvault.com/play/1020397"
+    },
+    {
+      "claim": "CanRad.jl (MIT, Julia) computes sub-canopy sky-view factor and direct-beam transmissivity, from either a canopy height model (C2R) or airborne LiDAR points (L2R), and validates against hemispherical photos within 0.05 SVF. Webster et al. (2023) report lidar-level accuracy for 3D canopy transmissivity from a CHM alone. The related Bode et al. (2014) SSR model predicted sub-canopy insolation over a 100 km² watershed from LiDAR.",
+      "source_url": "https://github.com/c-webster/CanRad.jl",
+      "confidence": "medium",
+      "relevance": "The owner already holds 0.5 m DSM/DEM and class-1 points. These are validated tools for baking real Aokigahara sky visibility and sunfleck maps, which is physically better grounded than Lumen tracing procedural trees."
+    },
+    {
+      "claim": "rvt-py 2.2.3 (Apache-2.0, on PyPI and reachable from the container) provides sky_view_factor, sky_illumination with cast shadows, and shadow_horizon for any DEM or DSM raster.",
+      "source_url": "https://github.com/EarthObservation/RVT_py",
+      "confidence": "high",
+      "relevance": "A quick, headless way to make canopy-top SVF, horizon and sun-shadow textures from the 0.5 m DSM and terrain-only SVF from the DEM, entirely in the Linux container."
+    },
+    {
+      "claim": "The Blender Python module bpy 5.2.2 (15 September 2026) is on PyPI as a 402 MB manylinux wheel for Python 3.13. Cycles CPU baking of irradiance probes and AO is therefore possible in the container even though download.blender.org is blocked. Verified by querying PyPI.",
+      "source_url": "https://pypi.org/project/bpy/",
+      "confidence": "high",
+      "relevance": "Makes an offline ground-truth path-traced bake and reference frames possible for tiles, with no GPU."
+    },
+    {
+      "claim": "The M2 GPU delivers about 2.9 TFLOPS FP32 with 8 cores and 3.6 TFLOPS with 10. The fanless Air settles at about 10 W under sustained load, around 25% below the M2 MacBook Pro. No published millisecond costs were found for SDFGI, SSIL, volumetric fog or three.js SSGI on an M2. The only related numbers are MetalFX (−19% GPU time) and VXGI at 60 fps on a Pixel 8a.",
+      "source_url": "https://wccftech.com/m2-macbook-air-throttling-problem-under-sustained-workload/",
+      "confidence": "medium",
+      "relevance": "Any GI budget must be measured on the owner's Mac under sustained load. Design for 30 fps after throttling."
+    },
+    {
+      "claim": "Headless checking in this container: headless Chromium 141 exposes WebGPU through SwiftShader. three r186 rendered a 960×600 placeholder forest at about 0.65 s per frame, or about 1.8 s with SSGI, after a texture-view swizzle shim. Headless screenshots of a WebGPU canvas come out black, so in-page readback is needed. Godot Forward+ on llvmpipe/lavapipe is unreliable (issue #82435 still open). Others capture Godot 4.7 frames under xvfb on Linux, but whether SDFGI or volumetric fog work on lavapipe is unverified.",
+      "source_url": "https://github.com/godotengine/godot/issues/82435",
+      "confidence": "medium",
+      "relevance": "Agents can render and score three.js lighting frames without the Mac. Godot's lighting features probably need the Mac. The WebGPU timings come from the earlier probe in docs/engine_selection/RESUME.md."
+    },
+    {
+      "claim": "Safari 26.0 (15 September 2025) ships WebGPU on by default on macOS Sonoma, Sequoia and Tahoe.",
+      "source_url": "https://webkit.org/blog/17333/webkit-features-in-safari-26-0/",
+      "confidence": "high",
+      "relevance": "A three.js or Babylon WebGPU build runs on the Mac with nothing to install. The browser cannot use MetalFX, so TAAU or FSR1 would be the upscaler."
+    },
+    {
+      "claim": "Public Godot forest showcases include Road to Vostok (Godot 4, Early Access 7 April 2026, dense forest with volumetric haze), ToniMacaroniy's Terrain3D and Houdini forest (80.lv), the cm|Valley SDFGI plus volumetric-fog video, and the 'Outskirts' demo. Outskirts' author said volumetric fog 'was too costly' and faked it with fog planes. I found no Godot example showing Lumen-level sky-occluded understorey with sunflecks, and no Godot example documenting its lighting settings.",
+      "source_url": "https://www.youtube.com/watch?v=t7Ihf3L3j34",
+      "confidence": "low",
+      "relevance": "There is no public proof that Godot matches frames 6–10, so a Godot prototype scored with lighting_stats.py has to supply that proof. Further links: https://80.lv/articles/godot-developer-showcased-impressive-forest-scene-demo , https://en.wikipedia.org/wiki/Road_to_Vostok"
+    }
+  ],
+  "fidelity_ceiling": "Judged ceiling: about 85–90% of the lighting in images 6–10, and potentially more faithful to the real forest where the canopy data is measured. This is judgement, not measurement.\n\nWhat falls short of Lumen and Virtual Shadow Maps:\n- Canopy shadows beyond about 150–200 m come from baked or height-field maps, so they are blurrier.\n- Bounce light is low-frequency, from probes or SSGI. Warm interreflection between ferns and rocks is weaker, and screen-space bounce disappears at the screen edges.\n- Only the static canopy occludes. Changing time of day needs per-sun-angle maps or a runtime height-field march.\n- SDFGI, if used, leaks and shifts between cascades.\n\nRanked recipes for matching frames 6–10:\n\nGODOT 4.8 (Forward+, Metal), in order of importance:\n1. Sun shadows: PSSM with 4 splits, Max Distance 150–200 m, Blend Splits on and a high filter quality. Alpha-scissor foliage and impostors cast shadows. Use PCSS only if the budget allows.\n2. Baked canopy textures, fed through global shader uniforms into the terrain and foliage shaders: ground sky-view factor, sun transmissivity (the far canopy shadow), and a coarse 3D sky-visibility volume. They multiply sky ambient and the far sun. Make them from the 0.5 m CHM with CanRad.jl or rvt-py.\n3. PhysicalSky ambient scaled by that sky-view factor, which gives the cool shadows.\n4. SSAO, plus SSIL at half resolution, for warm bounce.\n5. Volumetric fog with sun shadows, temporal reprojection and GI/ambient inject.\n6. AgX tonemapping plus auto-exposure.\n7. Backlight on ferns and needles, and bent normals.\n8. MetalFX Temporal upscaling.\nOptionally, SDFGI at half resolution with occlusion, only on 4.8 and only if it profiles under about 5 ms.\n\nTHREE.JS r186 (WebGPU):\n1. SunLight or CSMShadowNode with 3–4 cascades, caching the far cascades.\n2. The same baked canopy textures, applied in TSL.\n3. LightProbeGrid baked per tile, incrementally, with 1–2 bounces.\n4. SSGINode at the medium preset or GTAO, with TRAA/TAAU.\n5. GodraysNode with bilateral blur and depthAwareBlend, plus height fog.\n6. AgX tonemapping and a custom TSL auto-exposure node (not built in).\n7. TAAU upscaling.\nVXGI does not suit 5 km.\n\nBABYLON 9: CSM with PCSS, SSAO2, RSM GI, IBL shadows for local sky occlusion, volumetric-lighting task, the baked canopy textures, and TAA.\n\nUNITY 6.5 URP: APV with sky occlusion plus SSAO, plus the baked canopy textures. HDRP SSGI and volumetrics exist, but HDRP is in maintenance mode.",
+  "m2_air_feasibility": "Feasible at 1280×800 internal resolution with upscaling, provided the heavy parts are baked. Estimated per-frame GPU budget on the M2, all unmeasured and low confidence:\n- Opaque and alpha-tested forest: 6–9 ms.\n- Four-cascade sun shadows with impostor casters: 3–5 ms. Caching the far cascades is essential with about 467k trees.\n- SSAO plus SSIL at half resolution, or three.js SSGI medium plus TRAA: 1.5–3 ms.\n- Volumetric fog or godrays: 1–2 ms.\n- Sampling the baked canopy textures: under 0.5 ms.\n- Tonemapping and exposure: under 0.5 ms.\n- MetalFX: about 1 ms.\n\nThat totals roughly 14–21 ms, about 45–60 fps before throttling. After the roughly 25% sustained throttle of the fanless Air, 30 fps is realistic. SDFGI would add an unknown cost, plausibly 3–6 ms, and is the first thing to drop.\n\nThe only measured anchors are MetalFX Temporal at −19% GPU time versus FSR2 on an M2 Air, and three.js VXGI at 60 fps on a Pixel 8a. HDDAGI's draft has been run on an M2 Air, with no timings published. Nothing here needs hardware ray tracing, which the M2 lacks. Lumen demonstrably ran on this Mac, so the bar is attainable in principle.",
+  "storage_footprint": "Tools:\n- Godot editor: about 171 MB, according to the paused Godot research.\n- npm tarballs: three r186 about 4.6 MB, Babylon core 9.27.1 about 13.5 MB, PlayCanvas 2.22.4 about 17.9 MB.\n- Unity editor plus URP/HDRP: several GB (not verified).\n\nBaked lighting for 25 km², my estimates:\n- Ground sky-view factor, 8-bit: 100 MB at 0.5 m or 25 MB at 1 m. BC4 halves these on the GPU.\n- Sun-transmissivity map: the same size per sun angle, so about 25–100 MB for a fixed sun. Eight angles for time of day would be 200–800 MB at 0.5 m, so use 1 m or a runtime height-field march instead.\n- 3D sky-visibility volume at 4 m × 4 m × 2 m over a 40 m band: about 31 MB.\n- L1/L2 SH probe field at 8 m spacing in 4 layers: about 40–85 MB.\n- Total on the Mac: roughly 0.1–0.5 GB, far below the UE5.8 DDC footprint.\n\nContainer-only baking tools, which never need to reach the Mac: bpy wheel 402 MB, Julia plus CanRad about 1 GB (estimate), rvt-py and GDAL about 200 MB.",
+  "agent_operability": "Good for the baked parts and for web, and only partial for Godot's real-time GI.\n\nWeb and baking, fully headless in the Linux container:\n- Canopy lighting bakes run headless: CanRad.jl, rvt-py, numpy/GDAL, and bpy 5.2.2 Cycles on CPU for reference tiles and probe bakes.\n- three.js r186 WebGPU frames already render headless there (SwiftShader, about 1–2 s per frame at 960×600, with in-page readback). They can be scored automatically with tools/lighting_stats.py against the UE g–j figures: sunfleck fraction, shadow B/R, log-average luminance and stops.\n\nGodot:\n- Scenes, materials and shaders are text files, and the command line (including Movie Maker) can drive it.\n- Forward+ on lavapipe under xvfb is unreliable (#82435), and SDFGI and volumetric fog are unverified there. Checking the Godot lighting recipe and all performance needs the owner to run it on the Mac: one scripted capture and profiler run per iteration.\n\nUnity: poor fit for agents. It is tied to the editor, needs a large install and a licence sign-in, and APV/lightmap bakes need a GPU.",
+  "cost_licence": "Everything recommended is free and permissively licensed:\n- Godot: MIT.\n- three.js: MIT.\n- Babylon.js: Apache-2.0.\n- PlayCanvas engine: MIT.\n- rvt-py: Apache-2.0.\n- CanRad.jl: MIT.\n- speedball-gi: MIT.\n- Blender/bpy: GPL. This does not affect baked data outputs.\n\nUnity Personal is free up to a revenue cap. The cap figure is from memory and was not checked, so treat it as low confidence.\n\nNo paid assets are needed for the lighting itself. The real cost is agent usage: baking plus a web or Godot shader layer is a small, text-based codebase, unlike UE5.8's binary assets and DDC.",
+  "latest_versions": "- Godot 4.7-stable: 18 June 2026.\n- Godot 4.7.2-stable: 18 August 2026 (latest stable).\n- Godot 4.8-dev6: about 15 September 2026. It includes the Metal SDFGI fix (PR #122675, merged 21 August 2026).\n- HDDAGI: PR #119869 open, and draft PR #122999 opened 30 August 2026.\n- three.js r186: 8 September 2026. VXGI merged 31 August 2026 and incremental LightProbeGrid baking merged 7 September 2026.\n- Babylon.js 9.0: 26 March 2026. npm @babylonjs/core 9.27.1 in September 2026.\n- PlayCanvas engine: 2.22.4.\n- Unity 6.4: 19 March 2026.\n- Unity 6.5: 15 June 2026. HDRP is in maintenance mode and Surface Cache GI is in 6.7 alpha.\n- Safari 26.0 (WebGPU on by default): 15 September 2025.\n- bpy: 5.2.2, 15 September 2026.\n- rvt-py: 2.2.3, 4 July 2025.",
+  "risks": [
+    "Godot 4.7.x on Metal drops SDFGI light bounce, and the fix is only in 4.8-dev. SDFGI also leaks and over-occludes with foliage (#115766, Godot Garden). Treat SDFGI as optional, not load-bearing.",
+    "The canopy data and the tree geometry could disagree. The baked maps come from the real LiDAR canopy, but the 467,601 procedural tree placements will not line up with them, giving sunflecks or shade where no visible tree explains them. Tree positions and heights should be taken from CHM local maxima, or checked against it.",
+    "Sun-shadow draw cost with hundreds of thousands of trees across 4 cascades could be too high for the M2. Impostor or low-LOD shadow casters and cached far cascades are mandatory, and PCSS may be unaffordable.",
+    "A fixed sun keeps the baked canopy maps cheap. Time of day needs many maps (storage) or a runtime height-field ray-march (GPU time).",
+    "Thermal throttling of about 25% on the fanless Air means first-minute fps overstates what the owner will see.",
+    "WebGPU path: no MetalFX in the browser, fast API churn in three.js (monthly releases, and SSGINode render targets changed in r185), tab memory limits, and SwiftShader output may differ from Apple GPU output.",
+    "No published M2 millisecond costs for SDFGI, SSIL, SSGI or LightProbeGrid. Budgets are estimates until profiled on the owner's Mac.",
+    "Unity HDRP is in maintenance mode and Surface Cache GI is not yet LTS. APV sky-occlusion bakes over 5 km of dense foliage are GPU- and time-heavy."
+  ],
+  "unknowns": [
+    "Real GPU millisecond costs on the M2 Air for Godot SDFGI, SSIL, volumetric fog and PCSS, and for three.js SSGINode, LightProbeGrid sampling and CSM, at 1280×800.",
+    "Whether the owner's M2 GPU has 8 or 10 cores (2.9 or 3.6 TFLOPS).",
+    "Whether Godot Forward+ with SDFGI and volumetric fog runs correctly under Mesa lavapipe with xvfb in this container.",
+    "When HDDAGI, or the draft screen-probe GI, will merge into a stable Godot release.",
+    "How long CanRad.jl C2R/L2R takes on 25 km² at 0.5–1 m within the container's 4 CPUs, and whether it fits in RAM.",
+    "Whether a CHM-derived sky-view factor alone reproduces the frames' cool shadow B/R of 1.16–1.73 without real-time sky occlusion. This needs a headless test render scored with lighting_stats.py.",
+    "Whether browser WebGPU on the M2 sustains 7–8 M triangles plus cascaded shadows at 30 fps."
+  ]
+}

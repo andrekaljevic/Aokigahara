@@ -1,0 +1,146 @@
+{
+  "topic": "Godot Engine 4.x as the engine for a walkable, photoreal 5 km x 5 km Aokigahara on a fanless M2 MacBook Air (16 GB)",
+  "summary": "Godot is a strong candidate if the goal is less waste. It is MIT-licensed and a 171 MB download. Scenes are text files, it can be driven entirely from the command line, and it runs on Metal on the M2 by default, with MetalFX upscaling. The latest stable release is 4.7.2 (18 Aug 2026). The next version, 4.8, is at dev6 (15 Sep 2026) and about to enter feature freeze.\n\nOn lighting, the owner's top priority, Godot has no match for Lumen or Virtual Shadow Maps. Its only real-time GI for large worlds is still SDFGI. The planned replacement, HDDAGI, is an open pull request (#119869) that has not been merged. A serious bug made SDFGI on Metal drop all bounced light from the sun and other lights in 4.7. It was fixed only in 4.8 (PR #122675, merged 21 Aug 2026), so a 4.7 prototype must use the Vulkan/MoltenVK fallback or 4.8 builds.\n\nThe UE5.8 look (dappled sun through the canopy, dark sky-occluded understorey, light shafts, haze, auto-exposure) can plausibly be rebuilt from parts Godot already has:\n- **Near canopy shadows:** directional shadows split into 4 distance bands (PSSM) with soft edges (PCSS).\n- **Light shafts and haze:** volumetric fog that receives shadows, plus fog aerial perspective.\n- **Bounce and small-scale occlusion:** SDFGI with sky light turned on, or SSIL/SSAO with multi-bounce AO and bent normals.\n- **Tone and exposure:** AgX tonemapping and auto-exposure.\n- **Far shadows and dark interior:** custom shader terms from the LiDAR canopy-height model, fed through the AO, IRRADIANCE or light() shader hooks. These stand in for far shadows and sky occlusion that Godot cannot compute itself.\n\nThat is custom work to build and check on the Mac, not a setting to switch on. Terrain3D fits the terrain side: clipmap LODs, 32 height-blended textures, 16/32-bit EXR/R16 heightmap import, a tree instancer, and worlds up to 65 km. However, its own docs describe Metal support as \"not clear\". A 5 km plot does not need a double-precision build. The main risks are Metal stability issues on the M2 Air and the unknown cost of SDFGI on a fanless integrated GPU.",
+  "latest_versions": "Godot 4.7.2-stable, 18 Aug 2026 (the current stable release). Before it: 4.7.1, 14 Jul 2026, and 4.7 \"Lights, Camera, Action!\", 18 Jun 2026. 4.6.3 came out on 20 May 2026. Godot 4.6 was released on 26 Jan 2026 and 4.5 in Sep 2025. Dev cycle: 4.8-dev6 (15 Sep 2026), after dev5 (10 Sep), dev4 (26 Aug), dev3 (7 Aug), dev2 (21 Jul) and dev1 (6 Jul). The version.py on master reads 4.8.0 dev, and the team said it hoped to enter feature freeze later in September 2026. Betas follow; a stable 4.8 around Q4 2026 is my estimate, not an announcement. Terrain3D v1.0.2-stable, 19 May 2026 (for Godot 4.4–4.6); its main branch is still active (commit on 23 Sep 2026). ProtonScatter received a 4.7 compatibility fix on 26 Jul 2026. Spatial Gardener's last release is v1.4.1 (Mar 2025).",
+  "findings": [
+    {
+      "claim": "Latest stable is Godot 4.7.2 (18 Aug 2026); 4.7 shipped on 18 Jun 2026. 4.8-dev6 shipped on 15 Sep 2026 as a hotfix for macOS startup crashes in dev5, and the team said it hoped to enter feature freeze later in the month. I read these in the godot-website GitHub repo because godotengine.org is blocked by the egress proxy.",
+      "source_url": "https://godotengine.org/article/dev-snapshot-godot-4-8-dev-6/",
+      "confidence": "high",
+      "relevance": "Fixes the version baseline. Several fixes that matter for lighting (Metal SDFGI, contact shadows, multi-bounce AO) are 4.8-only."
+    },
+    {
+      "claim": "The native Metal driver has been the default on macOS since 4.4 (setting rendering/rendering_device/driver.macos defaults to \"metal\"). It runs only on Apple Silicon; Vulkan through MoltenVK is still selectable. The announcement said Metal is 'at least as fast as the Vulkan backend and in many cases, much faster'. 4.7 added a refactor that brought acyclic render graph support to Metal.",
+      "source_url": "https://godotengine.org/article/dev-snapshot-godot-4-4-dev-1/",
+      "confidence": "high",
+      "relevance": "First-class API on the M2, no translation layer. MoltenVK stays available as a workaround when Metal-specific bugs appear."
+    },
+    {
+      "claim": "MetalFX upscaling has been built in since 4.4 as Viewport SCALING_3D_MODE_METALFX_SPATIAL and METALFX_TEMPORAL. The temporal mode at scale 1.0 works as TAA. FSR 1.0 and FSR 2.2 are also available.",
+      "source_url": "https://github.com/godotengine/godot/blob/master/doc/classes/Viewport.xml",
+      "confidence": "high",
+      "relevance": "Rendering at about 60–67% resolution and upscaling temporally is the main way to afford SDFGI and volumetric fog on a fanless M2."
+    },
+    {
+      "claim": "No new GI system landed in 4.5–4.8. SDFGI is still the only real-time GI built for large worlds, and it works only in Forward+. The replacement, 'Upgrade SDFGI to HDDAGI', is open PR #119869 (opened 29 May 2026, last active 26 Aug 2026, 4.x milestone). It lists open issues, including Intel device-lost errors and brightness artefacts. A separate Lumen-style screen-probe GI is draft PR #122999 (opened 30 Aug 2026), which its author says is 'totally not ready for review or merge'.",
+      "source_url": "https://github.com/godotengine/godot/pull/119869",
+      "confidence": "high",
+      "relevance": "Lighting parity cannot count on a better GI arriving soon. Plan around SDFGI plus custom baked terms."
+    },
+    {
+      "claim": "Metal-specific SDFGI bug: in 4.7-stable, lights did not feed SDFGI's bounced (indirect) light on Metal; switching to Vulkan fixed it. The fix is PR #122675 (a missing atomic bit on a texture), merged 21 Aug 2026 for milestone 4.8. I saw no 4.7 cherry-pick label, so the backport status is unconfirmed.",
+      "source_url": "https://github.com/godotengine/godot/issues/120496",
+      "confidence": "high",
+      "relevance": "This affects the warm-bounce part of the look directly. A 4.7.x prototype on the Mac must use the Vulkan/MoltenVK driver or a 4.8 build, or bounce light will be missing."
+    },
+    {
+      "claim": "SDFGI is semi-real-time and needs no baking. With 'Read Sky Light' it shows sky light and sky occlusion outdoors; 'Use Occlusion' reduces leaks, and a half-resolution GI buffer is available. Y Scale at 50–75% suits flat scenes. Cascade shifts can be hidden with fog. Dynamic objects receive GI but do not add to it. The docs advise offering an option to disable it on integrated or low-end GPUs.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/global_illumination/using_sdfgi.rst",
+      "confidence": "high",
+      "relevance": "SDFGI is the closest analogue to Lumen's sky occlusion and bounce, but the docs themselves flag its cost on integrated GPUs like the M2's."
+    },
+    {
+      "claim": "New shading features by version: 4.5 added ambient specular occlusion, bent normal maps, SMAA and a shader baker that precompiles shaders at export. 4.6 added an overhauled SSR, octahedral reflection/radiance probes, AgX white/contrast controls, glow before tonemapping and better automatic LODs. 4.7 added AreaLight3D and HDR output. 4.8-dev4 adds multi-bounce AO (the Activision GTAO method) and directional lightmap specular.",
+      "source_url": "https://godotengine.org/article/dev-snapshot-godot-4-5-beta-1/",
+      "confidence": "high",
+      "relevance": "These cover the small-scale parts of the look: AO in crevices, occluded speculars on wet moss, filmic tonemapping of a bright sky against a dark interior."
+    },
+    {
+      "claim": "4.8-dev6 adds screen-space contact shadows for directional lights (Bend Studio method, PR #118045, merged 10 Sep 2026). The PR measured about 0.18 ms at 1152x648 on an RTX 5090. 4.8-dev5 adds mip-level texture streaming ('Texture2D Streamed' import type) and an import option that preserves alpha-test coverage in mipmaps.",
+      "source_url": "https://godotengine.org/article/dev-snapshot-godot-4-8-dev-5/",
+      "confidence": "high",
+      "relevance": "Contact shadows give grounded foliage and fern shadows. Coverage preservation fixes distant alpha-tested conifer cards thinning out, one of the UE5.8 flaws. Texture streaming reduces memory pressure on a 16 GB shared-memory machine."
+    },
+    {
+      "claim": "Directional shadows use PSSM with 2 or 4 splits up to a shadow Max Distance, with a Blend Splits option. Soft contact-hardening shadows (PCSS) come from the light's Angular Distance. There are no virtual shadow maps, so shadow detail falls off with distance.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/lights_and_shadows.rst",
+      "confidence": "high",
+      "relevance": "Sharp-to-soft dappling works within about 100–250 m. Canopy shadows farther out must be faked, for example with a canopy-height-model heightfield shadow term."
+    },
+    {
+      "claim": "Spatial shaders expose AO and AO_LIGHT_AFFECT, IRRADIANCE/RADIANCE outputs that blend over the environment lighting (documented from 4.5 on), and a light() function with ATTENUATION (distance and shadow) per light.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/shaders/shader_reference/spatial_shader.rst",
+      "confidence": "high",
+      "relevance": "This is the evidenced hook for a cheap, robust fallback. A sky-visibility map and a sun-transmittance map baked from the 0.5 m LiDAR canopy height model (DSM minus DEM) can darken the understorey and dapple far terrain without relying on SDFGI's reach. The technique itself is my design and still needs a prototype."
+    },
+    {
+      "claim": "Volumetric fog is froxel-based. Directional lights with shadows show shadows in the fog, which produces light shafts. It supports GI Inject, Ambient Inject and temporal reprojection. Environment fog adds Sun Scatter and Aerial Perspective. PhysicalSkyMaterial offers Rayleigh/Mie/turbidity controls. CameraAttributes provides auto-exposure.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/3d/volumetric_fog.rst",
+      "confidence": "high",
+      "relevance": "Covers the light shafts, distant haze and eye adaptation seen in the owner's UE5.8 frames 6–10."
+    },
+    {
+      "claim": "Large worlds: the docs' precision table lists the 2048–4096 m band as the 'maximum recommended single-precision range for a first-person 3D game'. Double precision needs a custom scons precision=double engine build, and GDExtensions such as Terrain3D must be rebuilt to match.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/physics/large_world_coordinates.rst",
+      "confidence": "high",
+      "relevance": "With the origin at the plot centre, a 5 x 5 km world spans ±2.5 km, so stock builds are fine and no custom-build overhead is needed."
+    },
+    {
+      "claim": "Terrain3D is a geomorphing clipmap terrain divided into regions of 64–2048 m, up to 32x32 regions (65,536 m per side), with adjustable vertex_spacing. It supports 32 textures with height-based blending (an 18-bit control map), imports 16/32-bit EXR, R16 or PNG heightmaps, and offers tessellated displacement up to level 6. Its instancer builds MultiMeshes per 32x32 m cell with visibility ranges and up to 10 LODs, but instances have no collision. Its platform page says Metal support is 'not clear'. The macOS binaries need their quarantine attribute removed.",
+      "source_url": "https://terrain3d.readthedocs.io/en/stable/docs/introduction.html",
+      "confidence": "high",
+      "relevance": "It fits the 8 m / 0.5 m DEMs, the photo-derived PBR packs and the procedural tree placements. Height blending and displacement address the UE5.8 'hard-edged layer blotches' and 'stretched steep textures'. Metal support is unproven."
+    },
+    {
+      "claim": "Vegetation at scale: a MultiMesh does no per-instance frustum or distance culling. Godot provides visibility ranges with fade (its HLOD system), automatic mesh LOD and baked occlusion culling. Showcase: a realistic Godot forest by ToniMacaroniy reads Houdini-generated binary points, creates instances through RenderingServer with all LODs and billboards, and switches them with visibility ranges on Terrain3D.",
+      "source_url": "https://80.lv/articles/godot-developer-showcased-impressive-forest-scene-demo",
+      "confidence": "medium",
+      "relevance": "This is the same pipeline shape the project already has (data/forest-wide.f32 with 467,601 placements), so agents can drive it from script. Distant canopy needs impostors built by the project, because the octahedral impostor plugins are stale (last commit 2021)."
+    },
+    {
+      "claim": "Road to Vostok, a realistic first-person survival game set in Finnish border forests, is built on Godot 4. It entered Steam Early Access on 7 Apr 2026 with more than 140,000 sales in its first week.",
+      "source_url": "https://roadtovostok.com/",
+      "confidence": "medium",
+      "relevance": "A shipped, realistic forest at scale on Godot, although it is stylised-realistic rather than Lumen-grade photoreal. I could not confirm its GI technique."
+    },
+    {
+      "claim": "macOS stability: a Metal 'timeout waiting for fence' freeze was confirmed on an M2 MacBook Air with 4.6.1, in both the editor and exports (#119436, May 2026). Also open: slow first load while Metal compiles shaders (#106757) and a 4.4 Metal performance regression on an M1 Air, with stutters and volumetric fog in the repro (#103723). A 4.8-dev5 startup crash on macOS was fixed in dev6.",
+      "source_url": "https://github.com/godotengine/godot/issues/119436",
+      "confidence": "high",
+      "relevance": "Editor stability on this exact machine is good but not flawless. Pin a stable build and keep MoltenVK as a fallback."
+    },
+    {
+      "claim": "Download sizes for 4.7.2 (measured by HTTP HEAD): macOS universal editor zip 170.6 MB, Linux x86_64 editor zip 77.9 MB, export templates (all platforms, optional) 1.28 GB. GitHub release assets are reachable from the cloud container.",
+      "source_url": "https://github.com/godotengine/godot/releases/tag/4.7.2-stable",
+      "confidence": "high",
+      "relevance": "Roughly 1/100th of a UE5 install. Cloud agents can fetch the Linux editor to import, validate and script the project."
+    },
+    {
+      "claim": "The command line supports --import, --export-release/--export-pack, --script, and --write-movie with --fixed-fps and --quit-after for deterministic frame capture. --headless means a headless display driver: no pixels are rendered. Forward+ in no-GPU Linux containers works through Xvfb plus Mesa lavapipe in some setups, but the llvmpipe crash issue #82435 is still open.",
+      "source_url": "https://github.com/godotengine/godot-docs/blob/master/tutorials/editor/command_line_tutorial.rst",
+      "confidence": "medium",
+      "relevance": "Agents can build and check everything in the cloud and grab test frames there, but lighting sign-off has to happen on the Mac under Metal."
+    },
+    {
+      "claim": "MCP servers in 2026: Coding-Solo/godot-mcp (open source; launches the editor, runs projects and captures debug output; RCE fix 16 Apr 2026), hi-godot/godot-ai (46 tools, targets Godot 4.7+, game/editor capture), and commercial ones (GDAI MCP, Godot MCP Pro). Scenes and resources are text .tscn/.tres files, and scripting is in GDScript or C#. The engine is MIT-licensed with no royalties; Terrain3D is also MIT.",
+      "source_url": "https://github.com/hi-godot/godot-ai",
+      "confidence": "medium",
+      "relevance": "Diffable text assets and a closed run-and-screenshot loop cut agent usage compared with UE5's binary .uasset files and heavy editor."
+    }
+  ],
+  "fidelity_ceiling": "This is my judgement, not a benchmark. Godot 4.7/4.8 can plausibly match the mood of the UE5.8 frames 6–10 within about 0–150 m of the camera:\n- dappled low sun (PSSM + PCSS);\n- dark sky-occluded understorey with bright sky gaps (SDFGI Read Sky Light, plus a sky-visibility term from the LiDAR canopy-height model through the AO/IRRADIANCE outputs);\n- warm bounce on rocks (SDFGI once the 4.8 Metal fix is in, or SSIL);\n- ferns catching the sun (backlight/transmittance, contact shadows);\n- shafts and haze (volumetric fog, aerial perspective);\n- strong dynamic range (AgX, auto-exposure).\n\nIt will fall short of UE5 in four places:\n- **Far canopy shadows:** there are no virtual shadow maps, so these must be faked from the canopy height model.\n- **GI robustness:** SDFGI brings cascade shifts, leaks and no emissive contribution from dynamic objects, and there is no hardware ray tracing on Metal.\n- **Geometry density:** there is no Nanite, so hand-made LODs and impostors are needed.\n- **Temporal stability of foliage:** MetalFX temporal helps but does not equal TSR.\n\nBeating UE5.8 on lighting is unlikely without custom GI work. Beating it on terrain texturing and material blending, and on the understorey the owner found sparse, is realistic, because iteration by agents is cheap.",
+  "m2_air_feasibility": "Plausible at 1280x800 to 1470x956 output with MetalFX temporal upscaling from about 0.6–0.67 scale. That is a 30 fps target, not 60. I found no public benchmarks of SDFGI plus volumetric fog on an M2, so treat it as unproven until a one-evening prototype is measured.\n\nSuggested budget:\n- SDFGI at half resolution, 4 cascades, Y scale 50%;\n- 4-split directional shadows, max distance about 150–250 m, 4096 atlas;\n- volumetric fog at a modest volume size and depth;\n- SSAO on, SSIL optional;\n- trees through visibility ranges and impostors beyond about 300 m.\n\nIf SDFGI is too slow, the fallback needs no real-time GI at all: a sky-visibility map and a sun-transmittance map baked from the canopy height model, plus SSAO/SSIL, octahedral reflection probes and fog. This fallback is cheap and scales well.\n\nWatch for these:\n- the Metal fence-timeout freeze (#119436), seen on an M2 Air;\n- the Metal SDFGI bounce bug in 4.7 (use Vulkan/MoltenVK or 4.8);\n- slow Metal shader compilation on first run;\n- fanless thermal throttling during long sessions (general knowledge, not measured here).\n\n16 GB of shared memory is enough. Terrain3D costs about 12 bytes per vertex (height, control and colour maps): roughly 0.3 GB at 1 m spacing for 5 x 5 km, or about 1.2 GB at 0.5 m. Texture streaming in 4.8 eases texture memory.",
+  "storage_footprint": "Engine: the 4.7.2 macOS universal editor zip is 170.6 MB. Unpacked it should be a few hundred MB (estimate). Export templates are optional: 1.28 GB for all platforms, and not needed to run the project from the editor. Linux editor for cloud agents: 77.9 MB.\n\nProject, estimated:\n- Terrain3D data: about 0.3 GB at 1 m, about 1.2 GB at 0.5 m for 5 x 5 km;\n- PBR material packs: 0.5–2 GB source, plus a similar amount in the .godot/imported cache;\n- tree and fern meshes and impostors: 0.5–2 GB;\n- Metal shader cache: hundreds of MB.\n\nRealistic total: about 3–8 GB including cache, against the tens to 100+ GB of UE5.8 plus its DDC. The .godot/ cache can be deleted and rebuilt with --import.",
+  "agent_operability": "Very good. Scenes, materials and project settings are plain text (.tscn, .tres, project.godot) that agents can diff and edit. Scripting is GDScript, which is compact and needs no compile step, or C#. Terrain, tree placement and impostors can all be created by scripts that read the existing .f32 grids and placement files and write Terrain3D regions or RenderingServer instances.\n\nCommand-line loop:\n- `godot --headless --import` and `--script` for batch jobs;\n- `--export-release` to build;\n- `--write-movie out.png --fixed-fps 30 --quit-after N` for deterministic frame capture. This needs a real display or Xvfb, because --headless renders nothing.\n\nIn the cloud containers (no GPU), agents can download the 78 MB Linux editor from GitHub releases, import, run scripts and validate scenes. Forward+ screenshots through Xvfb and lavapipe are possible but fragile (#82435) and do not represent Metal. Lighting sign-off must be done on the Mac, ideally with one scripted capture command the owner runs.\n\nMCP options: hi-godot/godot-ai (Godot 4.7+), Coding-Solo/godot-mcp, and the commercial GDAI/Godot MCP Pro.",
+  "cost_licence": "Free. Godot is MIT-licensed with no royalties, no account and no store lock-in. Terrain3D and ProtonScatter are also free open source (Terrain3D confirmed MIT). Some MCP servers are paid add-ons (GDAI MCP, Godot MCP Pro), but free ones exist. There is no cloud workstation cost; everything runs on the owner's Mac, and the cloud side is CPU-only.",
+  "risks": [
+    "No Lumen or virtual shadow maps. SDFGI is the only real-time large-scale GI and has no replacement merged (HDDAGI PR #119869 is open, #122999 is a draft), so lighting parity depends on SDFGI tuning plus custom shader terms from the LiDAR canopy height model.",
+    "Metal SDFGI bug: lights add no bounced light in 4.7.x on Metal. It is fixed only for 4.8 (PR #122675), so the owner must choose between 4.7 on Vulkan/MoltenVK and 4.8 pre-release builds.",
+    "Metal driver maturity on M-series Macs: the confirmed fence-timeout freeze on an M2 Air (#119436), slow first-run shader compilation (#106757) and an open performance regression (#103723).",
+    "Terrain3D's own docs say Metal support is 'not clear', and its v1.0.2 release officially covers Godot 4.4–4.6 only. It may need a build from main, or its own fixes, for 4.7/4.8 on Metal.",
+    "SDFGI cost on a fanless integrated GPU is unmeasured. The docs recommend making it optional on integrated GPUs, and sustained throttling may push the frame rate below 30 fps.",
+    "Foliage and GI: alpha-tested leaf cards and the SDF representation of thin conifer needles may cause leaks, over-occlusion or cascade-shift pops in the understorey.",
+    "Distant canopy and impostors: there is no maintained octahedral impostor plugin (the last one is from 2021), and Spatial Gardener has had no release since Mar 2025, so agents must build impostor baking and a chunk streaming system.",
+    "No built-in world partition or streaming: loading chunks in the background with ResourceLoader.load_threaded_request is custom code.",
+    "Cloud agents cannot render Metal-representative frames (lavapipe is fragile, #82435), so every lighting iteration needs the owner's Mac in the loop."
+  ],
+  "unknowns": [
+    "Real frame times for SDFGI (half resolution) plus volumetric fog plus 4-split shadows plus MetalFX temporal on an 8-core versus 10-core M2 GPU at 1280x800, sustained over 10+ minutes of fanless operation.",
+    "Whether PR #122675 (the Metal SDFGI fix) will be backported to a 4.7.3 release, and when 4.8-stable will ship (probably Q4 2026; not announced).",
+    "Whether Terrain3D main works cleanly on Godot 4.7/4.8 with the Metal driver, including the instancer, displacement and the shader baker.",
+    "How SDFGI treats alpha-scissored conifer cards and MultiMesh instances in its SDF (full over-occlusion or partial), and whether that looks right for a dense Jukai canopy.",
+    "Whether a sun-transmittance and sky-visibility term baked from the canopy height model, fed through the AO/IRRADIANCE outputs, visually reproduces Lumen's sky occlusion. This needs a side-by-side prototype against UE5.8 frames 6–10.",
+    "Which GI technique the realistic Godot forest showcases (ToniMacaroniy, Road to Vostok) actually use, and their performance on Apple Silicon; I found no primary source.",
+    "Whether alpha-to-coverage (which needs MSAA) combines well with MetalFX temporal on foliage, or whether alpha-hash plus temporal upscaling is better."
+  ]
+}

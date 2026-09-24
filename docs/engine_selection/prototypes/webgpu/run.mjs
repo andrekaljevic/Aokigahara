@@ -1,0 +1,10 @@
+import {chromium} from '/opt/node22/lib/node_modules/playwright/index.mjs';
+import fs from 'node:fs';
+const [,,query,outName]=process.argv;
+const b=await chromium.launch({headless:true,executablePath:'/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell',args:['--enable-unsafe-webgpu','--no-sandbox','--disable-dev-shm-usage','--enable-features=Vulkan','--use-vulkan=swiftshader','--use-angle=swiftshader','--ignore-gpu-blocklist','--disable-vulkan-surface']});
+const p=await b.newPage({viewport:{width:1280,height:800}});
+p.on('console',m=>{const t=m.type();if(t==='error'||t==='warning')console.log('[console '+t+']',m.text().slice(0,300))});p.on('pageerror',e=>console.log('[pageerror]',e.message));
+const t=Date.now();await p.goto('http://127.0.0.1:8799/forest.html?'+query);await p.waitForFunction(()=>window.__done,null,{timeout:900000,polling:1000});
+const log=await p.evaluate(()=>window.__log);const wall=(Date.now()-t)/1000;
+const png=await p.evaluate(()=>window.__png||'');if(png)fs.writeFileSync('out/'+outName+'.png',Buffer.from(png.split(',')[1],'base64'));
+const rec={query,out:outName,wallSeconds:wall,log};fs.writeFileSync('out/'+outName+'.json',JSON.stringify(rec,null,1));console.log(JSON.stringify(rec,null,1));await b.close();

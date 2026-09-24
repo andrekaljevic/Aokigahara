@@ -1,0 +1,78 @@
+{
+  "track": "Fact-check: perceptual gap analysis (real Aokigahara photos vs UE5.8 vs Godot/three.js) for the owner's question \"can this achieve photorealistic fidelity?\"",
+  "checks": [
+    {
+      "claim": "The lighting gate measures how close a frame is to UE, not to a photograph. None of the 12 panoramas meets more than 2 of the 4 primary targets (U07, U09 and U12 meet 0), while the Godot SDFGI render meets 3.",
+      "verdict": "confirmed",
+      "source": "Re-ran tools/lighting_stats.py on refphotos/U*_1280.jpg (scratchpad/fc_real.json) and on the Godot renders (fc_godot.json); targets from docs/ENGINE_SELECTION.md §4",
+      "correction": "Every count reproduces. Per photo: U01, U02, U03 and U05 meet 2; U04, U08, U10, U11 and U13 meet 1; U07, U09 and U12 meet 0. Two nuances. First, the gate was built to match frames g–j by design (renders/ue58_baseline/README.md), so the result is expected, not a hidden flaw. Second, 'says nothing about photorealism' goes too far: the photos do sit inside the shade B/R range (12 of 12) and the sky-peak floor (11 of 12)."
+    },
+    {
+      "claim": "The exposure-key and black-fraction targets are darker than the real forest (key 0.0060–0.0117 in the photos), so the key target should move to 0.006–0.012.",
+      "verdict": "partially",
+      "source": "XMP crs:Exposure2012 / Shadows2012 / Highlights2012 read from scratchpad/refphotos/*.webp; key divided by 2^Exposure",
+      "correction": "The report lists the Lightroom preset but leaves out its biggest tonal move. Exposure was raised by +0.35 to +0.70 EV on 9 of the 12 photos (U01 +0.70, U03 and U04 +0.65, U07 and U10 +0.55). The only negative settings are U02 −0.05, U12 −0.10 and U13 −0.20. Highlights run from −30 to +55 and Shadows from +36 to +82. Undoing only the Exposure slider, crudely as a linear gain, puts 10 of 12 keys inside the existing 0.003–0.008 target (range 0.0036–0.0110). So 'brighter' describes a graded look, not the forest. The Shadows lift also works against the report's point that 'Blacks −17 crushed them'. Retargeting the key to 0.006–0.012 would build one photographer's +0.5 EV push into the gate."
+    },
+    {
+      "claim": "A white-balance-free highlight/shade split shows sun and shade are the same colour in the photos (0.90–1.17) but split warm/cool in UE (0.33–0.57). Godot (0.76–0.96, sunlit R/B share 0.37–0.38 / 0.26–0.27) 'already matches the photos'.",
+      "verdict": "partially",
+      "source": "scratchpad/fc_split.py and a banded re-run of the percept.py highlight chromaticity: bottom 30% of the frame instead of rows below 40%",
+      "correction": "The photos and UE results hold up. On the bottom 30% of the frame the photos give a highlight B share of 0.25–0.30 and a split of 0.91–1.46; UE g–j gives a B share of 0.12–0.16. The Godot result does not hold up. Restricted to the true ground (bottom 30%), Godot's sunlit patches are R/G/B 0.40–0.43 / 0.41–0.42 / 0.15–0.17, a yellow-green as low in blue as UE's orange, and its split falls to 0.52–0.62. The 40% band is dominated by grey haze and sky-lit trunks at 40–70% of frame height. This also undermines ENGINE_SELECTION §4's statement that no Godot render meets the warm-highlight target: its sunlit ground measures 0.35–0.38, which is inside 0.29–0.42. The ratio is also only roughly independent of white balance, because Lightroom's tone curve (Highlights up to +55, Whites −44) is applied after white balance and compresses chroma in the highlights. The advice not to warm the sun is right, but Godot's sunlit moss needs neutralising, not leaving alone."
+    },
+    {
+      "claim": "Content dominates the gap. The photos have 1.5–2.5 times the edge density of UE g–j or Godot (0.41–0.50 against 0.18–0.32), Godot carries about half the photos' fine detail (Laplacian 12.7–17.2 against 22.6–39.0), and Godot's spectral slope of −1.28 is 'too smooth'. The report proposes gate checks of edge density ≥0.40 and slope −1.0 to −1.2.",
+      "verdict": "partially",
+      "source": "Re-ran scratchpad/percept.py (fc_percept.txt): figures reproduce. Sensitivity test in scratchpad/fc_sens/: 0.8 px Gaussian blur, a 0.67× down/up resample and an unsharp mask (r=1, 100%)",
+      "correction": "The content gap is real by eye: litter, root tangles, clumped moss, lichen and thin crooked stems in U12 and U13, against a smooth tiled moss carpet and evenly spaced clone conifers in godot_sdfgi. But the metrics mostly measure sharpening and resampling. The photos carry Lightroom Sharpening 55 (radius 1.0) and Clarity +5, and were downsampled from a roughly 16 MP sensor. A 0.67× resample, the plan's MetalFX ratio, drops the real photos to edge 0.30–0.36, fine detail 8.3–10.9 (below Godot) and slope about −1.8. One unsharp mask lifts Godot sdfgi to fine detail 27.0, slope −1.03 and edge 0.31 (0.36 for sun6). That puts two of the three metrics inside the photo range with no content added. As gate targets, genuine photos rendered at 0.67 scale would fail them, and a sharpen filter would game them."
+    },
+    {
+      "claim": "Photo provenance: U01–U13 are one Fujifilm X / XF23mmF1.4 R shoot (about 35 mm equivalent) on 29 February 2016, 12:46–13:17, with one Lightroom 6.5 preset. U15 is a separate heavily dehazed edit (Dehaze +81).",
+      "verdict": "confirmed",
+      "source": "XMP in scratchpad/refphotos/*.webp: aux:Lens, xmp:CreateDate 12:46:17–13:17:33, CreatorTool 'Lightroom 6.5 (Macintosh)', Temperature 3900–4450, Tint +15 to +30, Blacks −17, Whites −44; U15 Dehaze +81",
+      "correction": "The camera body is not recorded; Fujifilm X is inferred from the X-mount lens, which is sound. The preset summary leaves out Exposure (+0.35 to +0.70 on most frames), Highlights (−30 to +55), Contrast +11, Clarity +5 and Sharpness 55. The Exposure and Sharpness settings change two of the report's conclusions (see above). At the shoot time the sun was about 42–45° high (computed), well above the gate's 25–35°. That helps explain the photos' neutral sun colour."
+    },
+    {
+      "claim": "The M2 (Apple8) has no hardware ray tracing and no MetalFX denoiser, and the fanless Air throttles.",
+      "verdict": "confirmed",
+      "source": "Apple Metal Feature Set Tables (developer.apple.com/metal/Metal-Feature-Set-Tables.pdf): denoised upscaling requires Apple9; docs/engine_selection/wip/verify_hw_agentflow.json (M3 tech talk: hardware ray tracing new in family 9); TweakTown/Max Tech: the M2 Air loses about 25% under sustained load against the M2 Pro",
+      "correction": "No correction. How much throttling costs this specific workload is still unmeasured."
+    },
+    {
+      "claim": "'As far as I know', Godot lacks built-in texture streaming, which caps material variety; whether 4.7/4.8 has texture streaming 'was not checked'.",
+      "verdict": "refuted",
+      "source": "godotengine.org/article/dev-snapshot-godot-4-8-dev-5/ (mip-level texture streaming, 'Texture2D Streamed' import type); also docs/engine_selection/wip/research_godot.json and verify_godot.json in the repository; github.com/godotengine/godot/issues/123626",
+      "correction": "Godot 4.8-dev5 added mip-level texture streaming, and the plan pins 4.8-dev6, so the project's own evidence already recorded this. The real caveat is issue #123626: enabling SDFGI together with texture streaming spams binding errors in 4.8-dev6. The report is right that Godot has no virtualised (Nanite-class) geometry."
+    },
+    {
+      "claim": "The renders use a '70° game FOV' against the photos' 35 mm-equivalent lens.",
+      "verdict": "partially",
+      "source": "docs/engine_selection/prototypes/godot/proj/main.gd line 485 (cam.fov = 70.0, no keep_aspect change); project.godot 1280×800",
+      "correction": "Godot's Camera3D fov is vertical by default (KEEP_HEIGHT). At 1280×800, 70° vertical is about 96.5° horizontal, against about 54° horizontal for 23 mm on APS-C. The gate cameras are specified at 90° horizontal. The framing mismatch is therefore about 1.8 times, larger than the report implies."
+    },
+    {
+      "claim": "Real-time photoreal free-roam forests are at the frontier even on RTX 4090-class hardware (about 65–75). Scores above about 55 in real time need an M4 Max class Mac or an RTX 4080/4090 PC 'with virtualised geometry and … Godot HDDAGI once proven'.",
+      "verdict": "partially",
+      "source": "CD Projekt Red press release and ResetEra/Digital Foundry: the Witcher 4 UE5 tech demo (State of Unreal 2025) ran on a base PS5 at 60 fps with ray tracing and Nanite Foliage; dev.epicgames.com Nanite Foliage documentation (UE 5.7/5.8); verify_godot.json (HDDAGI #119869 still an open PR)",
+      "correction": "Dense, near-photoreal real-time forests have been shown on PS5-class hardware, not only on a 4090. The binding constraint is engine technology (Nanite Foliage, Lumen) plus scanned assets, and that technology is exclusive to UE5. On the recommended Godot path, no hardware upgrade provides virtualised geometry, and HDDAGI is unmerged. So the '55+ with stronger hardware' route in practice means leaving Godot, most plausibly for UE5, which the owner has ruled out. That makes 'no' firmer for this plan, but for a different reason than hardware alone."
+    },
+    {
+      "claim": "Ratings: UE5.8 g–j about 35; Godot best about 18; three.js about 14; the recommended plan on the M2 Air about 40 (32–48) for stills and about 35 in motion; M2 ceiling about 50; Cycles 80–85; splats at captured spots 85–90.",
+      "verdict": "unverifiable",
+      "source": "Contact sheet (scratchpad/contact_real_ue_godot.jpg), U12 and godot_sdfgi.jpg viewed at full size; docs/engine_selection/wip/research_capture.json",
+      "correction": "The ordering by eye (UE i/j above Godot above three.js t4) is consistent with the images, but the scale is uncalibrated and no blind test was run. The plan figure of 40 assumes dense ferns and litter, SDFGI and species trees all fit an unmeasured M2 frame budget that loses about 25% to throttling, so it leans optimistic. The splat figure of 85–90 is optimistic for free-roam: splats blur and float away from the capture path, especially on thin twigs; the repository's own M2 budget is about 1.5–3 M splats; and the light is fixed at capture."
+    }
+  ],
+  "overall": "The report's main answer holds up: no, not as photographs in real-time free-roam on a fanless M2 Air. The recommended plan lands at about UE5.8 level. The biggest gap is content (clutter, thin stems, species trees, surface variety), not lighting. Its lighting_stats figures reproduce exactly, the photo provenance is right, and the hardware facts check out: no ray-tracing hardware, no MetalFX denoiser, about 25% throttling.\n\nThree of its supporting measurements are weaker than presented, and they matter because the report turns them into gate changes:\n\n1. **\"The real forest is brighter.\"** This comes largely from a Lightroom Exposure push of +0.35 to +0.70 EV that the report omits. Undoing it crudely puts 10 of 12 keys inside the existing 0.003–0.008 target.\n2. **The fine-detail and spectral-slope gaps.** These mostly measure the photos' sharpening and supersampling. A single unsharp mask moves Godot inside the photo range on two of the three detail metrics, and a 0.67× resample pushes the real photos below Godot.\n3. **\"Godot's highlight colour already matches the photos.\"** This is an artefact of the 40% band. On the actual ground, Godot's sunlit moss is as low in blue as UE's orange, which also contradicts ENGINE_SELECTION's statement that Godot misses the warm-highlight target.\n\nThere is also one factual error: Godot 4.8-dev5 has built-in texture streaming.\n\nThe report is somewhat over-pessimistic about the hardware needed for real-time photoreal forests: the Witcher 4 demo ran on a base PS5. But that technology is exclusive to UE5, so on the Godot path stronger hardware does not unlock it. That makes the answer 'no' more firmly for this plan. The proposed gate recalibration (key 0.006–0.012, edge ≥0.40, slope −1.0 to −1.2) should not be adopted as written: real photos would fail it at the plan's render scale, and a sharpening pass would game it. The splat rating of 85–90 is optimistic for free-roam.",
+  "omissions": [
+    "The Lightroom Exposure (+0.35 to +0.70 EV on 9 of 12 frames), Highlights (up to +55), Clarity +5 and Sharpness 55 settings are missing from the preset summary. They drive the 'brighter forest' and 'more detail' conclusions.",
+    "Sharpening, supersampling and render resolution are a camera cue the Camera and grade section leaves out. A sharpening pass (CAS or unsharp mask) after MetalFX costs little in Godot, but it also means the detail metrics cannot measure content.",
+    "lighting_stats.py's 40% ground split picks up haze and sky-lit trunks in Godot renders. This affects both this report and ENGINE_SELECTION §4, and the gate should measure highlight colour on the bottom 30% of the frame or with a ground mask.",
+    "Gaussian splats are presented as 'offline or captured media', but they render in real time on the M2 Air: the repository's research_capture.json gives a budget of about 1.5–3 M splats, and Godot and three.js splat renderers exist. Hero-spot splats inside the same free-roam app are the only route to locally photographic real-time frames on this machine, which directly qualifies the plain 'no'.",
+    "On the Godot path, stronger hardware does not provide Nanite-class geometry or mature GI. The real-time 55+ tier implies switching engines, most plausibly back to UE5, which the owner excluded.",
+    "Season and sun: the photos are winter leaf-off with the sun at about 42–45°, not the gate's 25–35°. The thin bare stems the report ranks as the top cue are partly seasonal, and summer photos would change the targets.",
+    "Capture legality and cost: Aokigahara is a special protection zone and natural monument where leaving the trails is prohibited (research_capture.json). Any scanned debris kit must come from the trails or be bought, and the owner is in the UK. This limits lever #1.",
+    "The report says CHM maxima miss thin stems, but the raw airborne point cloud, possibly leaf-off, may resolve some understorey stems. It does not check the Yamanashi pulse density before concluding that stems must be added statistically.",
+    "There is no calibration of the 0–100 scale. A cheap blind A/B test (photos mixed with renders, shown to the owner) would anchor every rating the verdict rests on.",
+    "Known Godot 4.8-dev6 bug #123626: SDFGI with texture streaming spams errors. This matters for the combination the report implicitly relies on."
+  ]
+}

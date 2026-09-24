@@ -1,0 +1,151 @@
+{
+  "topic": "Browser / WebGPU stack (continuing the repo's Three.js path, or Babylon.js / PlayCanvas)",
+  "summary": "Three.js r186 (8 Sep 2026) is now a credible WebGPU base for this project. It ships SSGI, GTAO, SSR, TRAA, TAAU, godrays, volumetric lighting, cascaded shadows (SunLight, CSMShadowNode, TileShadowNode), a GPU-baked L2 spherical-harmonics LightProbeGrid with multi-bounce and incremental baking, VXGI, Gaussian splats, and indirect draws for compute culling. It is still not Lumen. Measured SSGI costs 14.4 ms at half resolution on an RTX 2080; on an M2 Air at 1280x800 that extrapolates to roughly 25–35 ms, so it is unaffordable. The VXGI author says it is unsuitable for large open scenes. Lighting parity therefore has to come from baked, LiDAR-driven data: a high-resolution near shadow cascade for dappled sun; a sky-view-factor and canopy-shadow raster from the 0.5 m DSM/CHM for the far field and the dark understorey; per-tile probe grids baked offline for warm bounce light; GTAO; godrays or volumetric fog; AgX tonemapping; and auto-exposure, which three.js lacks and which must be written. None of this is Mac-measured yet. Babylon.js 9 (volumetric lighting, IBL shadows, RSM GI, Frame Graph) and PlayCanvas 2.22 (best streamed Gaussian splats, SSAO/TAA/volumetric fog, no real-time GI) have no lighting advantage. Porting the repo's r180 viewer is cheapest. Safari has WebGPU only on macOS 26 or later, and it is less mature than Chrome's. Agent operability is the stack's strongest point: WebGPU with SSGI already renders headlessly in this container through SwiftShader at about 1–2 s per frame. The dev footprint is tiny. The world streams from Cloudflare R2, which has no egress fees; GitHub Pages caps a site at 1 GB. Realistic ceiling: the static-sun look of UE frames 6–10 at about 30 fps with upscaling, below UE5.8 in dynamic GI and geometric density, and roughly Godot-class.",
+  "findings": [
+    {
+      "claim": "three.js r186 was released on 8 Sep 2026 (npm 0.186.0). Its lighting additions: VXGI (voxel cone traced diffuse GI, #34402); a WebGPURenderer version of LightProbeGrid with incremental baking (#33913, #34486; the old class was renamed LightProbeGridWebGL); SunLight with automatic cascaded shadow maps (#34221, #34259), with the cascade count 'reduced to 2' before release. Also new: SSAONode, OIT, a full TSL Gaussian-splat renderer with spherical harmonics, and BatchedMesh positionPrevious. r185 came out on 25 Jun / 1 Jul 2026 and added ClusteredLighting, reversed depth, WebXR on WebGPU, an SSR denoiser and GTAO improvements.",
+      "source_url": "https://github.com/mrdoob/three.js/releases/tag/r186",
+      "confidence": "high",
+      "relevance": "The repo's own library is the most lighting-capable web engine in 2026. The monthly API churn (renames, changed defaults) means versions must be pinned."
+    },
+    {
+      "claim": "The r186 package (inspected locally) contains these post nodes: SSGINode, GTAONode, SSAONode, SSRNode, TRAANode, TAAUNode (single-pass upscaling), GodraysNode, FSR1Node, DenoiseNode and RecurrentDenoiseNode. It also has CSMShadowNode, TileShadowNode, SkyMesh, VolumeNodeMaterial examples (webgpu_volume_lighting, webgpu_fog_height) and KTX2Loader with ASTC detection on WebGPU. It has no built-in auto-exposure or eye adaptation, no impostor system and no meshlet/virtual-geometry renderer.",
+      "source_url": "https://github.com/mrdoob/three.js/tree/r186/examples/jsm/tsl/display",
+      "confidence": "high",
+      "relevance": "These are the building blocks for the dappled-sun, AO, shafts and haze recipe. Eye adaptation, octahedral tree impostors and GPU culling must be written by agents."
+    },
+    {
+      "claim": "Measured three.js WebGPU post-chain cost at 1600x900 on an RTX 2080 (4 Sep 2026): 'SSGI 14.4, SSR 8.2, bloom 1.4, GTAO 0.3' ms, with SSGI at half resolution. My extrapolation, not a measurement: an M2 (about 2.9–3.6 FP32 TFLOPS and 100 GB/s, against the 2080's about 10 TFLOPS and 448 GB/s) at 1280x800 would pay roughly 25–35 ms for SSGI alone. GTAO would stay around 1 ms.",
+      "source_url": "https://github.com/ThreeNativeHQ/threenative/pull/99",
+      "confidence": "medium",
+      "relevance": "Real-time screen-space GI is not affordable on a fanless M2 Air at a 30 fps budget. GI must be baked or approximated; GTAO is affordable."
+    },
+    {
+      "claim": "The three.js VXGINode author says it uses 'a dense and not a sparse tree', 'works best with static occluders', is WebGPU-only, does not support BatchedMesh yet, and is 'no good candidate for large scenes with a lot of open space'. The default 3 cones at 40° reach 60 fps on a Pixel 8a in small demos. Merged 31 Aug 2026.",
+      "source_url": "https://github.com/mrdoob/three.js/pull/34402",
+      "confidence": "high",
+      "relevance": "Rules VXGI out as a Lumen substitute for a 5 km forest, except perhaps as a small camera-local volume, which is untested."
+    },
+    {
+      "claim": "LightProbeGrid (WebGPU) stores L2 SH in one RGBA 3D atlas. Baking is fully GPU-resident: cubemap render (default 8 px faces, 512 SH directions), SH projection and packing. Optional extra bounce passes give multi-bounce light. Incremental baking of a few probes per frame, restarting when lighting changes, was merged on 7 Sep 2026. The examples use 490 and 737 probes. During a bake, SunLight is swapped for a plain directional light.",
+      "source_url": "https://github.com/mrdoob/three.js/pull/34486",
+      "confidence": "high",
+      "relevance": "This is the most credible web route to warm bounced light and a sky-occluded understorey. For 5 km it means per-tile grids baked offline or headlessly (for example at 8–16 m spacing) and streamed. It is low-frequency, so it cannot make dappling."
+    },
+    {
+      "claim": "SunLight fits its cascades to the view automatically, with texel snapping and cascade blending, at a default 1024² per cascade. It shipped with 2 cascades in r186. Nothing in three.js resembles Virtual Shadow Maps.",
+      "source_url": "https://github.com/mrdoob/three.js/pull/34221",
+      "confidence": "high",
+      "relevance": "Dappled canopy light near the player needs a custom 2048–4096 near cascade (CSMShadowNode or TileShadowNode) with alpha-tested foliage casters. Far-field canopy shading must come from a LiDAR DSM/CHM heightfield shadow and sky-visibility raster computed in a compute pass or offline."
+    },
+    {
+      "claim": "In the r186 WebGPU backend, BatchedMesh issues one drawIndexed per sub-geometry, so there is no multi-draw-indirect. Single drawIndirect / drawIndexedIndirect calls from an IndirectStorageBufferAttribute are supported, which enables compute-shader frustum and occlusion culling that writes instance counts on the GPU. The Codrops 'False Earth' write-up (21 Apr 2026) uses exactly this for millions of grass blades.",
+      "source_url": "https://github.com/mrdoob/three.js/blob/r186/src/renderers/webgpu/WebGPUBackend.js",
+      "confidence": "high",
+      "relevance": "467,601 tree placements plus understorey are feasible as a few indirect instanced draws per species and LOD, including impostors, without CPU per-instance work."
+    },
+    {
+      "claim": "WebGPU on the Mac: Safari/WebKit has it enabled by default only 'in macOS Tahoe 26, iOS 26…' (Safari 26.0, 15 Sep 2025). Chrome has had it since 113. Firefox since 145 on macOS 26 Apple Silicon, and 147 on all macOS versions. The wiki page was last edited 13 Aug 2026.",
+      "source_url": "https://github.com/gpuweb/gpuweb/wiki/Implementation-Status",
+      "confidence": "high",
+      "relevance": "If the owner's Mac is on Sequoia, only Chrome or Firefox will run it. Chrome is the safer development and test target."
+    },
+    {
+      "claim": "Safari 27 (Sep 2026) runs on macOS 27, macOS 26 and Sequoia. It adds WGSL clip_distances, restores maxStorageBuffersInFragmentStage, and fixes WGSL validation and multisample-resolve bugs. It also ships a Safari MCP server: 'Allow your agent to connect to a Safari browser for development and debugging'.",
+      "source_url": "https://developer.apple.com/tutorials/data/documentation/safari-release-notes/safari-27-release-notes.json",
+      "confidence": "high",
+      "relevance": "Safari's WebGPU is still maturing through bug fixes. The MCP server lets a Claude Code session on the Mac drive Safari and take screenshots for the final performance and visual check."
+    },
+    {
+      "claim": "Safari WebGPU robustness incidents: Dear ImGui's WebGPU backend hits 'device lost' on Safari 26.1 (macOS) for a non-trivial pass while simple triangles work; reported 30 Nov 2025 with no documented fix. The 4x4 km three.js WebGPU world LAAS states 'only Chrome is actually tested'.",
+      "source_url": "https://github.com/ocornut/imgui/issues/9103",
+      "confidence": "medium",
+      "relevance": "Budget agent time for Safari-specific failures, or declare Chrome the supported browser on the owner's Mac."
+    },
+    {
+      "claim": "Apple caps the Metal GPU working set at a fraction of unified memory; a developer-forum answer gives 75% (about 12 GB on 16 GB), and other reports suggest about 2/3. WebGPU has no API for querying or budgeting memory, and over-commit ends in GPUOutOfMemory, a lost device or a killed tab or GPU process.",
+      "source_url": "https://developer.apple.com/forums/thread/732035",
+      "confidence": "medium",
+      "relevance": "With the OS and browser resident, a realistic resident world budget is about 3–5 GB GPU memory. This forces tiled streaming, KTX2 (ASTC/BC) textures and meshopt geometry, not whole-world loading."
+    },
+    {
+      "claim": "Babylon.js 9.0 was announced on 26 Mar 2026 (latest 9.27.1, 18 Sep 2026). It brings Frame Graph v1, clustered lighting, compute-based volumetric lighting, IBL shadows (voxel tracing), splat shadows and SOG support. The package also has RSM-based GI (giRSMManager), SSAO2, SSR, TAA and FSR1 pipelines, and thin instances. I found no SSGI and no probe-volume GI.",
+      "source_url": "https://blogs.windows.com/windowsdeveloper/2026/03/26/announcing-babylon-js-9-0/",
+      "confidence": "medium",
+      "relevance": "Babylon has better built-in volumetric shafts but weaker indirect-lighting options than three.js r186. Switching would discard the repo viewer for no lighting gain."
+    },
+    {
+      "claim": "PlayCanvas engine 2.22.x (2.22.4 on 23 Sep 2026) leads on Gaussian splats: a compute WebGPU splat renderer from 2.19 (Jun 2026), Streamed SOG with a lod-meta.json spatial tree, and a global splat-budget LOD from 2.22.0. Its CameraFrame offers SSAO, TAA, DOF and volumetric fog, and there is a lightmapper. It has no real-time GI. Its splat FPS demo keeps the baked capture lighting and uses a probe grid only for dynamic meshes.",
+      "source_url": "https://developer.playcanvas.com/user-manual/gaussian-splatting/formats/streamed-sog/",
+      "confidence": "medium",
+      "relevance": "Splats need photo or video capture of the forest, which the owner does not have (the MMS LiDAR covers roads only), and they cannot be relit for dappled sun. Useful only for captured hero spots."
+    },
+    {
+      "claim": "Spark 2.0 (14 Apr 2026; 2.2.0 on 11 Sep 2026) adds streamed level-of-detail 3D Gaussian splats to three.js: a .RAD format fetched with HTTP range requests, an LRU splat page table, and '100M+ splat worlds … using WebGL2'.",
+      "source_url": "https://www.worldlabs.ai/blog/spark-2.0",
+      "confidence": "medium",
+      "relevance": "If a capture trip happens, splats could be layered into a three.js mesh world without changing engine. Lighting would remain baked."
+    },
+    {
+      "claim": "Precedent: LAAS, a 4x4 km procedural open world in three.js WebGPURenderer + TSL + raw WGSL compute, built about 99% by an AI model (commits around 12 Jun 2026). Its spec calls for per-chunk irradiance probe volumes, GTAO, 4 CSM cascades with PCSS, octahedral tree impostors and compute cluster culling feeding indirect draws, with a Playwright verification battery. The target is 30 fps at 1080p on an iGPU. There are no published Apple Silicon numbers and only Chrome is tested.",
+      "source_url": "https://github.com/Braffolk/fable5-world-demo",
+      "confidence": "medium",
+      "relevance": "Evidence that an agent-built kilometre-scale WebGPU world with probe GI is achievable in the browser. It does not show photorealism or M2 Air performance."
+    },
+    {
+      "claim": "The headless agent loop is proven in this container. Pre-installed Chromium 141.0.7390.37 exposes a SwiftShader WebGPU adapter over http://localhost with --enable-unsafe-webgpu, --use-vulkan=swiftshader and --use-angle=swiftshader. three r186 rendered a 4,000-tree test forest at 960x600 at about 0.65 s per frame without GI and about 1.8 s with SSGI plus TRAA. It needed a shim to strip the texture-view 'swizzle' option that Chromium 141 rejects. Playwright cannot fetch a newer Chromium here because cdn.playwright.dev is blocked.",
+      "source_url": "https://github.com/andre-kaljevic/Aokigahara/blob/main/docs/engine_selection/RESUME.md",
+      "confidence": "high",
+      "relevance": "Agents can self-verify WebGPU lighting frames without the Mac, which cuts owner photo loops. SwiftShader is a correctness check only, not a performance proxy. (The repo URL is inferred; the file is in /home/user/Aokigahara/docs/engine_selection/RESUME.md.)"
+    },
+    {
+      "claim": "Hosting: a published GitHub Pages site is capped at 1 GB, with a 100 GB/month soft bandwidth limit and a 10-minute deploy timeout. Cloudflare R2 gives 10 GB-month of storage free, then $0.015/GB-month, with zero egress fees; Class B reads are free up to 10 M/month, then $0.36 per million.",
+      "source_url": "https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits",
+      "confidence": "high",
+      "relevance": "Code and viewer can stay on Pages. A multi-GB 5 km tile set belongs on R2, which is effectively free at this scale; it needs a CORS setup and range-friendly tiles."
+    },
+    {
+      "claim": "Native wrappers: Electron 44 bundles Chromium 152 (44.4.5 released 23 Sep 2026), giving a fixed Chrome WebGPU plus local file access for data on an external SSD. Tauri 2.11.x (CLI 2.11.5, 20 Sep 2026) uses the system WKWebView, so its WebGPU follows macOS/WebKit (Tahoe 26+). Neither lifts Metal's memory cap.",
+      "source_url": "https://www.electronjs.org/blog/tags/release",
+      "confidence": "medium",
+      "relevance": "This is optional. Electron is the escape hatch if browser caching or quota for GBs of tiles becomes a problem, at the cost of a download of about 250 MB+."
+    },
+    {
+      "claim": "What carries over from the repo: viewer/app.js (47 KB, three r180 WebGLRenderer) uses MeshStandardMaterial, InstancedMesh (4), Sky, GLTFLoader, three-mesh-bvh collision and 4 onBeforeCompile shader hooks. Standard materials, instancing, loaders and BVH port to WebGPURenderer. The onBeforeCompile hooks must be rewritten in TSL, Sky becomes SkyMesh, and the audit renderer needs the WebGPU flags. Engine-agnostic data carries over unchanged: DEM grids, the 467,601-placement forest-wide.f32 (11.2 MB), the GLB tree libraries (12 MB each), PBR packs (to be converted to KTX2) and the EPSG:6676/AEQD transform.",
+      "source_url": "https://github.com/mrdoob/three.js/blob/r186/examples/jsm/loaders/KTX2Loader.js",
+      "confidence": "medium",
+      "relevance": "Porting the existing viewer is the cheapest restart of all options: roughly one agent session to switch renderer, then the work is lighting and streaming. The claim that onBeforeCompile is unsupported on node materials comes from memory and is not source-checked."
+    },
+    {
+      "claim": "takram three-geospatial: the WebGPU/TSL port of its Bruneton precomputed atmosphere is 'Done' (@takram/three-atmosphere 0.19.1, 6 May 2026); volumetric clouds are 'Work in progress'; crepuscular rays and volumetric shadow are on the roadmap.",
+      "source_url": "https://github.com/takram-design-engineering/three-geospatial",
+      "confidence": "medium",
+      "relevance": "Provides a physically based sky and aerial perspective in place of the blown-out flat sky that was a UE5.8 flaw, and distant haze in place of dark canopy masses."
+    }
+  ],
+  "fidelity_ceiling": "Below UE5.8 on dynamic GI (no Lumen), shadow detail at distance (no VSM) and geometry density (no Nanite). For real-time rendering it is roughly Godot 4.x-class: behind Godot where SDFGI and volumetric fog work, ahead in agent tooling and reach. The static-sun or slow-sun look of UE frames 6–10 is plausibly reachable. Dappled floor light comes from a 2048–4096 near cascade with alpha-tested canopy casters. The dark sky-occluded understorey and warm bounce come from per-tile probe grids and a sky-view-factor/CHM raster, both baked. Shafts and haze come from GodraysNode or volumetric lighting plus height fog. Dynamic range comes from AgX and a custom auto-exposure. Several UE5.8 flaws (flat sky, dark distant canopy, stretched textures, layer blotches) are content and pipeline problems that this stack can beat, using the takram atmosphere, impostors, triplanar TSL materials and a KTX2 PBR pack. It will not match Lumen for time-of-day changes with multi-bounce, or for off-screen bounce, unless probes are rebaked incrementally. Unverified until rendered on real data.",
+  "m2_air_feasibility": "Plausible but unmeasured. A 30 fps target at 1280x800 output with TAAU from about 0.6–0.7 render scale needs: about 2–4 M visible triangles; compute-culled indirect instancing with octahedral impostors beyond about 100–150 m; 2–3 shadow cascades (one 2048–4096 near cascade, cached far cascades); half-resolution GTAO (about 1 ms est.); half-resolution godrays; baked probe or SVF lighting. SSGI (about 25–35 ms est.) and VXGI are excluded. Resident GPU memory must stay within about 3–5 GB, against a Metal working-set cap of roughly 10.7–12 GB. The fanless chassis will throttle under sustained load, so frame pacing must be measured after 10+ minutes. Use Chrome for development (WebGPU on any macOS); Safari needs macOS 26 or later and extra testing. No Mac frame-time data exists yet, even for the current r180 WebGL viewer (7–8 M triangles, ~90 draws).",
+  "storage_footprint": "On the Mac: a browser (already present) plus Node (~200 MB) and node_modules with three (~20–30 MB unpacked). No derived-data cache or shader cache beyond the browser's own, so the total is under 1 GB versus the tens of GB of UE5.8. The 916 MB LiDAR source can live on an external SSD. The derived world (0.5 m DEM/DSM tiles as meshopt/quantised meshes, KTX2 material packs, instance tables of about 11 MB, SVF and canopy-shadow rasters of about 25 MB per layer at 1 m, probe-grid atlases of about 20–90 MB at 16–8 m spacing) is estimated at 0.5–2 GB. It is built in the cloud container and served from R2 (free up to 10 GB), so the Mac holds only the browser cache. The GitHub Pages 1 GB limit rules Pages out for the full data set.",
+  "agent_operability": "The best of all options. Everything is text: JS/TSL/WGSL, JSON and binary tiles. There are no GUI-only steps and no long C++ or shader compiles. Headless WebGPU with SSGI, TRAA and shadows already renders in this Linux container through SwiftShader at about 0.65–1.8 s per 960x600 frame. The existing tools/audit_render.mjs fixed-camera pipeline and tools/lighting_stats.py metrics can be reused directly. Caveats: SwiftShader shows correctness, not Metal performance or Metal-specific bugs; Chromium 141 needs a swizzle shim; a newer Chromium cannot be downloaded here. On the Mac, Safari 27's MCP server and Chrome DevTools or Playwright let a local agent capture screenshots and GPU timings, so the owner no longer takes phone photos.",
+  "cost_licence": "three.js MIT, PlayCanvas engine MIT, Babylon.js Apache-2.0, Spark MIT; takram three-geospatial is also open source. No royalties. Electron (MIT) and Tauri (MIT/Apache-2.0) are free. Hosting is £0 for up to 1 GB on GitHub Pages or up to 10 GB on R2; beyond that, $0.015/GB-month with no egress fees. The main cost is agent usage for the custom parts: auto-exposure, impostors, GPU culling, LiDAR-driven SVF and canopy shadow, the probe-bake pipeline and tile streaming.",
+  "latest_versions": "three.js r186 / npm 0.186.0 (8 Sep 2026; r185 25 Jun / 0.185.1 1 Jul 2026). @babylonjs/core 9.27.1 (18 Sep 2026; 9.0 announced 26 Mar 2026). playcanvas 2.22.4 (23 Sep 2026). @playcanvas/splat-transform 3.6.4 (23 Sep 2026). @sparkjsdev/spark 2.2.0 (11 Sep 2026; 2.0 on 14 Apr 2026). 3d-tiles-renderer 0.5.3 (18 Sep 2026). meshoptimizer 1.2.0 (30 Jun 2026). @takram/three-atmosphere 0.19.1 (6 May 2026). Electron 44.4.5 on Chromium 152 (23 Sep 2026). @tauri-apps/cli 2.11.5 (20 Sep 2026). Safari 27 (Sep 2026; macOS 27/26/Sequoia). Safari 26.0 (15 Sep 2025) was the first Safari with WebGPU, on macOS 26 or later. Chrome has had WebGPU since 113. Firefox has had WebGPU since 145 (macOS 26, Apple Silicon) and 147 (all macOS). The container's Chromium is 141.0.7390.37.",
+  "risks": [
+    "No Lumen-equivalent exists in any web engine. SSGI is too expensive on the M2 (extrapolated about 25–35 ms) and VXGI is unsuitable for open 5 km scenes, so lighting parity rests on custom baked LiDAR-driven work (SVF/canopy shadow and per-tile probe bakes). That work is the main agent-usage cost and is not yet prototyped.",
+    "Safari WebGPU is younger than Chrome's (device-lost reports on 26.1, and ongoing WGSL and limit fixes in 27) and needs macOS 26 or later. If the owner's Mac runs Sequoia, only Chrome or Firefox will work.",
+    "three.js changes monthly: LightProbeGrid was renamed in r186 and SunLight cascades went from 4 to 2 between PR and release. Pin the version and vendor it; upgrades cost agent sessions.",
+    "There is no WebGPU memory-budget API, and over-committing on 16 GB unified memory kills the tab or loses the device. Streaming, KTX2 and residency management must be designed in from the start.",
+    "Fanless M2 Air throttling and browser overhead (JavaScript main thread, garbage-collection stutter while streaming) may push sustained frame rates below 30 fps. No Mac measurements exist yet.",
+    "Headless SwiftShader renders prove correctness only, at about 1–2 s per frame. Metal-specific bugs and real performance still need a Mac session; the Safari MCP server or Playwright can cut the human effort.",
+    "Foliage alpha-testing (discard) defeats Apple TBDR hidden-surface removal and raises shadow-pass cost. Dense canopy casters in near cascades may dominate frame time. This comes from memory and is unmeasured.",
+    "Splat engines (PlayCanvas, Spark) need a real capture and bake in their lighting; they cannot deliver dynamic dappled sun."
+  ],
+  "unknowns": [
+    "Actual frame time on the owner's M2 Air (8- or 10-core GPU) for three r186 WebGPU with real terrain and trees plus CSM, GTAO, TAAU and godrays, in Chrome and in Safari; also the current r180 WebGL viewer's fps as a baseline",
+    "The owner's macOS version, which decides whether Safari has WebGPU",
+    "Whether baked probe grids plus a DSM/CHM sky-view factor and canopy shadow visually match UE frames 6–10 when measured with tools/lighting_stats.py",
+    "Chrome and Safari WebGPU adapter limits on the M2 (maxBufferSize, maxStorageBufferBindingSize) and practical per-tab memory ceilings",
+    "Offline bake time for per-tile LightProbeGrids (headless SwiftShader versus on the Mac) at 8–16 m spacing over 25 km²",
+    "The on-screen quality and performance of the LAAS demo on Apple Silicon (only the spec and commits were reviewed)",
+    "Whether 3DTilesRendererJS works with WebGPURenderer; its README does not say, and a 5 km local world can use simple custom tiling instead"
+  ]
+}

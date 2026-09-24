@@ -1,0 +1,157 @@
+{
+  "topic": "Real-data pipeline and photoreal asset sourcing (engine-agnostic)",
+  "summary": "The data side is strong and fully scriptable. Asset sourcing is the weak link. Yamanashi released 3D point-cloud data for the whole prefecture in April 2025. It includes airborne LAS (class 1 surface, 2 ground, 9 wires), 0.5 m DEM, DSM1 and DSM2, 0.5 m micro-relief, ortho images and MMS. The licence is dual CC BY 4.0 / ODbL, the CRS is EPSG:6676, and the data is split into 1/500 sheets of 300 × 400 m. A 5 × 5 km plot needs about 220–250 sheets. The Forestry Agency has already derived a 0.5 m DCHM (canopy height) for Yamanashi. Its national forest-resource mesh gives, for each 20 m cell, the main species, stem count and mean height. Together these let agents detect real dominant stems (lasR/lidR local maxima plus watershed or Dalponte), calibrate the counts per cell, and assign species by probability. The same canopy height model can be baked into sky-visibility and canopy-shadow maps, which directly helps the lighting goal.\n\nThe toolchain installs in cloud containers from PyPI and conda-forge. However, every Japanese data host (and Poly Haven, ambientCG, Sketchfab, Fab and blender.org) is blocked from those containers. So the Mac must do one scripted download of roughly 8–10 GB. After that, derived products can go to a GitHub release, which CC BY permits.\n\nOn assets, the free Megascans period ended in 2024. They now cost from $0.99 each, and there is a UE-only trap for items acquired under a UE plan. Megaplants are European species built for UE's vegetation editor. No free scan-quality Tsuga, Chamaecyparis or Pinus densiflora was verified. SpeedTree is GUI-only and costs $199 a year. The practical route is to generate species-parameterised trees with EZ-Tree or bpy 5.2.2, then use gltfpack and impostors baked in-house. The repo's photo-derived materials were cut from photo crops only 125–340 px wide, so they suit colour calibration but not close-up surfaces.",
+  "findings": [
+    {
+      "claim": "Yamanashi published airborne-LiDAR and MMS point clouds for the whole prefecture (April 2025). The airborne data were acquired by Yamanashi, with parts by MLIT's Fujikawa Sabo office and Tokyo. The release includes ortho images and micro-landform maps. Licence: dual CC BY 4.0 / ODbL. CRS: JGD2011 / Japan Plane Rectangular CS VIII. Downloads are ZIPs per 1/500 map sheet. (Read from search snippets because the host is blocked for fetching.)",
+      "source_url": "https://front.geospatial.jp/data/2025/04/5609/",
+      "confidence": "medium",
+      "relevance": "Aokigahara lies wholly inside Yamanashi, so the 5 × 5 km plot is covered by one consistent dataset. CC BY lets agents redistribute derived products with attribution. Choose CC BY rather than ODbL to avoid share-alike."
+    },
+    {
+      "claim": "The products are: 0.50 m DEM GeoTIFF from ground returns; DSM1 (class 1+9) and DSM2 (class 1); a 0.50 m micro-landform (in'yō) relief map; and 1 m contours in DXF. LAS classes are 1 = surface, 2 = ground, 9 = power lines. The preserved LAS files declare no CRS.",
+      "source_url": "https://www.geospatial.jp/ckan/dataset/yamanashi-pointcloud-2024/resource/851301d1-7938-4d09-8b68-56ed83b9b2f5",
+      "confidence": "high",
+      "relevance": "The measured bare-earth DEM replaces the procedural lava relief. DSM2 − DEM gives the canopy height model for tree detection and lighting bakes. Class semantics also confirmed in repo file unreal/AokigaharaUE/Docs/REBUILD_2026-09-19.md (branch rebuild/measured-2026-09-19)."
+    },
+    {
+      "claim": "A 1/500 sheet is 300 m × 400 m (0.12 km²), so 25 km² needs about 221–252 sheets. The one preserved sheet (08LE9307) is about 38 MB zipped for airborne LAS but about 698 MB for MMS. Extrapolated, the whole plot is about 8–10 GB zipped of airborne LAS. MMS for every road sheet would be tens of GB.",
+      "source_url": "https://club.informatix.co.jp/?p=1293",
+      "confidence": "medium",
+      "relevance": "Sizes the download and disk budget. Take airborne products for the full plot, and MMS only for a few hero road-edge sheets where it gives true near-ground colour. Sheet sizes come from the repo's measured_sources_2026-09-19.json."
+    },
+    {
+      "claim": "The Forestry Agency derived a 0.5 m DCHM for Yamanashi from the published DSM and DEM (released 22 April 2025). It also made DEM PNG-elevation and Terrain-RGB tiles (19 April 2025) and CS relief tiles (September 2025).",
+      "source_url": "https://www.geospatial.jp/ckan/dataset/rinya-yamanashi-maptiles",
+      "confidence": "medium",
+      "relevance": "A ready-made canopy height model lets a first tree-detection and lighting-bake pass skip raw-LAS processing entirely. Terrain-RGB tiles plug straight into web engines."
+    },
+    {
+      "claim": "The national forest-resource mesh for plane-rectangular zone VIII (which includes Yamanashi) gives, for each 20 m cell, the representative species, stem count, mean height and volume. It also comes with laser-derived species polygons and a laser forest-type map. The owner's fr_mesh20m_08le3_2025.7z is this product.",
+      "source_url": "https://www.geospatial.jp/ckan/dataset/mesh_8",
+      "confidence": "medium",
+      "relevance": "Per-cell stem counts and mean heights calibrate the tree-detection window and add missed understorey stems statistically. Species per cell drives species assignment. Caveat: its classes are forestry categories, and Tsuga is probably lumped as 'other conifer' (not verified). Combine with the MoE vegetation communities and the dossier's seven Tokyo University community types."
+    },
+    {
+      "claim": "The GSI 1 m DEM (DEM1A) coverage grew from about 4% to about 46% of third-order mesh cells on 31 March 2025, with a further expansion in October 2025. Whether it covers Aokigahara could not be checked because GSI tile hosts are blocked from the container.",
+      "source_url": "https://www.gsi.go.jp/gazochosa/gazochosa61009.html",
+      "confidence": "medium",
+      "relevance": "DEM1A would only be a cross-check. Yamanashi's 0.5 m DEM is finer and is the primary terrain source. The DEM5A grids already in the repo remain the fallback outside the plot."
+    },
+    {
+      "claim": "Tested from this cloud container on 23 Sep 2026. Proxy blocks: geospatial.jp, front.geospatial.jp, pref.yamanashi.jp, cyberjapandata(2).gsi.go.jp, polyhaven, ambientCG, Sketchfab, fab.com, quixel.com, blender.org, CRAN and r-universe. Reachable: PyPI, npm, conda-forge and GitHub via git. S3 answered 403 AccessDenied for the catalogue's MMS trajectory URL.",
+      "source_url": "https://gic-yamanashi.s3.ap-northeast-1.amazonaws.com/2024/mmstrj/mmstrj.zip",
+      "confidence": "high",
+      "relevance": "Acquisition must be one scripted pass on the Mac, ideally to an external SSD. Agents then work from a GitHub release or private repository holding derived products, not raw sources."
+    },
+    {
+      "claim": "Package state as of 23 Sep 2026. PyPI: laspy 2.7.0 (14 Jan 2026), lazrs 0.8.2 (27 Jul 2026), rasterio 1.5.1 (8 Aug 2026; wheels bundle GDAL, including macOS arm64), pyforestscan 0.4.1 (30 Jun 2026), pylasr 0.17.4 (19 Feb 2026; Linux x86_64 wheels only). python-pdal 3.5.5 and gdal 3.13.3 are source-only on PyPI. conda-forge: r-lidr 4.3.3 (20 Sep 2026), r-lasr 0.21.1 (14 Jul 2026), gdal 3.13.3, python-pdal 3.5.5, r-base 4.6.1. apt: gdal-bin 3.8.4, r-base 4.3.3; no PDAL.",
+      "source_url": "https://pypi.org/project/laspy/",
+      "confidence": "high",
+      "relevance": "The whole Part A pipeline installs in a cloud container without large downloads; use conda-forge for lidR, lasR and PDAL. Checked by querying PyPI JSON, conda-forge repodata and apt-cache."
+    },
+    {
+      "claim": "lasR (GPL-3, last commit 17 Aug 2026) is a C++ library with R and Python APIs for large-scale airborne LiDAR. It runs multi-file, multicore pipelines covering canopy models, tree detection (local maximum) and tree segmentation (region growing). lidR 4.3.3 adds Dalponte 2016, Silva 2016, Li 2012 and watershed segmentation. PDAL has filters.litree for point-based Li 2012 segmentation. PyCrown's last commit was 22 Jul 2020.",
+      "source_url": "https://github.com/r-lidar/lasR",
+      "confidence": "high",
+      "relevance": "Recommended detection: variable-window local maxima on the 0.5 m canopy model, then Dalponte or watershed crowns, giving x, y, z, height and crown radius per stem. Calibrate against the 20 m mesh counts. Avoid PyCrown as unmaintained."
+    },
+    {
+      "claim": "The world should be built natively on the EPSG:6676 grid with a local offset. At 138.658E, 35.4775N, grid convergence between Plane Rectangular VIII (central meridian 138.5°) and the project's AEQD frame is about 0.092° (Δλ·sinφ). That displaces points by about 4 m at 2.5 km from the origin. The TM scale factor there is about 0.99990, roughly 0.5 m over 5 km.",
+      "source_url": "https://github.com/andrekaljevic/aokigahara",
+      "confidence": "high",
+      "relevance": "Treating the 0.5 m grids as AEQD plus a translation would misplace trees and trails by metres at the plot edges. Transform the legacy AEQD assets (trails, 467,601 placements) into the plane frame instead of resampling the DEM. Computed from the CRS parameters in REBUILD_2026-09-19.md."
+    },
+    {
+      "claim": "Storage arithmetic for 5 × 5 km at 0.5 m (10,000 × 10,000 = 10^8 samples): 200 MB per uint16 layer, 400 MB per float32 layer. A full engine set (16-bit height, 16-bit canopy height, RGBA8 splat at 1 m, 8-bit sky-visibility) comes to about 0.7–1 GB uncompressed. The repo's forest-wide.f32 uses 24 bytes per instance, so about 2 M detected stems would be about 48 MB. Terrain3D's docs say a 10k × 10k import needs region size 512.",
+      "source_url": "https://github.com/TokisanGames/Terrain3D/blob/main/doc/docs/heightmaps.md",
+      "confidence": "high",
+      "relevance": "Engine inputs fit easily on the Mac. Disk pressure comes only from raw LAS/MMS and from engine caches. A 16-bit range over roughly 900–1300 m gives about 6 mm height steps."
+    },
+    {
+      "claim": "The 0.5 m canopy height model can be baked offline (plain numpy in a cloud container) into three lighting inputs: a top-down sky-visibility / world-AO map; sun-direction canopy shadow or horizon maps; and a gap mask for placing light shafts. This is the Assassin's Creed 4 'world ambient occlusion' technique noted by the earlier lighting-research agent.",
+      "source_url": "https://github.com/andrekaljevic/aokigahara/blob/claude/aokigahara-engine-selection-tqyqx6/docs/engine_selection/wip/sources_consulted.md",
+      "confidence": "medium",
+      "relevance": "This is how real data serves the owner's top priority. Measured canopy gaps can replace Lumen's sky occlusion and Virtual Shadow Maps' far-field canopy shadow in any engine. The technique claim is a lead (the GDC slides host was blocked), not a verified source."
+    },
+    {
+      "claim": "Megascans were free to everyone under Fab's Standard Licence, for all engines and tools, only until the end of 2024. Claimed assets are perpetual. From 2025 most are paid: from $0.99 per asset, $4.99 for procedural kits and $24.99 for packs. Fab has Personal and Professional tiers, split at $100k annual revenue.",
+      "source_url": "https://www.cgchannel.com/2024/10/epic-games-has-made-megascans-free-to-all-but-only-until-the-end-of-2024/",
+      "confidence": "medium",
+      "relevance": "Buying individual ground scans (lava, moss, litter, roots) is cheap and legal outside Unreal under the Standard Licence. Prices are per search snippets and Fab licensing docs (https://dev.epicgames.com/documentation/en-us/fab/licenses-and-pricing-in-fab), not fetched directly."
+    },
+    {
+      "claim": "Megascans acquired while enrolled in an Unreal Engine plan are UE-only content. New Megascans stopped reaching Quixel Bridge at the start of 2026 and are Fab-only. Megaplants (free European beech, aspen, hornbeam, spindle) are built for UE 5.7's experimental Procedural Vegetation Editor and Nanite foliage. No Japanese species were found, and whether they can be exported was not established.",
+      "source_url": "https://forums.unrealengine.com/t/question-about-megascans-license-after-fab-launch/2026269",
+      "confidence": "medium",
+      "relevance": "The owner's past UE usage may have tied claimed assets to UE-only terms, so check each item's licence before any non-UE use. Megaplants do not solve the species problem."
+    },
+    {
+      "claim": "All Poly Haven assets are CC0. Its tree set is small; for example Pine Tree 01 is about 17 M triangles, so it needs decimation or impostors. ambientCG materials are also CC0. Both hosts are blocked from cloud containers but downloadable by script on the Mac.",
+      "source_url": "https://polyhaven.com/license",
+      "confidence": "medium",
+      "relevance": "Zero-cost, zero-risk source for close-range bark, rock and ground PBR and HDRIs. It has no Japanese conifers."
+    },
+    {
+      "claim": "SpeedTree (owned by Unity): Indie costs $19 a month or $199 a year for under $200k revenue; Learning Edition is free but cannot export assets. The Modeler supports macOS. It exports FBX, OBJ, USD, Alembic and XML but not glTF, and the UE/Unity subscription modelers block OBJ/FBX export. SpeedTree 10 shipped in September 2024; its 2026 price and native Apple Silicon support were not verified.",
+      "source_url": "https://support.unity.com/hc/en-us/articles/15723241438228-What-s-the-difference-between-SpeedTree-Learning-Edition-Indie-Pro-and-Enterprise",
+      "confidence": "medium",
+      "relevance": "SpeedTree is GUI-driven and account-bound, so agents can barely operate it and the owner would do the hand work. Species fidelity would still be artist-made, not scanned."
+    },
+    {
+      "claim": "No free scan-quality asset was verified for Tsuga sieboldii, Chamaecyparis obtusa, C. pisifera or Pinus densiflora. Commercial garden-specimen hinoki models exist (3DGardenPlants, Globe Plants, TurboSquid, RenderHub). Xfrog sells Tsuga canadensis (a related species) on the Sketchfab Store. Search surfaced a CC0 'Tsuga sieboldii' in Sketchfab collections, but it could not be opened to verify.",
+      "source_url": "https://sketchfab.com/3d-models/ea20-tsuga-canadensis-eastern-hemlock-3c6374738b2c4a5ea56c02a2ec3792e3",
+      "confidence": "low",
+      "relevance": "Trees set the fidelity ceiling. Expect parameterised procedural trees tuned against reference photos, with bark and foliage textures from scans, rather than off-the-shelf species scans."
+    },
+    {
+      "claim": "EZ-Tree is MIT-licensed (npm @dgreenheck/ez-tree 1.1.0, 15 Jan 2026; last commit 16 Jul 2026), exports GLB and is usable as a library. bpy 5.2.2 (PyPI, 15 Sep 2026) has a 245 MB macOS arm64 wheel and a 402 MB manylinux x86_64 wheel, Python 3.13 only. apt's Blender is 4.0.2 and download.blender.org is blocked, so PyPI bpy is the only current Blender available in the cloud.",
+      "source_url": "https://pypi.org/project/bpy/",
+      "confidence": "high",
+      "relevance": "Both are fully headless and agent-scriptable. Agents can generate per-species tree variants sized from the detected height and crown-radius distributions, then bake LODs, impostors and bark/foliage atlases in bpy with no GUI."
+    },
+    {
+      "claim": "meshoptimizer/gltfpack 1.2.0 (npm, 30 Jun 2026, MIT) is current, while apt ships only 0.20; @gltf-transform/cli is at 4.5.0 (1 Sep 2026). The three.js octahedral impostor (@three.ez, v0.0.1) was last committed 3 Nov 2025. Godot-Octahedral-Impostors was last committed 3 Jun 2021 and is stale.",
+      "source_url": "https://www.npmjs.com/package/gltfpack",
+      "confidence": "high",
+      "relevance": "Mesh simplification and compression are solved. Impostor tooling is immature, so plan to bake octahedral impostors in bpy and write a small runtime shader in the chosen engine."
+    },
+    {
+      "claim": "The repo's photo-derived material packs have 13 materials in three tiers (4k 112 MB, 2k 44 MB, 1k 18 MB, 178 MB total), including Tsuga bark, mossy lava, root moss and understorey. They were cut from eight owner photos of 2000 × 983 px, at native crop sizes of only 125–340 px, then upscaled. Height, normal, AO and roughness are single-image heuristics.",
+      "source_url": "https://github.com/andrekaljevic/aokigahara/blob/claude/aokigahara-uhd-assets-5l10c2/asset_packs/MATERIALS_UHD_MANIFEST.json",
+      "confidence": "high",
+      "relevance": "Reuse them as site-true colour and tone targets (tint CC0 or Megascans albedo to match), and as mid- to far-distance and splat-layer albedo. They will look soft up close. New full-resolution field photos would allow real photogrammetric surfaces."
+    }
+  ],
+  "fidelity_ceiling": "Terrain can be measured at 0.5 m, including lava lobes and micro-relief under the canopy, wherever there are ground returns. Dominant and codominant stems can be placed at their real positions with measured heights and crown radii. Suppressed understorey stems will be missed and must be infilled statistically against the 20 m mesh counts, labelled as synthetic. Species per stem is inference, not measurement. The canopy height model supports measured canopy gaps, sky-visibility and shadow bakes, which matches the lighting target well. The visual ceiling is set by assets. Ground and rock surfaces can reach photoreal with CC0 or Megascans scans tinted to site photos. Trees top out at good procedural approximations (EZ-Tree or bpy plus scanned bark and foliage textures), because no species-accurate scans of Tsuga sieboldii or Chamaecyparis were found. The repo's photo-derived packs are too low-resolution for close range.",
+  "m2_air_feasibility": "Everything can run on macOS arm64: rasterio/GDAL wheels, laspy, R lidR/lasR (osx-arm64 conda builds not verified; pylasr has no macOS wheel) and the 245 MB bpy wheel. Rasters tiled per 1/500 sheet fit easily in 16 GB. However, the fanless M2 will throttle on multi-hour CPU jobs, and internal disk is scarce. So the Mac should only do the one-time scripted download (about 8–10 GB of airborne LAS, or about 1–3 GB if only DEM, DSM, relief and the DCHM are taken) to an external SSD, and push what is needed to a GitHub release. The 4-CPU cloud containers then do the tree detection, bakes, tree generation and LODs.",
+  "storage_footprint": "Sources for 25 km²: about 220–250 sheets. Airborne LAS is about 8–10 GB zipped (extrapolated from one 38 MB sheet). The products-only path is probably 1–3 GB (not verified). MMS is about 0.7 GB per sheet, so take hero sheets only. Engine-ready data is about 0.7–1 GB uncompressed: 200 MB per uint16 layer at 0.5 m, a 100 MB RGBA8 splat at 1 m, and about 50 MB of instances for about 2 M stems. Materials: 178 MB already in the repo, plus purchased or CC0 scans at a few hundred MB. Trees and impostors: estimated a few hundred MB. Tools: a conda env of about 1–2 GB, and bpy at 0.25 GB (Mac) or 0.4 GB (Linux). The total is well under 20 GB, against the UE5.8 install plus DDC that exhausted the disk.",
+  "agent_operability": "Part A is high. Every step is a CLI, Python or R pipeline, deterministic and testable, and the repo already has CI for coordinate and measured-data invariants. All tools install from PyPI or conda-forge in cloud containers. The only non-agent step is data download, because the Japanese hosts are blocked from containers; the owner runs one script on the Mac. Part B is mixed. EZ-Tree (Node or headless Chromium), bpy, gltfpack and gltf-transform are fully agent-drivable. Poly Haven and ambientCG can be downloaded by script on the Mac only. Fab/Megascans and SpeedTree are GUI- and account-bound, so the owner must buy, download and upload those.",
+  "cost_licence": "Data is free. Yamanashi's data is CC BY 4.0 / ODbL; use CC BY and credit Yamanashi Prefecture, with MLIT Fujikawa Sabo / Tokyo where their data is used, and the Forestry Agency for DCHM and mesh products. Tools: lidR and lasR are GPL-3 and bpy is GPL-3, which is fine because they are offline processors and outputs are not covered. PDAL, GDAL, laspy, EZ-Tree and meshoptimizer are permissive. Assets: Poly Haven and ambientCG are free CC0. Megascans cost from $0.99 per asset or $24.99 per pack under Fab's Standard Licence, and can be used in other engines unless acquired as UE-only. SpeedTree Indie costs about $199 a year and Learning Edition cannot export. Commercial hinoki models are paid, with licences per vendor.",
+  "latest_versions": "These dates were checked from registries or git on 23 Sep 2026. laspy 2.7.0 (14 Jan 2026); lazrs 0.8.2 (27 Jul 2026); python-pdal 3.5.5 (PyPI 31 Jul 2026); PDAL C++ 2.10.2 (latest git tag, date not checked); GDAL 3.13.3 (PyPI 18 Aug 2026, conda-forge build 18 Sep 2026); rasterio 1.5.1 (8 Aug 2026); lidR 4.3.3 (conda-forge 20 Sep 2026); lasR 0.21.1 (conda-forge 14 Jul 2026; last commit 17 Aug 2026); pylasr 0.17.4 (19 Feb 2026); pyforestscan 0.4.1 (30 Jun 2026); PyCrown last commit 22 Jul 2020; bpy 5.2.2 (15 Sep 2026); EZ-Tree 1.1.0 (15 Jan 2026; last commit 16 Jul 2026); meshoptimizer/gltfpack 1.2.0 (30 Jun 2026); @gltf-transform/cli 4.5.0 (1 Sep 2026); three 0.186.0 (8 Sep 2026); open3d 0.20.0 (16 Sep 2026); trimesh 5.1.0 (31 Aug 2026); Terrain3D last commit 23 Sep 2026; @three.ez octahedral impostor 0.0.1 (last commit 3 Nov 2025); SpeedTree Modeler 10 (September 2024; 2026 point release not verified). The data releases were Yamanashi point cloud (April 2025) and Forestry Agency Yamanashi DCHM (22 Apr 2025).",
+  "risks": [
+    "All Japanese data hosts, and Poly Haven, ambientCG, Sketchfab, Fab and blender.org, are blocked from cloud containers. Acquisition depends on the owner running one download script on the Mac. S3 also refused the catalogue's MMS trajectory URL (403).",
+    "Tree detection on a 0.5 m canopy model in multi-layered old-growth on rough lava will under-detect suppressed and understorey stems and merge touching crowns. The infill must be statistical, calibrated to the 20 m mesh counts, and labelled as synthetic.",
+    "Species per stem is inferred from 20 m forestry classes and MoE community polygons, not measured. The forestry classes may not separate Tsuga from other conifers.",
+    "DSM2 (class 1) still includes buildings and other surface features. Mask them with OSM buildings and roads before building the canopy model. Ground returns may be sparse under dense Tsuga, leaving NaN gaps in the DEM that need named interpolation.",
+    "Ignoring the 0.092° grid convergence between EPSG:6676 and the legacy AEQD frame misplaces legacy placements by about 4 m at the plot edges.",
+    "MMS data is about 0.7 GB per sheet. Pulling it for all road sheets would repeat the UE5.8 disk exhaustion.",
+    "Megascans licence trap: items claimed under a UE plan may be UE-only. Megaplants are UE-specific. Paid assets add a money cost the owner wants to minimise.",
+    "SpeedTree is GUI-only and subscription-based, which wastes owner time and agent usage. Learning Edition cannot export.",
+    "The repo's 'UHD/4k' materials are upscaled from 125–340 px photo crops with heuristic height and normal maps, so they will look soft or fake up close.",
+    "Impostor tooling is immature: the Godot plugin is abandoned (2021) and the three.js one is v0.0.1, so custom baking and shader work is needed.",
+    "bpy requires Python 3.13 (the container has 3.11, so uv or conda is needed) and a 0.4 GB wheel in the cloud. apt's Blender 4.0.2 is too old to rely on."
+  ],
+  "unknowns": [
+    "Actual airborne point density, acquisition date and acquiring agency for the Aokigahara sheets. Measure on the Mac with laspy or pdal info on 08LE9307.",
+    "Ortho image resolution and per-sheet sizes of the DEM, DSM, relief and ortho ZIPs, which decide the products-only download size.",
+    "Whether the catalogue's S3 download URLs need a referrer or have moved (403 seen), and whether the Forestry Agency DCHM tiles are downloadable as GeoTIFF or only as map tiles.",
+    "GSI DEM1A coverage over Aokigahara (not needed if Yamanashi's 0.5 m DEM is complete).",
+    "The exact species code list in fr_mesh20m, and whether Tsuga or Chamaecyparis are separable.",
+    "Megascans 2026 pricing beyond the starting prices, whether Megaplants can be exported or licensed for non-UE engines, and whether the owner's claimed Megascans are UE-only.",
+    "SpeedTree 2026 pricing and native Apple Silicon support.",
+    "Whether the CC0 'Tsuga sieboldii' Sketchfab model reported by search actually exists and its quality.",
+    "Conda-forge osx-arm64 availability of r-lasr and r-lidr (Linux verified only).",
+    "Tree-detection runtime over 25 km² on 4 cloud CPUs. Estimated at minutes to about an hour for the raster method; not benchmarked."
+  ]
+}

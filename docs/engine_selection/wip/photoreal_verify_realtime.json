@@ -1,0 +1,78 @@
+{
+  "track": "State of the art: what achieves photoreal real-time forests in 2026, on what hardware, and can an M2 Air get there with any engine? (adversarial fact-check)",
+  "checks": [
+    {
+      "claim": "NVIDIA and CD Projekt RED's path-traced Witcher 4 forest (GDC 2026): 5 × 5 km, about 60M plants, about 1M trees, 200+ species, needle-level geometry, full path tracing with RTX Mega Geometry. 58 fps on an RTX 4070 (960p→1440p, DLSS Quality) and about 80 fps on an RTX 5090 (1440p→4K). NVIDIA says the foliage system will be open-sourced 'later this year'.",
+      "verdict": "confirmed",
+      "source": "Search results agree: TweakTown, GamingBolt, TechPowerUp, WCCFtech, DSOGaming and TechSpot all give 58 fps at 960p→1440p DLSS Quality on the 4070, about 80 fps at 1440p→4K on the 5090, 60M plants, about 1M trees, 200+ species, 5×5 km, no alpha cards, some trees over 10M polygons. They add two details: it is a 'simple two-bounce path tracer', and it fits in 12 GB (about 9 GB as Windows reports it). The full articles could not be read because the egress proxy blocks them. Page 1 of the NVIDIA-RTX GitHub organisation (checked 23 Sep 2026) shows RTXMG, updated 4 Sep 2026, but no separate foliage or partitioned-TLAS repository.",
+      "correction": "The numbers stand. Two things the report leaves out. First, the forest was built by a studio working with NVIDIA engineers, so it shows what hardware can do, not what a solo, agent-driven project can make. Second, whether the foliage system has been open-sourced by September 2026 is unconfirmed; no dedicated repository is visible."
+    },
+    {
+      "claim": "The M2 (8-core GPU) has about 2.9 TFLOPS FP32 and 100 GB/s, no hardware ray tracing and no neural accelerators in the GPU. Unreal on macOS runs Lumen with software ray tracing only; Nanite needs M2+ with SM6. MTLFXTemporalDenoisedScaler requires macOS 26+ and a per-device supportsDevice check.",
+      "verdict": "confirmed",
+      "source": "Arithmetic: 8 cores × 128 FP32 lanes × 2 × 1.398 GHz = 2.86 TFLOPS. ENGINE_SELECTION.md §3 gives about 2.9 TFLOPS and 100 GB/s, family Apple8, and no hardware RT or MetalFX denoiser before M3. Apple's documentation JSON (developer.apple.com/tutorials/data/documentation/metalfx/mtlfxtemporaldenoisedscaler.json) gives macOS introducedAt 26.0, and the descriptor has supportsDevice(_:) ('Queries whether a Metal device supports denoising scaling'); Apple publishes no device list. A search summary of Epic's documentation says 'Hardware-accelerated ray tracing is not currently supported on macOS… Lumen can only use the software ray tracer'; Epic's documentation itself was blocked. The README in renders/ue58_baseline confirms the owner ran Metal SM6, Lumen and Nanite on this Air.",
+      "correction": "None on the facts. One nuance matters: 'no ray tracing' means no hardware ray tracing. The owner's valued UE5.8 frames g–j were produced by software-ray-traced Lumen on this M2."
+    },
+    {
+      "claim": "In shipped games the M2 plays at about 720p–900p internal, 30 fps, low settings, no ray tracing, and sits below the minimum spec for Assassin's Creed Shadows (minimum M1 Max / M2 Pro, 720p30 Low) and Crimson Desert (minimum M2 Pro / M3).",
+      "verdict": "partially",
+      "source": "Ubisoft's requirements via search summary: AC Shadows on Mac needs at least an M1 Max or M2 Pro for 720p/30 fps Low, and on Mac it uses 'Software Selective Ray Tracing'. Crimson Desert (Gamesplanet, thegameswiki): M2 Pro minimum with RT off, hardware RT on M3/M4. Cyberpunk: M1 16 GB minimum, M3 Pro recommended for 1080p/60, and 8 GB M2 Airs can't run it (TechSpot and Tom's Guide via search).",
+      "correction": "The minimum-spec facts are right, but 'no ray tracing' is too broad. AC Shadows runs software selective RT at its Mac minimum, and UE5 Lumen (software RT) ran on this M2. What the M2 lacks is hardware RT and a neural denoiser, not ray tracing as such. No measured M2 Air figure exists for AC Shadows. The Crimson Desert M2 Air result (about 15 fps) comes from a single YouTube video, which I did not check."
+    },
+    {
+      "claim": "Fanless penalty: with the same M5 chip, Cyberpunk at 1200p Low with MetalFX ran at 54 fps on the MacBook Air 13 (about 9 W) and 76 fps on the MacBook Pro 14 (about 20 W), about 40% apart.",
+      "verdict": "confirmed",
+      "source": "Notebookcheck article 1264788 via search summary: 54 fps at 9 W versus 76 fps at 20 W, a 40.7% difference.",
+      "correction": "This measures an M5, not the owner's M2. How much the M2 Air throttles under a sustained rendering load has not been measured, as ENGINE_SELECTION.md §3 also says."
+    },
+    {
+      "claim": "Clips actually mistaken for real footage: Unrecord (bodycam artefacts) and Web3D's UE5 forest (Megascans, Ultra Dynamic Sky) on an RTX 4090, i9-14900K and 128 GB. The smallest step that changes the answer is an RTX 4070/5070 PC together with Unreal NvRTX path tracing.",
+      "verdict": "partially",
+      "source": "80.lv, 'This Incredible UE5 Environment Demo Looks Realer Than Real Life' (May 2024), via search: RTX 4090, i9-14900K, 128 GB, Megascans and Ultra Dynamic Sky. It used stock UE5 with no NvRTX or path tracing.",
+      "correction": "The hardware facts are right, but they undercut the report's own recipe. The forest clip that 'reads as real' used stock UE5 (Lumen) with Megascans and a sky plug-in, not NvRTX path tracing. Curated photo-like clips need scanned content and a PC-class GPU, not path tracing specifically. Calling NvRTX, Mega Geometry and Ray Reconstruction a precondition over-specifies the requirement; hardware Lumen on an RTX PC is the more realistic target."
+    },
+    {
+      "claim": "Neural photorealism enhancement (REGEN) runs in real time only on desktop RTX, at 1280×720 on an RTX 4090. It was trained on street datasets and gained ONNX export and UE5 integration.",
+      "verdict": "partially",
+      "source": "https://github.com/stefanos50/REGEN (read directly): real-time inference at '1280x720 (maximum game settings)' on an RTX 4090. For Unreal Engine 5 integration it 'can achieve above 20 FPS' at 960×544 on an RTX 4090. Trained on Cityscapes, Mapillary Vistas, KITTI and nuScenes. Diffusion variants flicker more. No Apple or Metal support is mentioned.",
+      "correction": "Inside UE5, REGEN manages only about 20 fps at 960×544, and that is on an RTX 4090. It is further from usable than the report implies. It is also trained on street scenes, not forests. This strengthens the 'no'."
+    },
+    {
+      "claim": "The M6 Mac mini (announced 25 August 2026, shipping 22 September) has a 12-core GPU with hardware ray tracing, costs £899, and Apple claims twice the M4's graphics performance.",
+      "verdict": "partially",
+      "source": "MacRumors 2026/08/25, 9to5Mac 2026/08/25, Macworld, and the Apple newsroom headline via search: announced 25 Aug 2026, shipping 22 Sep, 12-core CPU and 12-core GPU, 'up to 2× faster graphics' than the 10-core M4, from $899. apple.com was blocked.",
+      "correction": "The dates, core count and graphics claim are confirmed. The £899 UK price is unverified; only the $899 US price was found. It is likely by analogy with the M4 mini's $599/£599, but it was not checked."
+    },
+    {
+      "claim": "The M2 ceiling is the engine selection's own estimate: 'high-end indie / AA', lighting about 75–90% of UE5.8 frames g–j within 150–200 m, 'Not photoreal: the trees cap it'.",
+      "verdict": "confirmed",
+      "source": "/home/user/Aokigahara/docs/ENGINE_SELECTION.md lines 104–106 and 125. I re-ran tools/lighting_stats.py on the 13 reference photos, UE5.8 frames g–j, the 4 Godot prototype JPEGs and 2 WebGPU renders; the output is in the scratchpad as fc_stats.json.",
+      "correction": "The quote is accurate, but what it measures is not photorealism. (1) The valued UE5.8 look is warmer and more saturated than the real site. highlight_blue_ratio is 0.29–0.42 for UE frames g–j against 0.59–0.80 for all 13 photos, and ground saturation is about 0.38–0.49 against 0.21–0.39. So '75–90% of UE5.8 lighting' means parity with a warmer-than-real look. (2) The Godot prototype falls inside the photo ranges on exposure key (0.006–0.011 against 0.006–0.027), sunfleck fraction (0.08–0.16 against 0.09–0.22), black fraction (0.06–0.27 against 0.06–0.22) and highlight B/R (0.66–0.70). Yet it is plainly CG by eye (uniform moss carpet, blob rocks, sparse firs, dull sky gaps with sky_peak 109–132 against 166–244). The metrics cannot show that anything is photoreal, and the plan has no photorealism test."
+    },
+    {
+      "claim": "UK prices, September 2026: RTX 5070 about £529, RTX 5070 Ti about £990, RTX 5090 about £2,019, RTX 5070 prebuilt from £1,474; Shadow Neo £32.99 a month and Power £49.99 a month.",
+      "verdict": "unverifiable",
+      "source": "bestvaluegpu.com and gpupricehistory.com were blocked by the egress proxy, and the search budget ran out before retail prices could be checked.",
+      "correction": "Treat these as indicative only. £529 is the RTX 5070's launch MSRP, so a September 2026 street price may differ, especially given 2026 memory-price pressure."
+    },
+    {
+      "claim": "The Witcher 4 UE5 tech demo runs at 60 fps on a base PS5 with hardware Lumen and Nanite Foliage, at about 900p internal upscaled to 1440p, and is not representative of a shipped game.",
+      "verdict": "confirmed",
+      "source": "Search summaries (VideoCardz, TweakTown, PlayStation Blog, Eurogamer via search): 60 fps on base PS5 with ray tracing, and CD Projekt RED says it is not representative of the final game.",
+      "correction": "The roughly 900p figure comes from an analyst or forum quote, not from CD Projekt RED or Epic. The report already hedges this correctly."
+    }
+  ],
+  "omissions": [
+    "The report never uses the repository's own evidence. Its lighting target (UE5.8 frames g–j) is measurably warmer and more saturated than all 13 real Aokigahara photos: highlight B/R 0.29–0.42 against 0.59–0.80. Chasing 'UE5.8 parity' is therefore not chasing photorealism, and the target should be re-based on the photos.",
+    "'Photorealistic' is never defined or tested. Nothing in the repository can gate it: lighting_stats rates the plainly-CG Godot prototype inside the real-photo ranges. Any photoreal claim needs a perceptual test, such as a blind side-by-side of renders and the owner's photos at 1280 px from matched viewpoints.",
+    "Side by side, the visible gap between the repository's renders and the photos is content, not GPU. The photos show moss-clad lava blocks, root tangles, dense twig and needle litter, lichen-mottled bark and fine understorey clutter. The renders show smooth orange rocks, uniform moss carpets and card-like ferns. A faster GPU does not remove that, and the report's hardware-centred framing (3.5–35× compute) understates how dominant content is.",
+    "Internal resolution: the plan targets about 985×640 internal upscaled with MetalFX Temporal. Temporal upscalers blur and ghost sub-pixel needles and twigs, which are exactly the detail that makes a forest photo read as real. On its own this caps photorealism on the Air, whatever the lighting.",
+    "Memory and disk: the Air has about 10.7 GiB of GPU working set and a 256 GB SSD. That limits scanned-asset density even for offline or Blender work (Zorah alone is 108 GB, and Megascans-grade libraries are tens of GB), and a 25 km² photoreal set on any machine needs streaming and terabyte-class storage.",
+    "The report's 'smallest step' re-admits Unreal on a Windows PC. That conflicts with the owner's ruling against restarting in UE and with their agent-usage sensitivity, and it does not weigh the agent effort of driving Unreal. A Witcher-4-class foliage library was a studio-plus-NVIDIA effort.",
+    "Getting species-accurate scans in practice: Aokigahara lies in Fuji-Hakone-Izu National Park, where off-trail access and drone flights are, I believe, restricted or need permits (not verified). The owner is in the UK. This constrains the 'own photogrammetry' route the report relies on.",
+    "Cloud streaming would put a photo-like, PC-rendered view on the Air's screen without new hardware on the desk. It is mentioned only as a trial, not as a change to the 'on the M2 Air' answer. Its cost is compression artefacts on fine foliage and input latency, which is itself a realism problem.",
+    "The reference photos have unknown licence and camera, and several look graded (crushed blacks, muted colour). Matching them may mean matching one photographer's grade; a photoreal target should use known-camera captures.",
+    "A stills and fly-through route (Blender Cycles on the M2 using the same LiDAR data) is mentioned but not quantified. It is the one route to photo-like output the owner can take today without new hardware, and ENGINE_SELECTION.md already says it can exceed UE5.8."
+  ],
+  "overall": "The report's central answer holds up. On a fanless 8-core M2 Air, no engine delivers free-roam, 'mistaken for a photo' realism across a large forest, and the Godot plan is honestly rated 'not photoreal'. Almost every hardware and demo fact I could reach checks out, though mostly through search summaries because primary sites were blocked: the Witcher 4 path-traced forest numbers, the Witcher 4 PS5 demo, the M2's compute and missing hardware ray tracing, MetalFX denoiser availability from macOS 26, Mac minimum specs, the fanless penalty and the M6 Mac mini facts.\n\nErrors are minor, and most push further towards 'no':\n- REGEN inside UE5 runs at only about 20 fps at 960×544 on an RTX 4090.\n- 'No ray tracing' on the M2 overstates it. Software ray tracing runs there (Lumen, AC Shadows), and the M2 lacks only hardware ray tracing and a denoiser.\n- The £899 M6 price and the GPU street prices are unverified.\n\n**Over-optimism.** The 'smallest step', an RTX 5070 PC with Unreal NvRTX path tracing, implies hardware plus an engine switch changes the answer. That underplays two things. The Witcher 4 forest was a studio-plus-NVIDIA content effort. And re-admitting Unreal conflicts with the owner's constraints. The prescription is also over-specified: the one forest clip that 'reads as real' used stock UE5 Lumen and Megascans on an RTX 4090, not path tracing.\n\n**Over-pessimism, of emphasis rather than conclusion.** The report frames the gap mainly as GPU compute. The repository's own images show content and grading as the larger gaps: moss-clad lava, root and litter clutter, bark and needle-level trees, and a warm UE grade that the real site does not have.\n\n**Unmeasured throughout.** The metrics that back the '75–90% of UE5.8 lighting' ceiling cannot detect photorealism at all. The plainly-CG Godot prototype falls inside the real-photo ranges, while the valued UE5.8 frames are warmer and more saturated than every photo.\n\n**Net answer to the owner:** no, not photoreal on this Mac with any engine. What is achievable is photo-like stills or fly-throughs (Cycles), captured splat patches, or curated clips on an RTX PC with scanned content, which would mean re-admitting Unreal."
+}
