@@ -263,7 +263,11 @@ The two rounds differ mainly on what "photoreal" means and on whether free roam 
    down to about 0.2 (the photos measure 0.14–0.22 on that measure), light sharpening after MetalFX, subtle grain and
    brighter sky gaps (about 1 session, worth perhaps 5–8 points);
 4. put the effort into content, not lighting: first a near-field kit of 20–40 debris meshes and 3D moss clumps, then
-   thin stems, then species trees, which set the ceiling;
+   thin stems, then species trees, which set the ceiling. The kit must include the ground's structure, not only objects
+   on it: fractured lava as real geometry fused into the terrain (slabs, ledges, near-vertical faces, fissures, modest
+   undercuts), root flares that ride over and into that rock, and moss as a surface condition of rock and root rather
+   than separate clumps. A heightfield cannot carry these at any resolution: the UE5.8 team rebaked its relief at
+   0.125 m and got "higher-resolution smoothness" (`PROJECT_HISTORY.md`);
 5. optionally, a Cycles "photo mode" built from the same data.
 
 Expect about 40–50 for stills near the trail and 35–45 in motion. Steps 1 and 2 are in milestone 0 (section 8).
@@ -718,6 +722,9 @@ point), and about 2 hours of the owner's time.
      (`RENDER_VIDEO_MEM_USED`) and physics time to JSON, and compares `Engine.max_fps = 30` against a vsync-based cap.
      The owner passes it after `--`, and picks Metal or MoltenVK with `--rendering-driver metal` or `vulkan` [30][37].
      Add a short warm-up pass that shows every material once, so shaders compile before the timed run.
+   - Include a dense segment in the path: about 30 m of near-field forest at the density that finally read as forest
+     in UE5.8. That state ran at 104 ms a frame (about 10 fps) on this Mac (`PROJECT_HISTORY.md`), so the probe must
+     show what density the M2 can hold at 30 fps before any content is built to a density it cannot run.
    - Export with the official universal templates, the only kind they ship, and the default ad-hoc signature. That
      needs no Xcode and no Apple Developer account. Keep GDExtensions out of the probe.
    - Publish the two apps as release assets of this repository. That is fine here, because they contain only data

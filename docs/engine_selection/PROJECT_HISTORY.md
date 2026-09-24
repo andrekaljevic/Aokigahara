@@ -8,7 +8,7 @@ be re-run.
 
 ## The short answer
 
-The world was restarted about eight times, and each restart changed the area, the tool or the data. None of them
+The world was restarted about eight times (more, counting the scope cuts inside the 15–16 September passes), and each restart changed the area, the tool or the data. None of them
 defined what "right" looks like at a spot you are standing on, or checked it in a way that could catch a step
 backwards. Three things kept happening:
 
@@ -108,6 +108,42 @@ A handover zip truncated. The owner's brief never committed. Research, asset hun
 separate tracks that rarely reached the world. Each restart, and each switch between ChatGPT, Claude Fable 5.1, Claude
 Opus 5 and (likely) Codex, began by reconstructing context from what survived.
 
+### 7. The fix was managed by relayed prose, and the same diagnosis came back at every scale
+
+The owner's ChatGPT handoff notes from 15–16 September (pasted into the session on 24 September; one chat of several)
+show a second layer of management. ChatGPT reviewed screenshots and wrote the prompts; Claude Fable 5.1 built in
+Unreal on the Mac; the owner carried text and screenshots between them.
+
+- **Scope kept shrinking.** By 15 September a propagated world existed: `v52_propagated_real_map_20260915`, with 166
+  tiles of 200 m (about 6.6 km²), 39,016 canopy trees, about 4.46 million understory instances and six ecological
+  recipes. Work then narrowed to a 100 × 100 m proof section, then a 25 × 25 m hero patch (625 m²), then a single
+  acceptance camera (Camera 92, framed on IMG-013).
+- **The diagnosis never changed.** At every one of those scales the notes say the same thing: the ground reads as
+  "terrain + separately placed rocks + separately placed ferns", roots as cylinders, moss as a green coating, ferns
+  too big and bright.
+- **Finer terrain did not help.** The relief was rebaked at 0.125 m (64 chunks). The notes' own verdict: it "largely
+  produced higher-resolution smoothness". A heightfield cannot hold ledges, undercuts, fissures or slabs, so the
+  missing layer, the fractured lava and the roots and moss fused into it, never came from terrain work.
+- **Experiments were tried and abandoned.** Generated lava blobs ("faceted, artificial rubble"), a bespoke hero trunk,
+  dark cylindrical roots, hundreds of moss-clump props, and Landscape/Nanite displacement (switched off) were all
+  rejected.
+- **The look that finally read as forest was unplayable.** The approved dense state (commit `a4d7f2a`, not pushed to
+  this repository) measured 104 ms a frame, about 10 fps.
+- **The advice pulled in opposite directions.** One note asks for more enclosure and less sky; another says the scene
+  is too contrasty, collapses into black, and needs its midtones lifted. One says to keep the forest and not rebuild
+  it; another says the hero foreground may be substantially replaced.
+- **The prompts grew until they contradicted themselves.** One ran to 30 sections of rules and "anti-faff" limits,
+  and still carried stale lines ("establish the actual reference camera", "preserve a BEFORE") that contradicted its
+  main body.
+- **Progress was read from the tools' interface.** Diff counts (+219, then +946 lines) and "thinking" time stood in
+  for pictures while a pass ran. The deciding picture was always a single hero camera, judged by eye.
+
+The advice itself was often sound: "visual truth beats implementation explanation", "geometry must survive lighting
+changes", "screenshots are the arbiter". What failed was the loop around it: each chat started fresh, and neither the
+planner nor the builder could render and measure quickly. Each iteration meant a compile and a warm launch on a fanless
+laptop, and the hardest problem, a ground structure that no terrain or setting provides, was attempted as a sequence
+of prompted experiments at one spot.
+
 ## What the frames show (15 September, 56 renders)
 
 Measured with `tools/lighting_stats.py`; the full tables are in the analysis kept outside the repository.
@@ -147,6 +183,9 @@ deep shade) was a genuine gain, and is where the owner's valued frames come from
 | Changes not reaching the screen | Agents render and measure every change headless in the cloud, from a warmed, known state, before the owner sees it |
 | A moving measuring stick | Regression cameras must not get worse; the target look is chosen once (open question 10) |
 | A Mac that could not run it | Godot app exported from the cloud; one 10-minute benchmark on the Mac (milestone 0) before any content work |
+| A ground structure no heightfield can carry | The near-field kit includes fractured-lava geometry fused into the terrain, root flares and moss as a surface condition (section 3) |
+| A dense look that ran at 10 fps | The milestone 0 probe includes a dense near-field segment, so the density budget is known before content is built |
+| Relayed prose, fresh chats, one hero camera | One builder in one repository; decisions written down once; numbers and random spots, not a single view, decide |
 | Scattered, lost work | One repository, every step pushed, the brief and decisions committed, session budgets and stop rules |
 
 ## Evidence
