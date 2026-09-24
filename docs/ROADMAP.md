@@ -61,81 +61,86 @@ Budget: 2–3 sessions. Owner: about 30 minutes.
 **Decision 0:** Is the dense segment at least 30 fps with MetalFX? Then continue. At 20–30 fps, set a density budget
 from the numbers. Below 20 fps, try the three.js/WebGPU fallback on the same scene before building anything else.
 
-## Phase 1: one area done properly
+## Phase 1: the whole 5 × 5 km plot at base quality
 
-Area: sheets 08LE9325 (which contains IMG-013) and 08LE9335 (already processed), together 400 × 600 m. Budget: 9–14
-sessions. Owner: two or three rating rounds of about 15 minutes each.
+Revised 24 September at the owner's request: build the whole plot first, then raise quality everywhere by rules and
+build out from there. This fits the lessons: detail comes from rules that run in every tile, and quality is judged at
+random spots across the plot, never in one showcase area. Budget: 6–9 sessions. Owner: plot boundary, one test run,
+one walk.
 
-**1A. Measured ground and trees** (1–2 sessions)
-- Fetch the DEM, DSM2, orthophoto and classified LAS for both sheets and their neighbours.
-- Build 1 m terrain for Terrain3D. Bake 0.5 m normal, curvature and occlusion maps so no measured relief is lost.
-- Derive the fields the ground layer will use: slope, curvature, roughness, geomorphons, canopy height, gap fraction,
-  sky-view factor, vegetation class, and forest-register stand data if licensed.
-- Detect stems from canopy-height peaks.
-- Check: at least 80% of stems within 1 m of a peak with height within 10%; terrain against ground points within the
-  survey's stated accuracy.
+**1A. Fix the plot** (half a session)
+- Propose a 5 × 5 km square over the forest core: inside the vegetation map's natural hinoki area (about 24.7 km²),
+  containing IMG-013 (sheet 08LE9325) and the main trails. The owner approves it on a map.
+- About 208 Yamanashi sheets of 400 × 300 m cover it.
 
-**1B. Lighting to target** (1–2 sessions)
-- Physical sky and sun; canopy light maps from the LiDAR sky-view factor; SDFGI or HDDAGI; exposure fixed from the
-  targets.
-- Check: the lighting gate at four matched cameras plus two regression cameras (section 4 of the decision record).
+**1B. Measured ground and trees everywhere** (2–3 sessions)
+- Batch-fetch the 0.5 m DEM, DSM2 and 0.25 m orthophoto for every sheet in the cloud (roughly 1–2 GB). The raw LAS is
+  not needed yet.
+- For each sheet: 1 m terrain for Terrain3D; 0.5 m normal, curvature and occlusion bakes; the fields the ground layer
+  will use later (slope, curvature, roughness, geomorphons, canopy height, gap fraction, sky-view factor, vegetation
+  class, forest-register stand data).
+- Detect stems from canopy-height peaks across the plot.
+- Checks: at least 80% of stems within 1 m of a peak with height within 10%; no seams between sheets.
 
-**1C. The ground layer, the crux** (4–6 sessions; stop rule below)
+**1C. A walkable world** (2–3 sessions)
+- Streaming: 250–500 m tiles loaded in a background ring; collision on terrain and trunks; an eye-height walking
+  character.
+- Trees: placeholder species models at every real stem position, with LODs and impostors, and a canopy heightfield
+  beyond 1–2 km.
+- Lighting to the sunny target: physical sky and sun, canopy light maps from the sky-view factor, SDFGI or HDDAGI.
+- Ground: base materials only (Poly Haven and ambientCG), blended by slope and curvature.
+- Checks: the lighting gate at the fixed cameras; 20 random eye-level spots across the plot for the record.
+
+**1D. Mac test 2** (owner, 15 minutes): a scripted walk and flight across the plot at 30 fps or better, with no heat
+collapse over 10 minutes.
+
+**Decision 1:** a walkable, real-terrain 5 × 5 km world exists at base quality (about the level of the Godot
+prototype). Everything after this raises quality everywhere; nothing shrinks the area.
+
+## Phase 2: raise quality everywhere, by rules
+
+Budget: 8–12 sessions. Owner: two or three rating rounds of about 15 minutes.
+
+**2A. The ground layer, the crux** (4–6 sessions; stop rule below)
 1. **Ground grammar** (half a session): from the photos, IMG-013 and the gap audit, write down slab sizes (mostly
    0.3–1.2 m), fissure widths, where moss grows and where rock stays bare, and where litter collects.
 2. **Fractured lava as geometry** (Blender in the cloud): fracture displaced surfaces into slabs, ledges,
-   near-vertical faces, fissures and modest undercuts; weather the edges; place them along the curvature and roughness
-   fields; sink them into the terrain so terrain and rock read as one surface; three LODs.
+   near-vertical faces, fissures and modest undercuts; weather the edges; build a kit with three LODs. At run time,
+   place and sink the pieces around the walker in every tile from that tile's curvature and roughness fields, so
+   terrain and rock read as one surface.
 3. **Moss as a surface condition**: masks from orientation, curvature, occlusion and moisture proxies blend moss over
    rock and root in the material. Dimensional moss only where the silhouette needs it.
-4. **Roots from real trees**: for each detected stem near the viewer, a flared base, flattened roots that ride over
-   and into the rock (raycast in Blender), split, and disappear under slabs and litter. Poly Haven root clusters and
-   the PBRPX bark supply the surfaces.
-5. **Litter and small plants**: needles, twigs and leaves collected in hollows by the occlusion and curvature fields;
-   ferns small, dark and in sheltered pockets.
+4. **Roots from real trees**: flared bases on the real stems near the walker; flattened roots that ride over and into
+   the rock, split, and disappear under slabs and litter. Poly Haven root clusters and CC0 bark supply the surfaces.
+5. **Litter and small plants**: needles, twigs and leaves collected in hollows; ferns small, dark and in sheltered
+   pockets.
 6. **Evaluation** after each pass:
    - numbers: lighting gate; ground reports (small-gap density, stretch, edge density, ground colour against the
      photos);
-   - pictures: 8 random eye-level spots, 2 low views, IMG-013's viewpoint, all at fixed seeds;
+   - pictures: 8 random eye-level spots drawn from the whole plot (new ones each round), 2 low views and IMG-013's
+     viewpoint;
    - owner: rates each spot 1–5 for "reads as moss-covered lava forest", on a simple private page, mixed with real
      photos.
-- **Pass:** median rating 4 or more across the spots, none at 2 or below, and the lighting gate still passing.
-- **Stop rule:** not passing after 6 sessions. Stop and decide: chase the real floor scan, buy scans usable outside
-  Unreal, lower the target, or make Cycles stills for the hero views.
+- **Pass:** median rating 4 or more, none at 2 or below, and the lighting gate still passing.
+- **Stop rule:** not passing after 6 sessions. Stop and decide with the owner: accept the best version, lower the
+  target, or make rendered stills for chosen views.
 
-**1D. Trees and understorey** (2–3 sessions)
-- Species: *Tsuga* then *Chamaecyparis*.
-- One-session bake-off: scripted Blender tree, EZ-Tree export, and the CC0 hinoki scan (if 0.6 cleared it). Pick by
-  owner rating.
-- LOD0 and LOD1 plus an octahedral impostor for each.
-- Densities from the canopy height model and stand data. Thin sub-canopy stems added statistically, varied in age,
+**2B. Trees and understorey** (2–3 sessions)
+- Species: *Tsuga* then *Chamaecyparis*, following the vegetation map and stand data.
+- One-session bake-off between a scripted Blender tree, an EZ-Tree export and the CC0 hinoki scan (if step 0.6
+  cleared it). Pick by owner rating.
+- LOD0 and LOD1 plus an octahedral impostor for each. Thin sub-canopy stems added statistically, varied in age,
   diameter, lean and damage.
-- Check: the owner's rating at the same spots does not drop; trunks read as bases grown into the ground.
+- Check: ratings at new random spots do not drop; trunks read as bases grown into the ground.
 
-**1E. Mac test 2** (owner, 15 minutes): the finished area at 30 fps or better, with no heat collapse over 10 minutes.
+**2C. Mac test 3** (owner): the upgraded plot at 30 fps or better.
 
-**Decision 1:** Phase 1 passes on its own terms (lighting gate, ground rating, frame rate), or the owner chooses a
-fallback from the stop rule.
+## Phase 3: polish, then build out
 
-## Phase 2: one walkable tile
-
-Budget: 3–5 sessions. Owner: one walk and one test run.
-
-- Grow to about 1.2 × 0.9 km (3 × 3 sheets) with the same pipeline, unchanged.
-- Streaming: 250–500 m tiles loaded in a background ring; collision on terrain, trunks and large slabs.
-- Walking: an eye-height character with footing on uneven lava.
-- Distance: tree impostors to 1–2 km, and a canopy heightfield tinted from the orthophoto beyond.
-- Check: random-spot ratings across the tile match Phase 1; Mac test 3 on a scripted walk and flight.
-
-## Phase 3: the 5 × 5 km plot
-
-Budget: 6–8 sessions. Owner: plot boundary, final test and walk.
-
-- Fix the boundary with the owner. The vegetation map's natural hinoki polygon is about the right size.
-- Batch the pipeline over roughly 200 sheets in the cloud. Publish derived rasters as release assets with CC BY 4.0
-  credit.
-- World pack budget 2–5 GB, streamed from the Mac's SSD.
-- Check: 50 random spots across the plot, with outliers fixed; Mac test 4; release 1.0.
+- Polish: 50 random spots across the plot, outliers fixed; release 1.0 of the 5 × 5 km world.
+- Build out, only if Phase 2 passed: extend beyond 5 km with the same pipeline, unchanged (the full forest is about
+  30 km², and the survey covers the surroundings). Each extension is a batch run plus random-spot checks, not new
+  systems.
 
 ## Phase 4: optional extras
 
@@ -144,8 +149,8 @@ photos; ambient sound; seasons and weather; caves, if the municipal cave report'
 
 ## Owner's decisions (24 September 2026)
 
-1. **A new private repository:** `aokigahara-free-roam`, created by the owner (this session is not allowed to create
-   repositories).
+1. **A new private repository:** `aokigahara-free-roam`, created by the owner (GitHub refuses repository creation from
+   the Claude integration).
 2. **The look: sunny and dappled,** matching the valued frames g–j. The lighting gate uses their numbers.
 3. **No spending beyond the cloud credit,** unless minimal. So no paid tree tools, bought scans, rented GPUs or rented
    Macs; free resources only.
@@ -156,7 +161,8 @@ photos; ambient sound; seasons and weather; caves, if the municipal cave report'
 
 ## Start here (for the first session in the new repository)
 
-Attach `andrekaljevic/Aokigahara` read-only as the source, then run Phase 0 steps 0.2–0.6 in the new repository:
+Attach `andrekaljevic/Aokigahara` read-only as the source, then run Phase 0 steps 0.2–0.6 in the new repository.
+The owner chose to build the whole 5 × 5 km plot first (Phase 1) and raise quality everywhere afterwards (Phase 2).
 
 - **Copy in:** this roadmap, `docs/engine_selection/PROJECT_HISTORY.md`, `docs/ENGINE_SELECTION.md` (as reference),
   `tools/lighting_stats.py`, `tools/marble_test/yamanashi_sheets.py`, the Godot prototype in
